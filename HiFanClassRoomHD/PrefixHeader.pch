@@ -1,0 +1,99 @@
+//
+//  PrefixHeader.pch
+//  HiFanClassRoomHD
+//
+//  Created by 辰 on 2017/5/10.
+//  Copyright © 2017年 Chn. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <WebKit/WebKit.h>
+
+
+
+#import <ReactiveCocoa/ReactiveCocoa.h>
+#import "Masonry.h"
+//#import "MJRefresh.h"         采用XCNormalHeader.h和XCNormalFooter.h
+#import "NSObject+YYModel.h"
+#import "MBProgressHUD+Extension.h"
+#import "UIImageView+WebCache.h"
+#import "FLAnimatedImageView+WebCache.h"
+#import <SDWebImage/UIButton+WebCache.h>
+
+
+#import "AppInformation.h"
+#import "AppUIInformation.h"
+#import "BaseViewController.h"
+#import "BaseBackViewController.h"
+#import "BaseNavigationController.h"
+#import "BaseService.h"
+#import "GGT_Request_URL.h"
+#import "XCNormalHeader.h"
+#import "XCNormalFooter.h"
+#import "OYCountDownManager.h"
+
+
+#import "UIView+Layout.h"
+#import "NSArray+SafeExtension.h"
+#import "GGT_Singleton.h"
+#import "UIButton+XCHelperBlock.h"
+#import "UIView+XCCornerRadius.h"
+#import "NSString+XCHelper.h"
+#import "UIView+XCHelper.h"
+#import "UIAlertController+Color.h"
+#import "UILabel+XCHelper.h"
+#import "UITableView+XCPlaceholderView.h"
+#import "XCLogManager.h"
+#import "UIImage+Category.h"
+
+
+
+// 模型
+#import "GGT_ResultModel.h"
+#import "GGT_CoursePhraseModel.h"
+#import "GGT_DateModel.h"
+#import "GGT_ExperienceCourseModel.h"
+#import "GGT_QuestionModel.h"
+#import "GGT_AnswerModel.h"
+#import "GGT_ClassRoomManager.h"
+#import "GGT_ClassRoomModel.h"
+#import "BaseTableViewCell.h"
+
+//拓课
+#import "TKMacro.h"
+#import <TKRoomSDK/TKRoomSDK.h>
+#import "TKModelToJson.h"
+
+
+static NSString * const xc_returnCode = @"result";
+static NSString * const xc_returnMsg = @"msg";
+static NSString * const xc_message = @"msg";
+static NSString * const xc_alert_message = @"网络不给力，请稍后再试";
+
+static NSString * const xc_servicePhoneNum = @"客服电话:400-6767-671";
+static NSString * const xc_serviceTime = @"周一至周日 8:00~22:00";
+static NSString * const xc_humanCheckTitle = @"在线技术支持";
+
+static NSString * const xc_canBook = @"本次课程消耗1课时，确定加入？";
+static NSString * const xc_courseNotEnough = @"您的课时不足，暂时不能约课";
+static NSString * const xc_courseOutOfTime = @"您的课时已过有效期";
+static NSString * const xc_courseNoSeat = @"已无剩余席位";
+static NSString * const xc_courseSuccess = @"约课成功！";
+
+// 开课前一分钟的弹窗通知
+static NSString * const kPopoverCourseAlterViewNotification = @"kPopoverCourseAlterViewNotification";
+
+// 进入前台刷新
+static NSString * const kEnterForeground = @"kEnterForeground";
+
+
+
+
+#endif /* PrefixHeader_pch */
