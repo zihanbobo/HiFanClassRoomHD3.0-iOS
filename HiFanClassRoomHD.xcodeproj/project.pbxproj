@@ -1014,9 +1014,9 @@
 		5B13B8E021AE6C3300CB0A7F /* FindMoreClass */ = {
 			isa = PBXGroup;
 			children = (
+				5B4E766C21AEB83700C653E2 /* Model */,
+				5B4E766D21AEB83700C653E2 /* View */,
 				5B13B8E121AE6C3300CB0A7F /* Controller */,
-				5B13B8E421AE6C3300CB0A7F /* Model */,
-				5B13B8E521AE6C3300CB0A7F /* View */,
 			);
 			path = FindMoreClass;
 			sourceTree = "<group>";
@@ -1030,26 +1030,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		5B13B8E421AE6C3300CB0A7F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5B13B8E521AE6C3300CB0A7F /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		5B13B8E721AE6C3C00CB0A7F /* CourseTableClass */ = {
 			isa = PBXGroup;
 			children = (
+				5B4E766A21AEB83100C653E2 /* Model */,
+				5B4E766B21AEB83100C653E2 /* View */,
 				5B13B8E821AE6C3C00CB0A7F /* Controller */,
-				5B13B8EB21AE6C3C00CB0A7F /* Model */,
-				5B13B8EC21AE6C3C00CB0A7F /* View */,
 			);
 			path = CourseTableClass;
 			sourceTree = "<group>";
@@ -1063,26 +1049,12 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		5B13B8EB21AE6C3C00CB0A7F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5B13B8EC21AE6C3C00CB0A7F /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		5B13B8EE21AE6C4800CB0A7F /* OrderCourseClass */ = {
 			isa = PBXGroup;
 			children = (
+				5B4E766821AEB82B00C653E2 /* Model */,
+				5B4E766921AEB82B00C653E2 /* View */,
 				5B13B8EF21AE6C4800CB0A7F /* Controller */,
-				5B13B8F221AE6C4800CB0A7F /* Model */,
-				5B13B8F321AE6C4800CB0A7F /* View */,
 			);
 			path = OrderCourseClass;
 			sourceTree = "<group>";
@@ -1094,20 +1066,6 @@
 				5B13B8F121AE6C4800CB0A7F /* HF_OrderCourseHomeViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		5B13B8F221AE6C4800CB0A7F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		5B13B8F321AE6C4800CB0A7F /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		5B20DD331F6B766A0058AEA9 /* Model */ = {
@@ -1126,6 +1084,48 @@
 				5B345231202C4A7E00850D30 /* GGT_ApplyClassModel.m */,
 			);
 			path = "申请中";
+			sourceTree = "<group>";
+		};
+		5B4E766821AEB82B00C653E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B4E766921AEB82B00C653E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5B4E766A21AEB83100C653E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B4E766B21AEB83100C653E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5B4E766C21AEB83700C653E2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B4E766D21AEB83700C653E2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		5B5E8E411FE8F90B0010CFC3 /* 已完成 */ = {

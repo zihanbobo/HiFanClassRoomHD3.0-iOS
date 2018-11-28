@@ -39,8 +39,6 @@
 @property (nonatomic, strong) HF_OrderCourseHomeViewController *orderCourseHomeVc;
 @property (nonatomic, strong) GGT_ExperienceUserOrderCourseVC *xc_experienceVC;
 @property (nonatomic, strong) BaseNavigationController *xc_experienceNav;
-@property (nonatomic, strong) BaseNavigationController *xc_nav;
-@property (nonatomic, strong) BaseNavigationController *xc_nav1;
 @property (nonatomic, strong) UIViewController *currentVC;
 @end
 
@@ -65,26 +63,25 @@
 - (void)setUpNewController {
     //发现
     self.findMoreHomeVC = [HF_FindMoreHomeViewController new];
-    self.xc_nav = [[BaseNavigationController alloc] initWithRootViewController:self.findMoreHomeVC];
-    [self.xc_nav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
-    [self addChildViewController:self.xc_nav];
+    [self.findMoreHomeVC.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+    [self addChildViewController:self.findMoreHomeVC];
     
-    
+    //课表
     self.courseTableHomeVc = [HF_CourseTableHomeViewController new];
-    self.xc_nav1 = [[BaseNavigationController alloc] initWithRootViewController:self.courseTableHomeVc];
-    [self.xc_nav1.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+    [self.courseTableHomeVc.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
     
-    
+    //约课
     self.orderCourseHomeVc = [[HF_OrderCourseHomeViewController alloc] init];
     [self.orderCourseHomeVc.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
     
+    //体验课
     self.xc_experienceVC = [GGT_ExperienceUserOrderCourseVC new];
     self.xc_experienceNav = [[BaseNavigationController alloc] initWithRootViewController:self.xc_experienceVC];
     [self.xc_experienceNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
     
     //  默认,第一个视图(你会发现,全程就这一个用了addSubview)
-    [self.view addSubview:self.xc_nav.view];
-    self.currentVC = self.xc_nav;
+    [self.view addSubview:self.findMoreHomeVC.view];
+    self.currentVC = self.findMoreHomeVC;
 }
 
 //  切换各个标签内容
@@ -113,6 +110,7 @@
     }];
 }
 
+
 - (void)initView {
     @weakify(self);
     self.homeLeftView = [[HF_HomeLeftView alloc]init];
@@ -129,10 +127,10 @@
             case 100:
             {
                 //点击处于当前页面的按钮,直接跳出
-                if (self.currentVC == self.xc_nav) {
+                if (self.currentVC == self.findMoreHomeVC) {
                     return;
                 } else {
-                    [self replaceController:self.currentVC newController:self.xc_nav];
+                    [self replaceController:self.currentVC newController:self.findMoreHomeVC];
                 }
             }
                 break;
@@ -224,10 +222,6 @@
 }
 
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 
 - (void)updateNewVersion {
     
@@ -312,7 +306,7 @@
 
 // 切换正式学员和体验课学员
 - (void)switchViewController {
-    if (self.currentVC == self.xc_nav1 || self.currentVC == self.xc_experienceNav) {
+    if (self.currentVC == self.courseTableHomeVc || self.currentVC == self.xc_experienceNav) {
         return;
     } else {
         
@@ -320,7 +314,7 @@
         [[BaseService share] sendGetRequestWithPath:URL_IsOfficial token:YES viewController:self showMBProgress:YES success:^(id responseObject) {
             
             // result=1 正式学员
-            [self replaceController:self.currentVC newController:self.xc_nav1];
+            [self replaceController:self.currentVC newController:self.courseTableHomeVc];
         } failure:^(NSError *error) {
             
             // result=0 体验课学员
