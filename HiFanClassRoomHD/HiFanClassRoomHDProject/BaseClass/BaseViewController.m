@@ -21,7 +21,7 @@
     self.view.backgroundColor = UICOLOR_FROM_HEX(ColorF2F2F2);
 
     //设置导航颜色
-    self.navigationController.navigationBar.barTintColor = UICOLOR_FROM_HEX(Color2B8EEF);
+    self.navigationController.navigationBar.barTintColor = UICOLOR_FROM_HEX(0x02B6E3);
     //设置导航不透明
     self.navigationController.navigationBar.translucent = NO;
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:Font(20),NSFontAttributeName,UICOLOR_FROM_HEX(ColorFFFFFF),NSForegroundColorAttributeName, nil]];

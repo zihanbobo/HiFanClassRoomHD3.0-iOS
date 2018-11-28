@@ -18,33 +18,6 @@
 }
 
 
-//将按钮设置为图片在上，文字在下
--(void)initButton:(UIButton*)btn{
-    btn.titleLabel.font = Font(14);
-    
-    
-    CGSize imageSize = btn.imageView.frame.size;
-    CGSize titleSize = btn.titleLabel.frame.size;
-    CGFloat totalHeight = LineH(55);
-    btn.imageEdgeInsets = UIEdgeInsetsMake(- (totalHeight - LineH(imageSize.height)), 0.0, 0.0, - LineW(titleSize.width));
-    btn.titleEdgeInsets = UIEdgeInsetsMake(LineH(7), - LineW(imageSize.width), - ((totalHeight-LineH(17)) ), 0);
-}
-
-- (void)drawRect:(CGRect)rect {
-    [self.peopleIconButton xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(30)];
-    [self.peopleIconButton addBorderForViewWithBorderWidth:1.0f BorderColor:UICOLOR_FROM_HEX(ColorFFFFFF) CornerRadius:LineH(30)];
-
-    
-    
-//    [self.classImgView xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(6)];
-//    [self.classEnterButton xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(19)];
-//    //    [self.yaoqingButton xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(19)];
-//
-//    [self.classLevelLabel xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(12)];
-//    [self.classLevelLabel addBorderForViewWithBorderWidth:0.5f BorderColor:UICOLOR_FROM_HEX(kThemeColor) CornerRadius:LineH(12)];
-}
-
-
 - (void)initView {
     //MARK:设置view的颜色为渐变色
     CAGradientLayer *layer = [CAGradientLayer layer];
@@ -59,12 +32,13 @@
     
     //MARK:头像按钮
     self.peopleIconButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.peopleIconButton.tag = 99;
+    [self.peopleIconButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.peopleIconButton];
-    
     
     [self.peopleIconButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).with.offset(64);
-        make.centerX.equalTo(self.optionsView.mas_centerX);
+        make.centerX.equalTo(self.mas_centerX);
         make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
     
@@ -73,116 +47,101 @@
     self.optionsView = [[UIView alloc]init];
     [self addSubview:self.optionsView];
     
-    
     [self.optionsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self);
-        make.top.equalTo(self.mas_top).with.offset(LineY(163));
-        make.height.mas_offset(LineH(314)); //88*3+25+25
+        make.top.equalTo(self.peopleIconButton.mas_bottom).with.offset(40);
+        make.height.mas_offset(399); //133*3
     }];
     
     
-    // 课表按钮
-    UIButton *scheduleButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [scheduleButton setTitle:@"课表" forState:UIControlStateNormal];
-    scheduleButton.frame = CGRectMake(0, 0, LineW(88), LineH(88));
-    scheduleButton.backgroundColor = UICOLOR_FROM_HEX(Color2B8EEF);
-    [scheduleButton setImage:UIIMAGE_FROM_NAME(@"kebiao") forState:UIControlStateNormal];
-    [scheduleButton setImage:UIIMAGE_FROM_NAME(@"kebiao") forState:UIControlStateSelected];
-    scheduleButton.tag = 100;
-    scheduleButton.selected = YES;
-    [scheduleButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self initButton:scheduleButton];
-    [self.optionsView addSubview:scheduleButton];
+    //MARK:发现按钮
+    UIButton *findMoreButton = [self buildButtonTitle:@"发现" setImage:@"faxian_tabbar"];
+    findMoreButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
+    findMoreButton.backgroundColor = UICOLOR_FROM_HEX_ALPHA(ColorFFFFFF, 20);
+    findMoreButton.titleLabel.font = Font(14);
+    findMoreButton.tag = 100;
+    findMoreButton.selected = YES;
+    [findMoreButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self initButton:findMoreButton];
+    [self.optionsView addSubview:findMoreButton];
     
-    
-    [scheduleButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [findMoreButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.optionsView.mas_centerX);
         make.top.equalTo(self.optionsView.mas_top).with.offset(0);
-        make.size.mas_equalTo(CGSizeMake(LineW(88), LineH(88)));
+        make.size.mas_equalTo(CGSizeMake(100, 133));
     }];
     
     
-    // 约课按钮
-    UIButton *bookClassButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [bookClassButton setTitle:@"约课" forState:UIControlStateNormal];
-    bookClassButton.frame = CGRectMake(0, 0, LineW(88), LineH(88));
-    [bookClassButton setImage:UIIMAGE_FROM_NAME(@"yueke") forState:UIControlStateNormal];
-    [bookClassButton setImage:UIIMAGE_FROM_NAME(@"yueke") forState:UIControlStateSelected];
-    bookClassButton.tag = 101;
+    //MARK:课表按钮
+    UIButton *courseButton = [self buildButtonTitle:@"课表" setImage:@"kebiao_tabbar"];
+    courseButton.titleLabel.font = Font(14);
+    courseButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
+    courseButton.tag = 101;
+    courseButton.selected = NO;
+    [courseButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self initButton:courseButton];
+    [self.optionsView addSubview:courseButton];
+    
+    [courseButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.optionsView.mas_centerX);
+        make.top.equalTo(findMoreButton.mas_bottom).with.offset(0);
+        make.size.mas_equalTo(CGSizeMake(100, 133));
+    }];
+    
+    
+    //MARK:约课按钮
+    UIButton *bookClassButton = [self buildButtonTitle:@"约课" setImage:@"yueke_tabbar"];
+    bookClassButton.titleLabel.font = Font(14);
+    bookClassButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
+    bookClassButton.tag = 102;
     bookClassButton.selected = NO;
     [bookClassButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self initButton:bookClassButton];
     [self.optionsView addSubview:bookClassButton];
     
-    
     [bookClassButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.optionsView.mas_centerX);
-        make.top.equalTo(scheduleButton.mas_bottom).with.offset(25);
-        make.size.mas_equalTo(CGSizeMake(LineW(88), LineH(88)));
-    }];
-    
-    
-    // 我的按钮
-    UIButton *mineButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [mineButton setTitle:@"我的" forState:UIControlStateNormal];
-    mineButton.frame = CGRectMake(0, 0, LineW(88), LineH(88));
-    [mineButton setImage:UIIMAGE_FROM_NAME(@"wode") forState:UIControlStateNormal];
-    [mineButton setImage:UIIMAGE_FROM_NAME(@"wode") forState:UIControlStateSelected];
-    mineButton.tag = 102;
-    mineButton.selected = NO;
-    [mineButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self initButton:mineButton];
-    [self.optionsView addSubview:mineButton];
-    
-    [mineButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.optionsView.mas_centerX);
         make.bottom.equalTo(self.optionsView.mas_bottom).with.offset(-0);
-        make.size.mas_equalTo(CGSizeMake(LineW(88), LineH(88)));
+        make.size.mas_equalTo(CGSizeMake(100, 133));
     }];
     
     
-    
-    
-    // 检测按钮
-    UIButton *checkButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [checkButton setImage:UIIMAGE_FROM_NAME(@"jiance") forState:UIControlStateNormal];
+    //MARK:检测按钮
+    UIButton *checkButton = [self buildButtonTitle:nil setImage:@"jiance_tabbar"];
     checkButton.tag = 103;
     [checkButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:checkButton];
+
+    [checkButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).with.offset(20);
+        make.bottom.equalTo(self.mas_bottom).with.offset(-20);
+        make.size.mas_equalTo(CGSizeMake(24, 24));
+    }];
     
     
-    // 电话按钮
-    UIButton *phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [phoneButton setImage:UIIMAGE_FROM_NAME(@"kefu") forState:UIControlStateNormal];
+    //MARK:电话按钮
+    UIButton *phoneButton = [self buildButtonTitle:nil setImage:@"kefu_tabbar"];
     phoneButton.tag = 104;
     [phoneButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:phoneButton];
-    
-    [checkButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.mas_centerX);
-        make.bottom.equalTo(phoneButton.mas_top).with.offset(-LineY(10));
-        make.size.mas_equalTo(CGSizeMake(LineW(50), LineH(50))); //28 27
-    }];
-    
-    
+
     [phoneButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.mas_centerX);
-        make.bottom.equalTo(self.mas_bottom).with.offset(-LineH(30));
-        make.size.mas_equalTo(CGSizeMake(LineW(50), LineH(50))); //26  26
+        make.right.equalTo(self.mas_right).with.offset(-20);
+        make.bottom.equalTo(self.mas_bottom).with.offset(-20);
+        make.size.mas_equalTo(CGSizeMake(24, 24));
     }];
-    
-    
-    GGT_Singleton *single = [GGT_Singleton sharedSingleton];
-    if (single.isAuditStatus) {
-        phoneButton.hidden = YES;
-    } else {
-        phoneButton.hidden = NO;
-    }
-    
+}
+
+
+-(UIButton *)buildButtonTitle:(NSString *)title setImage:(NSString *)imageString {
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:imageString] forState:UIControlStateNormal];
+    [button setImage:[UIImage imageNamed:imageString] forState:UIControlStateSelected];
+    return button;
 }
 
 - (void)buttonAction:(UIButton *)button {
-    
     if ([self.optionsView.subviews containsObject:button]) {
         for (UIView *view in self.optionsView.subviews) {
             if ([view isKindOfClass:[UIButton class]]) {
@@ -195,15 +154,29 @@
     
     button.selected = YES;
     
-    
     if (button.tag == 100 || button.tag == 101 || button.tag == 102) {
-        button.backgroundColor = UICOLOR_FROM_HEX(Color2B8EEF);
+        button.backgroundColor = UICOLOR_FROM_HEX_ALPHA(ColorFFFFFF, 20);
     }
-    
     
     if (self.buttonClickBlock) {
         self.buttonClickBlock(button);
     }
+}
+
+
+//MARK:将按钮设置为图片在上，文字在下
+-(void)initButton:(UIButton*)btn{
+    CGSize imageSize = btn.imageView.frame.size;
+    CGSize titleSize = btn.titleLabel.frame.size;
+    CGFloat totalHeight = LineH(55);
+    btn.imageEdgeInsets = UIEdgeInsetsMake(- (totalHeight - LineH(imageSize.height)), 0.0, 0.0, - LineW(titleSize.width));
+    btn.titleEdgeInsets = UIEdgeInsetsMake(LineH(7), - LineW(imageSize.width), - ((totalHeight-LineH(17)) ), 0);
+}
+
+
+- (void)drawRect:(CGRect)rect {
+    [self.peopleIconButton xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(30)];
+    [self.peopleIconButton addBorderForViewWithBorderWidth:1.0f BorderColor:UICOLOR_FROM_HEX(ColorFFFFFF) CornerRadius:LineH(30)];
 }
 
 @end

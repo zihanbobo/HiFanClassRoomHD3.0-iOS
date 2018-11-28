@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "wode.png",
+      "filename" : "jiance_tabbar.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "wode@2x.png",
+      "filename" : "jiance_tabbar@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "wode@3x.png",
+      "filename" : "jiance_tabbar@3x.png",
       "scale" : "3x"
     }
   ],

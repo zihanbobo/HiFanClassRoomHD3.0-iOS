@@ -116,12 +116,16 @@
 - (void)initView {
     @weakify(self);
     self.homeLeftView = [[HF_HomeLeftView alloc]init];
-    self.homeLeftView = [[HF_HomeLeftView alloc]initWithFrame:CGRectMake(0, 0, LineW(home_left_width), SCREEN_HEIGHT())];
+    self.homeLeftView = [[HF_HomeLeftView alloc]initWithFrame:CGRectMake(0, 0, home_left_width, SCREEN_HEIGHT())];
     [self.view addSubview:self.homeLeftView];
     
     self.homeLeftView.buttonClickBlock = ^(UIButton *button) {
         @strongify(self);
         switch (button.tag) {
+            case 99:
+                NSLog(@"头像");
+                
+                break;
             case 100:
             {
                 //点击处于当前页面的按钮,直接跳出
@@ -132,13 +136,11 @@
                 }
             }
                 break;
-                
             case 101:
             {
                 [self switchViewController];
             }
                 break;
-                
             case 102:
             {
                 if (self.currentVC == self.orderCourseHomeVc) {

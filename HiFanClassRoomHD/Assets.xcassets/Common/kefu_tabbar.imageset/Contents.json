@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "kebiao.png",
+      "filename" : "kefu_tabbar.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "kebiao@2x.png",
+      "filename" : "kefu_tabbar@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "kebiao@3x.png",
+      "filename" : "kefu_tabbar@3x.png",
       "scale" : "3x"
     }
   ],
