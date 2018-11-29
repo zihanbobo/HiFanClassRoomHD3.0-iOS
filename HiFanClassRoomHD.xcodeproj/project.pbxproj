@@ -68,6 +68,7 @@
 		5BC473681EC95C8A003B8154 /* GGT_SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC473671EC95C8A003B8154 /* GGT_SettingViewController.m */; };
 		5BC473AA1EC99FA7003B8154 /* GGT_MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC473A91EC99FA7003B8154 /* GGT_MineHeaderView.m */; };
 		5BC9F3881FF37A5800CA2A34 /* GGT_OrderUnitCourseInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC9F3871FF37A5800CA2A34 /* GGT_OrderUnitCourseInfoCell.m */; };
+		5BCBFD0A21AFE21F00E4EF11 /* HF_OrderCourseHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBFD0921AFE21F00E4EF11 /* HF_OrderCourseHomeView.m */; };
 		5BD0754B1FE12C33002F0837 /* GGT_ScheduleUnFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0754A1FE12C33002F0837 /* GGT_ScheduleUnFinishedViewController.m */; };
 		5BD0754E1FE12C58002F0837 /* GGT_ScheduleFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0754D1FE12C58002F0837 /* GGT_ScheduleFinishedViewController.m */; };
 		5BD3D8301FCE828700C9B92B /* GGT_UnitBookListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD3D82F1FCE828700C9B92B /* GGT_UnitBookListModel.m */; };
@@ -474,6 +475,8 @@
 		5BC473A91EC99FA7003B8154 /* GGT_MineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGT_MineHeaderView.m; sourceTree = "<group>"; };
 		5BC9F3861FF37A5800CA2A34 /* GGT_OrderUnitCourseInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_OrderUnitCourseInfoCell.h; sourceTree = "<group>"; };
 		5BC9F3871FF37A5800CA2A34 /* GGT_OrderUnitCourseInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_OrderUnitCourseInfoCell.m; sourceTree = "<group>"; };
+		5BCBFD0821AFE21F00E4EF11 /* HF_OrderCourseHomeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_OrderCourseHomeView.h; sourceTree = "<group>"; };
+		5BCBFD0921AFE21F00E4EF11 /* HF_OrderCourseHomeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderCourseHomeView.m; sourceTree = "<group>"; };
 		5BD075491FE12C33002F0837 /* GGT_ScheduleUnFinishedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ScheduleUnFinishedViewController.h; sourceTree = "<group>"; };
 		5BD0754A1FE12C33002F0837 /* GGT_ScheduleUnFinishedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_ScheduleUnFinishedViewController.m; sourceTree = "<group>"; };
 		5BD0754C1FE12C58002F0837 /* GGT_ScheduleFinishedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ScheduleFinishedViewController.h; sourceTree = "<group>"; };
@@ -1096,6 +1099,8 @@
 		5B4E766921AEB82B00C653E2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5BCBFD0821AFE21F00E4EF11 /* HF_OrderCourseHomeView.h */,
+				5BCBFD0921AFE21F00E4EF11 /* HF_OrderCourseHomeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3043,6 +3048,7 @@
 				5BE2EDF7216B37DC00845E70 /* TKButton.m in Sources */,
 				5BE2EDD8216B37DC00845E70 /* TKMessageTableViewCell.m in Sources */,
 				5B743D1E1EC5A281004E744A /* GGT_MineSplitViewController.m in Sources */,
+				5BCBFD0A21AFE21F00E4EF11 /* HF_OrderCourseHomeView.m in Sources */,
 				5BE2EDFB216B37DC00845E70 /* TKDrogView.m in Sources */,
 				5BE2EDBB216B37DC00845E70 /* BITStoreButton.m in Sources */,
 				5BC9F3881FF37A5800CA2A34 /* GGT_OrderUnitCourseInfoCell.m in Sources */,
