@@ -111,7 +111,7 @@
                 
                 
                 //判断是否操作课时，如果操作，进行刷新left的数据
-                GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+                HF_Singleton *sin = [HF_Singleton sharedSingleton];
                 
                 //数据不一样，进行刷新，因为在修改姓名的时候，有一个通知，再次直接用那个了
                 if ([[NSString stringWithFormat:@"%@",dic[@"SurplusCount"]] isEqualToString:sin.leftTotalCount] == NO) {

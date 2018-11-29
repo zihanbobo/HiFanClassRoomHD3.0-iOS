@@ -1,5 +1,5 @@
 //
-//  GGT_ClassRoomModel.h
+//  HF_ClassRoomModel.h
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2018/2/28.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GGT_ClassRoomModel : NSObject
+@interface HF_ClassRoomModel : NSObject
 
 @property (nonatomic, assign) NSInteger LessonId;
 

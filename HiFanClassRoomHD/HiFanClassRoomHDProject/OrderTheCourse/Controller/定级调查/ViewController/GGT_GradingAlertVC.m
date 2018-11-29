@@ -376,7 +376,7 @@ static CGFloat const xc_cellHeight = 38.0f;
 
                         } enterBlock:^{
                             //刷新《我的》部分的数据
-                            GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+                            HF_Singleton *sin = [HF_Singleton sharedSingleton];
                             sin.isRefreshSelfInfoData = YES;
                         }];
                     }

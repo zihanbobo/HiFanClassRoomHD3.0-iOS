@@ -34,7 +34,7 @@
 #import "BaseBackViewController.h"
 #import "BaseNavigationController.h"
 #import "BaseService.h"
-#import "GGT_Request_URL.h"
+#import "HF_Request_URL.h"
 #import "XCNormalHeader.h"
 #import "XCNormalFooter.h"
 #import "OYCountDownManager.h"
@@ -42,7 +42,7 @@
 
 #import "UIView+Layout.h"
 #import "NSArray+SafeExtension.h"
-#import "GGT_Singleton.h"
+#import "HF_Singleton.h"
 #import "UIButton+XCHelperBlock.h"
 #import "UIView+XCCornerRadius.h"
 #import "NSString+XCHelper.h"
@@ -62,8 +62,8 @@
 #import "GGT_ExperienceCourseModel.h"
 #import "GGT_QuestionModel.h"
 #import "GGT_AnswerModel.h"
-#import "GGT_ClassRoomManager.h"
-#import "GGT_ClassRoomModel.h"
+#import "HF_ClassRoomManager.h"
+#import "HF_ClassRoomModel.h"
 #import "BaseTableViewCell.h"
 
 //拓课

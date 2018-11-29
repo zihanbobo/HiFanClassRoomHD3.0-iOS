@@ -11,7 +11,7 @@
 #import "GGT_OrderCourseTableViewCell.h"
 #import "GGT_PlaceHolderView.h"
 #import "GGT_CustomPopAlertView.h"
-#import "GGT_PageControl.h"
+#import "HF_PageControl.h"
 
 static CGFloat const xc_cellWidth = 102.0f;
 static CGFloat const xc_cellHeight = 78.0f;
@@ -24,7 +24,7 @@ static CGFloat const xc_cellMargin = 20.0f;
 @property (nonatomic, strong) NSMutableArray *xc_courseMuArray;
 @property (nonatomic, strong) GGT_DateModel *xc_model;
 @property (nonatomic, strong) GGT_PlaceHolderView *xc_placeHolderView;
-@property (nonatomic, strong) GGT_PageControl *pageControl;
+@property (nonatomic, strong) HF_PageControl *pageControl;
 @property (nonatomic, strong) UIPageControl *currentPageControl;
 @property BOOL reFresh;
 
@@ -133,7 +133,7 @@ static CGFloat const xc_cellMargin = 20.0f;
     [self.xc_collectionView registerClass:[GGT_OrderCourseCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([GGT_OrderCourseCollectionViewCell class])];
     
 
-    self.pageControl = [[GGT_PageControl alloc]initWithFrame:CGRectMake(0, 0, LineW(12), LineH(12))];
+    self.pageControl = [[HF_PageControl alloc]initWithFrame:CGRectMake(0, 0, LineW(12), LineH(12))];
     self.pageControl.bounds = CGRectMake(0, 0, LineW(12), LineH(12));
     self.pageControl.userInteractionEnabled = NO;
     self.pageControl.currentPageIndicatorTintColor = UICOLOR_FROM_HEX(ColorFF6600);

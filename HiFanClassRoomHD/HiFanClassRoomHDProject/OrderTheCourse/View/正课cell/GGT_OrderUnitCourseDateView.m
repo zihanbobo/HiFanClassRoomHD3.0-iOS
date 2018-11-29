@@ -84,7 +84,7 @@
     [self.xc_collectionView registerClass:[GGT_OrderCourseCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([GGT_OrderCourseCollectionViewCell class])];
     
     
-    self.pageControl = [[GGT_PageControl alloc]initWithFrame:CGRectMake(0, 0, LineW(12), LineH(12))];
+    self.pageControl = [[HF_PageControl alloc]initWithFrame:CGRectMake(0, 0, LineW(12), LineH(12))];
     self.pageControl.bounds = CGRectMake(0, 0, LineW(12), LineH(12));
     self.pageControl.userInteractionEnabled = NO;
     self.pageControl.currentPageIndicatorTintColor = UICOLOR_FROM_HEX(ColorFF6600);

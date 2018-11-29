@@ -1,16 +1,16 @@
 //
-//  GGT_PageControl.m
+//  HF_PageControl.m
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2017/12/28.
 //  Copyright © 2017年 Chn. All rights reserved.
 //
 
-#import "GGT_PageControl.h"
+#import "HF_PageControl.h"
 #define dotW 12    // 圆点宽
 #define magrin 12  // 圆点间距
 
-@implementation GGT_PageControl
+@implementation HF_PageControl
 
 - (void)layoutSubviews {
     [super layoutSubviews];

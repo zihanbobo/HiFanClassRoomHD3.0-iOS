@@ -403,7 +403,7 @@
     }
     
     //获取时间差
-    GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
     NSTimeInterval timeCount = [sin pleaseInsertStarTime:sin.nowDateString andInsertEndTime:model.StartTime class:@"GGT_ScheduleUnFisishedHeaderInfoCell"];
     self.countDown = timeCount;
 }

@@ -1,5 +1,5 @@
 //
-//  GGT_LoadingView.h
+//  HF_LoadingView.h
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2017/8/18.
@@ -10,7 +10,7 @@
 
 typedef void (^LoadingFailedBlock) (UIButton *button);
 
-@interface GGT_LoadingView : UIView
+@interface HF_LoadingView : UIView
 
 @property (nonatomic, copy) LoadingFailedBlock loadingFailedBlock;
 

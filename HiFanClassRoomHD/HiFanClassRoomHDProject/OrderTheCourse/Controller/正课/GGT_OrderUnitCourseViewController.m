@@ -689,7 +689,7 @@
 
 #pragma mark ------------进入教室  的操作-------------------------
 - (void)cancleButtonClick :(UIButton *)button {
-    GGT_ClassRoomModel *tkModel = [[GGT_ClassRoomModel alloc] init];
+    HF_ClassRoomModel *tkModel = [[HF_ClassRoomModel alloc] init];
     tkModel.serial = self.classBookDetailModel.serial;
     tkModel.host = self.classBookDetailModel.host;
     tkModel.port = self.classBookDetailModel.port;
@@ -698,7 +698,7 @@
     tkModel.LessonId = self.classBookDetailModel.LessionId;
     
     
-    [GGT_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:tkModel leftRoomBlock:^{
+    [HF_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:tkModel leftRoomBlock:^{
         
     }];
 }

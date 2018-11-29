@@ -1,5 +1,5 @@
 //
-//  GGT_LoginView.h
+//  HF_LoginView.h
 //  GoGoTalk
 //
 //  Created by XieHenry on 2017/4/27.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGT_LoginView : UIView <UITextFieldDelegate>
+@interface HF_LoginView : UIView <UITextFieldDelegate>
 //手机输入框
 @property (nonatomic, strong) UITextField *phoneAccountField;
 //密码输入框

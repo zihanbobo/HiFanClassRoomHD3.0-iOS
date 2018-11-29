@@ -1,14 +1,14 @@
 //
-//  GGT_ForgotPasswordView.m
+//  HF_ForgotPasswordView.m
 //  GoGoTalk
 //
 //  Created by XieHenry on 2017/4/27.
 //  Copyright © 2017年 XieHenry. All rights reserved.
 //
 
-#import "GGT_ForgotPasswordView.h"
+#import "HF_ForgotPasswordView.h"
 
-@implementation GGT_ForgotPasswordView
+@implementation HF_ForgotPasswordView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];

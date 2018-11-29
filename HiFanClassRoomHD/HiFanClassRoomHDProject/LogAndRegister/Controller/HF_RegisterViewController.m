@@ -1,22 +1,22 @@
 //
-//  GGT_RegisterViewController.m
+//  HF_RegisterViewController.m
 //  GoGoTalk
 //
 //  Created by XieHenry on 2017/4/26.
 //  Copyright © 2017年 XieHenry. All rights reserved.
 //
 
-#import "GGT_RegisterViewController.h"
-#import "GGT_RegisterView.h"
+#import "HF_RegisterViewController.h"
+#import "HF_RegisterView.h"
 #import "HF_HomeViewController.h"
 
-@interface GGT_RegisterViewController ()
+@interface HF_RegisterViewController ()
 
-@property (nonatomic, strong) GGT_RegisterView *registerView;
+@property (nonatomic, strong) HF_RegisterView *registerView;
 
 @end
 
-@implementation GGT_RegisterViewController
+@implementation HF_RegisterViewController
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -30,7 +30,7 @@
     [super viewDidLoad];
     [self setLeftBackButton];
     
-    self.registerView = [[GGT_RegisterView alloc]init];
+    self.registerView = [[HF_RegisterView alloc]init];
     self.registerView.backgroundColor = [UIColor whiteColor];
     self.view = self.registerView;
     
@@ -107,7 +107,7 @@
 -(void)turnToHomeClick{
     [UserDefaults() setObject:@"yes" forKey:@"login"];
     [UserDefaults() synchronize];
-    GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
     sin.isShowVersionUpdateAlert = YES;
     HF_HomeViewController *homeVc = [[HF_HomeViewController alloc]init];
     [self.navigationController pushViewController:homeVc animated:YES];

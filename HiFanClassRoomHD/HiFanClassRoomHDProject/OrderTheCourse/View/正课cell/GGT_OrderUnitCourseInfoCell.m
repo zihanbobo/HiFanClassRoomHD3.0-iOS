@@ -312,7 +312,7 @@
     }
     
     //如果是未开始状态，就进行时间判断。
-    GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
     //获取时间差
     NSTimeInterval timeCount = [sin pleaseInsertStarTime:sin.nowDateString andInsertEndTime:model.StartTime class:@"GGT_OrderUnitCourseInfoCell"];
     self.countDown = timeCount;

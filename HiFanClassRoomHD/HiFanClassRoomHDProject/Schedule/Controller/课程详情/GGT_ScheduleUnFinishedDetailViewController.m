@@ -312,7 +312,7 @@
 //        LOSAlertPRO(@"请在开课前10分钟内进入教室", @"知道了");
         
     } else if (model.StatusName == 1 || model.StatusName == 3) {
-        GGT_ClassRoomModel *tkModel = [[GGT_ClassRoomModel alloc] init];
+        HF_ClassRoomModel *tkModel = [[HF_ClassRoomModel alloc] init];
         tkModel.serial = model.serial;
         tkModel.host = model.host;
         tkModel.port = model.port;
@@ -321,7 +321,7 @@
         tkModel.LessonId = model.LessonId;
         
         
-        [GGT_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:tkModel leftRoomBlock:^{
+        [HF_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:tkModel leftRoomBlock:^{
             
         }];
     }

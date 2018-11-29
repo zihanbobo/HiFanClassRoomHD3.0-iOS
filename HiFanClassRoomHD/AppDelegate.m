@@ -9,12 +9,12 @@
 #import "AppDelegate.h"
 #import "IQKeyboardManager.h"
 #import <Bugly/Bugly.h>
-#import "GGT_LoginViewController.h"
+#import "HF_LoginViewController.h"
 #import "BaseNavigationController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "HF_HomeViewController.h"
 #import <UMSocialCore/UMSocialCore.h>
-#import "GGT_LaunchViewController.h"
+#import "HF_LaunchViewController.h"
 #import "UMMobClick/MobClick.h"
 
 
@@ -48,7 +48,7 @@ static BOOL isProduction = false;
 - (void)xc_configKeyWindow {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    GGT_LaunchViewController *vc = [GGT_LaunchViewController new];
+    HF_LaunchViewController *vc = [HF_LaunchViewController new];
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
 }
@@ -56,7 +56,7 @@ static BOOL isProduction = false;
 // 获取BaseURL
 - (void)xc_changeKeyWindowWithOptions:(NSDictionary *)launchOptions {
     
-    GGT_Singleton *single = [GGT_Singleton sharedSingleton];
+    HF_Singleton *single = [HF_Singleton sharedSingleton];
     single.base_url = BASE_REQUEST_URL;
     single.isAuditStatus = NO;
     
@@ -159,7 +159,7 @@ static BOOL isProduction = false;
 - (void)initKeyWindow {
     
     self.window.backgroundColor = [UIColor whiteColor];
-    GGT_LoginViewController *loginVc = [[GGT_LoginViewController alloc]init];
+    HF_LoginViewController *loginVc = [[HF_LoginViewController alloc]init];
     HF_HomeViewController *homeVc = [[HF_HomeViewController alloc]init];
     
     //对usertoken赋值,如果为空，就跳转到登录页
@@ -197,7 +197,7 @@ static BOOL isProduction = false;
 #pragma mark 对照相机和麦克风进行授权
 - (void)initCameraAndMic {
     
-    GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
     //照相机检测
     AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
     if ( authStatus == AVAuthorizationStatusRestricted || authStatus == AVAuthorizationStatusDenied ) {

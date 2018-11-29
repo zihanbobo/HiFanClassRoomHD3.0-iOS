@@ -1,5 +1,5 @@
 //
-//  GGT_UpdateModel.h
+//  HF_UpdateModel.h
 //  HiFanClassRoomHD
 //
 //  Created by 辰 on 2017/9/12.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GGT_UpdateModel : NSObject
+@interface HF_UpdateModel : NSObject
 
 @property (nonatomic, strong) NSString *Title;
 @property (nonatomic, strong) NSString *Contents;

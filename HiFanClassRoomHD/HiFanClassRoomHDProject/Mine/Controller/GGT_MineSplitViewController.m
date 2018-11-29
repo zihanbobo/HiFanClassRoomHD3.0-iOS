@@ -48,7 +48,7 @@
 #pragma mark 网络请求失败后，重新点击按钮加载数据
 - (void)showLoadingView{
     if (!self.loadingView) {
-        _loadingView = [[GGT_LoadingView alloc] initWithFrame:CGRectMake(0, 0,home_right_width, SCREEN_HEIGHT())];
+        _loadingView = [[HF_LoadingView alloc] initWithFrame:CGRectMake(0, 0,home_right_width, SCREEN_HEIGHT())];
     }
     [self.view addSubview:_loadingView];
 }
@@ -66,7 +66,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     //刷新数据
-    GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
     if (sin.isRefreshSelfInfoData == YES) {
         [self.mineLeftVC refreshHeaderLodaData];
     }

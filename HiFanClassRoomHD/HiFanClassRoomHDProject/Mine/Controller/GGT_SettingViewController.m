@@ -9,7 +9,7 @@
 #import "GGT_SettingViewController.h"
 //可以和个人信息共用一个
 #import "GGT_SelfInfoTableViewCell.h"
-#import "GGT_LoginViewController.h"
+#import "HF_LoginViewController.h"
 // 引入JPush功能所需头文件
 #import "JPUSHService.h" //JPUSHRegisterDelegate
 
@@ -116,7 +116,7 @@
         
     } else if (indexPath.row == 1) {
         //计算缓存大小
-        GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+        HF_Singleton *sin = [HF_Singleton sharedSingleton];
         cell.contentLabel.text = sin.cacheSize;
 
 
@@ -166,7 +166,7 @@
         
         
         //清除缓存
-        GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+        HF_Singleton *sin = [HF_Singleton sharedSingleton];
         NSString *messageStr = [NSString stringWithFormat:@"当前应用缓存%@，清除减少占用空间，保留提高加载速度",sin.cacheSize];
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:messageStr preferredStyle:UIAlertControllerStyleAlert];
         alert.titleColor = UICOLOR_FROM_HEX(0x000000);
@@ -340,7 +340,7 @@
     
     UIAlertAction *clernAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
     
-        GGT_LoginViewController *loginVc = [[GGT_LoginViewController alloc]init];
+        HF_LoginViewController *loginVc = [[HF_LoginViewController alloc]init];
         [UserDefaults() setObject:@"no" forKey:@"login"];
         [UserDefaults() setObject:@"" forKey:K_userToken];
         [UserDefaults() synchronize];

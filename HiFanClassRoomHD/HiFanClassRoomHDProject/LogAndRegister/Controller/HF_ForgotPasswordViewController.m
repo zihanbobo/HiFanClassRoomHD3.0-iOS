@@ -1,21 +1,21 @@
 //
-//  GGT_ForgotPasswordViewController.m
+//  HF_ForgotPasswordViewController.m
 //  GoGoTalk
 //
 //  Created by XieHenry on 2017/4/27.
 //  Copyright © 2017年 XieHenry. All rights reserved.
 //
 
-#import "GGT_ForgotPasswordViewController.h"
-#import "GGT_ForgotPasswordView.h"
+#import "HF_ForgotPasswordViewController.h"
+#import "HF_ForgotPasswordView.h"
 #import "UIButton+timer.h"
 
-@interface GGT_ForgotPasswordViewController ()
+@interface HF_ForgotPasswordViewController ()
 
-@property (nonatomic, strong) GGT_ForgotPasswordView *forgotPasswordView;
+@property (nonatomic, strong) HF_ForgotPasswordView *forgotPasswordView;
 @end
 
-@implementation GGT_ForgotPasswordViewController
+@implementation HF_ForgotPasswordViewController
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -30,7 +30,7 @@
     self.navigationItem.title = @"忘记密码";
     
     
-    self.forgotPasswordView = [[GGT_ForgotPasswordView alloc]init];
+    self.forgotPasswordView = [[HF_ForgotPasswordView alloc]init];
     self.forgotPasswordView.backgroundColor = [UIColor whiteColor];
     self.view = self.forgotPasswordView;
     

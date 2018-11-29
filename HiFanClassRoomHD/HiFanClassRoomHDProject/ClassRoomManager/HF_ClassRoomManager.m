@@ -1,12 +1,12 @@
 //
-//  GGT_ClassRoomManager.m
+//  HF_ClassRoomManager.m
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2018/2/28.
 //  Copyright © 2018年 Chn. All rights reserved.
 //
 
-#import "GGT_ClassRoomManager.h"
+#import "HF_ClassRoomManager.h"
 
 // 拓课
 #import "TKEduClassRoom.h"
@@ -14,14 +14,14 @@
 #import "TKUtil.h"
 
 
-@interface GGT_ClassRoomManager ()<TKEduRoomDelegate>
+@interface HF_ClassRoomManager ()<TKEduRoomDelegate>
 @property (nonatomic, copy) TKLeftClassroomBlock xc_leftRoomBlock;
 @end
 
-@implementation GGT_ClassRoomManager 
+@implementation HF_ClassRoomManager 
 
 + (instancetype)share {
-    static GGT_ClassRoomManager *shareInstance = nil;
+    static HF_ClassRoomManager *shareInstance = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         shareInstance = [[self alloc] init];
@@ -30,14 +30,14 @@
 }
 
 #pragma mark - 进入拓课的方法
-+ (void)tk_enterClassroomWithViewController:(UIViewController *)viewController courseModel:(GGT_ClassRoomModel *)model leftRoomBlock:(TKLeftClassroomBlock)leftRoomBlock {
-    GGT_ClassRoomManager *manager = [GGT_ClassRoomManager share];
++ (void)tk_enterClassroomWithViewController:(UIViewController *)viewController courseModel:(HF_ClassRoomModel *)model leftRoomBlock:(TKLeftClassroomBlock)leftRoomBlock {
+    HF_ClassRoomManager *manager = [HF_ClassRoomManager share];
     [manager enterTKClassroomWithCourseModel:model viewController:viewController];
     manager.xc_leftRoomBlock = leftRoomBlock;
 }
 
 
-- (void)enterTKClassroomWithCourseModel:(GGT_ClassRoomModel *)model viewController:(UIViewController *)viewController {
+- (void)enterTKClassroomWithCourseModel:(HF_ClassRoomModel *)model viewController:(UIViewController *)viewController {
     
         //增加上课记录的日志
         NSString *urlStr = [NSString stringWithFormat:@"%@?attendLessonID=%ld",URL_AppEntryRoomLessonInOutRecord,(long)model.LessonId];

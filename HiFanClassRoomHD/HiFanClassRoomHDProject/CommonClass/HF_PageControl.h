@@ -1,5 +1,5 @@
 //
-//  GGT_PageControl.h
+//  HF_PageControl.h
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2017/12/28.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGT_PageControl : UIPageControl
+@interface HF_PageControl : UIPageControl
 
 @end
 

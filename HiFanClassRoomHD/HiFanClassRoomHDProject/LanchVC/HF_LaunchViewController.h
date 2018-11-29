@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGT_LaunchViewController : BaseViewController
+@interface HF_LaunchViewController : BaseViewController
 
 @end

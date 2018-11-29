@@ -189,7 +189,7 @@
     NSBlockOperation *operation1 = [NSBlockOperation blockOperationWithBlock:^{
         [NSThread sleepForTimeInterval:1.0];
 
-        GGT_Singleton *singleton = [GGT_Singleton sharedSingleton];
+        HF_Singleton *singleton = [HF_Singleton sharedSingleton];
         if (singleton.cameraStatus == YES) {
             
             [self animaCamera:YES];
@@ -209,7 +209,7 @@
     NSBlockOperation *operation2 = [NSBlockOperation blockOperationWithBlock:^{
         [NSThread sleepForTimeInterval:1.0];
         
-        GGT_Singleton *singleton = [GGT_Singleton sharedSingleton];
+        HF_Singleton *singleton = [HF_Singleton sharedSingleton];
         if (singleton.micStatus == YES) {
             
             [self animaMic:YES];
@@ -228,7 +228,7 @@
     NSBlockOperation *operation3 = [NSBlockOperation blockOperationWithBlock:^{
         [NSThread sleepForTimeInterval:1.0];
 
-        GGT_Singleton *singleton = [GGT_Singleton sharedSingleton];
+        HF_Singleton *singleton = [HF_Singleton sharedSingleton];
 
         if (singleton.netStatus == YES) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -252,7 +252,7 @@
     }];
     
     NSBlockOperation *operation4 = [NSBlockOperation blockOperationWithBlock:^{
-        GGT_Singleton *singleton = [GGT_Singleton sharedSingleton];
+        HF_Singleton *singleton = [HF_Singleton sharedSingleton];
 
         NSLog(@"检测设备-%d-%d--%d",singleton.cameraStatus,singleton.micStatus,singleton.netStatus);
 

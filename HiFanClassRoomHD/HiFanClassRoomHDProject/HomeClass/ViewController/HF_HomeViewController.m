@@ -26,7 +26,7 @@
 #import "TKMacro.h"
 #import "TKUtil.h"
 
-#import "GGT_UpdateModel.h"
+#import "HF_UpdateModel.h"
 #import "GGT_UnitBookListHeaderModel.h"
 #import "GGT_GradingAlertVC.h"
 #import "GGT_ExperienceUserOrderCourseVC.h"
@@ -50,7 +50,7 @@
     [self initView];
     [self setUpNewController];
     
-    GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
     if (sin.isShowVersionUpdateAlert == YES) {
         [self updateNewVersion];
     }
@@ -168,14 +168,14 @@
             case 104:
             {
                 //#warning 自测直播教室使用，用完之后注释
-                //                GGT_ClassRoomModel *tkModel = [[GGT_ClassRoomModel alloc] init];
+                //                HF_ClassRoomModel *tkModel = [[HF_ClassRoomModel alloc] init];
                 //                tkModel.serial = @"1782752406";
                 //                tkModel.host = @"global.talk-cloud.net";
                 //                tkModel.port = @"80";
                 //                tkModel.nickname = @"小ipad";
                 //                tkModel.userrole = @"2";
                 //
-                //                [GGT_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:tkModel leftRoomBlock:^{
+                //                [HF_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:tkModel leftRoomBlock:^{
                 //
                 //                }];
                 //                return;
@@ -207,12 +207,12 @@
         
         // 进入教室
         if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
-            GGT_ClassRoomModel *model = [GGT_ClassRoomModel yy_modelWithDictionary:responseObject[@"data"]];
+            HF_ClassRoomModel *model = [HF_ClassRoomModel yy_modelWithDictionary:responseObject[@"data"]];
             if (![model.nickname isKindOfClass:[NSString class]] || model.nickname.length == 0) {
                 model.nickname = @"Student";
             }
             
-            [GGT_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:model leftRoomBlock:^{
+            [HF_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:model leftRoomBlock:^{
                 
             }];
         }
@@ -233,7 +233,7 @@
     [[BaseService share] sendGetRequestWithPath:urlStr token:NO viewController:self showMBProgress:NO success:^(id responseObject) {
         
         if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
-            GGT_UpdateModel *model = [GGT_UpdateModel yy_modelWithDictionary:responseObject[@"data"]];
+            HF_UpdateModel *model = [HF_UpdateModel yy_modelWithDictionary:responseObject[@"data"]];
             [self popAlertVCWithModel:model];
         } else {
             // 更新接口失败 也要进行定级判断
@@ -247,7 +247,7 @@
     }];
 }
 
-- (void)popAlertVCWithModel:(GGT_UpdateModel *)model
+- (void)popAlertVCWithModel:(HF_UpdateModel *)model
 {
     //Type类型：0 非强制性更新  1 强制性更新  2 已是最新版本，不用更新
     if ([model.Title isKindOfClass:[NSString class]] && [model.Contents isKindOfClass:[NSString class]]) {
@@ -409,7 +409,7 @@
         // 回到主线程,执⾏UI刷新操作
         dispatch_async(dispatch_get_main_queue(), ^{
             //对图片或别的操作进行赋值等，回到主线程
-            GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+            HF_Singleton *sin = [HF_Singleton sharedSingleton];
             sin.cacheSize = folderSize;
         });
     });

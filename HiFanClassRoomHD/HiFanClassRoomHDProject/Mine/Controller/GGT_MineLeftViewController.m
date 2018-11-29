@@ -42,7 +42,7 @@ static BOOL isShowClassVc;   //是否显示我的课时cell
 
 //课时发生改变的时候，修改课时数
 - (void)pushChangeNameWithNotification:(NSNotification *)noti {
-    GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
     
     if (isShowClassVc == YES) {
         GGT_MineLeftTableViewCell *cell = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
@@ -68,7 +68,7 @@ static BOOL isShowClassVc;   //是否显示我的课时cell
 #pragma mark 没网络，重新数据请求
 - (void)refreshHeaderLodaData {
     //刷新数据
-    GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
     sin.isRefreshSelfInfoData = nil;
 
     //获取网络数据
@@ -86,7 +86,7 @@ static BOOL isShowClassVc;   //是否显示我的课时cell
 - (void)getLoadData {
     self.dataArray = [NSMutableArray array];
 
-    GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
     NSString *flag;
     if (sin.isAuditStatus == YES) {
         flag = @"0";
@@ -118,7 +118,7 @@ static BOOL isShowClassVc;   //是否显示我的课时cell
             }
             [self.tableView reloadData];
 
-            GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+            HF_Singleton *sin = [HF_Singleton sharedSingleton];
             //获取课时数
             sin.leftTotalCount = [NSString stringWithFormat:@"%ld",(long)_model.totalCount];
             
@@ -132,7 +132,7 @@ static BOOL isShowClassVc;   //是否显示我的课时cell
 
         }
     } failure:^(NSError *error) {
-//        GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+//        HF_Singleton *sin = [HF_Singleton sharedSingleton];
 //        if (sin.netStatus == NO) {
 //            if (self.refreshLoadData) {
 //                self.refreshLoadData(YES);
@@ -168,7 +168,7 @@ static BOOL isShowClassVc;   //是否显示我的课时cell
         [MBProgressHUD showMessage:@"登录过期，请重新登录" toView:[UIApplication sharedApplication].keyWindow];
         
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            GGT_LoginViewController *loginVc = [[GGT_LoginViewController alloc]init];
+            HF_LoginViewController *loginVc = [[HF_LoginViewController alloc]init];
             [UserDefaults() setObject:@"no" forKey:@"login"];
             [UserDefaults() setObject:@"" forKey:K_userToken];
             [UserDefaults() synchronize];

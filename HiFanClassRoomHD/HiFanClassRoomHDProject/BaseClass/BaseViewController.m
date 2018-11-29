@@ -140,7 +140,7 @@
 - (void)showLoadingView {
     
     if (!self.loadingView) {
-        _loadingView = [[GGT_LoadingView alloc] initWithFrame:CGRectMake(0, 0,home_right_width, SCREEN_HEIGHT())];
+        _loadingView = [[HF_LoadingView alloc] initWithFrame:CGRectMake(0, 0,home_right_width, SCREEN_HEIGHT())];
     }
     
     [self.view addSubview:_loadingView];

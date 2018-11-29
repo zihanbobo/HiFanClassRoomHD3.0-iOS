@@ -42,7 +42,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         
-        GGT_Singleton *singleton = [GGT_Singleton sharedSingleton];
+        HF_Singleton *singleton = [HF_Singleton sharedSingleton];
         
         // 1. 获得网络监控管理者
         AFNetworkReachabilityManager *mgr = [AFNetworkReachabilityManager sharedManager];
@@ -111,7 +111,7 @@
 
 // 当断网的时候 再次重新打开WIFI时  重新获取BaseURL
 - (void)xc_reloadBaseURL {
-    GGT_Singleton *single = [GGT_Singleton sharedSingleton];
+    HF_Singleton *single = [HF_Singleton sharedSingleton];
     NSString *url = [NSString stringWithFormat:@"%@?Version=v%@", URL_GetUrl, APP_VERSION()];
     [[BaseService share] sendGetRequestWithPath:url token:NO viewController:nil showMBProgress:NO success:^(id responseObject) {
         
@@ -151,7 +151,7 @@
     NSString *pinjieUrlStr = urlStr;
     
     
-    GGT_Singleton *single = [GGT_Singleton sharedSingleton];
+    HF_Singleton *single = [HF_Singleton sharedSingleton];
     
     urlStr = [single.base_url stringByAppendingPathComponent:urlStr];
     urlStr = [urlStr stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -429,7 +429,7 @@
             [MBProgressHUD showMessage:@"登录过期，请重新登录" toView:viewController.view];
         }
 
-        GGT_LoginViewController *loginVc = [[GGT_LoginViewController alloc]init];
+        HF_LoginViewController *loginVc = [[HF_LoginViewController alloc]init];
         [UserDefaults() setObject:@"no" forKey:@"login"];
         [UserDefaults() setObject:@"" forKey:K_userToken];
         [UserDefaults() setObject:@"" forKey:K_AccountID];
@@ -447,7 +447,7 @@
     self.manager = [BaseService sharedHTTPSession];
     self.manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html", nil];
     
-    GGT_Singleton *single = [GGT_Singleton sharedSingleton];
+    HF_Singleton *single = [HF_Singleton sharedSingleton];
     
     
     NSString *urlStr = [single.base_url stringByAppendingPathComponent:URL_Login];
@@ -476,7 +476,7 @@
             [MBProgressHUD showMessage:@"登录过期，请重新登录" toView:[UIApplication sharedApplication].keyWindow];
             
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                GGT_LoginViewController *loginVc = [[GGT_LoginViewController alloc]init];
+                HF_LoginViewController *loginVc = [[HF_LoginViewController alloc]init];
                 [UserDefaults() setObject:@"no" forKey:@"login"];
                 [UserDefaults() setObject:@"" forKey:K_userToken];
                 [UserDefaults() setObject:@"" forKey:K_AccountID];

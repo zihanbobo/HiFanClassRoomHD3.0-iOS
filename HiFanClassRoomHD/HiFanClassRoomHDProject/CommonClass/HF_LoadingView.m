@@ -1,14 +1,14 @@
 //
-//  GGT_LoadingView.m
+//  HF_LoadingView.m
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2017/8/18.
 //  Copyright © 2017年 Chn. All rights reserved.
 //
 
-#import "GGT_LoadingView.h"
+#import "HF_LoadingView.h"
 
-@interface GGT_LoadingView ()
+@interface HF_LoadingView ()
 @property (nonatomic, strong) UIImageView *indicatorView;
 
 @property (nonatomic, strong) UILabel *failIndicatorLabel;
@@ -21,7 +21,7 @@
 
 @end
 
-@implementation GGT_LoadingView
+@implementation HF_LoadingView
 - (instancetype)initWithFrame:(CGRect)frame{
     
     self = [super initWithFrame:frame];
@@ -90,7 +90,7 @@
     }
     
     
-    GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
     if (sin.netStatus== NO) {
         [MBProgressHUD showMessage:@"重新加载中..." toView:[[UIApplication sharedApplication] keyWindow]];
     }

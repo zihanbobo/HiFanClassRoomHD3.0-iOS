@@ -1,5 +1,5 @@
 //
-//  GGT_RegisterViewController.h
+//  HF_RegisterViewController.h
 //  GoGoTalk
 //
 //  Created by XieHenry on 2017/4/26.
@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface GGT_RegisterViewController : BaseViewController
+@interface HF_RegisterViewController : BaseViewController
 
 @end

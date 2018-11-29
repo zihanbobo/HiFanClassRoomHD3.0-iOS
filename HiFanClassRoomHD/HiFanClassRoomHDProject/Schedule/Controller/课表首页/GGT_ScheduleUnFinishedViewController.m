@@ -85,7 +85,7 @@ static BOOL isFirstEnterVc = YES;
         }
         
         //如果是未开始状态，就进行时间判断。
-        GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+        HF_Singleton *sin = [HF_Singleton sharedSingleton];
         //获取时间差
         NSTimeInterval timeCount = [sin pleaseInsertStarTime:sin.nowDateString andInsertEndTime:model.StartTime class:@"GGT_ScheduleUnFinishedVCofsendNet"];
         
@@ -340,7 +340,7 @@ static BOOL isFirstEnterVc = YES;
 
     } else if (model.StatusName == 1 || model.StatusName == 3) {
         
-        GGT_ClassRoomModel *tkModel = [[GGT_ClassRoomModel alloc] init];
+        HF_ClassRoomModel *tkModel = [[HF_ClassRoomModel alloc] init];
         tkModel.serial = model.serial;
         tkModel.host = model.host;
         tkModel.port = model.port;
@@ -348,7 +348,7 @@ static BOOL isFirstEnterVc = YES;
         tkModel.userrole = model.userrole;
         tkModel.LessonId = model.LessonId;
 
-        [GGT_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:tkModel leftRoomBlock:^{
+        [HF_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:tkModel leftRoomBlock:^{
             
         }];
     }

@@ -1,26 +1,26 @@
 //
-//  GGT_LoginViewController.m
+//  HF_LoginViewController.m
 //  GoGoTalk
 //
 //  Created by XieHenry on 2017/4/26.
 //  Copyright © 2017年 XieHenry. All rights reserved.
 //
 
-#import "GGT_LoginViewController.h"
-#import "GGT_ForgotPasswordViewController.h"
-#import "GGT_RegisterViewController.h"
-#import "GGT_LoginView.h"
+#import "HF_LoginViewController.h"
+#import "HF_ForgotPasswordViewController.h"
+#import "HF_RegisterViewController.h"
+#import "HF_LoginView.h"
 #import "HF_HomeViewController.h"
 #import "JPUSHService.h"
 
 
-@interface GGT_LoginViewController ()
+@interface HF_LoginViewController ()
 
-@property (nonatomic, strong) GGT_LoginView *loginView;
+@property (nonatomic, strong) HF_LoginView *loginView;
 
 @end
 
-@implementation GGT_LoginViewController
+@implementation HF_LoginViewController
 
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.loginView = [[GGT_LoginView alloc]init];
+    self.loginView = [[HF_LoginView alloc]init];
     self.loginView.backgroundColor = [UIColor whiteColor];
     self.view = self.loginView;
     
@@ -56,7 +56,7 @@
     [[self.loginView.forgotPasswordButton rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
          @strongify(self);
-         GGT_ForgotPasswordViewController *vc = [[GGT_ForgotPasswordViewController alloc]init];
+         HF_ForgotPasswordViewController *vc = [[HF_ForgotPasswordViewController alloc]init];
          [self.navigationController pushViewController:vc animated:YES];
      }];
     
@@ -65,7 +65,7 @@
     [[self.loginView.registerButton rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
          @strongify(self);
-         GGT_RegisterViewController *vc = [[GGT_RegisterViewController alloc]init];
+         HF_RegisterViewController *vc = [[HF_RegisterViewController alloc]init];
          [self.navigationController pushViewController:vc animated:YES];
      }];
     
@@ -139,7 +139,7 @@
 - (void)turnToHomeClick {
     [UserDefaults() setObject:@"yes" forKey:@"login"];
     [UserDefaults() synchronize];
-    GGT_Singleton *sin = [GGT_Singleton sharedSingleton];
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
     sin.isShowVersionUpdateAlert = YES;
     HF_HomeViewController *homeVc = [[HF_HomeViewController alloc]init];
     [self.navigationController pushViewController:homeVc animated:YES];

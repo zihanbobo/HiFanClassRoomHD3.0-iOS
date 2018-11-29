@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GGT_LoadingView.h"
+#import "HF_LoadingView.h"
 
 @interface BaseViewController : UIViewController
-@property (nonatomic, strong) GGT_LoadingView *loadingView;
+@property (nonatomic, strong) HF_LoadingView *loadingView;
 
 //左侧返回按钮
 - (void)setLeftBackButton;

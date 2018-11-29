@@ -1,5 +1,5 @@
 //
-//  GGT_ForgotPasswordView.h
+//  HF_RegisterView.h
 //  GoGoTalk
 //
 //  Created by XieHenry on 2017/4/27.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface GGT_ForgotPasswordView : UIView <UITextFieldDelegate>
+@interface HF_RegisterView : UIView <UITextFieldDelegate>
 
 //手机账号view
 @property (nonatomic, strong) UIView *phoneAccountView;
@@ -18,20 +18,6 @@
 @property (nonatomic, strong) UITextField *phoneAccountField;
 //手机号的分割线
 @property (nonatomic, strong) UIView *phonelineView;
-
-
-
-//验证码view
-@property (nonatomic, strong) UIView *verificationCodeView;
-//验证码icom
-@property (nonatomic, strong) UIImageView *verificationCodeImageView;
-//验证码输入框
-@property (nonatomic, strong) UITextField *verificationCodeField;
-//获取验证码按钮
-@property (nonatomic, strong) UIButton *getCodeButton;
-//验证码的分割线
-@property (nonatomic, strong) UIView *verificationCodelineView1;
-@property (nonatomic, strong) UIView *verificationCodelineView2;
 
 
 
@@ -46,6 +32,11 @@
 
 
 
-//确认按钮
-@property (nonatomic, strong) UIButton *confirmButton;
+//注册
+@property (nonatomic, strong) UIButton *registerButton;
+//返回按钮
+@property (nonatomic, strong) UIButton *backButton;
+
+
+
 @end

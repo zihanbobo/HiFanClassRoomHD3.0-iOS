@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GGT_LoadingView.h"
+#import "HF_LoadingView.h"
 
 @interface GGT_MineSplitViewController : UISplitViewController
-@property (nonatomic, strong) GGT_LoadingView *loadingView;
+@property (nonatomic, strong) HF_LoadingView *loadingView;
 
 @end

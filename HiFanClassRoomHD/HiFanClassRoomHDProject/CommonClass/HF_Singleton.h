@@ -1,5 +1,5 @@
 //
-//  GGT_Singleton.h
+//  HF_Singleton.h
 //  GoGoTalk
 //
 //  Created by XieHenry on 2017/4/26.
@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "GGT_UnitBookListHeaderModel.h"
 
-@interface GGT_Singleton : NSObject
+@interface HF_Singleton : NSObject
 
-+ (GGT_Singleton *)sharedSingleton;
++ (HF_Singleton *)sharedSingleton;
 
 //网络状态
 @property (nonatomic) BOOL netStatus;

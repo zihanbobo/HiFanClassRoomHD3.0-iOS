@@ -6,13 +6,13 @@
 //  Copyright © 2017年 Chn. All rights reserved.
 //
 
-#import "GGT_LaunchViewController.h"
+#import "HF_LaunchViewController.h"
 
-@interface GGT_LaunchViewController ()
+@interface HF_LaunchViewController ()
 @property (nonatomic, strong) UIImageView *xc_imgView;
 @end
 
-@implementation GGT_LaunchViewController
+@implementation HF_LaunchViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

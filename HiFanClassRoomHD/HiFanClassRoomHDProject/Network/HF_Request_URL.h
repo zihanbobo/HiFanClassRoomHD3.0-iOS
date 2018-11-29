@@ -1,13 +1,13 @@
 //
-//  GGT_Request_URL.h
+//  HF_Request_URL.h
 //  HiFanClassRoomHD
 //
 //  Created by 辰 on 2017/5/10.
 //  Copyright © 2017年 Chn. All rights reserved.
 //
 
-#ifndef GGT_Request_URL_h
-#define GGT_Request_URL_h
+#ifndef HF_Request_URL_h
+#define HF_Request_URL_h
 
 //正式地址
 //static NSString * const BASE_REQUEST_URL = @"http://hfapi.gogo-talk.com";
@@ -129,4 +129,4 @@ static NSString * const URL_GetChangePasswordSMS = @"/api/APP/AppSendChangePwdSM
 //修改密码（根据手机号修改密码）
 static NSString * const URL_ChangePwdByCode = @"/api/APP/AppChangePwdByCode";
 
-#endif /* GGT_Request_URL_h */
+#endif /* HF_Request_URL_h */
