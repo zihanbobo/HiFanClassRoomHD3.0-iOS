@@ -2,8 +2,8 @@
 //  AppUIInformation.h
 //  HiFanClassRoomHD
 //
-//  Created by 辰 on 2017/5/10.
-//  Copyright © 2017年 Chn. All rights reserved.
+//  Created by XieHenry on 2017/5/10.
+//  Copyright © 2017年 XieHenry. All rights reserved.
 //
 
 #ifndef AppUIInformation_h

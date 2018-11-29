@@ -2,8 +2,8 @@
 //  UIButton+XCHelperBlock.h
 //  XCHelper
 //
-//  Created by 辰 on 2017/4/21.
-//  Copyright © 2017年 Chn. All rights reserved.
+//  Created by XieHenry on 2017/4/21.
+//  Copyright © 2017年 XieHenry. All rights reserved.
 //  UIButton的事件采用Block的形式来书写 但要注意循环引用的问题
 /*  采用weakSelf的形式来书写
  __weak typeof(self) weakSelf = self;

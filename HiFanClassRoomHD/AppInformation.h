@@ -2,7 +2,7 @@
 //  AppInformation.h
 //  GoGoTalk
 //
-//  Created by 辰 on 2017/4/27.
+//  Created by XieHenry on 2017/4/27.
 //  Copyright © 2017年 XieHenry. All rights reserved.
 //
 

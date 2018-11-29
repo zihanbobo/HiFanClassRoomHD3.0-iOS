@@ -2,7 +2,7 @@
 //  GGT_PopAlertView.m
 //  GoGoTalk
 //
-//  Created by 辰 on 2017/5/8.
+//  Created by XieHenry on 2017/5/8.
 //  Copyright © 2017年 XieHenry. All rights reserved.
 //
 

@@ -3,7 +3,7 @@
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2018/11/28.
-//  Copyright © 2018 Chn. All rights reserved.
+//  Copyright © 2018 XieHenry. All rights reserved.
 //
 
 #import "HF_HomeViewController.h"

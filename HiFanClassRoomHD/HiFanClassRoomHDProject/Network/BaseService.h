@@ -2,8 +2,8 @@
 //  BaseService.h
 //  HiFanClassRoomHD
 //
-//  Created by 辰 on 16/7/29.
-//  Copyright © 2016年 Chn. All rights reserved.
+//  Created by XieHenry on 16/7/29.
+//  Copyright © 2016年 XieHenry. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>

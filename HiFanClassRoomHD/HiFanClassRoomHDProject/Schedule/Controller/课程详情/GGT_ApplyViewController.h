@@ -3,7 +3,7 @@
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2018/2/2.
-//  Copyright © 2018年 Chn. All rights reserved.
+//  Copyright © 2018年 XieHenry. All rights reserved.
 //
 
 #import "BaseViewController.h"

@@ -2,8 +2,8 @@
 //  NSTimer+BlockSupport.m
 //  测试NSTimer对Target的强引用
 //
-//  Created by 辰 on 2017/4/20.
-//  Copyright © 2017年 Chn. All rights reserved.
+//  Created by XieHenry on 2017/4/20.
+//  Copyright © 2017年 XieHenry. All rights reserved.
 //
 
 #import "NSTimer+BlockSupport.h"

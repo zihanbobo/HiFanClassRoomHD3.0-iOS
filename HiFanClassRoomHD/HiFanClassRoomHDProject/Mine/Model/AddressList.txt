@@ -124,7 +124,7 @@
 },
 {
 "DistrictId": 3305,
-"DistrictName": "北辰区"
+"DistrictName": "北XieHenry区"
 },
 {
 "DistrictId": 3306,
@@ -8126,7 +8126,7 @@
 },
 {
 "DistrictId": 4995,
-"DistrictName": "辰溪县"
+"DistrictName": "XieHenry溪县"
 },
 {
 "DistrictId": 4996,

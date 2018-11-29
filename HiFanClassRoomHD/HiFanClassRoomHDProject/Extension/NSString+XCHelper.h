@@ -2,8 +2,8 @@
 //  NSString+XCHelper.h
 //  XCHelper
 //
-//  Created by 辰 on 2017/4/21.
-//  Copyright © 2017年 Chn. All rights reserved.
+//  Created by XieHenry on 2017/4/21.
+//  Copyright © 2017年 XieHenry. All rights reserved.
 //  字符串的常用方法的分类
 
 #import <Foundation/Foundation.h>

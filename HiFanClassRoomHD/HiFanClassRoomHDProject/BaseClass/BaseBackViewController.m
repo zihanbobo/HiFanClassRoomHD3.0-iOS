@@ -2,7 +2,7 @@
 //  BaseBackViewController.m
 //  GoGoTalk
 //
-//  Created by 辰 on 2017/5/5.
+//  Created by XieHenry on 2017/5/5.
 //  Copyright © 2017年 XieHenry. All rights reserved.
 //
 
