@@ -25,6 +25,8 @@
 		5B34522B202C419300850D30 /* GGT_ApplyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B34522A202C419300850D30 /* GGT_ApplyClassViewController.m */; };
 		5B34522E202C48AE00850D30 /* GGT_ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B34522D202C48AE00850D30 /* GGT_ApplyClassCell.m */; };
 		5B345232202C4A7E00850D30 /* GGT_ApplyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B345231202C4A7E00850D30 /* GGT_ApplyClassModel.m */; };
+		5B3837E321B1354600339512 /* BaseScrollHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3837E221B1354600339512 /* BaseScrollHeaderView.m */; };
+		5B3837E621B13A1700339512 /* BaseScrollHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3837E521B13A1700339512 /* BaseScrollHeaderViewController.m */; };
 		5B3E48081FE763FD00D6D6C6 /* GGT_ScheduleFinishedHeaderInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3E48071FE763FD00D6D6C6 /* GGT_ScheduleFinishedHeaderInfoCell.m */; };
 		5B3E480B1FE769AA00D6D6C6 /* GGT_ScheduleFinishedStuEvaluateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3E480A1FE769AA00D6D6C6 /* GGT_ScheduleFinishedStuEvaluateCell.m */; };
 		5B3E480E1FE7963A00D6D6C6 /* GGT_ScheduleFinishedEvaluateHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3E480D1FE7963A00D6D6C6 /* GGT_ScheduleFinishedEvaluateHeaderView.m */; };
@@ -383,6 +385,10 @@
 		5B34522D202C48AE00850D30 /* GGT_ApplyClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_ApplyClassCell.m; sourceTree = "<group>"; };
 		5B345230202C4A7E00850D30 /* GGT_ApplyClassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ApplyClassModel.h; sourceTree = "<group>"; };
 		5B345231202C4A7E00850D30 /* GGT_ApplyClassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_ApplyClassModel.m; sourceTree = "<group>"; };
+		5B3837E121B1354600339512 /* BaseScrollHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseScrollHeaderView.h; sourceTree = "<group>"; };
+		5B3837E221B1354600339512 /* BaseScrollHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseScrollHeaderView.m; sourceTree = "<group>"; };
+		5B3837E421B13A1700339512 /* BaseScrollHeaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseScrollHeaderViewController.h; sourceTree = "<group>"; };
+		5B3837E521B13A1700339512 /* BaseScrollHeaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseScrollHeaderViewController.m; sourceTree = "<group>"; };
 		5B3E48061FE763FD00D6D6C6 /* GGT_ScheduleFinishedHeaderInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ScheduleFinishedHeaderInfoCell.h; sourceTree = "<group>"; };
 		5B3E48071FE763FD00D6D6C6 /* GGT_ScheduleFinishedHeaderInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_ScheduleFinishedHeaderInfoCell.m; sourceTree = "<group>"; };
 		5B3E48091FE769AA00D6D6C6 /* GGT_ScheduleFinishedStuEvaluateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ScheduleFinishedStuEvaluateCell.h; sourceTree = "<group>"; };
@@ -2425,6 +2431,10 @@
 				D6E0A5231EC2D9AE006A003D /* BaseNavigationController.m */,
 				5B86F7E6215CFDAE0086E678 /* BaseTableViewCell.h */,
 				5B86F7E7215CFDAE0086E678 /* BaseTableViewCell.m */,
+				5B3837E421B13A1700339512 /* BaseScrollHeaderViewController.h */,
+				5B3837E521B13A1700339512 /* BaseScrollHeaderViewController.m */,
+				5B3837E121B1354600339512 /* BaseScrollHeaderView.h */,
+				5B3837E221B1354600339512 /* BaseScrollHeaderView.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -2925,6 +2935,7 @@
 				5BE2EDAF216B37DC00845E70 /* BITAuthenticator.m in Sources */,
 				5BE2EDC0216B37DC00845E70 /* TKRCGlobalConfig.m in Sources */,
 				5BE2EE07216B37DC00845E70 /* RoomController.m in Sources */,
+				5B3837E621B13A1700339512 /* BaseScrollHeaderViewController.m in Sources */,
 				D6D7CBED1F2199C80087DDA0 /* HF_LaunchViewController.m in Sources */,
 				5BE2EE0C216B37DC00845E70 /* TKUtil.mm in Sources */,
 				D6E0A5791EC2DB15006A003D /* MBProgressHUD+Extension.m in Sources */,
@@ -2972,6 +2983,7 @@
 				5BE2EDD3216B37DC00845E70 /* NSString+Emoji.m in Sources */,
 				5BE2EE0A216B37DC00845E70 /* TKMP3ToPCM.m in Sources */,
 				5B715D451FE36E5400F08577 /* GGT_ScheduleUnFinishedDetailViewController.m in Sources */,
+				5B3837E321B1354600339512 /* BaseScrollHeaderView.m in Sources */,
 				5BAE2F5420469D0800375F2B /* HF_ClassRoomModel.m in Sources */,
 				D6D643AD1FCC13AE00561035 /* GGT_ExperienceUserOrderCourseVC.m in Sources */,
 				5B715D481FE36E6600F08577 /* GGT_ScheduleFinishedDetailViewController.m in Sources */,
