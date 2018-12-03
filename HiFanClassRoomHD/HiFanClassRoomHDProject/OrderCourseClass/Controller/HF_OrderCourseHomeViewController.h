@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface HF_OrderCourseHomeViewController : BaseViewController
+@interface HF_OrderCourseHomeViewController : BaseScrollHeaderViewController
 
 @end
