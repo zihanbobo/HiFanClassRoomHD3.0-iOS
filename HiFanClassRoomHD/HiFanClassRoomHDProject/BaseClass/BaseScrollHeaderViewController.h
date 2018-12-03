@@ -10,7 +10,9 @@
 
 @interface BaseScrollHeaderViewController : UIViewController
 @property (nonatomic, strong) UIView *navView;        //导航View
-@property (nonatomic, strong) UIImageView *navImgView;//导航背景图片
+@property (nonatomic, strong) UILabel *navBigLabel;  //导航背景大字体
 @property (nonatomic, strong) UILabel *titleLabel;    //导航文字
 @property (nonatomic, strong) UIButton *rightButton;  //导航按钮
+@property (nonatomic, strong) UIView *lineView;       //导航分割线
+
 @end

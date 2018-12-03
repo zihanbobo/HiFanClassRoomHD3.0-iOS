@@ -137,6 +137,14 @@
             case 101:
             {
 //                [self switchViewController];
+                
+                
+                if (self.currentVC == self.courseTableHomeVc) {
+                    return;
+                } else {
+                    [self replaceController:self.currentVC newController:self.courseTableHomeVc];
+                }
+                
             }
                 break;
             case 102:

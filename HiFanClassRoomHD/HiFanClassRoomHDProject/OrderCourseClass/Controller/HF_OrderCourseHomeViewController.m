@@ -10,6 +10,7 @@
 
 @interface HF_OrderCourseHomeViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView; //tableView
+
 @end
 
 @implementation HF_OrderCourseHomeViewController
@@ -18,8 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    
-    self.navImgView.image = UIIMAGE_FROM_NAME(@"Reservations");
+    self.navBigLabel.text = @"Reservations";
     self.titleLabel.text = @"约课";
     [self.rightButton setTitle:@"学习攻略" forState:(UIControlStateNormal)];
     [self.rightButton setImage:UIIMAGE_FROM_NAME(@"攻略") forState:(UIControlStateNormal)];
@@ -76,60 +76,58 @@
 }
 
 
-
-
+//MARK:滑动动画
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat offset_Y = scrollView.contentOffset.y;
     CGFloat alpha = (offset_Y-75)/100.0f;
-
+    
     if (offset_Y >0 && offset_Y <=69) {
         self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(132)-offset_Y);
         self.tableView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
         
         CGFloat fontSize =  (100-offset_Y)/100 * 38;
         int a = floor(fontSize); //floor 向下取整
-        if (a <=20) {
-            a = 20;
-        } else {
-            a = a;
-        }
-        self.navImgView.hidden = NO;
-        
-        self.titleLabel.font = Font(a);
+        a = (a>20 ? a : 20);  //三目运算符
+        self.navBigLabel.hidden = NO;
+
+        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(a)];
         self.titleLabel.frame = CGRectMake(LineX(17), self.navView.height-LineH(a)-LineH(12), LineW(100), LineH(a));
         self.rightButton.frame = CGRectMake(home_right_width-LineW(120), self.navView.height-LineH(16)-LineH(12), LineW(100), LineH(16));
-    
-
-        self.navImgView.frame = CGRectMake(LineX(14), self.navView.height-LineY(25)-LineH(75), LineW(618), LineH(75));
-        self.navImgView.alpha = -alpha;
-
+        
+        
+        self.navBigLabel.frame = CGRectMake(LineX(14), self.navView.height-LineY(25)-LineH(75), home_right_width-LineW(28), LineH(75));
+        self.navBigLabel.alpha = -alpha;
+        self.lineView.frame = CGRectMake(LineX(17), self.navView.height-LineH(1), home_right_width-LineW(34), LineH(1));
+        
         
     } else if (offset_Y >0 && offset_Y >69){
-
+        
         self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(64));
         self.tableView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
-        self.navImgView.hidden = YES;
-        self.navImgView.alpha = 0;
-
-        self.titleLabel.font = Font(20);
+        self.navBigLabel.hidden = YES;
+        self.navBigLabel.alpha = 0;
+        
+        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(20)];
+        
         self.titleLabel.frame = CGRectMake(LineX(17), LineY(32), LineW(100), LineH(20));
         self.rightButton.frame = CGRectMake(home_right_width-LineW(120), LineY(36), LineW(100), LineH(16));
-
+        self.lineView.frame = CGRectMake(LineX(17), self.navView.height-LineH(1), home_right_width-LineW(34), LineH(1));
+        
     } else if (offset_Y <0){
-
+        
         self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(132));
         self.tableView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
         
-        self.navImgView.hidden = NO;
-        self.navImgView.alpha = 1;
-        self.navImgView.frame = CGRectMake(LineX(14), LineY(32), LineW(618), LineH(75));
+        self.navBigLabel.hidden = NO;
+        self.navBigLabel.alpha = 1;
+        self.navBigLabel.frame = CGRectMake(LineX(14), LineY(32), home_right_width-LineW(28), LineH(75));
         
         self.titleLabel.frame = CGRectMake(LineX(17), LineY(78), LineW(100), LineH(38));
         self.rightButton.frame = CGRectMake(home_right_width-LineW(120), LineY(99), LineW(100), LineH(16));
-        self.titleLabel.font = Font(38);
+        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(38)];
+        self.lineView.frame = CGRectMake(LineX(17), self.navView.height-LineH(1), home_right_width-LineW(34), LineH(1));
     }
 }
-
 
 
 - (void)didReceiveMemoryWarning {

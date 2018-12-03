@@ -26,27 +26,26 @@
     [super viewDidLoad];
 
     self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationController.navigationBar.alpha = 1;
-    
-    
+    //MARK:导航View
     self.navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, home_right_width, LineH(132))];
-    self.navView.backgroundColor = [UIColor greenColor];
+    self.navView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     [self.view addSubview:self.navView];
     
+    //MARK:导航背景大字体
+    self.navBigLabel = [[UILabel alloc] initWithFrame:CGRectMake(LineX(14), LineY(32), home_right_width-LineW(28), LineH(75))];
+    self.navBigLabel.alpha = 1;
+    self.navBigLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:LineX(100)];
+    self.navBigLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 5);
+    [self.navView addSubview:self.navBigLabel];
     
-    self.navImgView = [[UIImageView alloc] initWithFrame:CGRectMake(LineX(14), LineY(32), LineW(618), LineH(75))];
-    self.navImgView.alpha = 1;
-    [self.navView addSubview:self.navImgView];
-    
-    
-    
+    //MARK:导航文字
     self.titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(LineX(17), LineY(78), LineW(100), LineH(38))];
     self.titleLabel.textAlignment = NSTextAlignmentLeft;
-    self.titleLabel.font = Font(38);
+    self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(38)];
+    self.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
     [self.navView addSubview:self.titleLabel];
     
-    
+    //MARK:导航按钮
     self.rightButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     self.rightButton.frame = CGRectMake(home_right_width-LineW(120), LineY(99), LineW(100), LineH(16));
     [self.rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -55,12 +54,13 @@
     self.rightButton.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -LineW(2.5));
     [self.navView addSubview:self.rightButton];
     
-    
-    UIView *lineView = [[UIView alloc] init];
-    lineView.frame = CGRectMake(LineX(17), LineY(125), home_right_width-LineW(34), LineH(1));
-    self.navView.backgroundColor = UICOLOR_FROM_HEX(0xEAEFF3);
-    [self.view addSubview:lineView];
+    //MARK:导航分割线
+    self.lineView = [[UIView alloc] init];
+    self.lineView.frame = CGRectMake(LineX(17), LineY(125), home_right_width-LineW(34), LineH(1));
+    self.lineView.backgroundColor = UICOLOR_FROM_HEX(0xEAEFF3);
+    [self.view addSubview:self.lineView];
 }
+
 
 
 - (void)didReceiveMemoryWarning {

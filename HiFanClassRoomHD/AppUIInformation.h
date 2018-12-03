@@ -28,6 +28,11 @@ static CGFloat const marginMineRight = 586.0f;
 
 
 
+#define ColorFFFFFF 0xFFFFFF  //白色
+#define Color000000 0x000000  //黑色
+
+
+
 
 #define kThemeColor                     0x2B8EEF
 #define kCalendar_EventColor            0x88c5fb
@@ -36,7 +41,6 @@ static CGFloat const marginMineRight = 586.0f;
 #define ColorCCCCCC 0xCCCCCC
 #define ColorCF121C 0xCF121C
 #define Color666666 0x666666
-#define ColorFFFFFF 0xFFFFFF  //白色
 #define Color999999 0x999999
 #define ColorD5D5D5 0xD5D5D5
 #define Color202020 0x202020
