@@ -16,7 +16,7 @@
 		5B04FAA11ED52A060038648F /* GGT_SelfInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B04FAA01ED52A060038648F /* GGT_SelfInfoModel.m */; };
 		5B0C55172153801000D0E3FC /* NSTimer+BlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C55162153801000D0E3FC /* NSTimer+BlockSupport.m */; };
 		5B13B8E621AE6C3300CB0A7F /* HF_FindMoreHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13B8E321AE6C3300CB0A7F /* HF_FindMoreHomeViewController.m */; };
-		5B13B8ED21AE6C3D00CB0A7F /* HF_CourseTableHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13B8EA21AE6C3C00CB0A7F /* HF_CourseTableHomeViewController.m */; };
+		5B13B8ED21AE6C3D00CB0A7F /* HF_MyScheduleHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13B8EA21AE6C3C00CB0A7F /* HF_MyScheduleHomeViewController.m */; };
 		5B13B8F421AE6C4900CB0A7F /* HF_OrderCourseHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13B8F121AE6C4800CB0A7F /* HF_OrderCourseHomeViewController.m */; };
 		5B13B8F721AE6C9C00CB0A7F /* HF_HomeLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13B8F621AE6C9C00CB0A7F /* HF_HomeLeftView.m */; };
 		5B13B8FA21AE6CD300CB0A7F /* HF_HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13B8F921AE6CD300CB0A7F /* HF_HomeViewController.m */; };
@@ -68,6 +68,8 @@
 		5BC4735F1EC95C12003B8154 /* GGT_MineClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC4735E1EC95C12003B8154 /* GGT_MineClassViewController.m */; };
 		5BC473681EC95C8A003B8154 /* GGT_SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC473671EC95C8A003B8154 /* GGT_SettingViewController.m */; };
 		5BC473AA1EC99FA7003B8154 /* GGT_MineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC473A91EC99FA7003B8154 /* GGT_MineHeaderView.m */; };
+		5BC49D8421B52833009E4972 /* HF_MyScheduleHomeHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC49D8321B52833009E4972 /* HF_MyScheduleHomeHeaderCell.m */; };
+		5BC49D8721B52879009E4972 /* HF_MyScheduleHomeUnFinishedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC49D8621B52879009E4972 /* HF_MyScheduleHomeUnFinishedCell.m */; };
 		5BC9F3881FF37A5800CA2A34 /* GGT_OrderUnitCourseInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BC9F3871FF37A5800CA2A34 /* GGT_OrderUnitCourseInfoCell.m */; };
 		5BCBFD0A21AFE21F00E4EF11 /* HF_OrderCourseHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BCBFD0921AFE21F00E4EF11 /* HF_OrderCourseHomeView.m */; };
 		5BD0754B1FE12C33002F0837 /* GGT_ScheduleUnFinishedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD0754A1FE12C33002F0837 /* GGT_ScheduleUnFinishedViewController.m */; };
@@ -366,8 +368,8 @@
 		5B0C55162153801000D0E3FC /* NSTimer+BlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+BlockSupport.m"; sourceTree = "<group>"; };
 		5B13B8E221AE6C3300CB0A7F /* HF_FindMoreHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_FindMoreHomeViewController.h; sourceTree = "<group>"; };
 		5B13B8E321AE6C3300CB0A7F /* HF_FindMoreHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_FindMoreHomeViewController.m; sourceTree = "<group>"; };
-		5B13B8E921AE6C3C00CB0A7F /* HF_CourseTableHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_CourseTableHomeViewController.h; sourceTree = "<group>"; };
-		5B13B8EA21AE6C3C00CB0A7F /* HF_CourseTableHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_CourseTableHomeViewController.m; sourceTree = "<group>"; };
+		5B13B8E921AE6C3C00CB0A7F /* HF_MyScheduleHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_MyScheduleHomeViewController.h; sourceTree = "<group>"; };
+		5B13B8EA21AE6C3C00CB0A7F /* HF_MyScheduleHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_MyScheduleHomeViewController.m; sourceTree = "<group>"; };
 		5B13B8F021AE6C4800CB0A7F /* HF_OrderCourseHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_OrderCourseHomeViewController.h; sourceTree = "<group>"; };
 		5B13B8F121AE6C4800CB0A7F /* HF_OrderCourseHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_OrderCourseHomeViewController.m; sourceTree = "<group>"; };
 		5B13B8F521AE6C9600CB0A7F /* HF_HomeLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_HomeLeftView.h; sourceTree = "<group>"; };
@@ -476,6 +478,10 @@
 		5BC473671EC95C8A003B8154 /* GGT_SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGT_SettingViewController.m; sourceTree = "<group>"; };
 		5BC473A81EC99FA7003B8154 /* GGT_MineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGT_MineHeaderView.h; sourceTree = "<group>"; };
 		5BC473A91EC99FA7003B8154 /* GGT_MineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGT_MineHeaderView.m; sourceTree = "<group>"; };
+		5BC49D8221B52833009E4972 /* HF_MyScheduleHomeHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MyScheduleHomeHeaderCell.h; sourceTree = "<group>"; };
+		5BC49D8321B52833009E4972 /* HF_MyScheduleHomeHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MyScheduleHomeHeaderCell.m; sourceTree = "<group>"; };
+		5BC49D8521B52879009E4972 /* HF_MyScheduleHomeUnFinishedCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MyScheduleHomeUnFinishedCell.h; sourceTree = "<group>"; };
+		5BC49D8621B52879009E4972 /* HF_MyScheduleHomeUnFinishedCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MyScheduleHomeUnFinishedCell.m; sourceTree = "<group>"; };
 		5BC9F3861FF37A5800CA2A34 /* GGT_OrderUnitCourseInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_OrderUnitCourseInfoCell.h; sourceTree = "<group>"; };
 		5BC9F3871FF37A5800CA2A34 /* GGT_OrderUnitCourseInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_OrderUnitCourseInfoCell.m; sourceTree = "<group>"; };
 		5BCBFD0821AFE21F00E4EF11 /* HF_OrderCourseHomeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_OrderCourseHomeView.h; sourceTree = "<group>"; };
@@ -1036,21 +1042,21 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		5B13B8E721AE6C3C00CB0A7F /* CourseTableClass */ = {
+		5B13B8E721AE6C3C00CB0A7F /* MyScheduleClass */ = {
 			isa = PBXGroup;
 			children = (
 				5B4E766A21AEB83100C653E2 /* Model */,
 				5B4E766B21AEB83100C653E2 /* View */,
 				5B13B8E821AE6C3C00CB0A7F /* Controller */,
 			);
-			path = CourseTableClass;
+			path = MyScheduleClass;
 			sourceTree = "<group>";
 		};
 		5B13B8E821AE6C3C00CB0A7F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				5B13B8E921AE6C3C00CB0A7F /* HF_CourseTableHomeViewController.h */,
-				5B13B8EA21AE6C3C00CB0A7F /* HF_CourseTableHomeViewController.m */,
+				5B13B8E921AE6C3C00CB0A7F /* HF_MyScheduleHomeViewController.h */,
+				5B13B8EA21AE6C3C00CB0A7F /* HF_MyScheduleHomeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1118,6 +1124,10 @@
 		5B4E766B21AEB83100C653E2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5BC49D8221B52833009E4972 /* HF_MyScheduleHomeHeaderCell.h */,
+				5BC49D8321B52833009E4972 /* HF_MyScheduleHomeHeaderCell.m */,
+				5BC49D8521B52879009E4972 /* HF_MyScheduleHomeUnFinishedCell.h */,
+				5BC49D8621B52879009E4972 /* HF_MyScheduleHomeUnFinishedCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2398,7 +2408,7 @@
 			isa = PBXGroup;
 			children = (
 				5B13B8EE21AE6C4800CB0A7F /* OrderCourseClass */,
-				5B13B8E721AE6C3C00CB0A7F /* CourseTableClass */,
+				5B13B8E721AE6C3C00CB0A7F /* MyScheduleClass */,
 				5B13B8E021AE6C3300CB0A7F /* FindMoreClass */,
 				5BAE2F5120469C0900375F2B /* ClassRoomManager */,
 				5B9E05751F149BA80050CEDB /* OrderTheCourse */,
@@ -2946,12 +2956,13 @@
 				D67ACCC61EE173E00027031C /* GGT_ResultModel.m in Sources */,
 				D6BF1ABF1FD102A90032C20C /* GGT_QuestionBottomView.m in Sources */,
 				5BE2EDB8216B37DC00845E70 /* BITFeedbackListViewCell.m in Sources */,
+				5BC49D8421B52833009E4972 /* HF_MyScheduleHomeHeaderCell.m in Sources */,
 				5BE2EE01216B37DC00845E70 /* TKNavigationController.m in Sources */,
 				D6E0A58F1EC2DBB3006A003D /* HF_ForgotPasswordView.m in Sources */,
 				D6E0A5351EC2D9AE006A003D /* BaseViewController.m in Sources */,
 				5B45AEB11FCFA1FB00916B59 /* GGT_ClassBookDetailModel.m in Sources */,
 				D66684BA1FCEA412008E0B00 /* GGT_DateModel.m in Sources */,
-				5B13B8ED21AE6C3D00CB0A7F /* HF_CourseTableHomeViewController.m in Sources */,
+				5B13B8ED21AE6C3D00CB0A7F /* HF_MyScheduleHomeViewController.m in Sources */,
 				5BE2EDC9216B37DC00845E70 /* TKTextView.m in Sources */,
 				5BE2EDC8216B37DC00845E70 /* KTEmotionAttachment.m in Sources */,
 				5B0310491FCC228C002FE83E /* GGT_OrderClassHeaderCell.m in Sources */,
@@ -3060,6 +3071,7 @@
 				5BC9F3881FF37A5800CA2A34 /* GGT_OrderUnitCourseInfoCell.m in Sources */,
 				5BE2EDD5216B37DC00845E70 /* UIView+Extension.m in Sources */,
 				D67D55EE1EC58E47009D3CC5 /* GGT_ScheduleViewController.m in Sources */,
+				5BC49D8721B52879009E4972 /* HF_MyScheduleHomeUnFinishedCell.m in Sources */,
 				5BE2EDA7216B37DC00845E70 /* BITFeedbackUserDataViewController.m in Sources */,
 				5B9A547D202ADB2300FDEA76 /* GGT_OrderUnitCourseCollFooter.m in Sources */,
 				5BE2EE03216B37DC00845E70 /* TKAreaPickTextField.m in Sources */,

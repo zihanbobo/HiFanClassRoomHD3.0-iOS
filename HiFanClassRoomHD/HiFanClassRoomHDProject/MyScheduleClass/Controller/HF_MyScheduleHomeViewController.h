@@ -1,5 +1,5 @@
 //
-//  HF_CourseTableHomeViewController.h
+//  HF_MyScheduleHomeViewController.h
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2018/11/28.
@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface HF_CourseTableHomeViewController : BaseScrollHeaderViewController
+@interface HF_MyScheduleHomeViewController : BaseScrollHeaderViewController
 
 @end
