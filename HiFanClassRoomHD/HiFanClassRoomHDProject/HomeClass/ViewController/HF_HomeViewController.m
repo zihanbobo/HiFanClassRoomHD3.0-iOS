@@ -35,8 +35,14 @@
 @interface HF_HomeViewController () <UIPopoverPresentationControllerDelegate, TKEduRoomDelegate>
 @property (nonatomic, strong) HF_HomeLeftView *homeLeftView;
 @property (nonatomic, strong) HF_FindMoreHomeViewController *findMoreHomeVC;
+@property (nonatomic, strong) BaseNavigationController *findMoreHomeNav;
+
 @property (nonatomic, strong) HF_MyScheduleHomeViewController *courseTableHomeVc;
+@property (nonatomic, strong) BaseNavigationController *courseTableHomeNav;
+
 @property (nonatomic, strong) HF_OrderCourseHomeViewController *orderCourseHomeVc;
+@property (nonatomic, strong) BaseNavigationController *orderCourseHomeNav;
+
 @property (nonatomic, strong) GGT_ExperienceUserOrderCourseVC *xc_experienceVC;
 @property (nonatomic, strong) BaseNavigationController *xc_experienceNav;
 @property (nonatomic, strong) UIViewController *currentVC;
@@ -62,26 +68,29 @@
 
 - (void)setUpNewController {
     //发现
-    self.findMoreHomeVC = [HF_FindMoreHomeViewController new];
-    [self.findMoreHomeVC.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
-    [self addChildViewController:self.findMoreHomeVC];
+    self.findMoreHomeVC = [[HF_FindMoreHomeViewController alloc] init];
+    self.findMoreHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.findMoreHomeVC];
+    [self.findMoreHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+    [self addChildViewController:self.findMoreHomeNav];
     
     //课表
-    self.courseTableHomeVc = [HF_MyScheduleHomeViewController new];
-    [self.courseTableHomeVc.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+    self.courseTableHomeVc = [[HF_MyScheduleHomeViewController alloc] init];
+    self.courseTableHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.courseTableHomeVc];
+    [self.courseTableHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
     
     //约课
     self.orderCourseHomeVc = [[HF_OrderCourseHomeViewController alloc] init];
-    [self.orderCourseHomeVc.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+    self.orderCourseHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.courseTableHomeVc];
+    [self.orderCourseHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
     
     //体验课
-    self.xc_experienceVC = [GGT_ExperienceUserOrderCourseVC new];
+    self.xc_experienceVC = [[GGT_ExperienceUserOrderCourseVC alloc] init];
     self.xc_experienceNav = [[BaseNavigationController alloc] initWithRootViewController:self.xc_experienceVC];
     [self.xc_experienceNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
     
     //  默认,第一个视图(你会发现,全程就这一个用了addSubview)
-    [self.view addSubview:self.findMoreHomeVC.view];
-    self.currentVC = self.findMoreHomeVC;
+    [self.view addSubview:self.findMoreHomeNav.view];
+    self.currentVC = self.findMoreHomeNav;
 }
 
 //  切换各个标签内容
@@ -127,10 +136,10 @@
             case 100:
             {
                 //点击处于当前页面的按钮,直接跳出
-                if (self.currentVC == self.findMoreHomeVC) {
+                if (self.currentVC == self.findMoreHomeNav) {
                     return;
                 } else {
-                    [self replaceController:self.currentVC newController:self.findMoreHomeVC];
+                    [self replaceController:self.currentVC newController:self.findMoreHomeNav];
                 }
             }
                 break;
@@ -139,20 +148,20 @@
 //                [self switchViewController];
                 
                 
-                if (self.currentVC == self.courseTableHomeVc) {
+                if (self.currentVC == self.courseTableHomeNav) {
                     return;
                 } else {
-                    [self replaceController:self.currentVC newController:self.courseTableHomeVc];
+                    [self replaceController:self.currentVC newController:self.courseTableHomeNav];
                 }
                 
             }
                 break;
             case 102:
             {
-                if (self.currentVC == self.orderCourseHomeVc) {
+                if (self.currentVC == self.orderCourseHomeNav) {
                     return;
                 } else {
-                    [self replaceController:self.currentVC newController:self.orderCourseHomeVc];
+                    [self replaceController:self.currentVC newController:self.orderCourseHomeNav];
                 }
             }
                 break;
