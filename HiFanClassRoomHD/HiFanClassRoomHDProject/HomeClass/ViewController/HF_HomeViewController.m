@@ -132,14 +132,10 @@
                 break;
             case 100:
             {
-                NSLog(@"发现0");
                 //点击处于当前页面的按钮,直接跳出
                 if (self.currentVC == self.findMoreHomeNav) {
-                    NSLog(@"发现1");
-
                     return;
                 } else {
-                    NSLog(@"发现2");
                     [self replaceController:self.currentVC newController:self.findMoreHomeNav];
                 }
             }
@@ -148,15 +144,9 @@
             {
 //                [self switchViewController];
                 
-                NSLog(@"课表0");
-
                 if (self.currentVC == self.courseTableHomeNav) {
-                    NSLog(@"课表1");
-
                     return;
                 } else {
-                    NSLog(@"课表2");
-
                     [self replaceController:self.currentVC newController:self.courseTableHomeNav];
                 }
                 
@@ -164,14 +154,10 @@
                 break;
             case 102:
             {
-                NSLog(@"约课0");
 
                 if (self.currentVC == self.orderCourseHomeNav) {
-                    NSLog(@"约课1");
                     return;
                 } else {
-                    NSLog(@"约课2");
-
                     [self replaceController:self.currentVC newController:self.orderCourseHomeNav];
                 }
             }
