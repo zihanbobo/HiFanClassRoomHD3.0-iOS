@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3512ACAE21B6289A00F08F97 /* HF_OrderCourseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3512ACAD21B6289A00F08F97 /* HF_OrderCourseListViewController.m */; };
 		3538EF571ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3538EF561ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.m */; };
 		5B03102F1FCC2232002FE83E /* GGT_LevelMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0310201FCC2230002FE83E /* GGT_LevelMenuViewController.m */; };
 		5B0310311FCC2232002FE83E /* GGT_OrderUnitCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0310291FCC2231002FE83E /* GGT_OrderUnitCourseViewController.m */; };
@@ -346,6 +347,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3512ACAC21B6289A00F08F97 /* HF_OrderCourseListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_OrderCourseListViewController.h; sourceTree = "<group>"; };
+		3512ACAD21B6289A00F08F97 /* HF_OrderCourseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderCourseListViewController.m; sourceTree = "<group>"; };
 		3538EF551ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGT_SelfInfoTableViewCell.h; sourceTree = "<group>"; };
 		3538EF561ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGT_SelfInfoTableViewCell.m; sourceTree = "<group>"; };
 		46923445B089FD426CFB6FE4 /* Pods-HiFanClassRoomHD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiFanClassRoomHD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HiFanClassRoomHD/Pods-HiFanClassRoomHD.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1076,6 +1079,8 @@
 			children = (
 				5B13B8F021AE6C4800CB0A7F /* HF_OrderCourseHomeViewController.h */,
 				5B13B8F121AE6C4800CB0A7F /* HF_OrderCourseHomeViewController.m */,
+				3512ACAC21B6289A00F08F97 /* HF_OrderCourseListViewController.h */,
+				3512ACAD21B6289A00F08F97 /* HF_OrderCourseListViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2929,6 +2934,7 @@
 				5BE2ED92216B37DC00845E70 /* TKEduSessionHandle.m in Sources */,
 				5BE2EDCE216B37DC00845E70 /* TKEmotionView.m in Sources */,
 				5B5E8E451FE8F9410010CFC3 /* GGT_ScheduleUnFinishedHomeModel.m in Sources */,
+				3512ACAE21B6289A00F08F97 /* HF_OrderCourseListViewController.m in Sources */,
 				D67ACCC31EE15C7A0027031C /* UILabel+XCHelper.m in Sources */,
 				5BE2EDF8216B37DC00845E70 /* TKTimer.m in Sources */,
 				5B3E480B1FE769AA00D6D6C6 /* GGT_ScheduleFinishedStuEvaluateCell.m in Sources */,

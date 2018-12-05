@@ -7,10 +7,10 @@
 //
 
 #import "HF_OrderCourseHomeViewController.h"
-
+#import "HF_OrderCourseListViewController.h"
 @interface HF_OrderCourseHomeViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView; //tableView
-
+@property(nonatomic, strong) UIButton *appointmentCourseButton;  //预约课程按钮
 @end
 
 @implementation HF_OrderCourseHomeViewController
@@ -23,7 +23,7 @@
     self.titleLabel.text = @"约课";
     [self.rightButton setTitle:@"学习攻略" forState:(UIControlStateNormal)];
     [self.rightButton setImage:UIIMAGE_FROM_NAME(@"攻略") forState:(UIControlStateNormal)];
-
+    
     
     @weakify(self);
     [[self.rightButton rac_signalForControlEvents:UIControlEventTouchUpInside]
@@ -33,33 +33,73 @@
      }];
     
 
-
+    
     
     self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height) style:UITableViewStylePlain];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.tableFooterView = [[UIView alloc] init];
     self.tableView.backgroundColor = [UIColor yellowColor];
+    //去掉分割线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:self.tableView];
+    
+    //创建约课按钮
+    [self initAppointmentCourseButton];
+
 }
 
 
-
-
+#pragma mark -- 创建预约课程按钮
+- (void)initAppointmentCourseButton {
+    @weakify(self);
+    self.appointmentCourseButton = [UIButton new];
+    [self.appointmentCourseButton setTitle:@"约 课" forState:UIControlStateNormal];
+    self.appointmentCourseButton.titleLabel.font = Font(18);
+    [self.appointmentCourseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.appointmentCourseButton.layer.masksToBounds = YES;
+    self.appointmentCourseButton.layer.cornerRadius = 60 / 2;
+    [self.appointmentCourseButton setBackgroundColor:UICOLOR_FROM_HEX(0x02B6E3)];
+    //[self.appointmentCourseButton addTarget:self action:@selector(orderCourseList) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:self.appointmentCourseButton];
+    [self.appointmentCourseButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.right.equalTo(self.view).offset(-15);
+        make.width.mas_equalTo(150);
+        make.height.mas_equalTo(60);
+    }];
+    [[self.appointmentCourseButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self);
+        HF_OrderCourseListViewController *orList = [HF_OrderCourseListViewController new];
+        NSLog(@"%@",self.navigationController);
+        NSLog(@"约课按钮被点击");
+        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:orList];
+        [self.navigationController pushViewController:nav animated:YES];
+        
+        //[self presentViewController:orList animated:NO completion:nil];
+    }];
+    
+}
+- (void)orderCourseList {
+    
+    
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 20;
+    return 2;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 50;
+    if(indexPath.row == 0){
+        return 768;
+    }else{
+        return 20;
+    }
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"cell";
