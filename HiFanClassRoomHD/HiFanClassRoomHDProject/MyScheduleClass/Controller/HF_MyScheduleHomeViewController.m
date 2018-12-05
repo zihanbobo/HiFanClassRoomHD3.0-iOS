@@ -10,7 +10,7 @@
 #import "HF_MyScheduleHomeHeaderCell.h"
 #import "HF_MyScheduleHomeUnFinishedCell.h"
 
-@interface HF_MyScheduleHomeViewController () <UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource>
+@interface HF_MyScheduleHomeViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UITableView *tableView; //tableView
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *unFinishedDataArray;

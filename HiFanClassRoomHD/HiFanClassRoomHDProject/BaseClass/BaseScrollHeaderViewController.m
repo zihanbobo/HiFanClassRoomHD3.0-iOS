@@ -14,17 +14,34 @@
 @implementation BaseScrollHeaderViewController
 
 - (void)viewWillAppear:(BOOL)animated{
-    self.navigationController.navigationBarHidden = YES;
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
+
 - (void)viewDidDisappear:(BOOL)animated{
-    self.navigationController.navigationBarHidden = NO;
+    [super viewDidDisappear:animated];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
+
+
+//-(void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//      [self.navigationController setNavigationBarHidden:NO animated:YES];
+//}
+
+
+
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    //设置导航颜色
+    self.navigationController.navigationBar.barTintColor = UICOLOR_FROM_HEX(Color2B8EEF);
+    //设置导航不透明
+    self.navigationController.navigationBar.translucent = YES;
+    
     self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     //MARK:导航View
     self.navView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, home_right_width, LineH(132))];

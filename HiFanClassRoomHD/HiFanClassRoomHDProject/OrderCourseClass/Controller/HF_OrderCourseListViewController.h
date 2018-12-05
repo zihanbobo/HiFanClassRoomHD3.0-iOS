@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface HF_OrderCourseListViewController : BaseScrollHeaderViewController
+@interface HF_OrderCourseListViewController : BaseViewController
 
 @end
 

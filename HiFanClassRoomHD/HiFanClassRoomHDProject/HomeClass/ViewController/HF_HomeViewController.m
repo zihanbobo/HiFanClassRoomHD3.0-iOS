@@ -55,7 +55,7 @@
     
     [self initView];
     [self setUpNewController];
-    
+
     HF_Singleton *sin = [HF_Singleton sharedSingleton];
     if (sin.isShowVersionUpdateAlert == YES) {
         [self updateNewVersion];
@@ -77,16 +77,16 @@
     self.courseTableHomeVc = [[HF_MyScheduleHomeViewController alloc] init];
     self.courseTableHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.courseTableHomeVc];
     [self.courseTableHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
-    
+
     //约课
     self.orderCourseHomeVc = [[HF_OrderCourseHomeViewController alloc] init];
-    self.orderCourseHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.courseTableHomeVc];
+    self.orderCourseHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.orderCourseHomeVc];
     [self.orderCourseHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
-    
+
     //体验课
-    self.xc_experienceVC = [[GGT_ExperienceUserOrderCourseVC alloc] init];
-    self.xc_experienceNav = [[BaseNavigationController alloc] initWithRootViewController:self.xc_experienceVC];
-    [self.xc_experienceNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+//    self.xc_experienceVC = [[GGT_ExperienceUserOrderCourseVC alloc] init];
+//    self.xc_experienceNav = [[BaseNavigationController alloc] initWithRootViewController:self.xc_experienceVC];
+//    [self.xc_experienceNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
     
     //  默认,第一个视图(你会发现,全程就这一个用了addSubview)
     [self.view addSubview:self.findMoreHomeNav.view];
@@ -401,20 +401,20 @@
 }
 
 #pragma mark - UIPopoverPresentationControllerDelegate
-//默认返回的是覆盖整个屏幕，需设置成UIModalPresentationNone。
-- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
-    return UIModalPresentationNone;
-}
-
-//点击蒙版是否消失，默认为yes；
--(BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
-    return NO;
-}
-
-//弹框消失时调用的方法
--(void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
-    NSLog(@"弹框已经消失");
-}
+////默认返回的是覆盖整个屏幕，需设置成UIModalPresentationNone。
+//- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
+//    return UIModalPresentationNone;
+//}
+//
+////点击蒙版是否消失，默认为yes；
+//-(BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+//    return NO;
+//}
+//
+////弹框消失时调用的方法
+//-(void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+//    NSLog(@"弹框已经消失");
+//}
 
 
 #pragma mark 计算缓存大小

@@ -16,9 +16,12 @@
 @implementation HF_OrderCourseHomeViewController
 
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    self.view.backgroundColor = UICOLOR_FROM_HEX(ColorF2F2F2);
+    
+    
     self.navBigLabel.text = @"Class Booking";
     self.titleLabel.text = @"约课";
     [self.rightButton setTitle:@"学习攻略" forState:(UIControlStateNormal)];
@@ -47,6 +50,8 @@
     //创建约课按钮
     [self initAppointmentCourseButton];
 
+    
+    
 }
 
 
@@ -67,18 +72,20 @@
         make.width.mas_equalTo(150);
         make.height.mas_equalTo(60);
     }];
+    
     [[self.appointmentCourseButton rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self);
         HF_OrderCourseListViewController *orList = [HF_OrderCourseListViewController new];
         NSLog(@"%@",self.navigationController);
         NSLog(@"约课按钮被点击");
-        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:orList];
-        [self.navigationController pushViewController:nav animated:YES];
+        
+//        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:orList];
+        [self.navigationController pushViewController:orList animated:YES];
         
         //[self presentViewController:orList animated:NO completion:nil];
     }];
-    
 }
+
 - (void)orderCourseList {
     
     
