@@ -9,7 +9,7 @@
 #import "HF_HomeViewController.h"
 #import "HF_HomeLeftView.h"
 #import "HF_FindMoreHomeViewController.h"      //发现
-#import "HF_CourseTableHomeViewController.h"   //课表
+#import "HF_MyScheduleHomeViewController.h"   //课表
 #import "HF_OrderCourseHomeViewController.h"   //约课
 
 
@@ -35,7 +35,7 @@
 @interface HF_HomeViewController () <UIPopoverPresentationControllerDelegate, TKEduRoomDelegate>
 @property (nonatomic, strong) HF_HomeLeftView *homeLeftView;
 @property (nonatomic, strong) HF_FindMoreHomeViewController *findMoreHomeVC;
-@property (nonatomic, strong) HF_CourseTableHomeViewController *courseTableHomeVc;
+@property (nonatomic, strong) HF_MyScheduleHomeViewController *courseTableHomeVc;
 @property (nonatomic, strong) HF_OrderCourseHomeViewController *orderCourseHomeVc;
 @property (nonatomic, strong) GGT_ExperienceUserOrderCourseVC *xc_experienceVC;
 @property (nonatomic, strong) BaseNavigationController *xc_experienceNav;
@@ -67,7 +67,7 @@
     [self addChildViewController:self.findMoreHomeVC];
     
     //课表
-    self.courseTableHomeVc = [HF_CourseTableHomeViewController new];
+    self.courseTableHomeVc = [HF_MyScheduleHomeViewController new];
     [self.courseTableHomeVc.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
     
     //约课

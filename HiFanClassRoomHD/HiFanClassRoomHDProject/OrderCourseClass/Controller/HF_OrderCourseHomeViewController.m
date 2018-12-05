@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.navBigLabel.text = @"Reservations";
+    self.navBigLabel.text = @"Class Booking";
     self.titleLabel.text = @"约课";
     [self.rightButton setTitle:@"学习攻略" forState:(UIControlStateNormal)];
     [self.rightButton setImage:UIIMAGE_FROM_NAME(@"攻略") forState:(UIControlStateNormal)];

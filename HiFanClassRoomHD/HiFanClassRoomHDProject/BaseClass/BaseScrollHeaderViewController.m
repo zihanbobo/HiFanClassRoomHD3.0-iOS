@@ -32,9 +32,9 @@
     [self.view addSubview:self.navView];
     
     //MARK:导航背景大字体
-    self.navBigLabel = [[UILabel alloc] initWithFrame:CGRectMake(LineX(14), LineY(32), home_right_width-LineW(28), LineH(75))];
+    self.navBigLabel = [[UILabel alloc] initWithFrame:CGRectMake(LineX(14), LineY(32), home_right_width-LineW(28), LineH(90))];
     self.navBigLabel.alpha = 1;
-    self.navBigLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:LineX(100)];
+    self.navBigLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:LineH(80)];
     self.navBigLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 5);
     [self.navView addSubview:self.navBigLabel];
     
