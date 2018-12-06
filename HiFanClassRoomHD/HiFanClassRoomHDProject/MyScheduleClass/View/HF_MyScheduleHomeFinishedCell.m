@@ -1,15 +1,14 @@
 //
-//  HF_MyScheduleHomeUnFinishedCell.m
+//  HF_MyScheduleHomeFinishedCell.m
 //  HiFanClassRoomHD
 //
-//  Created by XieHenry on 2018/12/3.
+//  Created by XieHenry on 2018/12/5.
 //  Copyright © 2018 Chn. All rights reserved.
 //
 
-#import "HF_MyScheduleHomeUnFinishedCell.h"
+#import "HF_MyScheduleHomeFinishedCell.h"
 
-
-@interface HF_MyScheduleHomeUnFinishedCell()
+@interface HF_MyScheduleHomeFinishedCell()
 //背景
 @property (nonatomic, strong) UIView *bigContentView;
 //上课时间
@@ -25,7 +24,7 @@
 @end
 
 
-@implementation HF_MyScheduleHomeUnFinishedCell
+@implementation HF_MyScheduleHomeFinishedCell
 
 -(id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -46,7 +45,7 @@
     [self.bigContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.contentView);
     }];
-
+    
     
     
     //上课时间
@@ -55,7 +54,7 @@
     self.startTimeLabel.text = @"08月23日 （周四）20:00";
     self.startTimeLabel.textColor = UICOLOR_FROM_HEX(Color000000);
     [self.bigContentView addSubview:self.startTimeLabel];
-   
+    
     
     [self.startTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.bigContentView.mas_top).with.offset(25);
@@ -88,7 +87,7 @@
         make.right.equalTo(self.bigContentView.mas_right).with.offset(-17);
         make.height.mas_equalTo(1);
     }];
-
+    
     
     
     //课程名称
@@ -155,5 +154,5 @@
     [self.bigContentView xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(10)];
 }
 
-
 @end
+
