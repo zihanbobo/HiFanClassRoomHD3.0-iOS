@@ -8,10 +8,24 @@
 
 #import "HF_MyScheduleHomeViewController.h"
 #import "HF_MyScheduleHomeHeaderCell.h"
+#import "HF_MyScheduleHomeUnFinishedView.h"
+#import "HF_MyScheduleHomeFinishedView.h"
+
+
+
+
+
 #import "HF_MyScheduleHomeUnFinishedCell.h"
+#import "HF_MyScheduleHomeFinishedCell.h"
+
+
+#import "HF_MyScheduleHomeUnfishedListViewController.h"
+#import "HF_MyScheduleHomeFishedListViewController.h"
 
 @interface HF_MyScheduleHomeViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
-@property (nonatomic, strong) UITableView *tableView; //tableView
+@property (nonatomic, strong) UIScrollView *bigScrollView;
+@property (nonatomic, strong) UIScrollView *contentScrollView;
+
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *unFinishedDataArray;
 @property (nonatomic, strong) NSMutableArray *finishedDataArray;
@@ -52,107 +66,56 @@
      }];
     
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height) collectionViewLayout:layout];
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource =self;
-    self.collectionView.backgroundColor = UICOLOR_FROM_HEX(ColorF2F2F2);
-    self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.showsHorizontalScrollIndicator = NO;
-    [self.view addSubview:self.collectionView];
-    
-    // 注册头视图
-    [self.collectionView registerClass:[HF_MyScheduleHomeHeaderCell class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HF_MyScheduleHomeHeaderCell"];
-    //注册cell
-    [self.collectionView registerClass:[HF_MyScheduleHomeUnFinishedCell class] forCellWithReuseIdentifier:@"HF_MyScheduleHomeUnFinishedCell"];
-}
-#pragma mark -- UICollectionView代理
-//返回分区个数
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-//返回每个分区的item个数
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.dataArray.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *identify = @"HF_MyScheduleHomeUnFinishedCell";
-    HF_MyScheduleHomeUnFinishedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-
-//    UILabel *label = [[UILabel alloc] init];
-//    label.frame = CGRectMake(0, 0, cell.width, cell.height);
-//    label.textAlignment = NSTextAlignmentCenter;
-//    label.text = self.dataArray[indexPath.row];
-//    [cell.contentView addSubview:label];
-    
-    return cell;
-}
-
-
-//设置每个 UICollectionView 的大小
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(LineW(285.3),LineH(213));
-}
-
-
-//定义每个UICollectionView 的间距
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(LineY(8.5), LineX(17), LineY(8.5), LineX(17));
-}
-
-
-//定义每个UICollectionView 的纵向间距
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return LineY(17);
-}
-
-//定义每个UICollectionView 的横向间距
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return LineW(17);
-}
-
-
-
-
-//设置header的宽高
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    
-    return CGSizeMake(home_right_width,LineH(85));
-}
-
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    self.bigScrollView = [[UIScrollView alloc] init];
+    self.bigScrollView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+    [self.view addSubview:self.bigScrollView];
     
     
-    HF_MyScheduleHomeHeaderCell *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HF_MyScheduleHomeHeaderCell" forIndexPath:indexPath];
+    HF_MyScheduleHomeHeaderCell *header = [[HF_MyScheduleHomeHeaderCell alloc] init];
     header.backgroundColor = UICOLOR_RANDOM_COLOR();
-    
+    header.frame = CGRectMake(0, 0, home_right_width, LineH(85));
     header.unFinishedBlock = ^{
-        [self.dataArray removeAllObjects];
-        self.dataArray = self.unFinishedDataArray;
-        [self.collectionView reloadData];
+        NSLog(@"未完成");
     };
     
     
     header.finishedBlock = ^{
-        [self.dataArray removeAllObjects];
-        self.dataArray = self.finishedDataArray;
-        [self.collectionView reloadData];
+        NSLog(@"已完成");
     };
+    [self.bigScrollView addSubview:header];
     
-    return header;
+
+    self.contentScrollView = [[UIScrollView alloc] init];
+    self.contentScrollView.frame = CGRectMake(0, header.y+header.height, home_right_width, self.bigScrollView.height - LineH(85));
+    self.contentScrollView.pagingEnabled = YES;
+    self.contentScrollView.contentSize = CGSizeMake(home_right_width*2, self.contentScrollView.height);
+    self.contentScrollView.showsHorizontalScrollIndicator = NO;
+    [self.bigScrollView addSubview:self.contentScrollView];
+    
+    
+    
+    HF_MyScheduleHomeUnFinishedView *unFinishedView = [[HF_MyScheduleHomeUnFinishedView alloc] init];
+    unFinishedView.frame = CGRectMake(0, 0, home_right_width, self.contentScrollView.height);
+    unFinishedView.backgroundColor = UICOLOR_RANDOM_COLOR();
+    [self.contentScrollView addSubview:unFinishedView];
+    
+    
+    HF_MyScheduleHomeFinishedView *finishedView = [[HF_MyScheduleHomeFinishedView alloc] init];
+    finishedView.frame = CGRectMake(home_right_width, 0, home_right_width, self.contentScrollView.height);
+    finishedView.backgroundColor = UICOLOR_RANDOM_COLOR();
+    [self.contentScrollView addSubview:finishedView];
 }
+
 
 
 //MARK:滑动动画
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     CGFloat offset_Y = scrollView.contentOffset.y;
     CGFloat alpha = (offset_Y-90)/100.0f;
+    
+    NSLog(@"%f",offset_Y);
+
     
     if (offset_Y >0 && offset_Y <=64) {
         self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(126)-offset_Y);

@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^SelectedBlock)(NSInteger index);
 @interface HF_FindMoreHomeContentCell : UITableViewCell <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong) UICollectionView *collectionView;
+
+@property (nonatomic,copy) SelectedBlock selectedBlock;
+
 @end

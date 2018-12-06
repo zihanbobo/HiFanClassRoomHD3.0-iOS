@@ -13,14 +13,18 @@
 @property (nonatomic, strong) UIView *bigContentView;
 //上课时间
 @property (nonatomic, strong) UILabel *startTimeLabel;
-//取消课程
-@property (nonatomic, strong) UIButton *cancleClassButton;
+//待评价
+@property (nonatomic, strong) UIButton *pingjiaButton;
+//教材封面
+@property (nonatomic, strong) UIImageView *jiaocaiImgView;
+//课程等级
+@property (nonatomic, strong) UILabel *levelLabel;
 //课程名称
 @property (nonatomic, strong) UILabel *classNameLabel;
 //课前预习
 @property (nonatomic,strong) UIButton *classBeforeButton;
-//进入教室
-@property (nonatomic,strong) UIButton *classEnterButton;
+//课后复习
+@property (nonatomic,strong) UIButton *classAfterButton;
 @end
 
 
@@ -63,14 +67,14 @@
     }];
     
     
-    //取消课程
-    self.cancleClassButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.cancleClassButton setTitle:@"取消课程" forState:(UIControlStateNormal)];
-    [self.cancleClassButton setTitleColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 40) forState:(UIControlStateNormal)];
-    self.cancleClassButton.titleLabel.font = Font(14);
-    [self.bigContentView addSubview:self.cancleClassButton];
+    //待评价
+    self.pingjiaButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [self.pingjiaButton setTitle:@"待评价" forState:(UIControlStateNormal)];
+    [self.pingjiaButton setTitleColor:UICOLOR_FROM_HEX(ColorFB9901) forState:(UIControlStateNormal)];
+    self.pingjiaButton.titleLabel.font = Font(14);
+    [self.bigContentView addSubview:self.pingjiaButton];
     
-    [self.cancleClassButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.pingjiaButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.bigContentView.mas_top).with.offset(27);
         make.right.equalTo(self.bigContentView.mas_right).with.offset(-17);
         make.height.mas_equalTo(14);
@@ -89,6 +93,34 @@
     }];
     
     
+    //教材封面
+    self.jiaocaiImgView = [[UIImageView alloc]init];
+    self.jiaocaiImgView.backgroundColor = UICOLOR_RANDOM_COLOR();
+    [self.bigContentView addSubview:self.jiaocaiImgView];
+    
+    
+    [self.jiaocaiImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(lineView1.mas_bottom).with.offset(17);
+        make.left.equalTo(self.bigContentView.mas_left).with.offset(17);
+        make.right.equalTo(self.bigContentView.mas_right).with.offset(-17);
+        make.size.mas_equalTo(CGSizeMake(250, 187));
+    }];
+
+    
+    //课程等级
+    self.levelLabel = [[UILabel alloc]init];
+    self.levelLabel.font = Font(12);
+    self.levelLabel.text = @"A0  Stage1";
+    self.levelLabel.textColor = UICOLOR_FROM_HEX(Color02B6E3);
+    [self.bigContentView addSubview:self.levelLabel];
+    
+    
+    [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.jiaocaiImgView.mas_bottom).with.offset(17);
+        make.left.equalTo(self.bigContentView.mas_left).with.offset(17);
+        make.height.mas_equalTo(14);
+    }];
+    
     
     //课程名称
     self.classNameLabel = [[UILabel alloc]init];
@@ -99,7 +131,7 @@
     
     
     [self.classNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(lineView1.mas_bottom).with.offset(36);
+        make.top.equalTo(self.levelLabel.mas_bottom).with.offset(5);
         make.left.equalTo(self.bigContentView.mas_left).with.offset(17);
         make.height.mas_equalTo(20);
     }];
@@ -134,16 +166,16 @@
     }];
     
     
-    //进入教室
-    self.classEnterButton = [UIButton new];
-    self.classEnterButton.titleLabel.font = Font(16);
-    [self.classEnterButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:(UIControlStateNormal)];
-    [self.classEnterButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterClassBtn") forState:UIControlStateNormal];
-    [self.classEnterButton setTitle:@"进入教室" forState:(UIControlStateNormal)];
-    [self.bigContentView addSubview:self.classEnterButton];
+    //课后复习
+    self.classAfterButton = [UIButton new];
+    self.classAfterButton.titleLabel.font = Font(16);
+    [self.classAfterButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:(UIControlStateNormal)];
+    [self.classAfterButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
+    [self.classAfterButton setTitle:@"课后复习" forState:(UIControlStateNormal)];
+    [self.bigContentView addSubview:self.classAfterButton];
     
     
-    [self.classEnterButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.classAfterButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.bigContentView.mas_right).offset(-17);
         make.bottom.equalTo(self.bigContentView.mas_bottom).offset(-25);
         make.size.mas_equalTo(CGSizeMake(117, 40));

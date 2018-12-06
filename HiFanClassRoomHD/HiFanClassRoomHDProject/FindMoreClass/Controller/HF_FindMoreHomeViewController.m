@@ -9,6 +9,7 @@
 #import "HF_FindMoreHomeViewController.h"
 #import "HF_FindMoreHomeCycleCell.h"
 #import "HF_FindMoreHomeContentCell.h"
+#import "HF_FindMoreMoviePlayViewController.h"
 
 
 @interface HF_FindMoreHomeViewController () <UITableViewDelegate,UITableViewDataSource>
@@ -69,20 +70,25 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         
-        static NSString *cellID = @"cell";
+        static NSString *cellID = @"HF_FindMoreHomeCycleCell";
         HF_FindMoreHomeCycleCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
             cell = [[HF_FindMoreHomeCycleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = UICOLOR_RANDOM_COLOR();
         
         return cell;
     } else if (indexPath.row == 1) {
-        static NSString *cellID = @"cell";
+        static NSString *cellID = @"HF_FindMoreHomeContentCell";
         HF_FindMoreHomeContentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
             cell = [[HF_FindMoreHomeContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         }
-        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+//        cell.backgroundColor = UICOLOR_RANDOM_COLOR();
+
         return cell;
     } else {
         return nil;
@@ -91,7 +97,14 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"111");
+    NSIndexPath *index = [NSIndexPath indexPathForRow:1 inSection:0];
+    HF_FindMoreHomeContentCell *cell = [self.tableView cellForRowAtIndexPath:index];
+    cell.selectedBlock = ^(NSInteger index) {
+        NSLog(@"点击的是 %ld 个",(long)index);
+        
+        HF_FindMoreMoviePlayViewController *vc = [[HF_FindMoreMoviePlayViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    };
 }
 
 
@@ -101,8 +114,6 @@
     CGFloat offset_Y = scrollView.contentOffset.y;
     CGFloat alpha = (offset_Y-90)/100.0f;
     
-    NSLog(@"%f",offset_Y);
-
     
     if (offset_Y >0 && offset_Y <=64) {
         self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(126)-offset_Y);

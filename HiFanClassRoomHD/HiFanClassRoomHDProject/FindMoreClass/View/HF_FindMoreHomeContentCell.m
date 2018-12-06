@@ -46,10 +46,11 @@
     self.collectionView.delegate = self;
     self.collectionView.dataSource =self;
     self.collectionView.backgroundColor = UICOLOR_FROM_HEX(ColorF2F2F2);
+    self.collectionView.showsHorizontalScrollIndicator = NO;
     [self.contentView addSubview:self.collectionView];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(classNameLabel.mas_bottom).offset(18);
+        make.top.equalTo(classNameLabel.mas_bottom).offset(0);
         make.left.equalTo(self.contentView.mas_left).offset(0);
         make.right.equalTo(self.contentView.mas_right).offset(-0);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
@@ -57,7 +58,6 @@
     
     
     //注册cell
-    //    [self.collectionView registerClass:[HF_FindMoreHomeCycleCell class] forCellWithReuseIdentifier:@"HF_FindMoreHomeCycleCell"];
     [self.collectionView registerClass:[HF_FindMoreHomeCollectionViewCell class] forCellWithReuseIdentifier:@"HF_FindMoreHomeCollectionViewCell"];
     
 }
@@ -81,12 +81,11 @@
 }
 
 
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
 
     static NSString *identify = @"HF_FindMoreHomeCollectionViewCell";
     HF_FindMoreHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
+//    cell.backgroundColor = [UIColor yellowColor];
     
     return cell;
 }
@@ -96,33 +95,20 @@
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
 
     return CGSizeMake(LineW(230),LineH(258));
-    
 }
 
 
-////设置header的宽高
-////- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-//////    if (section == 0) { //50
-//////        return CGSizeMake(home_right_width,LineH(50));
-//////    } else { //25 + 26
-//////        return CGSizeMake(home_right_width,LineH(51));
-//////    }
-////
-////    return CGSizeMake(home_right_width,LineH(51));
-////
-////}
 
 //定义每个UICollectionView 的间距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
 
     return UIEdgeInsetsMake(LineY(8.5), LineX(17), LineY(8.5), LineX(17));
-    
 }
 
 
 //定义每个UICollectionView 的纵向间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return 0;
+    return LineY(17);
 }
 
 
@@ -132,33 +118,10 @@
 }
 
 
-
-
-
-
-//- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-//
-//    if (indexPath.section == 0) {
-//        UICollectionReusableView *header0 = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header0" forIndexPath:indexPath];
-//        header0.backgroundColor = [UIColor redColor];
-//
-//
-//        return header0;
-//    } else {
-//
-//        UICollectionReusableView *header1 = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"header1" forIndexPath:indexPath];
-//        header1.backgroundColor = [UIColor redColor];
-//
-//        return header1;
-//    }
-//
-//}
-
-
-
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.selectedBlock) {
+        self.selectedBlock(indexPath.row);
+    }
+}
 
 @end
-
-
-
-

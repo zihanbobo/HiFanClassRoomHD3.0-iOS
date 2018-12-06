@@ -10,7 +10,7 @@
 
 typedef void(^UnFinishedBlock)(void);
 typedef void(^FinishedBlock)(void);
-@interface HF_MyScheduleHomeHeaderCell : UICollectionViewCell
+@interface HF_MyScheduleHomeHeaderCell : UIView
 @property (nonatomic,copy) UnFinishedBlock unFinishedBlock;
 @property (nonatomic,copy) FinishedBlock finishedBlock;
 
