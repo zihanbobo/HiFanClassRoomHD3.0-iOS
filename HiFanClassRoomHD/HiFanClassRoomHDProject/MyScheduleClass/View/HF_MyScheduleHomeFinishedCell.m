@@ -103,7 +103,7 @@
         make.top.equalTo(lineView1.mas_bottom).with.offset(17);
         make.left.equalTo(self.bigContentView.mas_left).with.offset(17);
         make.right.equalTo(self.bigContentView.mas_right).with.offset(-17);
-        make.size.mas_equalTo(CGSizeMake(250, 187));
+        make.height.mas_equalTo(187);
     }];
 
     

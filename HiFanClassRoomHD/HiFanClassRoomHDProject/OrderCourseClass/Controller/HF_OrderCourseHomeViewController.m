@@ -124,7 +124,9 @@
 
 
 //MARK:滑动动画
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+
     CGFloat offset_Y = scrollView.contentOffset.y;
     CGFloat alpha = (offset_Y-90)/100.0f;
     
