@@ -73,15 +73,23 @@
     
     
     HF_MyScheduleHomeHeaderCell *header = [[HF_MyScheduleHomeHeaderCell alloc] init];
-    header.backgroundColor = UICOLOR_RANDOM_COLOR();
+    header.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     header.frame = CGRectMake(0, 0, home_right_width, LineH(85));
     header.unFinishedBlock = ^{
         NSLog(@"未完成");
+        if (self.contentScrollView.contentOffset.x == 0) {
+            return;
+        }
+        self.contentScrollView.contentOffset = CGPointMake(0, 0);
     };
     
     
     header.finishedBlock = ^{
         NSLog(@"已完成");
+        if (self.contentScrollView.contentOffset.x == home_right_width) {
+            return;
+        }
+        self.contentScrollView.contentOffset = CGPointMake(home_right_width, 0);
     };
     [self.bigScrollView addSubview:header];
     
@@ -97,7 +105,7 @@
     
     HF_MyScheduleHomeUnFinishedView *unFinishedView = [[HF_MyScheduleHomeUnFinishedView alloc] init];
     unFinishedView.frame = CGRectMake(0, 0, home_right_width, self.contentScrollView.height);
-    unFinishedView.backgroundColor = UICOLOR_RANDOM_COLOR();
+    unFinishedView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     [self.contentScrollView addSubview:unFinishedView];
     
     
@@ -107,7 +115,9 @@
     [self.contentScrollView addSubview:finishedView];
 }
 
-
+-(void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    
+}
 
 //MARK:滑动动画
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{

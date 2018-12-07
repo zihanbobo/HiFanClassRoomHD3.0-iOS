@@ -13,5 +13,6 @@ typedef void(^FinishedBlock)(void);
 @interface HF_MyScheduleHomeHeaderCell : UIView
 @property (nonatomic,copy) UnFinishedBlock unFinishedBlock;
 @property (nonatomic,copy) FinishedBlock finishedBlock;
+@property (nonatomic,strong) UIView *lineAnimationView;
 
 @end
