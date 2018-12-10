@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		3512ACAE21B6289A00F08F97 /* HF_OrderCourseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3512ACAD21B6289A00F08F97 /* HF_OrderCourseListViewController.m */; };
 		3538EF571ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3538EF561ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.m */; };
+		35ECCFCA21B8D4F100C056B9 /* HF_OrderDateListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFC921B8D4F100C056B9 /* HF_OrderDateListView.m */; };
+		35ECCFCD21B8D5DF00C056B9 /* HF_OrderTimeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFCC21B8D5DF00C056B9 /* HF_OrderTimeListView.m */; };
+		35ECCFD021B8F21A00C056B9 /* HF_OrderDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFCF21B8F21A00C056B9 /* HF_OrderDateCell.m */; };
+		35ECCFD321B9119900C056B9 /* HF_OrderTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFD221B9119900C056B9 /* HF_OrderTimeCell.m */; };
 		5B03102F1FCC2232002FE83E /* GGT_LevelMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0310201FCC2230002FE83E /* GGT_LevelMenuViewController.m */; };
 		5B0310311FCC2232002FE83E /* GGT_OrderUnitCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0310291FCC2231002FE83E /* GGT_OrderUnitCourseViewController.m */; };
 		5B0310351FCC2232002FE83E /* GGT_OrderCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B03102D1FCC2232002FE83E /* GGT_OrderCourseViewController.m */; };
@@ -366,6 +370,14 @@
 		3512ACAD21B6289A00F08F97 /* HF_OrderCourseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderCourseListViewController.m; sourceTree = "<group>"; };
 		3538EF551ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGT_SelfInfoTableViewCell.h; sourceTree = "<group>"; };
 		3538EF561ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGT_SelfInfoTableViewCell.m; sourceTree = "<group>"; };
+		35ECCFC821B8D4F100C056B9 /* HF_OrderDateListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_OrderDateListView.h; sourceTree = "<group>"; };
+		35ECCFC921B8D4F100C056B9 /* HF_OrderDateListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderDateListView.m; sourceTree = "<group>"; };
+		35ECCFCB21B8D5DF00C056B9 /* HF_OrderTimeListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_OrderTimeListView.h; sourceTree = "<group>"; };
+		35ECCFCC21B8D5DF00C056B9 /* HF_OrderTimeListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderTimeListView.m; sourceTree = "<group>"; };
+		35ECCFCE21B8F21A00C056B9 /* HF_OrderDateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_OrderDateCell.h; sourceTree = "<group>"; };
+		35ECCFCF21B8F21A00C056B9 /* HF_OrderDateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderDateCell.m; sourceTree = "<group>"; };
+		35ECCFD121B9119900C056B9 /* HF_OrderTimeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_OrderTimeCell.h; sourceTree = "<group>"; };
+		35ECCFD221B9119900C056B9 /* HF_OrderTimeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderTimeCell.m; sourceTree = "<group>"; };
 		46923445B089FD426CFB6FE4 /* Pods-HiFanClassRoomHD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiFanClassRoomHD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HiFanClassRoomHD/Pods-HiFanClassRoomHD.debug.xcconfig"; sourceTree = "<group>"; };
 		53C98573D800FBE7948DE50B /* Pods_HiFanClassRoomHD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HiFanClassRoomHD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABCB9C33E55F0E3F1049015 /* Pods-HiFanClassRoomHD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiFanClassRoomHD.release.xcconfig"; path = "Pods/Target Support Files/Pods-HiFanClassRoomHD/Pods-HiFanClassRoomHD.release.xcconfig"; sourceTree = "<group>"; };
@@ -1166,6 +1178,14 @@
 			children = (
 				5BCBFD0821AFE21F00E4EF11 /* HF_OrderCourseHomeView.h */,
 				5BCBFD0921AFE21F00E4EF11 /* HF_OrderCourseHomeView.m */,
+				35ECCFC821B8D4F100C056B9 /* HF_OrderDateListView.h */,
+				35ECCFC921B8D4F100C056B9 /* HF_OrderDateListView.m */,
+				35ECCFCE21B8F21A00C056B9 /* HF_OrderDateCell.h */,
+				35ECCFCF21B8F21A00C056B9 /* HF_OrderDateCell.m */,
+				35ECCFD121B9119900C056B9 /* HF_OrderTimeCell.h */,
+				35ECCFD221B9119900C056B9 /* HF_OrderTimeCell.m */,
+				35ECCFCB21B8D5DF00C056B9 /* HF_OrderTimeListView.h */,
+				35ECCFCC21B8D5DF00C056B9 /* HF_OrderTimeListView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3014,10 +3034,12 @@
 				5BBC20201FE25117001212CD /* GGT_ScheduleFinishedCell.m in Sources */,
 				D6E0A58C1EC2DBB3006A003D /* HF_LoginViewController.m in Sources */,
 				5BE2EDE0216B37DC00845E70 /* TKVideoOneView.m in Sources */,
+				35ECCFD321B9119900C056B9 /* HF_OrderTimeCell.m in Sources */,
 				5B8337D11ED3DFEB005EE004 /* GGT_ChoicePickView.m in Sources */,
 				D63DA94A1ED5554400EFA686 /* NSString+unicode.m in Sources */,
 				5BE2EDE5216B37DC00845E70 /* TKVideoSecondView.m in Sources */,
 				D6E0A5901EC2DBB3006A003D /* HF_LoginView.m in Sources */,
+				35ECCFCD21B8D5DF00C056B9 /* HF_OrderTimeListView.m in Sources */,
 				D66684BD1FCEBE2A008E0B00 /* GGT_ExperienceCourseModel.m in Sources */,
 				5BE2ED94216B37DC00845E70 /* TKEduNetManager.m in Sources */,
 				D6AB90CE1ECEBC22009D8758 /* GGT_PlaceHolderView.m in Sources */,
@@ -3076,6 +3098,7 @@
 				5BE2EDB8216B37DC00845E70 /* BITFeedbackListViewCell.m in Sources */,
 				5BC49D8421B52833009E4972 /* HF_MyScheduleHomeHeaderCell.m in Sources */,
 				5BE2EE01216B37DC00845E70 /* TKNavigationController.m in Sources */,
+				35ECCFCA21B8D4F100C056B9 /* HF_OrderDateListView.m in Sources */,
 				D6E0A58F1EC2DBB3006A003D /* HF_ForgotPasswordView.m in Sources */,
 				D6E0A5351EC2D9AE006A003D /* BaseViewController.m in Sources */,
 				5B45AEB11FCFA1FB00916B59 /* GGT_ClassBookDetailModel.m in Sources */,
@@ -3190,6 +3213,7 @@
 				5B54A2CF21B7C11300DF9F91 /* HF_FindMoreHomeCycleCell.m in Sources */,
 				5BE2EDD8216B37DC00845E70 /* TKMessageTableViewCell.m in Sources */,
 				5B743D1E1EC5A281004E744A /* GGT_MineSplitViewController.m in Sources */,
+				35ECCFD021B8F21A00C056B9 /* HF_OrderDateCell.m in Sources */,
 				5BCBFD0A21AFE21F00E4EF11 /* HF_OrderCourseHomeView.m in Sources */,
 				5BE2EDFB216B37DC00845E70 /* TKDrogView.m in Sources */,
 				5BE2EDBB216B37DC00845E70 /* BITStoreButton.m in Sources */,
