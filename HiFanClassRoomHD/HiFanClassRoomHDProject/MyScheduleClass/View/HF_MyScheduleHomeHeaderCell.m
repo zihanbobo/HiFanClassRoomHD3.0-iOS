@@ -31,7 +31,7 @@
     self.unFinishedButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.unFinishedButton setTitle:@"未完成" forState:(UIControlStateNormal)];
     self.unFinishedButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(22)];
-    [self.unFinishedButton setTitleColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 40) forState:UIControlStateNormal];
+    [self.unFinishedButton setTitleColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 70) forState:UIControlStateNormal];
     [self addSubview:self.unFinishedButton];
     
     [self.unFinishedButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -51,23 +51,23 @@
      }];
     
     
-    self.lineAnimationView = [[UIView alloc]init];
-    self.lineAnimationView.backgroundColor = UICOLOR_FROM_HEX(Color02B6E3);
-    [self addSubview:self.lineAnimationView];
-
-
-    [self.lineAnimationView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.unFinishedButton.mas_bottom).with.offset(-1);
-        make.left.right.equalTo(self.unFinishedButton);
-        make.height.mas_equalTo(3);
-    }];
+//    self.lineAnimationView = [[UIView alloc]init];
+//    self.lineAnimationView.backgroundColor = [UICOLOR_FROM_HEX(0x67D3CE) colorWithAlphaComponent:70];
+//    [self addSubview:self.lineAnimationView];
+//
+//
+//    [self.lineAnimationView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self.unFinishedButton.mas_bottom).with.offset(-1);
+//        make.left.right.equalTo(self.unFinishedButton);
+//        make.height.mas_equalTo(3);
+//    }];
     
     
     
     self.finishedButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
     [self.finishedButton setTitle:@"已完成" forState:(UIControlStateNormal)];
     self.finishedButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(22)];
-    [self.finishedButton setTitleColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 70) forState:UIControlStateNormal];
+    [self.finishedButton setTitleColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 40) forState:UIControlStateNormal];
     [self addSubview:self.finishedButton];
     
     [self.finishedButton mas_makeConstraints:^(MASConstraintMaker *make) {

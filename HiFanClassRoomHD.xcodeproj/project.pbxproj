@@ -60,6 +60,11 @@
 		5B8337D11ED3DFEB005EE004 /* GGT_ChoicePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8337D01ED3DFEB005EE004 /* GGT_ChoicePickView.m */; };
 		5B86F7E8215CFDAE0086E678 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B86F7E7215CFDAE0086E678 /* BaseTableViewCell.m */; };
 		5B8B08F2217F18ED005F1620 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D68775651F0A086A008687C2 /* libicucore.tbd */; };
+		5B97CA7F21BE5B3000F80BD4 /* HF_MineHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B97CA7E21BE5B3000F80BD4 /* HF_MineHomeViewController.m */; };
+		5B97CA8221BE77EB00F80BD4 /* HF_MineHomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B97CA8121BE77EB00F80BD4 /* HF_MineHomeTableViewCell.m */; };
+		5B97CA8521BE7E6800F80BD4 /* HF_MineHomeHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B97CA8421BE7E6800F80BD4 /* HF_MineHomeHeaderCell.m */; };
+		5B97CA8821BE875500F80BD4 /* HF_MineHomeFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B97CA8721BE875500F80BD4 /* HF_MineHomeFooterView.m */; };
+		5B97CA8B21BE8A8900F80BD4 /* HF_MineClassCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B97CA8A21BE8A8900F80BD4 /* HF_MineClassCountViewController.m */; };
 		5B9A547D202ADB2300FDEA76 /* GGT_OrderUnitCourseCollFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A547C202ADB2300FDEA76 /* GGT_OrderUnitCourseCollFooter.m */; };
 		5BAE2F5020469BD300375F2B /* HF_ClassRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE2F4F20469BD300375F2B /* HF_ClassRoomManager.m */; };
 		5BAE2F5420469D0800375F2B /* HF_ClassRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE2F5320469D0800375F2B /* HF_ClassRoomModel.m */; };
@@ -473,6 +478,16 @@
 		5B8DFCAE1F905664000C0223 /* TKDocmentDocModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKDocmentDocModel.m; sourceTree = "<group>"; };
 		5B8DFCAF1F905664000C0223 /* TKMediaDocModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TKMediaDocModel.h; sourceTree = "<group>"; };
 		5B8DFCB01F905664000C0223 /* TKMediaDocModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TKMediaDocModel.m; sourceTree = "<group>"; };
+		5B97CA7D21BE5B3000F80BD4 /* HF_MineHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MineHomeViewController.h; sourceTree = "<group>"; };
+		5B97CA7E21BE5B3000F80BD4 /* HF_MineHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MineHomeViewController.m; sourceTree = "<group>"; };
+		5B97CA8021BE77EB00F80BD4 /* HF_MineHomeTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MineHomeTableViewCell.h; sourceTree = "<group>"; };
+		5B97CA8121BE77EB00F80BD4 /* HF_MineHomeTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MineHomeTableViewCell.m; sourceTree = "<group>"; };
+		5B97CA8321BE7E6800F80BD4 /* HF_MineHomeHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MineHomeHeaderCell.h; sourceTree = "<group>"; };
+		5B97CA8421BE7E6800F80BD4 /* HF_MineHomeHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MineHomeHeaderCell.m; sourceTree = "<group>"; };
+		5B97CA8621BE875500F80BD4 /* HF_MineHomeFooterView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MineHomeFooterView.h; sourceTree = "<group>"; };
+		5B97CA8721BE875500F80BD4 /* HF_MineHomeFooterView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MineHomeFooterView.m; sourceTree = "<group>"; };
+		5B97CA8921BE8A8900F80BD4 /* HF_MineClassCountViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MineClassCountViewController.h; sourceTree = "<group>"; };
+		5B97CA8A21BE8A8900F80BD4 /* HF_MineClassCountViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MineClassCountViewController.m; sourceTree = "<group>"; };
 		5B9A547B202ADB2300FDEA76 /* GGT_OrderUnitCourseCollFooter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_OrderUnitCourseCollFooter.h; sourceTree = "<group>"; };
 		5B9A547C202ADB2300FDEA76 /* GGT_OrderUnitCourseCollFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_OrderUnitCourseCollFooter.m; sourceTree = "<group>"; };
 		5BAE2F4E20469BD300375F2B /* HF_ClassRoomManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_ClassRoomManager.h; sourceTree = "<group>"; };
@@ -1407,6 +1422,47 @@
 				5B8DFCB01F905664000C0223 /* TKMediaDocModel.m */,
 			);
 			path = WhiteBoardModel;
+			sourceTree = "<group>";
+		};
+		5B97CA7921BE5B0B00F80BD4 /* MineClass */ = {
+			isa = PBXGroup;
+			children = (
+				5B97CA7A21BE5B0B00F80BD4 /* Controller */,
+				5B97CA7B21BE5B0B00F80BD4 /* Model */,
+				5B97CA7C21BE5B0B00F80BD4 /* View */,
+			);
+			path = MineClass;
+			sourceTree = "<group>";
+		};
+		5B97CA7A21BE5B0B00F80BD4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5B97CA7D21BE5B3000F80BD4 /* HF_MineHomeViewController.h */,
+				5B97CA7E21BE5B3000F80BD4 /* HF_MineHomeViewController.m */,
+				5B97CA8921BE8A8900F80BD4 /* HF_MineClassCountViewController.h */,
+				5B97CA8A21BE8A8900F80BD4 /* HF_MineClassCountViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5B97CA7B21BE5B0B00F80BD4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B97CA7C21BE5B0B00F80BD4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B97CA8321BE7E6800F80BD4 /* HF_MineHomeHeaderCell.h */,
+				5B97CA8421BE7E6800F80BD4 /* HF_MineHomeHeaderCell.m */,
+				5B97CA8021BE77EB00F80BD4 /* HF_MineHomeTableViewCell.h */,
+				5B97CA8121BE77EB00F80BD4 /* HF_MineHomeTableViewCell.m */,
+				5B97CA8621BE875500F80BD4 /* HF_MineHomeFooterView.h */,
+				5B97CA8721BE875500F80BD4 /* HF_MineHomeFooterView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		5B9E05751F149BA80050CEDB /* OrderTheCourse */ = {
@@ -2462,6 +2518,7 @@
 		D6E0A5191EC2CFD8006A003D /* HiFanClassRoomHDProject */ = {
 			isa = PBXGroup;
 			children = (
+				5B97CA7921BE5B0B00F80BD4 /* MineClass */,
 				5B13B8EE21AE6C4800CB0A7F /* OrderCourseClass */,
 				5B13B8E721AE6C3C00CB0A7F /* MyScheduleClass */,
 				5B13B8E021AE6C3300CB0A7F /* FindMoreClass */,
@@ -3005,6 +3062,7 @@
 				5BE2EE0C216B37DC00845E70 /* TKUtil.mm in Sources */,
 				D6E0A5791EC2DB15006A003D /* MBProgressHUD+Extension.m in Sources */,
 				5BB6D57D1FEB970C00464F83 /* GGT_ScheduleDetailModel.m in Sources */,
+				5B97CA8B21BE8A8900F80BD4 /* HF_MineClassCountViewController.m in Sources */,
 				5BE2EDCD216B37DC00845E70 /* TKEmotionKeyboard.m in Sources */,
 				5BE2ED9E216B37DC00845E70 /* BITAttributedLabel.m in Sources */,
 				5BE2ED93216B37DC00845E70 /* TKEduClassRoom.m in Sources */,
@@ -3037,6 +3095,7 @@
 				5BE2EDB3216B37DC00845E70 /* BITFeedbackManager.m in Sources */,
 				5BE2EDBC216B37DC00845E70 /* LTUpdate.m in Sources */,
 				5B4A5EA820246E9E00FD76DB /* GGT_ApplySucceedViewController.m in Sources */,
+				5B97CA8521BE7E6800F80BD4 /* HF_MineHomeHeaderCell.m in Sources */,
 				5BE2EDF6216B37DC00845E70 /* TKMessageTipView.m in Sources */,
 				D685D7661F0E04DE00987BB4 /* GGT_CoursePhraseModel.m in Sources */,
 				D6E0A58B1EC2DBB3006A003D /* HF_ForgotPasswordViewController.m in Sources */,
@@ -3044,6 +3103,7 @@
 				5BE2ED97216B37DC00845E70 /* TKAFURLSessionManager.m in Sources */,
 				5BE2EDF1216B37DC00845E70 /* TKUploadImageView.m in Sources */,
 				5BE2ED99216B37DC00845E70 /* TKAFURLResponseSerialization.m in Sources */,
+				5B97CA8221BE77EB00F80BD4 /* HF_MineHomeTableViewCell.m in Sources */,
 				5BE2EDB2216B37DC00845E70 /* BITAuthenticationViewController.m in Sources */,
 				5BE2ED8E216B37DC00845E70 /* TKDocmentDocModel.m in Sources */,
 				5BE2EDD3216B37DC00845E70 /* NSString+Emoji.m in Sources */,
@@ -3086,6 +3146,7 @@
 				5BD0754E1FE12C58002F0837 /* GGT_ScheduleFinishedViewController.m in Sources */,
 				D6E0A55E1EC2D9CD006A003D /* UIView+Layout.m in Sources */,
 				5BE2EDD1216B37DC00845E70 /* TKEmotion.m in Sources */,
+				5B97CA7F21BE5B3000F80BD4 /* HF_MineHomeViewController.m in Sources */,
 				5BE2EDA5216B37DC00845E70 /* BITWebTableViewCell.m in Sources */,
 				D627DCF21ED4196E00076FBD /* XCNormalHeader.m in Sources */,
 				D6E0A5311EC2D9AE006A003D /* BaseBackViewController.m in Sources */,
@@ -3120,6 +3181,7 @@
 				5BE2EDC1216B37DC00845E70 /* TKPromptMessage.m in Sources */,
 				5BE2EDE1216B37DC00845E70 /* TKVideoThirteenView.m in Sources */,
 				D6E0A5401EC2D9C1006A003D /* OYCountDownManager.m in Sources */,
+				5B97CA8821BE875500F80BD4 /* HF_MineHomeFooterView.m in Sources */,
 				3538EF571ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.m in Sources */,
 				5BD3D8301FCE828700C9B92B /* GGT_UnitBookListModel.m in Sources */,
 				5BB09A901FCD5A2D0071B8DE /* GGT_OrderUnitCourseDateView.m in Sources */,

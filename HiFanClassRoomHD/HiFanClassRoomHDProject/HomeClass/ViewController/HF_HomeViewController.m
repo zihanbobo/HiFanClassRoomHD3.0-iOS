@@ -11,6 +11,7 @@
 #import "HF_FindMoreHomeViewController.h"      //发现
 #import "HF_MyScheduleHomeViewController.h"   //课表
 #import "HF_OrderCourseHomeViewController.h"   //约课
+#import "HF_MineHomeViewController.h"
 
 
 
@@ -31,7 +32,6 @@
 #import "GGT_GradingAlertVC.h"
 #import "GGT_ExperienceUserOrderCourseVC.h"
 
-
 @interface HF_HomeViewController () <UIPopoverPresentationControllerDelegate, TKEduRoomDelegate>
 @property (nonatomic, strong) HF_HomeLeftView *homeLeftView;
 @property (nonatomic, strong) HF_FindMoreHomeViewController *findMoreHomeVC;
@@ -46,6 +46,14 @@
 @property (nonatomic, strong) GGT_ExperienceUserOrderCourseVC *xc_experienceVC;
 @property (nonatomic, strong) BaseNavigationController *xc_experienceNav;
 @property (nonatomic, strong) UIViewController *currentVC;
+
+
+//显示所有等级的Vc
+@property (nonatomic, strong) HF_MineHomeViewController *mineMenuVC;
+@property (nonatomic, strong) BaseNavigationController *mineMenuNav;
+@property (nonatomic, getter=isSelectedMineVc) BOOL selectedMineVc;
+@property (nonatomic, strong) UIView *blackBgView;
+
 @end
 
 @implementation HF_HomeViewController
@@ -56,6 +64,8 @@
     [self initView];
     [self setUpNewController];
 
+    self.selectedMineVc = NO;
+    
     HF_Singleton *sin = [HF_Singleton sharedSingleton];
     if (sin.isShowVersionUpdateAlert == YES) {
         [self updateNewVersion];
@@ -117,6 +127,26 @@
 }
 
 
+-(BaseNavigationController *)mineMenuNav {
+    if (!_mineMenuNav) {
+        self.mineMenuVC = [[HF_MineHomeViewController alloc] init];
+        self.mineMenuNav = [[BaseNavigationController alloc] initWithRootViewController:self.mineMenuVC];
+        self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, 0, LineH(768));
+        self.mineMenuNav.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+        
+    }
+    return _mineMenuNav;
+}
+
+-(UIView *)blackBgView {
+    if (!_blackBgView) {
+        self.blackBgView = [[UIView alloc] init];
+        self.blackBgView.frame = CGRectMake(home_left_width, 0, home_right_width, LineH(768));
+        self.blackBgView.backgroundColor = [UICOLOR_FROM_HEX(Color000000) colorWithAlphaComponent:0.4];
+    }
+    return _blackBgView;
+}
+
 - (void)initView {
     @weakify(self);
     self.homeLeftView = [[HF_HomeLeftView alloc]init];
@@ -127,8 +157,27 @@
         @strongify(self);
         switch (button.tag) {
             case 99:
-                NSLog(@"头像");
-                
+                {
+                    static dispatch_once_t onceToken;
+                    dispatch_once(&onceToken, ^{
+                        [self.view addSubview:self.blackBgView];
+                        [self.view addSubview:self.mineMenuNav.view];
+                    });
+
+                    if (self.selectedMineVc == NO) {
+                        [UIView animateWithDuration:0.3f animations:^{
+                            self.blackBgView.hidden = NO;
+                            self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, LineW(360), LineH(768));
+                            self.selectedMineVc = YES;
+                        }];
+                    } else {
+                        [UIView animateWithDuration:0.3f animations:^{
+                            self.blackBgView.hidden = YES;
+                            self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
+                            self.selectedMineVc = NO;
+                        }];
+                    }
+                }
                 break;
             case 100:
             {
@@ -398,11 +447,12 @@
 }
 
 #pragma mark - UIPopoverPresentationControllerDelegate
-////默认返回的是覆盖整个屏幕，需设置成UIModalPresentationNone。
+//默认返回的是覆盖整个屏幕，需设置成UIModalPresentationNone。
 //- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
 //    return UIModalPresentationNone;
 //}
-//
+
+
 ////点击蒙版是否消失，默认为yes；
 //-(BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
 //    return NO;

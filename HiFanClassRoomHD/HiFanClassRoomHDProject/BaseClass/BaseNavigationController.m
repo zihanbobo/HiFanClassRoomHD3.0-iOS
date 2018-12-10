@@ -7,7 +7,6 @@
 //
 
 #import "BaseNavigationController.h"
-//#import "GGT_MineViewController.h"
 
 @interface BaseNavigationController ()
 
@@ -19,13 +18,6 @@
     [super viewDidLoad];
 
     [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:Font(19),NSFontAttributeName,[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
-}
-
-
-- (void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
-{
-    [super pushViewController:viewController animated:animated];
-    [self setNavigationBarHidden:NO animated:YES];
 }
 
 

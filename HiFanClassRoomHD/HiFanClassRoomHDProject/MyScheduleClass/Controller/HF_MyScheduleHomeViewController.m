@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSMutableArray *unFinishedDataArray;
 @property (nonatomic, strong) NSMutableArray *finishedDataArray;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) HF_MyScheduleHomeHeaderCell *headerView;
 
 
 @property (nonatomic, strong) HF_MyScheduleHomeUnfishedListViewController *unfishedListVC;
@@ -46,7 +47,7 @@
     self.unFinishedDataArray = [NSMutableArray array];
     self.finishedDataArray = [NSMutableArray array];
     self.dataArray = [NSMutableArray array];
-
+    
     self.unFinishedDataArray = [NSMutableArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11", nil];
     self.dataArray = self.unFinishedDataArray;
     self.finishedDataArray = [NSMutableArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12", nil];
@@ -69,35 +70,35 @@
     
     
     
-//    self.bigScrollView = [[UIScrollView alloc] init];
-//    self.bigScrollView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
-//    [self.view addSubview:self.bigScrollView];
+    //    self.bigScrollView = [[UIScrollView alloc] init];
+    //    self.bigScrollView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+    //    [self.view addSubview:self.bigScrollView];
     
-    
-    HF_MyScheduleHomeHeaderCell *header = [[HF_MyScheduleHomeHeaderCell alloc] init];
-    header.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-    header.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, LineH(85));
-    header.unFinishedBlock = ^{
+    __weak HF_MyScheduleHomeViewController *weakSelf  = self;
+    self.headerView = [[HF_MyScheduleHomeHeaderCell alloc] init];
+    self.headerView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    self.headerView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, LineH(85));
+    self.headerView.unFinishedBlock = ^{
         NSLog(@"未完成");
-//        if (self.contentScrollView.contentOffset.x == 0) {
-//            return;
-//        }
-//        self.contentScrollView.contentOffset = CGPointMake(0, 0);
+        //        if (self.contentScrollView.contentOffset.x == 0) {
+        //            return;
+        //        }
+        //        self.contentScrollView.contentOffset = CGPointMake(0, 0);
     };
     
     
-    header.finishedBlock = ^{
+    self.headerView.finishedBlock = ^{
         NSLog(@"已完成");
-//        if (self.contentScrollView.contentOffset.x == home_right_width) {
-//            return;
-//        }
-//        self.contentScrollView.contentOffset = CGPointMake(home_right_width, 0);
+        //        if (self.contentScrollView.contentOffset.x == home_right_width) {
+        //            return;
+        //        }
+        //        self.contentScrollView.contentOffset = CGPointMake(home_right_width, 0);
     };
-    [self.view addSubview:header];
+    [self.view addSubview:self.headerView];
     
-
+    
     self.contentScrollView = [[UIScrollView alloc] init];
-    self.contentScrollView.frame = CGRectMake(0, header.y+header.height, home_right_width, SCREEN_HEIGHT() - self.navView.height - header.height);
+    self.contentScrollView.frame = CGRectMake(0, self.headerView.y+self.headerView.height, home_right_width, SCREEN_HEIGHT() - self.navView.height - self.headerView.height);
     self.contentScrollView.pagingEnabled = YES;
     self.contentScrollView.contentSize = CGSizeMake(home_right_width*2, self.contentScrollView.height);
     self.contentScrollView.showsHorizontalScrollIndicator = NO;
@@ -105,8 +106,6 @@
     self.contentScrollView.backgroundColor = UICOLOR_FROM_HEX(Color000000);
     [self.view addSubview:self.contentScrollView];
     
-    __weak HF_MyScheduleHomeViewController *weakSelf  = self;
-
     self.unfishedListVC = [[HF_MyScheduleHomeUnfishedListViewController alloc] init];
     self.unfishedListVC.view.frame = CGRectMake(0, 0, home_right_width, self.contentScrollView.height);
     self.unfishedListVC.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
@@ -114,7 +113,7 @@
         [weakSelf scrollViewScroll:height];
     };
     [self.contentScrollView addSubview:self.unfishedListVC.view];
-
+    
     
     self.fishedListVC = [[HF_MyScheduleHomeFishedListViewController alloc] init];
     self.fishedListVC.view.frame = CGRectMake(home_right_width, 0, home_right_width, self.contentScrollView.height);
@@ -129,11 +128,13 @@
     CGFloat alpha = (offset_Y-90)/100.0f;
     
     NSLog(@"%f",offset_Y);
+    //self.headerView 的 高度为 LineH(85)
+    
     
     
     if (offset_Y >0 && offset_Y <=64) {
         self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(126)-offset_Y);
-        //        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+        self.headerView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
         
         CGFloat fontSize =  (90-offset_Y)/90 * 38;
         int a = floor(fontSize); //floor 向下取整
@@ -153,7 +154,7 @@
     } else if (offset_Y >0 && offset_Y >64){
         
         self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(64));
-        //        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+        self.headerView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
         self.navBigLabel.hidden = YES;
         self.navBigLabel.alpha = 0;
         
@@ -166,7 +167,7 @@
     } else if (offset_Y <0){
         
         self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(126));
-        //        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+        self.headerView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
         
         self.navBigLabel.hidden = NO;
         self.navBigLabel.alpha = 1;
