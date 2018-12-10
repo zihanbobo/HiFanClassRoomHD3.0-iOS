@@ -8,16 +8,31 @@
 
 #import "HF_MyScheduleHomeViewController.h"
 #import "HF_MyScheduleHomeHeaderCell.h"
-#import "HF_MyScheduleHomeUnFinishedCell.h"
+#import "HF_MyScheduleHomeUnFinishedView.h"
+#import "HF_MyScheduleHomeFinishedView.h"
 
-@interface HF_MyScheduleHomeViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
-@property (nonatomic, strong) UITableView *tableView; //tableView
-@property (nonatomic, strong) UICollectionView *collectionView;
+
+
+
+
+#import "HF_MyScheduleHomeUnFinishedCell.h"
+#import "HF_MyScheduleHomeFinishedCell.h"
+
+
+#import "HF_MyScheduleHomeUnfishedListViewController.h"
+#import "HF_MyScheduleHomeFishedListViewController.h"
+
+@interface HF_MyScheduleHomeViewController ()
+@property (nonatomic, strong) UIScrollView *bigScrollView;
+@property (nonatomic, strong) UIScrollView *contentScrollView;
+
 @property (nonatomic, strong) NSMutableArray *unFinishedDataArray;
 @property (nonatomic, strong) NSMutableArray *finishedDataArray;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 
+@property (nonatomic, strong) HF_MyScheduleHomeUnfishedListViewController *unfishedListVC;
+@property (nonatomic, strong) HF_MyScheduleHomeFishedListViewController *fishedListVC;
 @end
 
 @implementation HF_MyScheduleHomeViewController
@@ -35,7 +50,6 @@
     self.unFinishedDataArray = [NSMutableArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11", nil];
     self.dataArray = self.unFinishedDataArray;
     self.finishedDataArray = [NSMutableArray arrayWithObjects:@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10",@"11",@"12", nil];
-
 }
 
 
@@ -54,113 +68,74 @@
      }];
     
     
-    UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    self.collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height) collectionViewLayout:layout];
-    self.collectionView.delegate = self;
-    self.collectionView.dataSource =self;
-    self.collectionView.backgroundColor = UICOLOR_FROM_HEX(ColorF2F2F2);
-    self.collectionView.showsVerticalScrollIndicator = NO;
-    self.collectionView.showsHorizontalScrollIndicator = NO;
-    [self.view addSubview:self.collectionView];
-    
-    // 注册头视图
-    [self.collectionView registerClass:[HF_MyScheduleHomeHeaderCell class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HF_MyScheduleHomeHeaderCell"];
-    //注册cell
-    [self.collectionView registerClass:[HF_MyScheduleHomeUnFinishedCell class] forCellWithReuseIdentifier:@"HF_MyScheduleHomeUnFinishedCell"];
-}
-#pragma mark -- UICollectionView代理
-//返回分区个数
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
-//返回每个分区的item个数
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return self.dataArray.count;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *identify = @"HF_MyScheduleHomeUnFinishedCell";
-    HF_MyScheduleHomeUnFinishedCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-
-//    UILabel *label = [[UILabel alloc] init];
-//    label.frame = CGRectMake(0, 0, cell.width, cell.height);
-//    label.textAlignment = NSTextAlignmentCenter;
-//    label.text = self.dataArray[indexPath.row];
-//    [cell.contentView addSubview:label];
-    
-    return cell;
-}
-
-
-//设置每个 UICollectionView 的大小
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(LineW(285.3),LineH(213));
-}
-
-
-//定义每个UICollectionView 的间距
--(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(LineY(8.5), LineX(17), LineY(8.5), LineX(17));
-}
-
-
-//定义每个UICollectionView 的纵向间距
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return LineY(17);
-}
-
-//定义每个UICollectionView 的横向间距
--(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return LineW(17);
-}
-
-
-
-
-//设置header的宽高
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    
-    return CGSizeMake(home_right_width,LineH(85));
-}
-
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+//    self.bigScrollView = [[UIScrollView alloc] init];
+//    self.bigScrollView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+//    [self.view addSubview:self.bigScrollView];
     
     
-    HF_MyScheduleHomeHeaderCell *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HF_MyScheduleHomeHeaderCell" forIndexPath:indexPath];
-    header.backgroundColor = UICOLOR_RANDOM_COLOR();
-    
+    HF_MyScheduleHomeHeaderCell *header = [[HF_MyScheduleHomeHeaderCell alloc] init];
+    header.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    header.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, LineH(85));
     header.unFinishedBlock = ^{
-        [self.dataArray removeAllObjects];
-        self.dataArray = self.unFinishedDataArray;
-        [self.collectionView reloadData];
+        NSLog(@"未完成");
+//        if (self.contentScrollView.contentOffset.x == 0) {
+//            return;
+//        }
+//        self.contentScrollView.contentOffset = CGPointMake(0, 0);
     };
     
     
     header.finishedBlock = ^{
-        [self.dataArray removeAllObjects];
-        self.dataArray = self.finishedDataArray;
-        [self.collectionView reloadData];
+        NSLog(@"已完成");
+//        if (self.contentScrollView.contentOffset.x == home_right_width) {
+//            return;
+//        }
+//        self.contentScrollView.contentOffset = CGPointMake(home_right_width, 0);
     };
+    [self.view addSubview:header];
     
-    return header;
+
+    self.contentScrollView = [[UIScrollView alloc] init];
+    self.contentScrollView.frame = CGRectMake(0, header.y+header.height, home_right_width, SCREEN_HEIGHT() - self.navView.height - header.height);
+    self.contentScrollView.pagingEnabled = YES;
+    self.contentScrollView.contentSize = CGSizeMake(home_right_width*2, self.contentScrollView.height);
+    self.contentScrollView.showsHorizontalScrollIndicator = NO;
+    self.contentScrollView.bounces = NO;
+    self.contentScrollView.backgroundColor = UICOLOR_FROM_HEX(Color000000);
+    [self.view addSubview:self.contentScrollView];
+    
+    __weak HF_MyScheduleHomeViewController *weakSelf  = self;
+
+    self.unfishedListVC = [[HF_MyScheduleHomeUnfishedListViewController alloc] init];
+    self.unfishedListVC.view.frame = CGRectMake(0, 0, home_right_width, self.contentScrollView.height);
+    self.unfishedListVC.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    self.unfishedListVC.scrollHeightBlock = ^(CGFloat height) {
+        [weakSelf scrollViewScroll:height];
+    };
+    [self.contentScrollView addSubview:self.unfishedListVC.view];
+
+    
+    self.fishedListVC = [[HF_MyScheduleHomeFishedListViewController alloc] init];
+    self.fishedListVC.view.frame = CGRectMake(home_right_width, 0, home_right_width, self.contentScrollView.height);
+    self.fishedListVC.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    [self.contentScrollView addSubview:self.fishedListVC.view];
 }
 
 
-//MARK:滑动动画
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat offset_Y = scrollView.contentOffset.y;
-    CGFloat alpha = (offset_Y-75)/100.0f;
+-(void)scrollViewScroll:(CGFloat)height {
     
-    if (offset_Y >0 && offset_Y <=69) {
-        self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(132)-offset_Y);
-        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+    CGFloat offset_Y = height;
+    CGFloat alpha = (offset_Y-90)/100.0f;
+    
+    NSLog(@"%f",offset_Y);
+    
+    
+    if (offset_Y >0 && offset_Y <=64) {
+        self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(126)-offset_Y);
+        //        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
         
-        CGFloat fontSize =  (100-offset_Y)/100 * 38;
+        CGFloat fontSize =  (90-offset_Y)/90 * 38;
         int a = floor(fontSize); //floor 向下取整
         a = (a>20 ? a : 20);  //三目运算符
         self.navBigLabel.hidden = NO;
@@ -170,15 +145,15 @@
         self.rightButton.frame = CGRectMake(home_right_width-LineW(120), self.navView.height-LineH(16)-LineH(12), LineW(100), LineH(16));
         
         
-        self.navBigLabel.frame = CGRectMake(LineX(14), self.navView.height-LineY(25)-LineH(75), home_right_width-LineW(28), LineH(90));
+        self.navBigLabel.frame = CGRectMake(LineX(14), self.navView.height-LineH(91), home_right_width-LineW(28), LineH(90));
         self.navBigLabel.alpha = -alpha;
         self.lineView.frame = CGRectMake(LineX(17), self.navView.height-LineH(1), home_right_width-LineW(34), LineH(1));
         
         
-    } else if (offset_Y >0 && offset_Y >69){
+    } else if (offset_Y >0 && offset_Y >64){
         
         self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(64));
-        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+        //        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
         self.navBigLabel.hidden = YES;
         self.navBigLabel.alpha = 0;
         
@@ -190,19 +165,76 @@
         
     } else if (offset_Y <0){
         
-        self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(132));
-        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+        self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(126));
+        //        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
         
         self.navBigLabel.hidden = NO;
         self.navBigLabel.alpha = 1;
-        self.navBigLabel.frame = CGRectMake(LineX(14), LineY(32), home_right_width-LineW(28), LineH(90));
+        self.navBigLabel.frame = CGRectMake(LineX(14), LineY(35), home_right_width-LineW(28), LineH(90));
         
-        self.titleLabel.frame = CGRectMake(LineX(17), LineY(78), LineW(100), LineH(38));
-        self.rightButton.frame = CGRectMake(home_right_width-LineW(120), LineY(99), LineW(100), LineH(16));
+        self.titleLabel.frame = CGRectMake(LineX(17), LineY(72), LineW(100), LineH(38));
+        self.rightButton.frame = CGRectMake(home_right_width-LineW(120), LineY(93), LineW(100), LineH(16));
         self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(38)];
         self.lineView.frame = CGRectMake(LineX(17), self.navView.height-LineH(1), home_right_width-LineW(34), LineH(1));
     }
 }
+
+
+//MARK:滑动动画
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    CGFloat offset_Y = scrollView.contentOffset.y;
+//    CGFloat alpha = (offset_Y-90)/100.0f;
+//
+//    NSLog(@"%f",offset_Y);
+//
+//
+//    if (offset_Y >0 && offset_Y <=64) {
+//        self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(126)-offset_Y);
+////        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+//
+//        CGFloat fontSize =  (90-offset_Y)/90 * 38;
+//        int a = floor(fontSize); //floor 向下取整
+//        a = (a>20 ? a : 20);  //三目运算符
+//        self.navBigLabel.hidden = NO;
+//
+//        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(a)];
+//        self.titleLabel.frame = CGRectMake(LineX(17), self.navView.height-LineH(a)-LineH(12), LineW(100), LineH(a));
+//        self.rightButton.frame = CGRectMake(home_right_width-LineW(120), self.navView.height-LineH(16)-LineH(12), LineW(100), LineH(16));
+//
+//
+//        self.navBigLabel.frame = CGRectMake(LineX(14), self.navView.height-LineH(91), home_right_width-LineW(28), LineH(90));
+//        self.navBigLabel.alpha = -alpha;
+//        self.lineView.frame = CGRectMake(LineX(17), self.navView.height-LineH(1), home_right_width-LineW(34), LineH(1));
+//
+//
+//    } else if (offset_Y >0 && offset_Y >64){
+//
+//        self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(64));
+////        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+//        self.navBigLabel.hidden = YES;
+//        self.navBigLabel.alpha = 0;
+//
+//        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(20)];
+//
+//        self.titleLabel.frame = CGRectMake(LineX(17), LineY(32), LineW(100), LineH(20));
+//        self.rightButton.frame = CGRectMake(home_right_width-LineW(120), LineY(36), LineW(100), LineH(16));
+//        self.lineView.frame = CGRectMake(LineX(17), self.navView.height-LineH(1), home_right_width-LineW(34), LineH(1));
+//
+//    } else if (offset_Y <0){
+//
+//        self.navView.frame = CGRectMake(0, 0, home_right_width, LineH(126));
+////        self.collectionView.frame = CGRectMake(0, self.navView.y+self.navView.height, home_right_width, SCREEN_HEIGHT()-self.navView.height);
+//
+//        self.navBigLabel.hidden = NO;
+//        self.navBigLabel.alpha = 1;
+//        self.navBigLabel.frame = CGRectMake(LineX(14), LineY(35), home_right_width-LineW(28), LineH(90));
+//
+//        self.titleLabel.frame = CGRectMake(LineX(17), LineY(72), LineW(100), LineH(38));
+//        self.rightButton.frame = CGRectMake(home_right_width-LineW(120), LineY(93), LineW(100), LineH(16));
+//        self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(38)];
+//        self.lineView.frame = CGRectMake(LineX(17), self.navView.height-LineH(1), home_right_width-LineW(34), LineH(1));
+//    }
+//}
 
 
 
