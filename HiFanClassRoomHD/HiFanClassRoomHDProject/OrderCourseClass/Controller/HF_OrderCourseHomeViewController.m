@@ -78,11 +78,7 @@
         HF_OrderCourseListViewController *orList = [HF_OrderCourseListViewController new];
         NSLog(@"%@",self.navigationController);
         NSLog(@"约课按钮被点击");
-        
-//        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:orList];
         [self.navigationController pushViewController:orList animated:YES];
-        
-        //[self presentViewController:orList animated:NO completion:nil];
     }];
 }
 
