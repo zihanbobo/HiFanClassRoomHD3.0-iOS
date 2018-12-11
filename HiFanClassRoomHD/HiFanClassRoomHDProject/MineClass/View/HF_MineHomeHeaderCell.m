@@ -33,7 +33,7 @@
     
     [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(17);
-        make.top.equalTo(self.contentView.mas_top).offset(33);
+        make.top.equalTo(self.contentView.mas_top).offset(13);
         make.size.mas_equalTo(CGSizeMake(18, 18));
     }];
     
