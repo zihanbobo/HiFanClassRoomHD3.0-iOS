@@ -110,6 +110,13 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        
+        cell.backBlock = ^{
+            if (self.hiddenBlock) {
+                self.hiddenBlock();
+            }
+        };
+        
         return cell;
     } else {
         static NSString *cellStr = @"HF_MineHomeTableViewCell";
@@ -127,8 +134,13 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    HF_MineClassCountViewController *vc = [[HF_MineClassCountViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    if (indexPath.row == 0) {
+        
+    } else {
+        HF_MineClassCountViewController *vc = [[HF_MineClassCountViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+   
 }
 
 

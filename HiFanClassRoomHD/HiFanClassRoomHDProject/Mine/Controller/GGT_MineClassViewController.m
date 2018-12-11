@@ -8,8 +8,8 @@
 
 #import "GGT_MineClassViewController.h"
 #import "GGT_MineClassTableViewCell.h"
-#import "GGT_PlaceHolderView.h"
-#import "GGT_ResultModel.h"
+#import "HF_PlaceHolderView.h"
+#import "HF_ResultModel.h"
 
 @interface GGT_MineClassViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
@@ -20,7 +20,7 @@
 
 //pageIndex
 @property (nonatomic, assign) NSInteger page;
-@property (nonatomic, strong) GGT_PlaceHolderView *xc_placeHolderView;
+@property (nonatomic, strong) HF_PlaceHolderView *xc_placeHolderView;
 @end
 
 @implementation GGT_MineClassViewController
@@ -143,7 +143,7 @@
             self.detailDataArray = [NSMutableArray array];
             
             
-            GGT_ResultModel *model = [GGT_ResultModel yy_modelWithDictionary:dic];
+            HF_ResultModel *model = [HF_ResultModel yy_modelWithDictionary:dic];
             self.xc_placeHolderView.xc_model = model;
             self.xc_placeHolderView.hidden = NO;
             [self.tableView.mj_footer endRefreshing];
@@ -158,7 +158,7 @@
             self.headerDataArray = [NSMutableArray array];
             self.detailDataArray = [NSMutableArray array];
             
-            GGT_ResultModel *model = [GGT_ResultModel yy_modelWithDictionary:dic];
+            HF_ResultModel *model = [HF_ResultModel yy_modelWithDictionary:dic];
             self.xc_placeHolderView.xc_model = model;
             self.xc_placeHolderView.hidden = NO;
             [self.tableView.mj_footer endRefreshing];
@@ -181,8 +181,8 @@
     [self.view addSubview:self.tableView];
     
     
-    // GGT_PlaceHolderView
-    self.xc_placeHolderView = [[GGT_PlaceHolderView alloc] initWithFrame:CGRectZero withImgYHeight:LineY(120)];
+    // HF_PlaceHolderView
+    self.xc_placeHolderView = [[HF_PlaceHolderView alloc] initWithFrame:CGRectZero withImgYHeight:LineY(120)];
     self.xc_placeHolderView.frame = CGRectMake(0, 0, _tableView.width,  SCREEN_HEIGHT()-LineH(20)-64);
     [self.tableView addSubview:self.xc_placeHolderView];
     self.xc_placeHolderView.hidden = YES;

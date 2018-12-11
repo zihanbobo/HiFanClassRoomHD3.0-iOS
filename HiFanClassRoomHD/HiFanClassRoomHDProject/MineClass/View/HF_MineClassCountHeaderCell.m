@@ -38,6 +38,17 @@
         make.size.mas_equalTo(CGSizeMake(18, 18));
     }];
     
+    
+    @weakify(self);
+    [[self.leftButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(id x) {
+         @strongify(self);
+         if (self.backBlock) {
+             self.backBlock();
+         }
+     }];
+    
+    
     //我的课时
     UILabel *myCountLabel = [[UILabel alloc]init];
     myCountLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(38)];

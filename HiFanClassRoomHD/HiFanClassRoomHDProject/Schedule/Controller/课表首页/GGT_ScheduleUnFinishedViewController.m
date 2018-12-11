@@ -9,7 +9,6 @@
 #import "GGT_ScheduleUnFinishedViewController.h"
 #import "GGT_ScheduleUnFinishedCell.h"
 #import "GGT_ScheduleUnFinishedDetailViewController.h"
-#import "GGT_PlaceHolderView.h"
 #import "GGT_ScheduleUnFinishedHomeModel.h"
 #import "GGT_PracticeViewController.h"
 #import "NSTimer+BlockSupport.h"
@@ -20,7 +19,7 @@ static BOOL isFirstEnterVc = YES;
 @property (nonatomic, strong) UITableView *tableView;
 //右边请求的数组
 @property (nonatomic, strong) NSMutableArray *dataArray;
-@property (nonatomic, strong) GGT_PlaceHolderView *xc_placeHolderView;
+@property (nonatomic, strong) HF_PlaceHolderView *xc_placeHolderView;
 @property (nonatomic, strong) NSTimer *countDowntimer;    // 用于每隔2分钟发送一次网络请求 刷新数据
 @end
 
@@ -128,7 +127,7 @@ static BOOL isFirstEnterVc = YES;
                 self.xc_placeHolderView.hidden = YES;
                 
             } else {
-                GGT_ResultModel *model = [GGT_ResultModel yy_modelWithDictionary:responseObject];
+                HF_ResultModel *model = [HF_ResultModel yy_modelWithDictionary:responseObject];
                 self.xc_placeHolderView.xc_model = model;
                 self.xc_placeHolderView.hidden = NO;
             }
@@ -141,7 +140,7 @@ static BOOL isFirstEnterVc = YES;
         [self reloadData];
 
     } failure:^(NSError *error) {
-        GGT_ResultModel *model = [GGT_ResultModel yy_modelWithDictionary:error.userInfo];
+        HF_ResultModel *model = [HF_ResultModel yy_modelWithDictionary:error.userInfo];
         self.xc_placeHolderView.xc_model = model;
         self.xc_placeHolderView.hidden = NO;
         [self.tableView.mj_footer endRefreshing];
@@ -175,8 +174,8 @@ static BOOL isFirstEnterVc = YES;
     }];
     
     
-    // GGT_PlaceHolderView
-    self.xc_placeHolderView = [[GGT_PlaceHolderView alloc] initWithFrame:CGRectZero withImgYHeight:LineY(120)];
+    // HF_PlaceHolderView
+    self.xc_placeHolderView = [[HF_PlaceHolderView alloc] initWithFrame:CGRectZero withImgYHeight:LineY(120)];
     self.xc_placeHolderView.frame = CGRectMake(0, 0, home_right_width, SCREEN_HEIGHT());
     [self.tableView addSubview:self.xc_placeHolderView];
     self.xc_placeHolderView.hidden = YES;

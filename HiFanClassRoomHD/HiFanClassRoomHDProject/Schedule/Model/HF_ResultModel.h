@@ -1,5 +1,5 @@
 //
-//  GGT_ResultModel.h
+//  HF_ResultModel.h
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2017/6/2.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface GGT_ResultModel : NSObject
+@interface HF_ResultModel : NSObject
 @property (nonatomic, strong) NSString *result;
 @property (nonatomic, strong) NSString *msg;
 @end

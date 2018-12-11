@@ -44,7 +44,6 @@
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.tableView.scrollEnabled = NO;
     }
     return _tableView;
 }
@@ -79,6 +78,11 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
+        
+        cell.backBlock = ^{
+            [self.navigationController popViewControllerAnimated:YES];
+        };
+        
         return cell;
     } else {
         static NSString *cellStr = @"HF_MineClassCountListCell";
@@ -103,7 +107,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return LineH(228);
+        return LineH(208);
     }
     return LineH(50);
 }

@@ -37,6 +37,15 @@
         make.size.mas_equalTo(CGSizeMake(18, 18));
     }];
     
+    @weakify(self);
+    [[self.leftButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(id x) {
+         @strongify(self);
+         if (self.backBlock) {
+             self.backBlock();
+         }
+     }];
+    
     //英文昵称
     self.nickNameLabel = [[UILabel alloc]init];
     self.nickNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(38)];

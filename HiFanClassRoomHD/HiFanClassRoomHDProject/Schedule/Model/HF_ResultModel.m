@@ -1,13 +1,13 @@
 //
-//  GGT_ResultModel.m
+//  HF_ResultModel.m
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2017/6/2.
 //  Copyright © 2017年 XieHenry. All rights reserved.
 //
 
-#import "GGT_ResultModel.h"
+#import "HF_ResultModel.h"
 
-@implementation GGT_ResultModel
+@implementation HF_ResultModel
 
 @end
