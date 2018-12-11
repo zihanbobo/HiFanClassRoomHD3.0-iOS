@@ -27,6 +27,8 @@
     [self setNavationStyle];
     //日期选择视图
     [self setDateTimeSelectView];
+    //约课说明
+    [self setExplainView];
     
     
     
@@ -130,7 +132,8 @@
     [self.timeCollectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(timeListView.mas_top).offset(65);
         make.left.equalTo(timeListView.mas_left).offset(76);
-        make.bottom.right.equalTo(timeListView);
+        make.right.equalTo(timeListView);
+        make.bottom.equalTo(timeListView.mas_bottom).offset(-63);
     }];
     [self.timeCollectionView registerClass:[HF_OrderTimeCell class] forCellWithReuseIdentifier:@"timeCell"];
     
@@ -249,5 +252,71 @@
     }
     return CGSizeZero;
 }
-
+#pragma mark ----  约课说明
+- (void)setExplainView {
+    UIView *circular1 = [UIView new];
+    circular1.backgroundColor = UICOLOR_FROM_HEX(0xD8D8D8);
+    circular1.layer.masksToBounds = YES;
+    circular1.layer.cornerRadius = 10/2;
+    [self.view addSubview:circular1];
+    [circular1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.view.mas_bottom).offset(-51);
+        make.left.equalTo(self.view.mas_left).offset(647);
+        make.width.height.mas_equalTo(10);
+    }];
+    UILabel *info1 = [UILabel new];
+    info1.text = @"不可选/约满";
+    info1.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 40);
+    info1.font = Font(12);
+    [info1 sizeToFit];
+    [self.view addSubview:info1];
+    [info1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(circular1.mas_centerY);
+        make.left.equalTo(circular1.mas_right).offset(5);
+    }];
+    
+    UIView *circular2 = [UIView new];
+    circular2.backgroundColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 70);
+    circular2.layer.masksToBounds = YES;
+    circular2.layer.cornerRadius = 10/2;
+    [self.view addSubview:circular2];
+    [circular2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(circular1.mas_centerY);
+        make.left.equalTo(info1.mas_right).offset(10);
+        make.width.height.mas_equalTo(10);
+    }];
+    UILabel *info2 = [UILabel new];
+    info2.text = @"可选/可预约";
+    info2.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 40);
+    info2.font = Font(12);
+    [info2 sizeToFit];
+    [self.view addSubview:info2];
+    [info2 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(circular2.mas_centerY);
+        make.left.equalTo(circular2.mas_right).offset(5);
+    }];
+    
+    UIView *circular3 = [UIView new];
+    circular3.backgroundColor = UICOLOR_FROM_HEX(0x02B6E3);
+    circular3.layer.masksToBounds = YES;
+    circular3.layer.cornerRadius = 10/2;
+    [self.view addSubview:circular3];
+    [circular3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(circular2.mas_centerY);
+        make.left.equalTo(info2.mas_right).offset(10);
+        make.width.height.mas_equalTo(10);
+    }];
+    UILabel *info3 = [UILabel new];
+    info3.text = @"已选择";
+    info3.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 40);
+    info3.font = Font(12);
+    [info3 sizeToFit];
+    [self.view addSubview:info3];
+    [info3 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(circular3.mas_centerY);
+        make.left.equalTo(circular3.mas_right).offset(5);
+    }];
+    
+    
+}
 @end
