@@ -132,5 +132,62 @@
         make.width.mas_equalTo(35);
         make.height.mas_equalTo(20);
     }];
+    UIView *orderClassView = [UIView new];
+    orderClassView.backgroundColor = [UIColor whiteColor];
+    [self addSubview:orderClassView];
+    [orderClassView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.bottom.equalTo(self);
+        make.height.mas_equalTo(60);
+    }];
+    orderClassView.layer.cornerRadius = 7;
+    //[orderClassView xc_SetCornerWithSideType:6|7 cornerRadius:7];
+    
+    UIView *orderClassLine = [UIView new];
+    orderClassLine.backgroundColor = UICOLOR_FROM_HEX(0xffffff);
+//
+    orderClassLine.layer.shadowColor = [UIColor blackColor].CGColor;
+    orderClassLine.layer.shadowOpacity = 0.12;
+    orderClassLine.layer.shadowRadius = 2;
+    orderClassLine.layer.shadowOffset = CGSizeMake(0, -3);
+    [self addSubview:orderClassLine];
+    [orderClassLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self);
+        make.top.equalTo(self.mas_bottom).offset(-60);
+        make.height.mas_equalTo(2);
+    }];
+    //[orderClassLine addShadowForViewWithShadowOffset:CGSizeMake(0, 0) ShadowOpacity:0.12 ShadowRadius:7 ShadowColor:UICOLOR_FROM_HEX(0x000000)];
+    UILabel *selectTitle = [UILabel new];
+    selectTitle.font = Font(12);
+    [selectTitle sizeToFit];
+    selectTitle.text = @"您已选择：";
+    selectTitle.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 40);
+    [orderClassView addSubview:selectTitle];
+    [selectTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(orderClassView.mas_centerY).offset(-3);
+        make.left.equalTo(orderClassView.mas_left).offset(17);
+    }];
+    self.selectDateAndTime = [UILabel new];
+    self.selectDateAndTime.font = Font(16);
+    self.selectDateAndTime.textColor = UICOLOR_FROM_HEX(0x000000);
+    self.selectDateAndTime.text = @"12月07日 18:30";
+    [self.selectDateAndTime sizeToFit];
+    [orderClassView addSubview:self.selectDateAndTime];
+    [self.selectDateAndTime mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(selectTitle.mas_right).offset(0);
+        make.centerY.equalTo(selectTitle.mas_centerY);
+    }];
+    self.orderClassButton = [UIButton new];
+    self.orderClassButton.backgroundColor = UICOLOR_FROM_HEX(0x02B6E3);
+    [self.orderClassButton setTitle:@"确定预约" forState:UIControlStateNormal];
+    [self.orderClassButton setTitleColor:UICOLOR_FROM_HEX(0xffffff) forState:UIControlStateNormal];
+    [orderClassView addSubview:self.orderClassButton];
+    [self.orderClassButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(198);
+        //make.height.mas_equalTo(60);
+        make.top.equalTo(orderClassView.mas_top).offset(0);
+        make.bottom.equalTo(orderClassView.mas_bottom).offset(0);
+        //make.centerY.equalTo(orderClassView.mas_centerY);
+        make.right.equalTo(orderClassView.mas_right).offset(0);
+    }];
 }
 @end

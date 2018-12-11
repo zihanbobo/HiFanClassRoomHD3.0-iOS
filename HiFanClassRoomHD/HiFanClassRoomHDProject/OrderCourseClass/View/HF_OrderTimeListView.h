@@ -11,6 +11,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface HF_OrderTimeListView : UIView
+@property(nonatomic, strong) UIButton *orderClassButton;  //约课按钮
+@property(nonatomic, strong) UILabel *selectDateAndTime;  //选择的日期和时间
 
 @end
 
