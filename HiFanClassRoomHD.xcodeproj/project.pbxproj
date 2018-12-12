@@ -28,6 +28,10 @@
 		5B13B8F421AE6C4900CB0A7F /* HF_OrderCourseHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13B8F121AE6C4800CB0A7F /* HF_OrderCourseHomeViewController.m */; };
 		5B13B8F721AE6C9C00CB0A7F /* HF_HomeLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13B8F621AE6C9C00CB0A7F /* HF_HomeLeftView.m */; };
 		5B13B8FA21AE6CD300CB0A7F /* HF_HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13B8F921AE6CD300CB0A7F /* HF_HomeViewController.m */; };
+		5B19424521C0F6BA00FD56CF /* HF_MineHomeInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19424421C0F6BA00FD56CF /* HF_MineHomeInfoModel.m */; };
+		5B19424821C1102700FD56CF /* BaseScrollHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19424721C1102700FD56CF /* BaseScrollHeaderCell.m */; };
+		5B19424B21C122EA00FD56CF /* HF_MineClassCountHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19424A21C122EA00FD56CF /* HF_MineClassCountHeaderModel.m */; };
+		5B19424E21C1254600FD56CF /* HF_MineClassCountListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19424D21C1254600FD56CF /* HF_MineClassCountListModel.m */; };
 		5B1E61DF1F46CC5F00342CC5 /* HF_LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1E61DE1F46CC5F00342CC5 /* HF_LoadingView.m */; };
 		5B20DD361F6B766A0058AEA9 /* HF_UpdateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B20DD351F6B766A0058AEA9 /* HF_UpdateModel.m */; };
 		5B34522B202C419300850D30 /* GGT_ApplyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B34522A202C419300850D30 /* GGT_ApplyClassViewController.m */; };
@@ -415,6 +419,14 @@
 		5B13B8F621AE6C9C00CB0A7F /* HF_HomeLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_HomeLeftView.m; sourceTree = "<group>"; };
 		5B13B8F821AE6CD300CB0A7F /* HF_HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeViewController.h; sourceTree = "<group>"; };
 		5B13B8F921AE6CD300CB0A7F /* HF_HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeViewController.m; sourceTree = "<group>"; };
+		5B19424321C0F6BA00FD56CF /* HF_MineHomeInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MineHomeInfoModel.h; sourceTree = "<group>"; };
+		5B19424421C0F6BA00FD56CF /* HF_MineHomeInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MineHomeInfoModel.m; sourceTree = "<group>"; };
+		5B19424621C1102700FD56CF /* BaseScrollHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseScrollHeaderCell.h; sourceTree = "<group>"; };
+		5B19424721C1102700FD56CF /* BaseScrollHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseScrollHeaderCell.m; sourceTree = "<group>"; };
+		5B19424921C122EA00FD56CF /* HF_MineClassCountHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MineClassCountHeaderModel.h; sourceTree = "<group>"; };
+		5B19424A21C122EA00FD56CF /* HF_MineClassCountHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MineClassCountHeaderModel.m; sourceTree = "<group>"; };
+		5B19424C21C1254600FD56CF /* HF_MineClassCountListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MineClassCountListModel.h; sourceTree = "<group>"; };
+		5B19424D21C1254600FD56CF /* HF_MineClassCountListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MineClassCountListModel.m; sourceTree = "<group>"; };
 		5B1E61DD1F46CC5F00342CC5 /* HF_LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_LoadingView.h; sourceTree = "<group>"; };
 		5B1E61DE1F46CC5F00342CC5 /* HF_LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_LoadingView.m; sourceTree = "<group>"; };
 		5B20DD341F6B766A0058AEA9 /* HF_UpdateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_UpdateModel.h; sourceTree = "<group>"; };
@@ -1479,6 +1491,12 @@
 		5B97CA7B21BE5B0B00F80BD4 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5B19424321C0F6BA00FD56CF /* HF_MineHomeInfoModel.h */,
+				5B19424421C0F6BA00FD56CF /* HF_MineHomeInfoModel.m */,
+				5B19424921C122EA00FD56CF /* HF_MineClassCountHeaderModel.h */,
+				5B19424A21C122EA00FD56CF /* HF_MineClassCountHeaderModel.m */,
+				5B19424C21C1254600FD56CF /* HF_MineClassCountListModel.h */,
+				5B19424D21C1254600FD56CF /* HF_MineClassCountListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2587,6 +2605,8 @@
 				5B86F7E7215CFDAE0086E678 /* BaseTableViewCell.m */,
 				5B3837E421B13A1700339512 /* BaseScrollHeaderViewController.h */,
 				5B3837E521B13A1700339512 /* BaseScrollHeaderViewController.m */,
+				5B19424621C1102700FD56CF /* BaseScrollHeaderCell.h */,
+				5B19424721C1102700FD56CF /* BaseScrollHeaderCell.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -3098,6 +3118,7 @@
 				5B3837E621B13A1700339512 /* BaseScrollHeaderViewController.m in Sources */,
 				D6D7CBED1F2199C80087DDA0 /* HF_LaunchViewController.m in Sources */,
 				5BE2EE0C216B37DC00845E70 /* TKUtil.mm in Sources */,
+				5B19424E21C1254600FD56CF /* HF_MineClassCountListModel.m in Sources */,
 				D6E0A5791EC2DB15006A003D /* MBProgressHUD+Extension.m in Sources */,
 				5BB6D57D1FEB970C00464F83 /* GGT_ScheduleDetailModel.m in Sources */,
 				5B97CA8B21BE8A8900F80BD4 /* HF_MineClassCountViewController.m in Sources */,
@@ -3109,6 +3130,7 @@
 				5BD5165A1ECAD32E0015D694 /* GGT_MineClassTableViewCell.m in Sources */,
 				D6E0A5591EC2D9CD006A003D /* UIAlertController+Color.m in Sources */,
 				5BE2EDCC216B37DC00845E70 /* TKEmotionGridView.m in Sources */,
+				5B19424821C1102700FD56CF /* BaseScrollHeaderCell.m in Sources */,
 				D67ACCC61EE173E00027031C /* HF_ResultModel.m in Sources */,
 				D6BF1ABF1FD102A90032C20C /* GGT_QuestionBottomView.m in Sources */,
 				5BE2EDB8216B37DC00845E70 /* BITFeedbackListViewCell.m in Sources */,
@@ -3119,6 +3141,7 @@
 				D6E0A5351EC2D9AE006A003D /* BaseViewController.m in Sources */,
 				5B45AEB11FCFA1FB00916B59 /* GGT_ClassBookDetailModel.m in Sources */,
 				D66684BA1FCEA412008E0B00 /* GGT_DateModel.m in Sources */,
+				5B19424B21C122EA00FD56CF /* HF_MineClassCountHeaderModel.m in Sources */,
 				5B13B8ED21AE6C3D00CB0A7F /* HF_MyScheduleHomeViewController.m in Sources */,
 				5BE2EDC9216B37DC00845E70 /* TKTextView.m in Sources */,
 				5BE2EDC8216B37DC00845E70 /* KTEmotionAttachment.m in Sources */,
@@ -3198,6 +3221,7 @@
 				5BE2EDBF216B37DC00845E70 /* TKProgressHUD.m in Sources */,
 				5BE2EDE3216B37DC00845E70 /* TKVideoFiveView.m in Sources */,
 				5B112A9421BF699C001D7E3E /* HF_MineClassCountHeaderCell.m in Sources */,
+				5B19424521C0F6BA00FD56CF /* HF_MineHomeInfoModel.m in Sources */,
 				D60FA5191EC987AE00838DE4 /* FLAnimatedImageView+WebCache.m in Sources */,
 				5BE2EE08216B37DC00845E70 /* TKOpenUrlViewController.m in Sources */,
 				D670A8991FCD639800F10D2F /* GGT_CustomPopAlertView.m in Sources */,

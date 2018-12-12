@@ -29,7 +29,7 @@
     self.leftNameLabel = [[UILabel alloc]init];
     self.leftNameLabel.font = Font(14);
     self.leftNameLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-    self.leftNameLabel.text = @"我的课时";
+//    self.leftNameLabel.text = @"我的课时";
     [self.contentView addSubview:self.leftNameLabel];
     
     [self.leftNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -42,7 +42,7 @@
     self.centerCountLabel = [[UILabel alloc]init];
     self.centerCountLabel.font = Font(14);
     self.centerCountLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-    self.centerCountLabel.text = @"-1";
+//    self.centerCountLabel.text = @"-1";
     [self.contentView addSubview:self.centerCountLabel];
     
     [self.centerCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -56,7 +56,7 @@
     self.rightLabel = [[UILabel alloc]init];
     self.rightLabel.font = Font(14);
     self.rightLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-    self.rightLabel.text = @"2018-08-09";
+//    self.rightLabel.text = @"2018-08-09";
     [self.contentView addSubview:self.rightLabel];
     
     [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -80,4 +80,19 @@
     
 }
 
+
+- (void)setListModel:(HF_MineClassCountListModel *)listModel {
+    if (!IsStrEmpty(listModel.TypeName)) {
+        self.leftNameLabel.text = listModel.TypeName;
+    }
+    
+    if (!IsStrEmpty(listModel.Hours)) {
+        self.centerCountLabel.text = listModel.Hours;
+    }
+    
+    if (!IsStrEmpty(listModel.CreateTime)) {
+        self.rightLabel.text = listModel.CreateTime;
+    }
+    
+}
 @end

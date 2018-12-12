@@ -10,12 +10,14 @@
 #import "HF_MineHomeHeaderCell.h"
 #import "HF_MineHomeTableViewCell.h"
 #import "HF_MineClassCountViewController.h"
+#import "HF_MineHomeInfoModel.h"
 
 @interface HF_MineHomeViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UIButton *loginOutButton;
-
+@property (nonatomic, strong) HF_Singleton *sin;
+@property (nonatomic, strong) HF_MineHomeInfoModel *model;
 @end
 
 @implementation HF_MineHomeViewController
@@ -27,68 +29,43 @@
 }
 
 
-//- (void)viewDidDisappear:(BOOL)animated{
-//    [super viewDidDisappear:animated];
-//    [self.navigationController setNavigationBarHidden:NO animated:YES];
-//}
-
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    self.sin = [HF_Singleton sharedSingleton];
+    self.dataArray = [NSMutableArray array];
 
+    if (self.sin.isAuditStatus == YES) {
+        self.dataArray = [NSMutableArray arrayWithObjects:@"",@"清除缓存",@"设备检测",@"在线技术支持", nil];
+    } else {
+        self.dataArray = [NSMutableArray arrayWithObjects:@"",@"我的课时",@"清除缓存",@"设备检测",@"在线技术支持", nil];
+    }
+    
+    
     [self initUI];
- 
+    [self loadData];
 }
 
--(UITableView *)tableView {
-    if (!_tableView) {
-        self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStylePlain)];
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.tableView.scrollEnabled = NO;
+
+-(void)loadData {
+    NSString *flag;
+    if (self.sin.isAuditStatus == YES) { //无用了
+        flag = @"0";
+    } else {
+        flag = @"1";
     }
-    return _tableView;
-}
-
-
--(UIButton *)loginOutButton {
-    if (!_loginOutButton) {
-        self.loginOutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.loginOutButton setTitleColor:UICOLOR_FROM_HEX(0xFB9901) forState:UIControlStateNormal];
-        [self.loginOutButton setTitle:@"退出当前帐号" forState:UIControlStateNormal];
-        self.loginOutButton.titleLabel.font = Font(18);
-        self.loginOutButton.layer.masksToBounds = YES;
-        self.loginOutButton.layer.cornerRadius = LineH(25);
-        self.loginOutButton.layer.borderColor = UICOLOR_FROM_HEX(0xFB9901).CGColor;
-        self.loginOutButton.layer.borderWidth = LineW(1);
-    }
-    return _loginOutButton;
-}
-
-
-
-- (void)initUI {
     
-    [self.view addSubview:self.tableView];
-    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view.mas_top).offset(0);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-70);
-    }];
-    
-    
-    [self.view addSubview:self.loginOutButton];
-    [self.loginOutButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left).offset(17);
-        make.right.equalTo(self.view.mas_right).offset(-17);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-20);
-        make.height.mas_equalTo(50);
+    NSString *urlStr = [NSString stringWithFormat:@"%@?&Flag=%@",URL_GetLessonStatistics,flag];
+    [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
+        if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+        self.model = [HF_MineHomeInfoModel yy_modelWithDictionary:responseObject[@"data"]];
+        }
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        
     }];
 }
-
 
 #pragma mark - Table View
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -97,7 +74,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return self.dataArray.count;
 }
 
 
@@ -117,6 +94,8 @@
             }
         };
         
+        cell.cellModel = self.model;
+        
         return cell;
     } else {
         static NSString *cellStr = @"HF_MineHomeTableViewCell";
@@ -124,6 +103,20 @@
         if (!cell) {
             cell = [[HF_MineHomeTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.leftLabelString = [self.dataArray safe_objectAtIndex:indexPath.row];
+        
+        if (self.dataArray.count == 4) {
+            if (indexPath.row == 1) {
+                cell.rightLabel.text = self.sin.cacheSize;
+            }
+        } else if (self.dataArray.count == 5) {
+            if (indexPath.row == 1) {
+                cell.rightLabel.text = [NSString stringWithFormat:@"剩余%ld课时",(long)self.model.totalCount];
+            } else if (indexPath.row == 2) {
+                cell.rightLabel.text = self.sin.cacheSize;
+            }
         }
         
         
@@ -147,9 +140,58 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
         return LineH(190);
+    } else {
+        return LineH(50);
     }
-    return LineH(50);
 }
+
+
+//MARK:UI
+-(UITableView *)tableView {
+    if (!_tableView) {
+        self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStylePlain)];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    }
+    return _tableView;
+}
+
+
+-(UIButton *)loginOutButton {
+    if (!_loginOutButton) {
+        self.loginOutButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [self.loginOutButton setTitleColor:UICOLOR_FROM_HEX(0xFB9901) forState:UIControlStateNormal];
+        [self.loginOutButton setTitle:@"退出当前帐号" forState:UIControlStateNormal];
+        self.loginOutButton.titleLabel.font = Font(18);
+        self.loginOutButton.layer.masksToBounds = YES;
+        self.loginOutButton.layer.cornerRadius = LineH(25);
+        self.loginOutButton.layer.borderColor = UICOLOR_FROM_HEX(0xFB9901).CGColor;
+        self.loginOutButton.layer.borderWidth = LineW(1);
+    }
+    return _loginOutButton;
+}
+
+
+
+- (void)initUI {
+    [self.view addSubview:self.tableView];
+    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.view);
+        make.top.equalTo(self.view.mas_top).offset(0);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-70);
+    }];
+    
+    
+    [self.view addSubview:self.loginOutButton];
+    [self.loginOutButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view.mas_left).offset(17);
+        make.right.equalTo(self.view.mas_right).offset(-17);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-20);
+        make.height.mas_equalTo(50);
+    }];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

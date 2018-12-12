@@ -119,6 +119,8 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"%ld",(long)indexPath.row);
+    
     if (self.selectedBlock) {
         self.selectedBlock(indexPath.row);
     }

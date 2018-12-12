@@ -177,6 +177,15 @@
     return LineY(17);
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat offset_Y = scrollView.contentOffset.y;
+    
+    if (self.scrollHeightBlock) {
+        self.scrollHeightBlock(offset_Y);
+    }
+}
+
+
 -(void)cellButtonClick:(UIButton *)button indexRow:(NSInteger)index{
     switch (button.tag) {
         case 10: //评价

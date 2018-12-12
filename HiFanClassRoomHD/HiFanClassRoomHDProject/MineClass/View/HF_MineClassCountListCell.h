@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HF_MineClassCountListModel.h"
 
 @interface HF_MineClassCountListCell : UITableViewCell
+@property (nonatomic,strong) HF_MineClassCountListModel *listModel;
 
 @end
