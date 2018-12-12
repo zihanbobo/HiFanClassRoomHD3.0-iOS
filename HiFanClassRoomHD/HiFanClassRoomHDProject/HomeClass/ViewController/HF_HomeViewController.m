@@ -133,6 +133,15 @@
         self.mineMenuNav = [[BaseNavigationController alloc] initWithRootViewController:self.mineMenuVC];
         self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, 0, LineH(768));
         self.mineMenuNav.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+        __weak HF_HomeViewController *weakSelf  = self;
+        self.mineMenuVC.hiddenBlock = ^{
+            [UIView animateWithDuration:0.3f animations:^{
+                weakSelf.blackBgView.hidden = YES;
+                weakSelf.homeLeftView.sanjiaoImgView.hidden = YES;
+                weakSelf.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
+                weakSelf.selectedMineVc = NO;
+            }];
+        };
         
     }
     return _mineMenuNav;
@@ -145,6 +154,18 @@
         self.blackBgView.backgroundColor = [UICOLOR_FROM_HEX(Color000000) colorWithAlphaComponent:0.4];
     }
     return _blackBgView;
+}
+
+
+-(void)closeMineMenu {
+    if (self.selectedMineVc == YES) {
+        [UIView animateWithDuration:0.3f animations:^{
+            self.blackBgView.hidden = YES;
+            self.homeLeftView.sanjiaoImgView.hidden = YES;
+            self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
+            self.selectedMineVc = NO;
+        }];
+    }
 }
 
 - (void)initView {
@@ -160,19 +181,22 @@
                 {
                     static dispatch_once_t onceToken;
                     dispatch_once(&onceToken, ^{
-                        [self.view addSubview:self.blackBgView];
-                        [self.view addSubview:self.mineMenuNav.view];
+                        [self.view.window addSubview:self.blackBgView];
+                        [self.view.window addSubview:self.mineMenuNav.view];
                     });
 
                     if (self.selectedMineVc == NO) {
                         [UIView animateWithDuration:0.3f animations:^{
+                            
                             self.blackBgView.hidden = NO;
+                            self.homeLeftView.sanjiaoImgView.hidden = NO;
                             self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, LineW(360), LineH(768));
                             self.selectedMineVc = YES;
                         }];
                     } else {
                         [UIView animateWithDuration:0.3f animations:^{
                             self.blackBgView.hidden = YES;
+                            self.homeLeftView.sanjiaoImgView.hidden = YES;
                             self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
                             self.selectedMineVc = NO;
                         }];
@@ -181,6 +205,9 @@
                 break;
             case 100:
             {
+                
+                [self closeMineMenu];
+                
                 //点击处于当前页面的按钮,直接跳出
                 if (self.currentVC == self.findMoreHomeNav) {
                     return;
@@ -192,6 +219,9 @@
             case 101:
             {
 //                [self switchViewController];
+                [self closeMineMenu];
+
+                
                 
                 if (self.currentVC == self.courseTableHomeNav) {
                     return;
@@ -203,7 +233,9 @@
                 break;
             case 102:
             {
+                [self closeMineMenu];
 
+                
                 if (self.currentVC == self.orderCourseHomeNav) {
                     return;
                 } else {

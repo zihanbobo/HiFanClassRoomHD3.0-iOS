@@ -63,7 +63,7 @@
     if(indexPath.row == 0){
         return LineH(285);
     }else{
-        return LineH(500); //309是对的 500是为了测试
+        return LineH(309); //309是对的 500是为了测试
     }
 }
 

@@ -11,9 +11,6 @@
 typedef void(^XCButtonClickBlock)(UIButton *button);
 @interface HF_HomeLeftView : UIView
 @property (nonatomic, copy) XCButtonClickBlock buttonClickBlock;
-//课表和我的view
-@property (nonatomic,strong) UIView *optionsView;
-
-@property (nonatomic,strong) UIButton *peopleIconButton;
+@property (nonatomic, strong) UIImageView *sanjiaoImgView;
 
 @end

@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HF_MyScheduleHomeFinishedListModel.h"
 
+typedef void(^PracticeButtonBlock)(UIButton *button);
 @interface HF_MyScheduleHomeFinishedCell : UICollectionViewCell
-
+@property (nonatomic,strong) HF_MyScheduleHomeFinishedListModel *listModel;
+@property (nonatomic,copy) PracticeButtonBlock practiceButtonBlock;
 @end

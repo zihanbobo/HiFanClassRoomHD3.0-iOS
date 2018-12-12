@@ -39,6 +39,7 @@
 #import "XCNormalFooter.h"
 #import "OYCountDownManager.h"
 #import "BaseScrollHeaderViewController.h"
+#import "HF_PlaceHolderView.h"
 
 
 #import "UIView+Layout.h"
@@ -57,7 +58,7 @@
 
 
 // 模型
-#import "GGT_ResultModel.h"
+#import "HF_ResultModel.h"
 #import "GGT_CoursePhraseModel.h"
 #import "GGT_DateModel.h"
 #import "GGT_ExperienceCourseModel.h"

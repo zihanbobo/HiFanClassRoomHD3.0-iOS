@@ -9,7 +9,7 @@
 #import "GGT_ScheduleFinishedViewController.h"
 #import "GGT_ScheduleFinishedCell.h"
 #import "GGT_ScheduleFinishedDetailViewController.h"
-#import "GGT_PlaceHolderView.h"
+#import "HF_PlaceHolderView.h"
 #import "GGT_ScheduleFinishedHomeModel.h"
 #import "GGT_PracticeViewController.h"
 #import "GGT_NoEvaluationViewController.h"
@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UITableView *tableView;
 //右边请求的数组
 @property (nonatomic, strong) NSMutableArray *dataArray;
-@property (nonatomic, strong) GGT_PlaceHolderView *xc_placeHolderView;
+@property (nonatomic, strong) HF_PlaceHolderView *xc_placeHolderView;
 
 @end
 
@@ -58,7 +58,7 @@
                 self.xc_placeHolderView.hidden = YES;
                 
             } else {
-                GGT_ResultModel *model = [GGT_ResultModel yy_modelWithDictionary:responseObject];
+                HF_ResultModel *model = [HF_ResultModel yy_modelWithDictionary:responseObject];
                 self.xc_placeHolderView.xc_model = model;
                 self.xc_placeHolderView.hidden = NO;
             }
@@ -72,7 +72,7 @@
         
         
     } failure:^(NSError *error) {
-        GGT_ResultModel *model = [GGT_ResultModel yy_modelWithDictionary:error.userInfo];
+        HF_ResultModel *model = [HF_ResultModel yy_modelWithDictionary:error.userInfo];
         self.xc_placeHolderView.xc_model = model;
         self.xc_placeHolderView.hidden = NO;
         [self.tableView.mj_footer endRefreshing];
@@ -102,8 +102,8 @@
     }];
     
     
-    // GGT_PlaceHolderView
-    self.xc_placeHolderView = [[GGT_PlaceHolderView alloc] initWithFrame:CGRectZero withImgYHeight:LineY(120)];
+    // HF_PlaceHolderView
+    self.xc_placeHolderView = [[HF_PlaceHolderView alloc] initWithFrame:CGRectZero withImgYHeight:LineY(120)];
     self.xc_placeHolderView.frame = CGRectMake(0, 0, home_right_width, SCREEN_HEIGHT());
     [self.tableView addSubview:self.xc_placeHolderView];
     self.xc_placeHolderView.hidden = YES;

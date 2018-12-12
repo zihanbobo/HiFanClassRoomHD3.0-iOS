@@ -1,18 +1,18 @@
 //
-//  GGT_PlaceHolderView.m
+//  HF_PlaceHolderView.m
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2017/5/19.
 //  Copyright © 2017年 XieHenry. All rights reserved.
 //
 
-#import "GGT_PlaceHolderView.h"
+#import "HF_PlaceHolderView.h"
 
-@interface GGT_PlaceHolderView ()
+@interface HF_PlaceHolderView ()
 @property CGFloat YHeight;
 @end
 
-@implementation GGT_PlaceHolderView
+@implementation HF_PlaceHolderView
 
 
 - (instancetype)initWithFrame:(CGRect)frame withImgYHeight:(CGFloat)YHeight {
@@ -60,7 +60,7 @@
     
 }
 
-- (void)setXc_model:(GGT_ResultModel *)xc_model {
+- (void)setXc_model:(HF_ResultModel *)xc_model {
     _xc_model = xc_model;
     
     // 不明所以

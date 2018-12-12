@@ -14,7 +14,7 @@
 #import "GGT_DateModel.h"
 /*UICollectionView*/
 #import "GGT_OrderUnitCourseCollectionCell.h"
-#import "GGT_PlaceHolderView.h"
+#import "HF_PlaceHolderView.h"
 #import "GGT_OrderUnitCourseModel.h"
 #import "GGT_OrderUnitCourseCollFooter.h"
 
@@ -30,7 +30,7 @@
 
 /*UICollectionView的相关内容*/
 @property (nonatomic, strong) UICollectionView *collectionView;
-@property (nonatomic, strong) GGT_PlaceHolderView *xc_placeholderView;
+@property (nonatomic, strong) HF_PlaceHolderView *xc_placeholderView;
 @property (nonatomic, strong) NSMutableArray *collectionDataArray;
 
 
@@ -232,7 +232,7 @@
     [self.collectionView registerClass:[GGT_OrderUnitCourseCollectionCell class] forCellWithReuseIdentifier:@"OrderUnitCell"];
     
     //添加xc_placeholderView
-    self.xc_placeholderView = [[GGT_PlaceHolderView alloc] initWithFrame:CGRectZero withImgYHeight:LineY(20)];
+    self.xc_placeholderView = [[HF_PlaceHolderView alloc] initWithFrame:CGRectZero withImgYHeight:LineY(20)];
     self.xc_placeholderView.frame = CGRectMake(0, 0, self.collectionView.width, LineH(396));
     [self.collectionView addSubview:self.xc_placeholderView];
     self.xc_placeholderView.hidden = YES;
@@ -406,7 +406,7 @@
             
         } else {
             NSDictionary *dic = responseObject;
-            GGT_ResultModel *model = [GGT_ResultModel yy_modelWithDictionary:dic];
+            HF_ResultModel *model = [HF_ResultModel yy_modelWithDictionary:dic];
             self.xc_placeholderView.xc_model = model;
             self.xc_placeholderView.hidden = NO;
             
@@ -422,7 +422,7 @@
     } failure:^(NSError *error) {
         
         NSDictionary *dic = error.userInfo;
-        GGT_ResultModel *model = [GGT_ResultModel yy_modelWithDictionary:dic];
+        HF_ResultModel *model = [HF_ResultModel yy_modelWithDictionary:dic];
         self.xc_placeholderView.xc_model = model;
         self.xc_placeholderView.hidden = NO;
         [self.collectionView.mj_footer endRefreshing];

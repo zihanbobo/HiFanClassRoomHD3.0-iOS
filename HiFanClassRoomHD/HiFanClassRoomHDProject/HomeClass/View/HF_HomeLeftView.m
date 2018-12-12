@@ -8,6 +8,13 @@
 
 #import "HF_HomeLeftView.h"
 
+@interface HF_HomeLeftView()
+//课表和我的view
+@property (nonatomic,strong) UIView *optionsView;
+@property (nonatomic,strong) UIButton *peopleIconButton;
+@end
+
+
 @implementation HF_HomeLeftView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -42,7 +49,17 @@
         make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
     
+    //小三角
+    self.sanjiaoImgView = [[UIImageView alloc] init];
+    self.sanjiaoImgView.image = UIIMAGE_FROM_NAME(@"小三角");
+    [self addSubview:self.sanjiaoImgView];
     
+    [self.sanjiaoImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right).with.offset(-0);
+        make.centerY.equalTo(self.peopleIconButton.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(15, 18));
+    }];
+    self.sanjiaoImgView.hidden = YES;
     
     self.optionsView = [[UIView alloc]init];
     [self addSubview:self.optionsView];

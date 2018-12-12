@@ -8,13 +8,6 @@
 
 #import "HF_MyScheduleHomeViewController.h"
 #import "HF_MyScheduleHomeHeaderCell.h"
-#import "HF_MyScheduleHomeUnFinishedView.h"
-#import "HF_MyScheduleHomeFinishedView.h"
-
-
-
-
-
 #import "HF_MyScheduleHomeUnFinishedCell.h"
 #import "HF_MyScheduleHomeFinishedCell.h"
 
@@ -32,8 +25,8 @@
 @property (nonatomic, strong) HF_MyScheduleHomeHeaderCell *headerView;
 
 
-@property (nonatomic, strong) HF_MyScheduleHomeUnfishedListViewController *unfishedListVC;
-@property (nonatomic, strong) HF_MyScheduleHomeFishedListViewController *fishedListVC;
+@property (nonatomic, strong) HF_MyScheduleHomeUnfishedListViewController *unFinishedListVC;
+@property (nonatomic, strong) HF_MyScheduleHomeFishedListViewController *finishedListVC;
 @end
 
 @implementation HF_MyScheduleHomeViewController
@@ -106,19 +99,19 @@
     self.contentScrollView.backgroundColor = UICOLOR_FROM_HEX(Color000000);
     [self.view addSubview:self.contentScrollView];
     
-    self.unfishedListVC = [[HF_MyScheduleHomeUnfishedListViewController alloc] init];
-    self.unfishedListVC.view.frame = CGRectMake(0, 0, home_right_width, self.contentScrollView.height);
-    self.unfishedListVC.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-    self.unfishedListVC.scrollHeightBlock = ^(CGFloat height) {
+    self.unFinishedListVC = [[HF_MyScheduleHomeUnfishedListViewController alloc] init];
+    self.unFinishedListVC.view.frame = CGRectMake(0, 0, home_right_width, self.contentScrollView.height);
+    self.unFinishedListVC.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    self.unFinishedListVC.scrollHeightBlock = ^(CGFloat height) {
         [weakSelf scrollViewScroll:height];
     };
-    [self.contentScrollView addSubview:self.unfishedListVC.view];
+    [self.contentScrollView addSubview:self.unFinishedListVC.view];
     
     
-    self.fishedListVC = [[HF_MyScheduleHomeFishedListViewController alloc] init];
-    self.fishedListVC.view.frame = CGRectMake(home_right_width, 0, home_right_width, self.contentScrollView.height);
-    self.fishedListVC.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-    [self.contentScrollView addSubview:self.fishedListVC.view];
+    self.finishedListVC = [[HF_MyScheduleHomeFishedListViewController alloc] init];
+    self.finishedListVC.view.frame = CGRectMake(home_right_width, 0, home_right_width, self.contentScrollView.height);
+    self.finishedListVC.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    [self.contentScrollView addSubview:self.finishedListVC.view];
 }
 
 

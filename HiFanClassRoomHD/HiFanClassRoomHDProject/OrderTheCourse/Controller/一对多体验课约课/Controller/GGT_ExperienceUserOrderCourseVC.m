@@ -9,7 +9,7 @@
 #import "GGT_ExperienceUserOrderCourseVC.h"
 #import "GGT_OrderCourseCollectionViewCell.h"
 #import "GGT_OrderCourseTableViewCell.h"
-#import "GGT_PlaceHolderView.h"
+#import "HF_PlaceHolderView.h"
 #import "GGT_CustomPopAlertView.h"
 #import "HF_PageControl.h"
 
@@ -23,7 +23,7 @@ static CGFloat const xc_cellMargin = 20.0f;
 @property (nonatomic, strong) NSMutableArray *xc_dateMuArray;
 @property (nonatomic, strong) NSMutableArray *xc_courseMuArray;
 @property (nonatomic, strong) GGT_DateModel *xc_model;
-@property (nonatomic, strong) GGT_PlaceHolderView *xc_placeHolderView;
+@property (nonatomic, strong) HF_PlaceHolderView *xc_placeHolderView;
 @property (nonatomic, strong) HF_PageControl *pageControl;
 @property (nonatomic, strong) UIPageControl *currentPageControl;
 @property BOOL reFresh;
@@ -185,8 +185,8 @@ static CGFloat const xc_cellMargin = 20.0f;
     
     [self.view layoutIfNeeded];
     
-    // GGT_PlaceHolderView
-    self.xc_placeHolderView = [[GGT_PlaceHolderView alloc]initWithFrame:CGRectZero withImgYHeight:LineY(110)];
+    // HF_PlaceHolderView
+    self.xc_placeHolderView = [[HF_PlaceHolderView alloc]initWithFrame:CGRectZero withImgYHeight:LineY(110)];
     self.xc_placeHolderView.frame = CGRectMake(0, 0, SCREEN_WIDTH()-home_left_width-margin15*2, self.xc_tableView.height);
     self.xc_tableView.enablePlaceHolderView = YES;
     self.xc_tableView.xc_PlaceHolderView = self.xc_placeHolderView;
@@ -236,13 +236,13 @@ static CGFloat const xc_cellMargin = 20.0f;
         [self.xc_tableView reloadData];
 
         if ([responseObject isKindOfClass:[NSDictionary class]]) {
-            GGT_ResultModel *model = [GGT_ResultModel yy_modelWithDictionary:responseObject];
+            HF_ResultModel *model = [HF_ResultModel yy_modelWithDictionary:responseObject];
             self.xc_placeHolderView.xc_model = model;
         }
 
 
     } failure:^(NSError *error) {
-        GGT_ResultModel *model = [GGT_ResultModel yy_modelWithDictionary:error.userInfo];
+        HF_ResultModel *model = [HF_ResultModel yy_modelWithDictionary:error.userInfo];
         self.xc_placeHolderView.xc_model = model;
         [self.xc_tableView reloadData];
     }];

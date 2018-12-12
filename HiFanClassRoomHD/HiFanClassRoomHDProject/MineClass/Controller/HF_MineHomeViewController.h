@@ -8,6 +8,8 @@
 
 #import "BaseViewController.h"
 
+typedef void(^HiddenBlock)(void);
 @interface HF_MineHomeViewController : BaseViewController
+@property (nonatomic,copy) HiddenBlock hiddenBlock;
 
 @end
