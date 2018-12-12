@@ -13,6 +13,7 @@
 		35ECCFCD21B8D5DF00C056B9 /* HF_OrderTimeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFCC21B8D5DF00C056B9 /* HF_OrderTimeListView.m */; };
 		35ECCFD021B8F21A00C056B9 /* HF_OrderDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFCF21B8F21A00C056B9 /* HF_OrderDateCell.m */; };
 		35ECCFD321B9119900C056B9 /* HF_OrderTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFD221B9119900C056B9 /* HF_OrderTimeCell.m */; };
+		35ED97E321BF996500A44277 /* HF_LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ED97E221BF996500A44277 /* HF_LoginView.m */; };
 		5B03102F1FCC2232002FE83E /* GGT_LevelMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0310201FCC2230002FE83E /* GGT_LevelMenuViewController.m */; };
 		5B0310311FCC2232002FE83E /* GGT_OrderUnitCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0310291FCC2231002FE83E /* GGT_OrderUnitCourseViewController.m */; };
 		5B0310351FCC2232002FE83E /* GGT_OrderCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B03102D1FCC2232002FE83E /* GGT_OrderCourseViewController.m */; };
@@ -336,7 +337,7 @@
 		D6E0A58C1EC2DBB3006A003D /* HF_LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A57F1EC2DBB3006A003D /* HF_LoginViewController.m */; };
 		D6E0A58E1EC2DBB3006A003D /* HF_RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A5831EC2DBB3006A003D /* HF_RegisterViewController.m */; };
 		D6E0A58F1EC2DBB3006A003D /* HF_ForgotPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A5861EC2DBB3006A003D /* HF_ForgotPasswordView.m */; };
-		D6E0A5901EC2DBB3006A003D /* HF_LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A5881EC2DBB3006A003D /* HF_LoginView.m */; };
+		D6E0A5901EC2DBB3006A003D /* HF_LoginView.m.old in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A5881EC2DBB3006A003D /* HF_LoginView.m.old */; };
 		D6E0A5911EC2DBB3006A003D /* HF_RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A58A1EC2DBB3006A003D /* HF_RegisterView.m */; };
 		D6E0A59D1EC2FAC6006A003D /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A59B1EC2FAC6006A003D /* BaseService.m */; };
 		D6E868F91F0B6F2900B48A5E /* XCLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E868F81F0B6F2900B48A5E /* XCLogManager.m */; };
@@ -385,6 +386,8 @@
 		35ECCFCF21B8F21A00C056B9 /* HF_OrderDateCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderDateCell.m; sourceTree = "<group>"; };
 		35ECCFD121B9119900C056B9 /* HF_OrderTimeCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_OrderTimeCell.h; sourceTree = "<group>"; };
 		35ECCFD221B9119900C056B9 /* HF_OrderTimeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderTimeCell.m; sourceTree = "<group>"; };
+		35ED97E121BF996500A44277 /* HF_LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_LoginView.h; sourceTree = "<group>"; };
+		35ED97E221BF996500A44277 /* HF_LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_LoginView.m; sourceTree = "<group>"; };
 		46923445B089FD426CFB6FE4 /* Pods-HiFanClassRoomHD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiFanClassRoomHD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HiFanClassRoomHD/Pods-HiFanClassRoomHD.debug.xcconfig"; sourceTree = "<group>"; };
 		53C98573D800FBE7948DE50B /* Pods_HiFanClassRoomHD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HiFanClassRoomHD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABCB9C33E55F0E3F1049015 /* Pods-HiFanClassRoomHD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiFanClassRoomHD.release.xcconfig"; path = "Pods/Target Support Files/Pods-HiFanClassRoomHD/Pods-HiFanClassRoomHD.release.xcconfig"; sourceTree = "<group>"; };
@@ -1030,8 +1033,8 @@
 		D6E0A5831EC2DBB3006A003D /* HF_RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_RegisterViewController.m; sourceTree = "<group>"; };
 		D6E0A5851EC2DBB3006A003D /* HF_ForgotPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_ForgotPasswordView.h; sourceTree = "<group>"; };
 		D6E0A5861EC2DBB3006A003D /* HF_ForgotPasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_ForgotPasswordView.m; sourceTree = "<group>"; };
-		D6E0A5871EC2DBB3006A003D /* HF_LoginView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_LoginView.h; sourceTree = "<group>"; };
-		D6E0A5881EC2DBB3006A003D /* HF_LoginView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_LoginView.m; sourceTree = "<group>"; };
+		D6E0A5871EC2DBB3006A003D /* HF_LoginView.h.old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HF_LoginView.h.old; sourceTree = "<group>"; };
+		D6E0A5881EC2DBB3006A003D /* HF_LoginView.m.old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HF_LoginView.m.old; sourceTree = "<group>"; };
 		D6E0A5891EC2DBB3006A003D /* HF_RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_RegisterView.h; sourceTree = "<group>"; };
 		D6E0A58A1EC2DBB3006A003D /* HF_RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_RegisterView.m; sourceTree = "<group>"; };
 		D6E0A59A1EC2FAC6006A003D /* BaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseService.h; sourceTree = "<group>"; };
@@ -2711,8 +2714,10 @@
 			children = (
 				D6E0A5851EC2DBB3006A003D /* HF_ForgotPasswordView.h */,
 				D6E0A5861EC2DBB3006A003D /* HF_ForgotPasswordView.m */,
-				D6E0A5871EC2DBB3006A003D /* HF_LoginView.h */,
-				D6E0A5881EC2DBB3006A003D /* HF_LoginView.m */,
+				35ED97E121BF996500A44277 /* HF_LoginView.h */,
+				35ED97E221BF996500A44277 /* HF_LoginView.m */,
+				D6E0A5871EC2DBB3006A003D /* HF_LoginView.h.old */,
+				D6E0A5881EC2DBB3006A003D /* HF_LoginView.m.old */,
 				D6E0A5891EC2DBB3006A003D /* HF_RegisterView.h */,
 				D6E0A58A1EC2DBB3006A003D /* HF_RegisterView.m */,
 			);
@@ -3063,6 +3068,7 @@
 				5B13B8F721AE6C9C00CB0A7F /* HF_HomeLeftView.m in Sources */,
 				D6BF1ABE1FD102A90032C20C /* GGT_QuestionCell.m in Sources */,
 				5BE2EDED216B37DC00845E70 /* TKFolderDocumentListView.m in Sources */,
+				35ED97E321BF996500A44277 /* HF_LoginView.m in Sources */,
 				5B0C55172153801000D0E3FC /* NSTimer+BlockSupport.m in Sources */,
 				5BBC201D1FE25107001212CD /* GGT_ScheduleUnFinishedCell.m in Sources */,
 				5BE2EDE6216B37DC00845E70 /* TKVideoFourView.m in Sources */,
@@ -3074,7 +3080,7 @@
 				5B8337D11ED3DFEB005EE004 /* GGT_ChoicePickView.m in Sources */,
 				D63DA94A1ED5554400EFA686 /* NSString+unicode.m in Sources */,
 				5BE2EDE5216B37DC00845E70 /* TKVideoSecondView.m in Sources */,
-				D6E0A5901EC2DBB3006A003D /* HF_LoginView.m in Sources */,
+				D6E0A5901EC2DBB3006A003D /* HF_LoginView.m.old in Sources */,
 				35ECCFCD21B8D5DF00C056B9 /* HF_OrderTimeListView.m in Sources */,
 				D66684BD1FCEBE2A008E0B00 /* GGT_ExperienceCourseModel.m in Sources */,
 				5BE2ED94216B37DC00845E70 /* TKEduNetManager.m in Sources */,

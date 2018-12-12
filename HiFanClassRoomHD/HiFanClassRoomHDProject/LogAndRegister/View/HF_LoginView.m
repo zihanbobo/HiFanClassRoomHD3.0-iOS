@@ -1,312 +1,108 @@
 //
 //  HF_LoginView.m
-//  GoGoTalk
+//  HiFanClassRoomHD
 //
-//  Created by XieHenry on 2017/4/27.
-//  Copyright © 2017年 XieHenry. All rights reserved.
+//  Created by 何建新 on 2018/12/11.
+//  Copyright © 2018 Chn. All rights reserved.
 //
 
 #import "HF_LoginView.h"
 
-@interface HF_LoginView()
-//手机账号view
-@property (nonatomic, strong) UIView *phoneAccountView;
-//手机icom
-@property (nonatomic, strong) UIImageView *phoneImageView;
-//手机号的分割线
-@property (nonatomic, strong) UIView *phonelineView;
-
-
-//密码view
-@property (nonatomic, strong) UIView *passwordView;
-//密码icom
-@property (nonatomic, strong) UIImageView *passwordImageView;
-//密码的分割线
-@property (nonatomic, strong) UIView *passwordlineView;
-@end
-
-
-
 @implementation HF_LoginView
-- (instancetype)initWithFrame:(CGRect)frame {
+
+- (instancetype)initWithFrame:(CGRect)frame
+{
     self = [super initWithFrame:frame];
     if (self) {
-        [self setUpContentView];
+        [self setUpLoginView];
     }
     return self;
 }
 
-
-- (void)setUpContentView {
-    //icon
-    UIImageView *iconImageView = [[UIImageView alloc]init];
-    iconImageView.image = UIIMAGE_FROM_NAME(@"logo");
-    [self addSubview:iconImageView];
-    
-    [iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.mas_centerX);
-        make.top.equalTo(self.mas_top).with.offset(LineY(121));
-        make.size.mas_offset(CGSizeMake(LineW(175), LineH(52)));
+- (void)setUpLoginView {
+    UIImageView *backgroundImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Group"]];
+    [self addSubview:backgroundImageView];
+    [backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.bottom.equalTo(self);
     }];
-    
-    
+    UILabel *welcomeLabel = [UILabel new];
+    welcomeLabel.font = Font(100);
+    welcomeLabel.text = @"Welcome";
+    welcomeLabel.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 10);
+    [welcomeLabel sizeToFit];
+    [self addSubview:welcomeLabel];
+    [welcomeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top).offset(25);
+        make.left.equalTo(self.mas_left).offset(35);
+        make.width.mas_equalTo(439);
+        make.height.mas_equalTo(100);
+    }];
+    UILabel *loginLabel = [UILabel new];
+    loginLabel.font = Font(38);
+    loginLabel.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 70);
+    loginLabel.text = @"登录";
+    [loginLabel sizeToFit];
+    [self addSubview:loginLabel];
+    [loginLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(welcomeLabel.mas_left).offset(0);
+        make.bottom.equalTo(welcomeLabel.mas_bottom).offset(-7);
+        make.width.mas_equalTo(90);
+        make.height.mas_equalTo(50);
+    }];
     //手机号码
-    self.phoneAccountView = [[UIView alloc]init];
-    self.phoneAccountView.layer.masksToBounds = YES;
-    self.phoneAccountView.layer.cornerRadius = LineW(6);
-    self.phoneAccountView.layer.borderWidth = LineW(1);
-    self.phoneAccountView.layer.borderColor = UICOLOR_FROM_HEX(ColorD5D5D5).CGColor;
-    [self addSubview:self.phoneAccountView];
+    self.phoneTitle = [[UILabel alloc] initWithFrame:CGRectMake(LineX(467), LineY(312), LineW(97), LineH(16))];
+    self.phoneTitle.font = Font(16);
+    self.phoneTitle.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 40);
+    self.phoneTitle.text = @"手机号码";
+    [self addSubview:self.phoneTitle];
+    self.phoneAccountField = [[UITextField alloc] initWithFrame:CGRectMake(LineX(467), LineY(312), LineW(540), LineH(33))];
+    self.phoneAccountField.tag = 1;
     
-    [self.phoneAccountView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.mas_centerX);
-        make.top.equalTo(iconImageView.mas_bottom).with.offset(LineY(40));
-        make.size.mas_offset(CGSizeMake(LineW(336), LineH(44)));
-    }];
-    
-    
-    //手机icon
-    self.phoneImageView = [[UIImageView alloc]init];
-    self.phoneImageView.image = UIIMAGE_FROM_NAME(@"iPone_not");
-    [self.phoneAccountView addSubview:self.phoneImageView];
-    
-    [self.phoneImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.phoneAccountView.mas_left).with.offset(LineX(15));
-        make.centerY.mas_equalTo(self.phoneAccountView.mas_centerY);
-        make.size.mas_offset(CGSizeMake(LineW(14), LineH(20)));
-    }];
-    
-    //手机号的分割线
-    self.phonelineView = [[UIView alloc]init];
-    self.phonelineView.backgroundColor = UICOLOR_FROM_HEX(ColorD5D5D5);
-    [self.phoneAccountView addSubview:self.phonelineView];
-    
-    [self.phonelineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.phoneAccountView.mas_left).with.offset(LineX(44));
-        make.top.equalTo(self.phoneAccountView.mas_top).with.offset(LineY(0));
-        make.size.mas_offset(CGSizeMake(LineW(1), LineH(44)));
-    }];
-    
-    
-    //手机号码输入框
-    self.phoneAccountField = [[UITextField alloc]init];
-    self.phoneAccountField.font = Font(18);
-    self.phoneAccountField.textColor = UICOLOR_FROM_HEX(Color202020);
-    self.phoneAccountField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"请输入手机号码"] attributes:@{NSForegroundColorAttributeName: UICOLOR_FROM_HEX(ColorD5D5D5)}];
-    self.phoneAccountField.tintColor = UICOLOR_FROM_HEX(ColorD5D5D5);
-    self.phoneAccountField.delegate = self;
-    self.phoneAccountField.keyboardType = UIKeyboardTypeNumberPad;
-    self.phoneAccountField.clearButtonMode = YES;
-    [self.phoneAccountField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [self.phoneAccountView addSubview:self.phoneAccountField];
-
-    [self.phoneAccountField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.phoneAccountView.mas_left).with.offset(LineX(68));
-        make.right.equalTo(self.phoneAccountView.mas_right).with.offset(-LineW(15));
-        make.centerY.mas_equalTo(self.phoneAccountView.mas_centerY);
-        make.height.mas_offset(LineH(25));
-    }];
-    
-    
-    
-    /****************************************************/
-    //密码view
-    self.passwordView = [[UIView alloc]init];
-    self.passwordView.layer.masksToBounds = YES;
-    self.passwordView.layer.cornerRadius = LineW(6);
-    self.passwordView.layer.borderWidth = LineW(1);
-    self.passwordView.layer.borderColor = UICOLOR_FROM_HEX(ColorD5D5D5).CGColor;
-    [self addSubview:self.passwordView];
-    
-    [self.passwordView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.mas_centerX);
-        make.top.equalTo(self.phoneAccountView.mas_bottom).with.offset(LineY(30));
-        make.size.mas_offset(CGSizeMake(LineW(336), LineH(44)));
-    }];
-    
-    
-    //密码icon
-    self.passwordImageView = [[UIImageView alloc]init];
-    self.passwordImageView.image = UIIMAGE_FROM_NAME(@"Password_not");
-    [self.passwordView addSubview:self.passwordImageView];
-    
-    [self.passwordImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.passwordView.mas_left).with.offset(LineX(15));
-        make.centerY.mas_equalTo(self.passwordView.mas_centerY);
-        make.size.mas_offset(CGSizeMake(LineW(14), LineH(20)));
-    }];
-    
-    //密码的分割线
-    self.passwordlineView = [[UIView alloc]init];
-    self.passwordlineView.backgroundColor = UICOLOR_FROM_HEX(ColorD5D5D5);
-    [self.passwordView addSubview:self.passwordlineView];
-    
-    [self.passwordlineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.passwordView.mas_left).with.offset(LineX(44));
-        make.top.equalTo(self.passwordView.mas_top).with.offset(LineY(0));
-        make.size.mas_offset(CGSizeMake(LineW(1), LineH(44)));
-    }];
-    
-    
-    
+    [self addSubview:self.phoneAccountField];
+    self.phoneLine = [[UIView alloc] initWithFrame:CGRectMake(LineX(467), LineY(345), LineW(540), 1)];
+    self.phoneLine.backgroundColor = UICOLOR_FROM_HEX_ALPHA(0xEAEFF3, 100);
+    [self addSubview:self.phoneLine];
     
     //密码
-    self.passwordField = [[UITextField alloc]init];
-    self.passwordField.font = Font(18);
-    self.passwordField.textColor = UICOLOR_FROM_HEX(Color202020);
-    self.passwordField.attributedPlaceholder = [[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@"请输入密码"] attributes:@{NSForegroundColorAttributeName: UICOLOR_FROM_HEX(ColorD5D5D5)}];
-    self.passwordField.tintColor = UICOLOR_FROM_HEX(ColorD5D5D5);
-    self.passwordField.delegate = self;
+    self.passwordTitle = [[UILabel alloc] initWithFrame:CGRectMake(LineX(467), LineY(382), LineW(97), LineH(16))];
+    self.passwordTitle.font = Font(16);
+    self.passwordTitle.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 40);
+    self.passwordTitle.text = @"登录密码";
+    
+    [self addSubview:self.passwordTitle];
+    self.passwordField = [[UITextField alloc] initWithFrame:CGRectMake(LineX(467), LineY(382), LineW(540), LineH(33))];
+    self.passwordField.tag = 2;
     self.passwordField.secureTextEntry = YES;
-    self.passwordField.clearButtonMode = YES;
-    [self.passwordField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
-    [self.passwordView addSubview:self.passwordField];
-
+    [self addSubview:self.passwordField];
     
-    [self.passwordField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.passwordView.mas_left).with.offset(LineX(68));
-        make.right.equalTo(self.passwordView.mas_right).with.offset(-LineW(15));
-        make.centerY.mas_equalTo(self.passwordView.mas_centerY);
-        make.height.mas_offset(LineH(25));
+    self.passwordLine = [[UIView alloc] initWithFrame:CGRectMake(LineX(467), LineY(415), LineW(540), 1)];
+    self.passwordLine.backgroundColor = UICOLOR_FROM_HEX_ALPHA(0xEAEFF3, 100);
+    [self addSubview:self.passwordLine];
+    //密码显示状态
+    self.showPasswordStatusBtn = [UIButton new];
+    [self.showPasswordStatusBtn setImage:[UIImage imageNamed:@"眼睛"] forState:UIControlStateNormal];
+    [self addSubview:self.showPasswordStatusBtn];
+    [self.showPasswordStatusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(LineW(28));
+        make.height.mas_equalTo(LineH(16));
+        make.centerY.equalTo(self.passwordField.mas_centerY);
+        make.right.equalTo(self.passwordField.mas_right).offset(-20);
     }];
     
-
-    /*
-    //忘记密码
-    self.forgotPasswordButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.forgotPasswordButton setTitle:@"忘记密码" forState:(UIControlStateNormal)];
-    [self.forgotPasswordButton setTitleColor:UICOLOR_FROM_HEX(0x696969) forState:(UIControlStateNormal)];
-    self.forgotPasswordButton.titleLabel.font = Font(12);
-    [self addSubview:self.forgotPasswordButton];
     
     
-    [self.forgotPasswordButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.passwordView.mas_right).with.offset(-0);
-        make.top.equalTo(self.passwordView.mas_bottom).with.offset(LineY(10));
-        make.height.mas_offset(17);
-    }];
-    */
     
-    //登录
-    self.loginButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.loginButton setTitle:@"登 录" forState:(UIControlStateNormal)];
-    [self.loginButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:(UIControlStateNormal)];
-    self.loginButton.backgroundColor = UICOLOR_FROM_HEX(ColorFF6600);
-    self.loginButton.titleLabel.font = Font(18);
-    self.loginButton.layer.masksToBounds = YES;
-    self.loginButton.layer.cornerRadius = LineW(22);
+    //登录按钮
+    self.loginButton = [UIButton new];
+    [self.loginButton setTitle:@"立即登录" forState:UIControlStateNormal];
+    [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.loginButton setBackgroundImage:[UIImage imageNamed:@"LoginButton"] forState:UIControlStateNormal];
     [self addSubview:self.loginButton];
-    
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.mas_centerX);
-        make.top.equalTo(self.passwordView.mas_bottom).with.offset(LineY(47));
-        make.size.mas_offset(CGSizeMake(LineW(324), LineH(44)));
+        make.right.equalTo(self.mas_right).offset(-17);
+        make.top.equalTo(self.passwordLine.mas_bottom).offset(50);
+        make.width.mas_equalTo(153);
+        make.height.mas_equalTo(80);
     }];
-    
-    
-    //当前版本号
-    UILabel *versionLabel = [[UILabel alloc] init];
-    
-    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-    NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-    versionLabel.text = [NSString stringWithFormat:@"当前版本:v%@",app_Version];
-
-    versionLabel.textColor = UICOLOR_FROM_HEX(ColorD5D5D5);
-    versionLabel.font = Font(17);
-    versionLabel.textAlignment = NSTextAlignmentCenter;
-    [self addSubview:versionLabel];
-    
-    [versionLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.mas_centerX);
-        make.top.equalTo(self.loginButton.mas_bottom).with.offset(LineY(30));
-        make.height.mas_offset(LineH(18));
-    }];
-    
-    
-   
-    
-    /*
-    //注册
-    self.registerButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.registerButton setTitle:@"注 册" forState:(UIControlStateNormal)];
-    [self.registerButton setTitleColor:UICOLOR_FROM_HEX(Color2B8EEF) forState:(UIControlStateNormal)];
-    self.registerButton.layer.borderWidth = LineW(1);
-    self.registerButton.layer.borderColor = UICOLOR_FROM_HEX(0xB80011).CGColor;
-    self.registerButton.titleLabel.font = Font(18);
-    self.registerButton.layer.cornerRadius = LineW(22);
-    self.registerButton.layer.masksToBounds = YES;
-    [self addSubview:self.registerButton];
-    
-    [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.mas_centerX);
-        make.top.equalTo(self.loginButton.mas_bottom).with.offset(LineY(30));
-        make.size.mas_offset(CGSizeMake(LineW(324), LineH(44)));
-    }];
-    */
-    
-    
-    //背景图
-    UIImageView *footerImageView = [[UIImageView alloc]init];
-    footerImageView.image = UIIMAGE_FROM_NAME(@"tob_background");
-    [self addSubview:footerImageView];
-    
-    [footerImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self);
-        make.bottom.equalTo(self.mas_bottom).with.offset(0);
-        make.size.mas_offset(CGSizeMake(LineW(1024), LineH(302)));
-    }];
-    
 }
-
-#pragma mark 开始点击输入框
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-    if (textField == self.phoneAccountField) {
-        self.phoneAccountView.layer.borderColor = UICOLOR_FROM_HEX(Color2B8EEF).CGColor;
-        self.phoneAccountField.tintColor = UICOLOR_FROM_HEX(Color2B8EEF);
-        self.phoneImageView.image = UIIMAGE_FROM_NAME(@"iPone_have");
-        self.phonelineView.backgroundColor = UICOLOR_FROM_HEX(Color2B8EEF);
-    } else {
-        self.passwordView.layer.borderColor = UICOLOR_FROM_HEX(Color2B8EEF).CGColor;
-        self.passwordField.tintColor = UICOLOR_FROM_HEX(Color2B8EEF);
-        self.passwordImageView.image = UIIMAGE_FROM_NAME(@"Password_have");
-        self.passwordlineView.backgroundColor = UICOLOR_FROM_HEX(Color2B8EEF);
-    }
-}
-
-
-#pragma mark 结束点击输入框
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    //手机号
-    self.phoneAccountView.layer.borderColor = UICOLOR_FROM_HEX(ColorD5D5D5).CGColor;
-    self.phoneAccountField.tintColor = UICOLOR_FROM_HEX(ColorD5D5D5);
-    self.phoneImageView.image = UIIMAGE_FROM_NAME(@"iPone_not");
-    self.phonelineView.backgroundColor = UICOLOR_FROM_HEX(ColorD5D5D5);
-
-
-    //密码
-    self.passwordView.layer.borderColor = UICOLOR_FROM_HEX(ColorD5D5D5).CGColor;
-    self.passwordField.tintColor = UICOLOR_FROM_HEX(ColorD5D5D5);
-    self.passwordImageView.image = UIIMAGE_FROM_NAME(@"Password_not");
-    self.passwordlineView.backgroundColor = UICOLOR_FROM_HEX(ColorD5D5D5);
-
-
-}
-
-
-#pragma mark 检测输入框的字数限制
-- (void)textFieldDidChange:(UITextField *)textField {
-    if (textField == self.phoneAccountField) {
-        if (textField.text.length > 11) {
-            textField.text = [textField.text substringToIndex:11];
-        }
-    } else {
-        
-        if (textField.text.length > 18) {
-            textField.text = [textField.text substringToIndex:18];
-        }
-    }
-}
-
-
-
 @end

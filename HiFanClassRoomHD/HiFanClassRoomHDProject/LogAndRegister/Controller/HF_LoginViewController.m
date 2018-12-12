@@ -14,10 +14,10 @@
 #import "JPUSHService.h"
 
 
-@interface HF_LoginViewController ()
+@interface HF_LoginViewController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) HF_LoginView *loginView;
-
+@property (nonatomic, assign) BOOL isPwdTextEntry;
 @end
 
 @implementation HF_LoginViewController
@@ -39,16 +39,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.isPwdTextEntry = YES;
     self.loginView = [[HF_LoginView alloc]init];
     self.loginView.backgroundColor = [UIColor whiteColor];
     self.view = self.loginView;
-    
+    self.loginView.phoneAccountField.delegate = self;
+    self.loginView.passwordField.delegate = self;
     
     //对手机号进行存储
     if (!IsStrEmpty([UserDefaults() objectForKey:@"phoneNumber"])) {
         self.loginView.phoneAccountField.text = [UserDefaults() objectForKey:@"phoneNumber"];
     }
+    
     
     
     //忘记密码
@@ -59,7 +61,13 @@
          HF_ForgotPasswordViewController *vc = [[HF_ForgotPasswordViewController alloc]init];
          [self.navigationController pushViewController:vc animated:YES];
      }];
-    
+    //密码明文暗文状态切换
+    [[self.loginView.showPasswordStatusBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
+        @strongify(self);
+        
+        self.loginView.passwordField.secureTextEntry = !self.isPwdTextEntry;
+        self.isPwdTextEntry = !self.isPwdTextEntry;
+    }];
     
     //注册
     [[self.loginView.registerButton rac_signalForControlEvents:UIControlEventTouchUpInside]
@@ -152,6 +160,43 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
+#pragma make ----  UITextField
+// 获得焦点
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    
+    if(textField.tag == 1){
+        
+        [UIView animateWithDuration:0.2 animations:^{
+            self.loginView.phoneTitle.frame = CGRectMake(LineX(467), LineY(296), LineW(97), LineH(11));
+            self.loginView.phoneTitle.font = Font(11);
+        }];
+        self.loginView.phoneLine.backgroundColor = UICOLOR_FROM_HEX(0x02B6E3);
+    }
+    if(textField.tag == 2){
+        [UIView animateWithDuration:0.2 animations:^{
+            self.loginView.passwordTitle.frame = CGRectMake(LineX(467), LineY(366), LineW(97), LineH(11));
+            self.loginView.passwordTitle.font = Font(11);
+        }];
+        self.loginView.passwordLine.backgroundColor = UICOLOR_FROM_HEX(0x02B6E3);
+    }
+    return YES;
+}
+// 失去焦点
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if((textField.tag == 1) && [textField.text isEqualToString:@""]){
+        [UIView animateWithDuration:3 animations:^{
+            
+            self.loginView.phoneTitle.frame = CGRectMake(LineX(467), LineY(312), LineW(97), LineH(16));
+            self.loginView.phoneTitle.font = Font(16);
+        }];
+        self.loginView.phoneLine.backgroundColor = UICOLOR_FROM_HEX(0xEAEFF3);
+    }
+    if((textField.tag == 2) && [textField.text isEqualToString:@""]){
+        [UIView animateWithDuration:0.2 animations:^{
+            self.loginView.passwordTitle.frame = CGRectMake(LineX(467), LineY(382), LineW(97), LineH(16));
+            self.loginView.passwordTitle.font = Font(16);
+        }];
+        self.loginView.passwordLine.backgroundColor = UICOLOR_FROM_HEX(0xEAEFF3);
+    }
+}
 @end
