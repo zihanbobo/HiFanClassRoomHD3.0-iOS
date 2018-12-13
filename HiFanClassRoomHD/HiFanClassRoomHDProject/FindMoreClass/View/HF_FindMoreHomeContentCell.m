@@ -10,6 +10,7 @@
 #import "HF_FindMoreHomeCollectionViewCell.h"
 
 @interface HF_FindMoreHomeContentCell()
+@property (nonatomic,strong) NSMutableArray *dataArray;
 
 @end
 @implementation HF_FindMoreHomeContentCell
@@ -17,11 +18,18 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.contentView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
         [self initUI];
     }
     return self;
 }
 
+
+- (void)setCollectionArray:(NSMutableArray *)collectionArray {
+    self.dataArray = [NSMutableArray array];
+    self.dataArray = collectionArray;
+    [self.collectionView reloadData];
+}
 
 -(void)initUI {
     //课程名称
@@ -45,7 +53,7 @@
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource =self;
-    self.collectionView.backgroundColor = UICOLOR_FROM_HEX(ColorF2F2F2);
+    self.collectionView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     self.collectionView.showsHorizontalScrollIndicator = NO;
     [self.contentView addSubview:self.collectionView];
     
@@ -59,7 +67,6 @@
     
     //注册cell
     [self.collectionView registerClass:[HF_FindMoreHomeCollectionViewCell class] forCellWithReuseIdentifier:@"HF_FindMoreHomeCollectionViewCell"];
-    
 }
 
 
@@ -71,13 +78,7 @@
 
 //返回每个分区的item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 15;
-}
-
-
-- (CGSize)collectionViewContentSize {
-    CGSize size = CGSizeMake(LineW(264)*15, LineH(258));
-    return size;
+    return self.dataArray.count;
 }
 
 
@@ -85,7 +86,9 @@
 
     static NSString *identify = @"HF_FindMoreHomeCollectionViewCell";
     HF_FindMoreHomeCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-//    cell.backgroundColor = [UIColor yellowColor];
+
+    HF_FindMoreInstructionalTypeListModel *model = [self.dataArray safe_objectAtIndex:indexPath.row];
+    cell.model = model;
     
     return cell;
 }

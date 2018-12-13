@@ -54,6 +54,13 @@
 		5B54A2D221B7C16100DF9F91 /* HF_FindMoreHomeContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B54A2D121B7C16100DF9F91 /* HF_FindMoreHomeContentCell.m */; };
 		5B54A2D521B7F97700DF9F91 /* HF_FindMoreHomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B54A2D421B7F97700DF9F91 /* HF_FindMoreHomeCollectionViewCell.m */; };
 		5B5DD0931FF4CF5800FB4A35 /* HF_PageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5DD0921FF4CF5800FB4A35 /* HF_PageControl.m */; };
+		5B5E6F1521C2421F0067881A /* HF_FindMoreAdvertModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5E6F1421C2421F0067881A /* HF_FindMoreAdvertModel.m */; };
+		5B5E6F1821C242AC0067881A /* HF_FindMoreInstructionalTypeListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5E6F1721C242AC0067881A /* HF_FindMoreInstructionalTypeListModel.m */; };
+		5B5E6F1D21C245D70067881A /* AdCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5E6F1921C245D60067881A /* AdCollectionViewCell.m */; };
+		5B5E6F1E21C245D70067881A /* AdCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5E6F1C21C245D70067881A /* AdCycleScrollView.m */; };
+		5B5E6F2121C2488A0067881A /* BaseScrollHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5E6F2021C2488A0067881A /* BaseScrollHeaderView.m */; };
+		5B5E6F2421C277830067881A /* HF_CheckDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5E6F2321C277830067881A /* HF_CheckDeviceViewController.m */; };
+		5B5E6F2721C277DB0067881A /* HF_CheckDeviceView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5E6F2621C277DB0067881A /* HF_CheckDeviceView.m */; };
 		5B5E8E451FE8F9410010CFC3 /* GGT_ScheduleUnFinishedHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5E8E441FE8F9410010CFC3 /* GGT_ScheduleUnFinishedHomeModel.m */; };
 		5B5E8E4C1FE93AAF0010CFC3 /* GGT_PracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5E8E4A1FE939890010CFC3 /* GGT_PracticeViewController.m */; };
 		5B5E8E4F1FE942720010CFC3 /* GGT_ScheduleFinishedHomeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B5E8E4E1FE942720010CFC3 /* GGT_ScheduleFinishedHomeModel.m */; };
@@ -472,6 +479,20 @@
 		5B54A2D421B7F97700DF9F91 /* HF_FindMoreHomeCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_FindMoreHomeCollectionViewCell.m; sourceTree = "<group>"; };
 		5B5DD0911FF4CF5800FB4A35 /* HF_PageControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_PageControl.h; sourceTree = "<group>"; };
 		5B5DD0921FF4CF5800FB4A35 /* HF_PageControl.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_PageControl.m; sourceTree = "<group>"; };
+		5B5E6F1321C2421F0067881A /* HF_FindMoreAdvertModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_FindMoreAdvertModel.h; sourceTree = "<group>"; };
+		5B5E6F1421C2421F0067881A /* HF_FindMoreAdvertModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_FindMoreAdvertModel.m; sourceTree = "<group>"; };
+		5B5E6F1621C242AC0067881A /* HF_FindMoreInstructionalTypeListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_FindMoreInstructionalTypeListModel.h; sourceTree = "<group>"; };
+		5B5E6F1721C242AC0067881A /* HF_FindMoreInstructionalTypeListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_FindMoreInstructionalTypeListModel.m; sourceTree = "<group>"; };
+		5B5E6F1921C245D60067881A /* AdCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdCollectionViewCell.m; sourceTree = "<group>"; };
+		5B5E6F1A21C245D60067881A /* AdCycleScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdCycleScrollView.h; sourceTree = "<group>"; };
+		5B5E6F1B21C245D60067881A /* AdCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdCollectionViewCell.h; sourceTree = "<group>"; };
+		5B5E6F1C21C245D70067881A /* AdCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdCycleScrollView.m; sourceTree = "<group>"; };
+		5B5E6F1F21C2488A0067881A /* BaseScrollHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseScrollHeaderView.h; sourceTree = "<group>"; };
+		5B5E6F2021C2488A0067881A /* BaseScrollHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseScrollHeaderView.m; sourceTree = "<group>"; };
+		5B5E6F2221C277830067881A /* HF_CheckDeviceViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_CheckDeviceViewController.h; sourceTree = "<group>"; };
+		5B5E6F2321C277830067881A /* HF_CheckDeviceViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_CheckDeviceViewController.m; sourceTree = "<group>"; };
+		5B5E6F2521C277DB0067881A /* HF_CheckDeviceView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_CheckDeviceView.h; sourceTree = "<group>"; };
+		5B5E6F2621C277DB0067881A /* HF_CheckDeviceView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_CheckDeviceView.m; sourceTree = "<group>"; };
 		5B5E8E431FE8F9410010CFC3 /* GGT_ScheduleUnFinishedHomeModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ScheduleUnFinishedHomeModel.h; sourceTree = "<group>"; };
 		5B5E8E441FE8F9410010CFC3 /* GGT_ScheduleUnFinishedHomeModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_ScheduleUnFinishedHomeModel.m; sourceTree = "<group>"; };
 		5B5E8E491FE939890010CFC3 /* GGT_PracticeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_PracticeViewController.h; sourceTree = "<group>"; };
@@ -1243,6 +1264,10 @@
 		5B4E766C21AEB83700C653E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5B5E6F1321C2421F0067881A /* HF_FindMoreAdvertModel.h */,
+				5B5E6F1421C2421F0067881A /* HF_FindMoreAdvertModel.m */,
+				5B5E6F1621C242AC0067881A /* HF_FindMoreInstructionalTypeListModel.h */,
+				5B5E6F1721C242AC0067881A /* HF_FindMoreInstructionalTypeListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1258,6 +1283,10 @@
 				5B54A2D421B7F97700DF9F91 /* HF_FindMoreHomeCollectionViewCell.m */,
 				5BD637E521B8D7F2004051B0 /* HF_FindMoreMoviePlayCell.h */,
 				5BD637E621B8D7F2004051B0 /* HF_FindMoreMoviePlayCell.m */,
+				5B5E6F1B21C245D60067881A /* AdCollectionViewCell.h */,
+				5B5E6F1921C245D60067881A /* AdCollectionViewCell.m */,
+				5B5E6F1A21C245D60067881A /* AdCycleScrollView.h */,
+				5B5E6F1C21C245D70067881A /* AdCycleScrollView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1487,6 +1516,8 @@
 				5B97CA7E21BE5B3000F80BD4 /* HF_MineHomeViewController.m */,
 				5B97CA8921BE8A8900F80BD4 /* HF_MineClassCountViewController.h */,
 				5B97CA8A21BE8A8900F80BD4 /* HF_MineClassCountViewController.m */,
+				5B5E6F2221C277830067881A /* HF_CheckDeviceViewController.h */,
+				5B5E6F2321C277830067881A /* HF_CheckDeviceViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1517,6 +1548,8 @@
 				5B112A9321BF699C001D7E3E /* HF_MineClassCountHeaderCell.m */,
 				5B112A9521BF6EA4001D7E3E /* HF_MineClassCountListCell.h */,
 				5B112A9621BF6EA4001D7E3E /* HF_MineClassCountListCell.m */,
+				5B5E6F2521C277DB0067881A /* HF_CheckDeviceView.h */,
+				5B5E6F2621C277DB0067881A /* HF_CheckDeviceView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -2610,6 +2643,8 @@
 				5B3837E521B13A1700339512 /* BaseScrollHeaderViewController.m */,
 				5B19424621C1102700FD56CF /* BaseScrollHeaderCell.h */,
 				5B19424721C1102700FD56CF /* BaseScrollHeaderCell.m */,
+				5B5E6F1F21C2488A0067881A /* BaseScrollHeaderView.h */,
+				5B5E6F2021C2488A0067881A /* BaseScrollHeaderView.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -3059,6 +3094,7 @@
 				5BE2EDA3216B37DC00845E70 /* BITUpdateViewController.m in Sources */,
 				5B715D4B1FE3746E00F08577 /* GGT_ScheduleStudentIconView.m in Sources */,
 				5BE2ED9B216B37DC00845E70 /* TKAFNetworkActivityIndicatorManager.m in Sources */,
+				5B5E6F1E21C245D70067881A /* AdCycleScrollView.m in Sources */,
 				5BA59AC221BFC1E1005BCB94 /* HF_MyScheduleHomeFinishedListModel.m in Sources */,
 				D6353E141EE8E20A004E1288 /* GGT_PopoverController.m in Sources */,
 				5B1E61DF1F46CC5F00342CC5 /* HF_LoadingView.m in Sources */,
@@ -3108,10 +3144,12 @@
 				5BE2EDCE216B37DC00845E70 /* TKEmotionView.m in Sources */,
 				5B5E8E451FE8F9410010CFC3 /* GGT_ScheduleUnFinishedHomeModel.m in Sources */,
 				5B54A2C921B7B9A500DF9F91 /* HF_MyScheduleHomeFinishedCell.m in Sources */,
+				5B5E6F1D21C245D70067881A /* AdCollectionViewCell.m in Sources */,
 				3512ACAE21B6289A00F08F97 /* HF_OrderCourseListViewController.m in Sources */,
 				D67ACCC31EE15C7A0027031C /* UILabel+XCHelper.m in Sources */,
 				5BE2EDF8216B37DC00845E70 /* TKTimer.m in Sources */,
 				5B3E480B1FE769AA00D6D6C6 /* GGT_ScheduleFinishedStuEvaluateCell.m in Sources */,
+				5B5E6F2121C2488A0067881A /* BaseScrollHeaderView.m in Sources */,
 				5B715D4E1FE37DFD00F08577 /* GGT_ScheuleUnFinishedIconCell.m in Sources */,
 				D6E0A59D1EC2FAC6006A003D /* BaseService.m in Sources */,
 				5BE2EDAD216B37DC00845E70 /* BITFeedbackActivity.m in Sources */,
@@ -3177,6 +3215,7 @@
 				5BE2ED8E216B37DC00845E70 /* TKDocmentDocModel.m in Sources */,
 				5BE2EDD3216B37DC00845E70 /* NSString+Emoji.m in Sources */,
 				5BE2EE0A216B37DC00845E70 /* TKMP3ToPCM.m in Sources */,
+				5B5E6F1821C242AC0067881A /* HF_FindMoreInstructionalTypeListModel.m in Sources */,
 				5B715D451FE36E5400F08577 /* GGT_ScheduleUnFinishedDetailViewController.m in Sources */,
 				5BAE2F5420469D0800375F2B /* HF_ClassRoomModel.m in Sources */,
 				D6D643AD1FCC13AE00561035 /* GGT_ExperienceUserOrderCourseVC.m in Sources */,
@@ -3191,6 +3230,7 @@
 				D6BF1AB71FD102210032C20C /* GGT_GradingAlertVC.m in Sources */,
 				5BB6D5771FEB81E300464F83 /* GGT_EvaluationSucceedView.m in Sources */,
 				5BE2EDB0216B37DC00845E70 /* BITCrashAttachment.m in Sources */,
+				5B5E6F2721C277DB0067881A /* HF_CheckDeviceView.m in Sources */,
 				5BE2EDCA216B37DC00845E70 /* TKEmotionTool.m in Sources */,
 				5BE2EDDD216B37DC00845E70 /* TKStudentMessageTableViewCell.m in Sources */,
 				5B5E8E4F1FE942720010CFC3 /* GGT_ScheduleFinishedHomeModel.m in Sources */,
@@ -3235,6 +3275,7 @@
 				D6E0A5771EC2DB15006A003D /* HF_Singleton.m in Sources */,
 				5B0310311FCC2232002FE83E /* GGT_OrderUnitCourseViewController.m in Sources */,
 				D6C150EF1EE79E820038841B /* UITableView+XCPlaceholderView.m in Sources */,
+				5B5E6F2421C277830067881A /* HF_CheckDeviceViewController.m in Sources */,
 				D63DA9481ED5554400EFA686 /* NSArray+Log.m in Sources */,
 				D6C150EC1EE79D500038841B /* NSObject+XCMethodSwizzle.m in Sources */,
 				5BE2EDA8216B37DC00845E70 /* BITUpdateManager.m in Sources */,
@@ -3298,6 +3339,7 @@
 				5BD5165D1ECAE5EA0015D694 /* GGT_MineLeftTableViewCell.m in Sources */,
 				D6D643B31FCC1CF600561035 /* GGT_OrderCourseTableViewCell.m in Sources */,
 				5B34522E202C48AE00850D30 /* GGT_ApplyClassCell.m in Sources */,
+				5B5E6F1521C2421F0067881A /* HF_FindMoreAdvertModel.m in Sources */,
 				D6E0A55A1EC2D9CD006A003D /* UIButton+timer.m in Sources */,
 				5BE2ED90216B37DC00845E70 /* TKWeakScriptMessageDelegate.m in Sources */,
 				5BE2EDC7216B37DC00845E70 /* TKTextViewInternal.m in Sources */,

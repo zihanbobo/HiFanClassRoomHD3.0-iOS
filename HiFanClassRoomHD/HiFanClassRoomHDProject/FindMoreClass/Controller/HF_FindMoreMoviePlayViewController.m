@@ -134,11 +134,10 @@
 }
 
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
     static NSString *identify = @"HF_FindMoreMoviePlayCell";
     HF_FindMoreMoviePlayCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-    //    cell.backgroundColor = [UIColor yellowColor];
     
     return cell;
 }

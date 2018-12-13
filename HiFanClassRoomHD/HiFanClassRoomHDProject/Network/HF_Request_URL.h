@@ -23,6 +23,17 @@ static NSString * const BASE_REQUEST_URL = @"http://testapi.hi-fan.cn"; //2.0
 static NSString * const URL_Login = @"/api/APP/Login";
 
 
+/*发现*/
+//获取广告位轮播图列表
+static NSString * const URL_GetAdvertPositionList = @"api/Resources/GetAdvertPositionList";
+//获取教学资源类型
+static NSString * const URL_GetInstructionalTypeList = @"api/Resources/GetInstructionalTypeList";
+//获取对应类型的教学资源
+static NSString * const URL_GetInstructionalInfoList = @"api/Resources/GetInstructionalInfoList";
+
+
+
+
 /*课表*/
 //申请中
 static NSString * const URL_GetSubscribeLessonMyLess = @"api/homepage/GetSubscribeLessonMyLess";

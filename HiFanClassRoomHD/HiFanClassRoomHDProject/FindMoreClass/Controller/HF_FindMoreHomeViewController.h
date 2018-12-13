@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface HF_FindMoreHomeViewController : BaseScrollHeaderViewController
+@interface HF_FindMoreHomeViewController : BaseScrollHeaderViewController 
 
 @end

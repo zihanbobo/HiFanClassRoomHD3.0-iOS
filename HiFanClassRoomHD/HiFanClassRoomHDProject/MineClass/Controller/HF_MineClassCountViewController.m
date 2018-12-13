@@ -17,7 +17,6 @@
 @property (nonatomic, strong) UILabel *myCountLabel;
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) NSMutableArray *headerDataArray;
 @property (nonatomic, strong) NSMutableArray *detailDataArray;
 @property (nonatomic, strong) HF_MineClassCountHeaderModel *headerModel;
 @property (nonatomic, assign) NSInteger page;
@@ -25,17 +24,6 @@
 @end
 
 @implementation HF_MineClassCountViewController
-
-//- (void)viewWillAppear:(BOOL)animated{
-//    [super viewWillAppear:animated];
-//    [self.navigationController setNavigationBarHidden:YES animated:NO];
-//}
-//
-//
-//- (void)viewDidDisappear:(BOOL)animated{
-//    [super viewDidDisappear:animated];
-//    [self.navigationController setNavigationBarHidden:NO animated:NO];
-//}
 
 
 - (void)viewDidLoad {
@@ -106,8 +94,8 @@
             }
         }
         self.placeHolderView.hidden = YES;
+        [self getDetailLoadData];
 
-        [self.tableView reloadData];
     } failure:^(NSError *error) {
         //没课 2   0失败
         /*
@@ -203,6 +191,8 @@
 
 //MARK:UI加载
 - (void)initUI {
+    self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    
     //返回按钮
     [self.view addSubview:self.leftButton];
     [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -247,6 +237,7 @@
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     }
     return _tableView;
 }

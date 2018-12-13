@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HF_FindMoreInstructionalTypeListModel.h"
 
 @interface HF_FindMoreHomeCollectionViewCell : UICollectionViewCell
+@property (nonatomic,strong) HF_FindMoreInstructionalTypeListModel *model;
+
 
 @end

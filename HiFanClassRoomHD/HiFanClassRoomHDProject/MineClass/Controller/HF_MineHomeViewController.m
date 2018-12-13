@@ -11,8 +11,9 @@
 #import "HF_MineHomeTableViewCell.h"
 #import "HF_MineClassCountViewController.h"
 #import "HF_MineHomeInfoModel.h"
+#import "HF_CheckDeviceViewController.h"
 
-@interface HF_MineHomeViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface HF_MineHomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UIButton *loginOutButton;
@@ -63,7 +64,18 @@
         [self.tableView reloadData];
         
     } failure:^(NSError *error) {
+        // 清空密码
+        [UserDefaults() setObject:@"" forKey:K_password];
+        [MBProgressHUD showMessage:@"登录过期，请重新登录" toView:[UIApplication sharedApplication].keyWindow];
         
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            HF_LoginViewController *loginVc = [[HF_LoginViewController alloc]init];
+            [UserDefaults() setObject:@"no" forKey:@"login"];
+            [UserDefaults() setObject:@"" forKey:K_userToken];
+            [UserDefaults() synchronize];
+            BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:loginVc];
+            self.view.window.rootViewController = nav;
+        });
     }];
 }
 
@@ -127,13 +139,40 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
+    if (self.dataArray.count == 4) {
+        if (indexPath.row == 1) { //清除缓存
+            
+            
+        } else if (indexPath.row == 2){ //设备检测
+            HF_CheckDeviceViewController *vc = [HF_CheckDeviceViewController new];
+            BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+            
+            nav.modalPresentationStyle = UIModalPresentationFormSheet;
+            nav.popoverPresentationController.delegate = self;
+            [self presentViewController:nav animated:YES completion:nil];
+
+        } else if (indexPath.row == 3){ //在线技术支持
+            
+        }
+    } else if (self.dataArray.count == 5) {
+        if (indexPath.row == 1) {
+            HF_MineClassCountViewController *vc = [[HF_MineClassCountViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        } else if (indexPath.row == 2){ //清除缓存
+            
+        } else if (indexPath.row == 3){ //设备检测
+            HF_CheckDeviceViewController *vc = [HF_CheckDeviceViewController new];
+            BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+            
+            nav.modalPresentationStyle = UIModalPresentationFormSheet;
+            nav.popoverPresentationController.delegate = self;
+            [self presentViewController:nav animated:YES completion:nil];
+
+        } else if (indexPath.row == 4){ //在线技术支持
+            
+        }
         
-    } else {
-        HF_MineClassCountViewController *vc = [[HF_MineClassCountViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
     }
-   
 }
 
 
@@ -163,6 +202,7 @@
         self.loginOutButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.loginOutButton setTitleColor:UICOLOR_FROM_HEX(0xFB9901) forState:UIControlStateNormal];
         [self.loginOutButton setTitle:@"退出当前帐号" forState:UIControlStateNormal];
+        [self.loginOutButton addTarget:self action:@selector(logOutButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
         self.loginOutButton.titleLabel.font = Font(18);
         self.loginOutButton.layer.masksToBounds = YES;
         self.loginOutButton.layer.cornerRadius = LineH(25);
@@ -172,7 +212,29 @@
     return _loginOutButton;
 }
 
-
+#pragma mark 退出登录
+- (void)logOutButtonClick {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定退出登录" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    alert.titleColor = UICOLOR_FROM_HEX(0x000000);
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    cancelAction.textColor = UICOLOR_FROM_HEX(Color777777);
+    
+    UIAlertAction *clernAction = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        
+        HF_LoginViewController *loginVc = [[HF_LoginViewController alloc]init];
+        [UserDefaults() setObject:@"no" forKey:@"login"];
+        [UserDefaults() setObject:@"" forKey:K_userToken];
+        [UserDefaults() synchronize];
+        BaseNavigationController *nav = [[BaseNavigationController alloc]initWithRootViewController:loginVc];
+        self.view.window.rootViewController = nav;
+    }];
+    clernAction.textColor = UICOLOR_FROM_HEX(Color2B8EEF);
+    
+    [alert addAction:cancelAction];
+    [alert addAction:clernAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 
 - (void)initUI {
     [self.view addSubview:self.tableView];

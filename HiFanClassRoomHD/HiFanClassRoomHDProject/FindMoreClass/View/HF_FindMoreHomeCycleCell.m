@@ -8,28 +8,51 @@
 
 #import "HF_FindMoreHomeCycleCell.h"
 
+
 @implementation HF_FindMoreHomeCycleCell
 
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
-    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
         [self initUI];
+
     }
     return self;
 }
 
 -(void)initUI {
-    UIView *bgView = [[UIImageView alloc]init];
-    bgView.backgroundColor = UICOLOR_RANDOM_COLOR();
-    [self.contentView addSubview:bgView];
-    
-    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).with.offset(17);
-        make.right.equalTo(self.contentView.mas_right).with.offset(-17);
-        make.top.equalTo(self.contentView.mas_top).with.offset(50);
-        make.bottom.equalTo(self.contentView.mas_bottom).with.offset(-25);
+    BaseScrollHeaderView *headerView = [[BaseScrollHeaderView alloc] init];
+    headerView.navBigLabel.text = @"Find More";
+    headerView.titleLabel.text = @"发现";
+    [headerView.rightButton setTitle:@"我喜欢的" forState:(UIControlStateNormal)];
+    [headerView.rightButton setImage:UIIMAGE_FROM_NAME(@"爱心") forState:(UIControlStateNormal)];
+    [self addSubview:headerView];
+    [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_top).with.offset(0);
+        make.left.equalTo(self.mas_left).with.offset(0);
+        make.right.equalTo(self.mas_right).with.offset(-0);
+        make.height.mas_equalTo(106);
     }];
     
+    @weakify(self);
+    [[headerView.rightButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(id x) {
+         @strongify(self);
+         NSLog(@"发现");
+     }];
+    
+    self.adScroll = [[AdCycleScrollView alloc] init];
+    self.adScroll.frame = CGRectMake(LineX(17), LineY(177), home_right_width-LineW(34), LineH(210));
+    self.adScroll.delegate = self;
+    self.adScroll.pageControlAliment = AdCycleScrollViewPageControlAlimentCenter;
+    [self addSubview:self.adScroll];
+
 }
 
+
+#pragma mark - 轮播图点击事件
+- (void)cycleScrollView:(AdCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)selectedIndex{
+    NSLog(@"%ld",selectedIndex);
+}
 
 @end

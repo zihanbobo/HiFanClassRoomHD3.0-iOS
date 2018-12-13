@@ -53,6 +53,8 @@
 @property (nonatomic, strong) BaseNavigationController *mineMenuNav;
 @property (nonatomic, getter=isSelectedMineVc) BOOL selectedMineVc;
 @property (nonatomic, strong) UIView *blackBgView;
+@property (nonatomic, strong) UIVisualEffectView *blackBgViewEffe; //定义毛玻璃
+@property (nonatomic, strong) UIButton *hiddenBlackBgViewBtn;
 
 @end
 
@@ -60,6 +62,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     
     [self initView];
     [self setUpNewController];
@@ -127,47 +130,6 @@
 }
 
 
--(BaseNavigationController *)mineMenuNav {
-    if (!_mineMenuNav) {
-        self.mineMenuVC = [[HF_MineHomeViewController alloc] init];
-        self.mineMenuNav = [[BaseNavigationController alloc] initWithRootViewController:self.mineMenuVC];
-        self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, 0, LineH(768));
-        self.mineMenuNav.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-        __weak HF_HomeViewController *weakSelf  = self;
-        self.mineMenuVC.hiddenBlock = ^{
-            [UIView animateWithDuration:0.3f animations:^{
-                weakSelf.blackBgView.hidden = YES;
-                weakSelf.homeLeftView.sanjiaoImgView.hidden = YES;
-                weakSelf.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
-                weakSelf.selectedMineVc = NO;
-            }];
-        };
-        
-    }
-    return _mineMenuNav;
-}
-
--(UIView *)blackBgView {
-    if (!_blackBgView) {
-        self.blackBgView = [[UIView alloc] init];
-        self.blackBgView.frame = CGRectMake(home_left_width, 0, home_right_width, LineH(768));
-        self.blackBgView.backgroundColor = [UICOLOR_FROM_HEX(Color000000) colorWithAlphaComponent:0.4];
-    }
-    return _blackBgView;
-}
-
-
--(void)closeMineMenu {
-    if (self.selectedMineVc == YES) {
-        [UIView animateWithDuration:0.3f animations:^{
-            self.blackBgView.hidden = YES;
-            self.homeLeftView.sanjiaoImgView.hidden = YES;
-            self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
-            self.selectedMineVc = NO;
-        }];
-    }
-}
-
 - (void)initView {
     @weakify(self);
     self.homeLeftView = [[HF_HomeLeftView alloc]init];
@@ -181,6 +143,8 @@
                 {
                     static dispatch_once_t onceToken;
                     dispatch_once(&onceToken, ^{
+                        [self.blackBgView addSubview:self.blackBgViewEffe];
+                        [self.blackBgView addSubview:self.hiddenBlackBgViewBtn];
                         [self.view.window addSubview:self.blackBgView];
                         [self.view.window addSubview:self.mineMenuNav.view];
                     });
@@ -535,5 +499,69 @@
     return sizeM;
 }
 
+
+
+
+//MARK:懒加载
+-(BaseNavigationController *)mineMenuNav {
+    if (!_mineMenuNav) {
+        self.mineMenuVC = [[HF_MineHomeViewController alloc] init];
+        self.mineMenuNav = [[BaseNavigationController alloc] initWithRootViewController:self.mineMenuVC];
+        self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, 0, LineH(768));
+        self.mineMenuNav.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+        __weak HF_HomeViewController *weakSelf  = self;
+        self.mineMenuVC.hiddenBlock = ^{
+            [UIView animateWithDuration:0.3f animations:^{
+                weakSelf.blackBgView.hidden = YES;
+                weakSelf.homeLeftView.sanjiaoImgView.hidden = YES;
+                weakSelf.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
+                weakSelf.selectedMineVc = NO;
+            }];
+        };
+        
+    }
+    return _mineMenuNav;
+}
+
+-(UIView *)blackBgView {
+    if (!_blackBgView) {
+        self.blackBgView = [[UIView alloc] init];
+        self.blackBgView.frame = CGRectMake(home_left_width, 0, home_right_width, LineH(768));
+        self.blackBgView.backgroundColor = [UICOLOR_FROM_HEX(Color000000) colorWithAlphaComponent:0.2];
+    }
+    return _blackBgView;
+}
+
+
+-(UIVisualEffectView *)blackBgViewEffe {
+    if (!_blackBgViewEffe) {
+        //UIBlurEffectStyleExtraLight      UIBlurEffectStyleLight      UIBlurEffectStyleDark
+        UIBlurEffect * blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.blackBgViewEffe = [[UIVisualEffectView alloc] initWithEffect:blur];
+        self.blackBgViewEffe.frame = CGRectMake(home_left_width, 0, home_right_width, LineH(768));
+    }
+    return _blackBgViewEffe;
+}
+
+
+-(UIButton *)hiddenBlackBgViewBtn {
+    if (!_hiddenBlackBgViewBtn) {
+        self.hiddenBlackBgViewBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        [self.hiddenBlackBgViewBtn addTarget:self action:@selector(closeMineMenu) forControlEvents:(UIControlEventTouchUpInside)];
+        self.hiddenBlackBgViewBtn.frame = CGRectMake(home_left_width, 0, home_right_width, LineH(768));
+    }
+    return _hiddenBlackBgViewBtn;
+}
+
+-(void)closeMineMenu {
+    if (self.selectedMineVc == YES) {
+        [UIView animateWithDuration:0.3f animations:^{
+            self.blackBgView.hidden = YES;
+            self.homeLeftView.sanjiaoImgView.hidden = YES;
+            self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
+            self.selectedMineVc = NO;
+        }];
+    }
+}
 
 @end

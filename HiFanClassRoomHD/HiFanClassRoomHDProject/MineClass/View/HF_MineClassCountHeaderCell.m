@@ -84,11 +84,11 @@
 
 
 - (void)setListHeaderModel:(HF_MineClassCountHeaderModel *)listHeaderModel {
-    self.totalClassHoursLabel.text = [NSString stringWithFormat:@"总课时：%ld",(long)listHeaderModel.TotalCount] ;
-    self.RemainingClassHoursLabel.text = [NSString stringWithFormat:@"剩余课时%ld",(long)listHeaderModel.SurplusCount] ;
+    self.totalClassHoursLabel.text = [NSString stringWithFormat:@"总课时:%ld",(long)listHeaderModel.TotalCount] ;
+    self.RemainingClassHoursLabel.text = [NSString stringWithFormat:@"剩余课时:%ld",(long)listHeaderModel.SurplusCount] ;
 
     if (!IsStrEmpty(listHeaderModel.ExpireTime)) {
-        self.outTimeLabel.text = [NSString stringWithFormat:@"（有效期至：%@）",listHeaderModel.ExpireTime];;
+        self.outTimeLabel.text = [NSString stringWithFormat:@"（有效期至:%@）",listHeaderModel.ExpireTime];;
     }
 }
 

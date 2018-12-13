@@ -23,17 +23,17 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.contentView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
         [self initView];
     }
     return self;
 }
 
 - (void)initView {
-    self.contentView.backgroundColor = UICOLOR_FROM_HEX(ColorF2F2F2);
     
     //教材 封面
     self.bookImgView = [[UIImageView alloc]init];
-    self.bookImgView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    self.bookImgView.image = UIIMAGE_FROM_NAME(@"默认");
     self.bookImgView.userInteractionEnabled = YES;
     [self.contentView addSubview:self.bookImgView];
     
@@ -47,7 +47,7 @@
     //课程名称
     self.classNameLabel = [[UILabel alloc]init];
     self.classNameLabel.font = Font(16);
-    self.classNameLabel.text = @"字母世界 (更新至9集)";
+//    self.classNameLabel.text = @"字母世界 (更新至9集)";
     self.classNameLabel.textColor = UICOLOR_FROM_HEX(Color000000);
     [self.contentView addSubview:self.classNameLabel];
     
@@ -62,7 +62,7 @@
     //课程 简介
     self.classInfoLabel = [[UILabel alloc]init];
     self.classInfoLabel.font = Font(12);
-    self.classInfoLabel.text = @"初试字母 快速入门";
+//    self.classInfoLabel.text = @"初试字母 快速入门";
     self.classInfoLabel.textColor = UICOLOR_FROM_HEX(Color000000);
     [self.contentView addSubview:self.classInfoLabel];
     
@@ -78,6 +78,24 @@
     [self.bookImgView xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(10)];
 }
 
+- (void)setModel:(HF_FindMoreInstructionalTypeListModel *)model {
+    if (!IsStrEmpty(model.CoverImage)) {
+        [self.bookImgView sd_setImageWithURL:[NSURL URLWithString:model.CoverImage] placeholderImage:UIIMAGE_FROM_NAME(@"默认") completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            
+            image = [image imageScaledToSize:CGSizeMake(LineW(230), LineW(180))];
+            self.bookImgView.image = image;
+        }];
+    }
+  
+    
+    if (!IsStrEmpty(model.Title)) {
+        self.classNameLabel.text = model.Title;
+    }
 
+    
+    if (!IsStrEmpty(model.SubTitle)) {
+        self.classInfoLabel.text = model.SubTitle;
+    }
+}
 
 @end
