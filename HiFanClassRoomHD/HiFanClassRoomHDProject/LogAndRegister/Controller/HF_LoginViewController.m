@@ -50,6 +50,10 @@
     if (!IsStrEmpty([UserDefaults() objectForKey:@"phoneNumber"])) {
         self.loginView.phoneAccountField.text = [UserDefaults() objectForKey:@"phoneNumber"];
     }
+    if(!IsStrEmpty(self.loginView.phoneAccountField.text)){
+        self.loginView.phoneTitle.frame = CGRectMake(LineX(467), LineY(296), LineW(97), LineH(11));
+        self.loginView.phoneTitle.font = Font(11);
+    }
     
     
     
