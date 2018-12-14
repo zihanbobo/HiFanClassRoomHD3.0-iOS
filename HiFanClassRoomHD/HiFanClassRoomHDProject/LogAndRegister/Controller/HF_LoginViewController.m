@@ -187,19 +187,25 @@
 }
 // 失去焦点
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    if((textField.tag == 1) && [textField.text isEqualToString:@""]){
-        [UIView animateWithDuration:3 animations:^{
-            
-            self.loginView.phoneTitle.frame = CGRectMake(LineX(467), LineY(312), LineW(97), LineH(16));
-            self.loginView.phoneTitle.font = Font(16);
-        }];
+    if(textField.tag == 1){
+        if([textField.text isEqualToString:@""]){
+            [UIView animateWithDuration:3 animations:^{
+                
+                self.loginView.phoneTitle.frame = CGRectMake(LineX(467), LineY(312), LineW(97), LineH(16));
+                self.loginView.phoneTitle.font = Font(16);
+            }];
+        }
+        
         self.loginView.phoneLine.backgroundColor = UICOLOR_FROM_HEX(0xEAEFF3);
     }
-    if((textField.tag == 2) && [textField.text isEqualToString:@""]){
-        [UIView animateWithDuration:0.2 animations:^{
-            self.loginView.passwordTitle.frame = CGRectMake(LineX(467), LineY(382), LineW(97), LineH(16));
-            self.loginView.passwordTitle.font = Font(16);
-        }];
+    if(textField.tag == 2){
+        if([textField.text isEqualToString:@""]){
+            [UIView animateWithDuration:0.2 animations:^{
+                self.loginView.passwordTitle.frame = CGRectMake(LineX(467), LineY(382), LineW(97), LineH(16));
+                self.loginView.passwordTitle.font = Font(16);
+            }];
+        }
+        
         self.loginView.passwordLine.backgroundColor = UICOLOR_FROM_HEX(0xEAEFF3);
     }
 }
