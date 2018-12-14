@@ -13,5 +13,6 @@ typedef void(^SelectedBlock)(NSInteger index);
 @property (nonatomic,strong) UICollectionView *collectionView;
 
 @property (nonatomic,copy) SelectedBlock selectedBlock;
+@property (nonatomic,strong) NSMutableArray *collectionArray;
 
 @end

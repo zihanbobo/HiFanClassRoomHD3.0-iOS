@@ -32,9 +32,9 @@
     [self.contentView addSubview:self.leftButton];
     
     [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(17);
+        make.left.equalTo(self.contentView.mas_left).offset(0);
         make.top.equalTo(self.contentView.mas_top).offset(13);
-        make.size.mas_equalTo(CGSizeMake(18, 18));
+        make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
     
     @weakify(self);
@@ -50,7 +50,7 @@
     self.nickNameLabel = [[UILabel alloc]init];
     self.nickNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(38)];
     self.nickNameLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
-    self.nickNameLabel.text = @"MIKE";
+//    self.nickNameLabel.text = @"MIKE";
     [self.contentView addSubview:self.nickNameLabel];
     
     [self.nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,7 +63,7 @@
     self.ageLabel = [[UILabel alloc]init];
     self.ageLabel.font = Font(18);
     self.ageLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-    self.ageLabel.text = @"年龄：5岁";
+//    self.ageLabel.text = @"年龄：5岁";
     [self.contentView addSubview:self.ageLabel];
     
     [self.ageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -77,7 +77,7 @@
     self.levelLabel = [[UILabel alloc]init];
     self.levelLabel.font = Font(18);
     self.levelLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-    self.levelLabel.text = @"级别：A1";
+//    self.levelLabel.text = @"级别：A1";
     [self.contentView addSubview:self.levelLabel];
     
     [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -97,7 +97,18 @@
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
         make.height.mas_offset(1);
     }];
+}
+
+-(void)setCellModel:(HF_MineHomeInfoModel *)cellModel {
+    if (!IsStrEmpty(cellModel.EName)) {
+      self.nickNameLabel.text = cellModel.EName;
+    }
     
+    self.ageLabel.text = [NSString stringWithFormat:@"年龄：%ld岁",cellModel.Age];
+    
+    if (!IsStrEmpty(cellModel.Name)) {
+        self.levelLabel.text = [NSString stringWithFormat:@"级别：%@",cellModel.Name];
+    }
 }
 
 @end

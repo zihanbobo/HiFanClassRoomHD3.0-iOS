@@ -10,7 +10,6 @@
 
 @interface HF_MineHomeTableViewCell()
 @property (nonatomic, strong) UILabel *leftNameLabel; //名称
-@property (nonatomic, strong) UILabel *rightLabel;    //说明
 @end
 
 @implementation HF_MineHomeTableViewCell
@@ -28,7 +27,7 @@
     self.leftNameLabel = [[UILabel alloc]init];
     self.leftNameLabel.font = Font(16);
     self.leftNameLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
-    self.leftNameLabel.text = @"我的课时";
+//    self.leftNameLabel.text = @"我的课时";
     [self.contentView addSubview:self.leftNameLabel];
     
     [self.leftNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -53,7 +52,7 @@
     self.rightLabel = [[UILabel alloc]init];
     self.rightLabel.font = Font(16);
     self.rightLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-    self.rightLabel.text = @"我的课时";
+//    self.rightLabel.text = @"我的课时";
     [self.contentView addSubview:self.rightLabel];
     
     [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -76,5 +75,10 @@
     }];
     
 }
+
+-(void)setLeftLabelString:(NSString *)leftLabelString {
+    self.leftNameLabel.text = leftLabelString;
+}
+
 
 @end

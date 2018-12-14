@@ -352,7 +352,6 @@
     [alert addAction:cancelAction];
     [alert addAction:clernAction];
     [self presentViewController:alert animated:YES completion:nil];
-    
 }
 
 

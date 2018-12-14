@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HF_MineClassCountHeaderModel.h"
 
-typedef void(^BackBlock)(void);
-@interface HF_MineClassCountHeaderCell : UITableViewCell
-@property (nonatomic,copy) BackBlock backBlock;
+@interface HF_MineClassCountHeaderCell : UIView
+@property (nonatomic,strong) HF_MineClassCountHeaderModel *listHeaderModel;
 @end

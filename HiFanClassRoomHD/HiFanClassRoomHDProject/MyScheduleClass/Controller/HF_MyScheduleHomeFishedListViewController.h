@@ -8,6 +8,8 @@
 
 #import "BaseViewController.h"
 
+typedef void(^ScrollHeightBlock)(CGFloat height);
 @interface HF_MyScheduleHomeFishedListViewController : BaseViewController
+@property (nonatomic,copy) ScrollHeightBlock scrollHeightBlock;
 
 @end

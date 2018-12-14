@@ -19,20 +19,15 @@
 #import "GGT_MineSplitViewController.h"
 #import "GGT_OrderCourseViewController.h"
 #import "BaseNavigationController.h"
-//检查设备
-#import "GGT_CheckDevicePopViewController.h"
+
 #import "GGT_PopAlertView.h"
-// 测试拓课
-#import "TKEduClassRoom.h"
-#import "TKMacro.h"
-#import "TKUtil.h"
 
 #import "HF_UpdateModel.h"
 #import "GGT_UnitBookListHeaderModel.h"
 #import "GGT_GradingAlertVC.h"
 #import "GGT_ExperienceUserOrderCourseVC.h"
 
-@interface HF_HomeViewController () <UIPopoverPresentationControllerDelegate, TKEduRoomDelegate>
+@interface HF_HomeViewController () <UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) HF_HomeLeftView *homeLeftView;
 @property (nonatomic, strong) HF_FindMoreHomeViewController *findMoreHomeVC;
 @property (nonatomic, strong) BaseNavigationController *findMoreHomeNav;
@@ -53,6 +48,8 @@
 @property (nonatomic, strong) BaseNavigationController *mineMenuNav;
 @property (nonatomic, getter=isSelectedMineVc) BOOL selectedMineVc;
 @property (nonatomic, strong) UIView *blackBgView;
+@property (nonatomic, strong) UIVisualEffectView *blackBgViewEffe; //定义毛玻璃
+@property (nonatomic, strong) UIButton *hiddenBlackBgViewBtn;
 
 @end
 
@@ -60,6 +57,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     
     [self initView];
     [self setUpNewController];
@@ -127,47 +125,6 @@
 }
 
 
--(BaseNavigationController *)mineMenuNav {
-    if (!_mineMenuNav) {
-        self.mineMenuVC = [[HF_MineHomeViewController alloc] init];
-        self.mineMenuNav = [[BaseNavigationController alloc] initWithRootViewController:self.mineMenuVC];
-        self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, 0, LineH(768));
-        self.mineMenuNav.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-        __weak HF_HomeViewController *weakSelf  = self;
-        self.mineMenuVC.hiddenBlock = ^{
-            [UIView animateWithDuration:0.3f animations:^{
-                weakSelf.blackBgView.hidden = YES;
-                weakSelf.homeLeftView.sanjiaoImgView.hidden = YES;
-                weakSelf.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
-                weakSelf.selectedMineVc = NO;
-            }];
-        };
-        
-    }
-    return _mineMenuNav;
-}
-
--(UIView *)blackBgView {
-    if (!_blackBgView) {
-        self.blackBgView = [[UIView alloc] init];
-        self.blackBgView.frame = CGRectMake(home_left_width, 0, home_right_width, LineH(768));
-        self.blackBgView.backgroundColor = [UICOLOR_FROM_HEX(Color000000) colorWithAlphaComponent:0.4];
-    }
-    return _blackBgView;
-}
-
-
--(void)closeMineMenu {
-    if (self.selectedMineVc == YES) {
-        [UIView animateWithDuration:0.3f animations:^{
-            self.blackBgView.hidden = YES;
-            self.homeLeftView.sanjiaoImgView.hidden = YES;
-            self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
-            self.selectedMineVc = NO;
-        }];
-    }
-}
-
 - (void)initView {
     @weakify(self);
     self.homeLeftView = [[HF_HomeLeftView alloc]init];
@@ -181,6 +138,8 @@
                 {
                     static dispatch_once_t onceToken;
                     dispatch_once(&onceToken, ^{
+                        [self.blackBgView addSubview:self.blackBgViewEffe];
+                        [self.blackBgView addSubview:self.hiddenBlackBgViewBtn];
                         [self.view.window addSubview:self.blackBgView];
                         [self.view.window addSubview:self.mineMenuNav.view];
                     });
@@ -243,77 +202,11 @@
                 }
             }
                 break;
-            case 103:
-            {
-                
-                GGT_CheckDevicePopViewController *vc = [GGT_CheckDevicePopViewController new];
-                BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
-                
-                nav.modalPresentationStyle = UIModalPresentationFormSheet;
-                nav.popoverPresentationController.delegate = self;
-                //    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                
-                // 修改弹出视图的size 在控制器内部修改更好
-                //    vc.preferredContentSize = CGSizeMake(100, 100);
-                [self presentViewController:nav animated:YES completion:nil];
-                
-                
-            }
-                break;
-            case 104:
-            {
-                //#warning 自测直播教室使用，用完之后注释
-                //                HF_ClassRoomModel *tkModel = [[HF_ClassRoomModel alloc] init];
-                //                tkModel.serial = @"1782752406";
-                //                tkModel.host = @"global.talk-cloud.net";
-                //                tkModel.port = @"80";
-                //                tkModel.nickname = @"小ipad";
-                //                tkModel.userrole = @"2";
-                //
-                //                [HF_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:tkModel leftRoomBlock:^{
-                //
-                //                }];
-                //                return;
-                
-                
-                @weakify(self);
-                [GGT_PopAlertView viewWithTitle:xc_servicePhoneNum message:xc_serviceTime bottomButtonTitle:xc_humanCheckTitle bgImg:@"rengongzaixianzhichi_background" type:XCPopTypeHumanService cancleBlock:^{
-                    //                    @strongify(self);
-                    NSLog(@"---点的是叉号---%@", self);
-                } enterBlock:^{
-                    @strongify(self);
-                    NSLog(@"---点按钮---%@", self);
-                    [self getHumanCheckClassroomInfo];
-                }];
-                
-            }
-                break;
                 
             default:
                 break;
         }
     };
-}
-
-// 获取人工检测设备房间的信息
-- (void)getHumanCheckClassroomInfo
-{
-    [[BaseService share] sendGetRequestWithPath:URL_GetOnlineInfns token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
-        
-        // 进入教室
-        if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
-            HF_ClassRoomModel *model = [HF_ClassRoomModel yy_modelWithDictionary:responseObject[@"data"]];
-            if (![model.nickname isKindOfClass:[NSString class]] || model.nickname.length == 0) {
-                model.nickname = @"Student";
-            }
-            
-            [HF_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:model leftRoomBlock:^{
-                
-            }];
-        }
-    } failure:^(NSError *error) {
-        
-    }];
 }
 
 
@@ -478,23 +371,6 @@
     }];
 }
 
-#pragma mark - UIPopoverPresentationControllerDelegate
-//默认返回的是覆盖整个屏幕，需设置成UIModalPresentationNone。
-//- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
-//    return UIModalPresentationNone;
-//}
-
-
-////点击蒙版是否消失，默认为yes；
-//-(BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
-//    return NO;
-//}
-//
-////弹框消失时调用的方法
-//-(void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
-//    NSLog(@"弹框已经消失");
-//}
-
 
 #pragma mark 计算缓存大小
 -(void)getCacheSize {
@@ -535,5 +411,69 @@
     return sizeM;
 }
 
+
+
+
+//MARK:懒加载
+-(BaseNavigationController *)mineMenuNav {
+    if (!_mineMenuNav) {
+        self.mineMenuVC = [[HF_MineHomeViewController alloc] init];
+        self.mineMenuNav = [[BaseNavigationController alloc] initWithRootViewController:self.mineMenuVC];
+        self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, 0, LineH(768));
+        self.mineMenuNav.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+        __weak HF_HomeViewController *weakSelf  = self;
+        self.mineMenuVC.hiddenBlock = ^{
+            [UIView animateWithDuration:0.3f animations:^{
+                weakSelf.blackBgView.hidden = YES;
+                weakSelf.homeLeftView.sanjiaoImgView.hidden = YES;
+                weakSelf.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
+                weakSelf.selectedMineVc = NO;
+            }];
+        };
+        
+    }
+    return _mineMenuNav;
+}
+
+-(UIView *)blackBgView {
+    if (!_blackBgView) {
+        self.blackBgView = [[UIView alloc] init];
+        self.blackBgView.frame = CGRectMake(home_left_width, 0, home_right_width, LineH(768));
+        self.blackBgView.backgroundColor = [UICOLOR_FROM_HEX(Color000000) colorWithAlphaComponent:0.2];
+    }
+    return _blackBgView;
+}
+
+
+-(UIVisualEffectView *)blackBgViewEffe {
+    if (!_blackBgViewEffe) {
+        //UIBlurEffectStyleExtraLight      UIBlurEffectStyleLight      UIBlurEffectStyleDark
+        UIBlurEffect * blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
+        self.blackBgViewEffe = [[UIVisualEffectView alloc] initWithEffect:blur];
+        self.blackBgViewEffe.frame = CGRectMake(home_left_width, 0, home_right_width, LineH(768));
+    }
+    return _blackBgViewEffe;
+}
+
+
+-(UIButton *)hiddenBlackBgViewBtn {
+    if (!_hiddenBlackBgViewBtn) {
+        self.hiddenBlackBgViewBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        [self.hiddenBlackBgViewBtn addTarget:self action:@selector(closeMineMenu) forControlEvents:(UIControlEventTouchUpInside)];
+        self.hiddenBlackBgViewBtn.frame = CGRectMake(home_left_width, 0, home_right_width, LineH(768));
+    }
+    return _hiddenBlackBgViewBtn;
+}
+
+-(void)closeMineMenu {
+    if (self.selectedMineVc == YES) {
+        [UIView animateWithDuration:0.3f animations:^{
+            self.blackBgView.hidden = YES;
+            self.homeLeftView.sanjiaoImgView.hidden = YES;
+            self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
+            self.selectedMineVc = NO;
+        }];
+    }
+}
 
 @end

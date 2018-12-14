@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseScrollHeaderView.h"
+#import "AdCycleScrollView.h"
+#import "HF_FindMoreAdvertModel.h"
 
-@interface HF_FindMoreHomeCycleCell : UITableViewCell
+@interface HF_FindMoreHomeCycleCell : UIView <AdCycleScrollViewDelegate>
+@property (nonatomic, strong) AdCycleScrollView *adScroll;
 
 @end

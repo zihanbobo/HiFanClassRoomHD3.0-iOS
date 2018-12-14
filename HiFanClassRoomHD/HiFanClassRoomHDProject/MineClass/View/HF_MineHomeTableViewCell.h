@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HF_MineHomeTableViewCell : UITableViewCell
-
+@property (nonatomic,copy) NSString *leftLabelString;
+@property (nonatomic, strong) UILabel *rightLabel;    //说明
 @end

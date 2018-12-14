@@ -121,32 +121,7 @@
         make.bottom.equalTo(self.optionsView.mas_bottom).with.offset(-0);
         make.size.mas_equalTo(CGSizeMake(100, 133));
     }];
-    
-    
-    //MARK:检测按钮
-    UIButton *checkButton = [self buildButtonTitle:nil setImage:@"jiance_tabbar"];
-    checkButton.tag = 103;
-    [checkButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:checkButton];
 
-    [checkButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).with.offset(20);
-        make.bottom.equalTo(self.mas_bottom).with.offset(-20);
-        make.size.mas_equalTo(CGSizeMake(24, 24));
-    }];
-    
-    
-    //MARK:电话按钮
-    UIButton *phoneButton = [self buildButtonTitle:nil setImage:@"kefu_tabbar"];
-    phoneButton.tag = 104;
-    [phoneButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:phoneButton];
-
-    [phoneButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.mas_right).with.offset(-20);
-        make.bottom.equalTo(self.mas_bottom).with.offset(-20);
-        make.size.mas_equalTo(CGSizeMake(24, 24));
-    }];
 }
 
 
