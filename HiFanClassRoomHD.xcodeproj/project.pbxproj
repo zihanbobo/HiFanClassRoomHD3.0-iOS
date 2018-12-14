@@ -35,6 +35,8 @@
 		5B19424E21C1254600FD56CF /* HF_MineClassCountListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19424D21C1254600FD56CF /* HF_MineClassCountListModel.m */; };
 		5B1E61DF1F46CC5F00342CC5 /* HF_LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1E61DE1F46CC5F00342CC5 /* HF_LoadingView.m */; };
 		5B20DD361F6B766A0058AEA9 /* HF_UpdateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B20DD351F6B766A0058AEA9 /* HF_UpdateModel.m */; };
+		5B31CF6921C3535300C97181 /* HF_TechnicalDebugViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B31CF6821C3535300C97181 /* HF_TechnicalDebugViewController.m */; };
+		5B31CF6C21C3537100C97181 /* HF_TechnicalDebugView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B31CF6B21C3537100C97181 /* HF_TechnicalDebugView.m */; };
 		5B34522B202C419300850D30 /* GGT_ApplyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B34522A202C419300850D30 /* GGT_ApplyClassViewController.m */; };
 		5B34522E202C48AE00850D30 /* GGT_ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B34522D202C48AE00850D30 /* GGT_ApplyClassCell.m */; };
 		5B345232202C4A7E00850D30 /* GGT_ApplyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B345231202C4A7E00850D30 /* GGT_ApplyClassModel.m */; };
@@ -441,6 +443,10 @@
 		5B1E61DE1F46CC5F00342CC5 /* HF_LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_LoadingView.m; sourceTree = "<group>"; };
 		5B20DD341F6B766A0058AEA9 /* HF_UpdateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_UpdateModel.h; sourceTree = "<group>"; };
 		5B20DD351F6B766A0058AEA9 /* HF_UpdateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_UpdateModel.m; sourceTree = "<group>"; };
+		5B31CF6721C3535300C97181 /* HF_TechnicalDebugViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_TechnicalDebugViewController.h; sourceTree = "<group>"; };
+		5B31CF6821C3535300C97181 /* HF_TechnicalDebugViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_TechnicalDebugViewController.m; sourceTree = "<group>"; };
+		5B31CF6A21C3537100C97181 /* HF_TechnicalDebugView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_TechnicalDebugView.h; sourceTree = "<group>"; };
+		5B31CF6B21C3537100C97181 /* HF_TechnicalDebugView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_TechnicalDebugView.m; sourceTree = "<group>"; };
 		5B345229202C419300850D30 /* GGT_ApplyClassViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ApplyClassViewController.h; sourceTree = "<group>"; };
 		5B34522A202C419300850D30 /* GGT_ApplyClassViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_ApplyClassViewController.m; sourceTree = "<group>"; };
 		5B34522C202C48AE00850D30 /* GGT_ApplyClassCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ApplyClassCell.h; sourceTree = "<group>"; };
@@ -1518,6 +1524,8 @@
 				5B97CA8A21BE8A8900F80BD4 /* HF_MineClassCountViewController.m */,
 				5B5E6F2221C277830067881A /* HF_CheckDeviceViewController.h */,
 				5B5E6F2321C277830067881A /* HF_CheckDeviceViewController.m */,
+				5B31CF6721C3535300C97181 /* HF_TechnicalDebugViewController.h */,
+				5B31CF6821C3535300C97181 /* HF_TechnicalDebugViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1550,6 +1558,8 @@
 				5B112A9621BF6EA4001D7E3E /* HF_MineClassCountListCell.m */,
 				5B5E6F2521C277DB0067881A /* HF_CheckDeviceView.h */,
 				5B5E6F2621C277DB0067881A /* HF_CheckDeviceView.m */,
+				5B31CF6A21C3537100C97181 /* HF_TechnicalDebugView.h */,
+				5B31CF6B21C3537100C97181 /* HF_TechnicalDebugView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3069,6 +3079,7 @@
 			files = (
 				5BE2EDDF216B37DC00845E70 /* TKSplitScreenView.m in Sources */,
 				5B13B8F421AE6C4900CB0A7F /* HF_OrderCourseHomeViewController.m in Sources */,
+				5B31CF6C21C3537100C97181 /* HF_TechnicalDebugView.m in Sources */,
 				5BE2EDCB216B37DC00845E70 /* TKEmotionListView.m in Sources */,
 				5B86F7E8215CFDAE0086E678 /* BaseTableViewCell.m in Sources */,
 				5BE2EDA4216B37DC00845E70 /* BITHockeyHelper.m in Sources */,
@@ -3159,6 +3170,7 @@
 				5BD637E721B8D7F2004051B0 /* HF_FindMoreMoviePlayCell.m in Sources */,
 				5BE2EDC0216B37DC00845E70 /* TKRCGlobalConfig.m in Sources */,
 				5BE2EE07216B37DC00845E70 /* RoomController.m in Sources */,
+				5B31CF6921C3535300C97181 /* HF_TechnicalDebugViewController.m in Sources */,
 				5B3837E621B13A1700339512 /* BaseScrollHeaderViewController.m in Sources */,
 				D6D7CBED1F2199C80087DDA0 /* HF_LaunchViewController.m in Sources */,
 				5BE2EE0C216B37DC00845E70 /* TKUtil.mm in Sources */,

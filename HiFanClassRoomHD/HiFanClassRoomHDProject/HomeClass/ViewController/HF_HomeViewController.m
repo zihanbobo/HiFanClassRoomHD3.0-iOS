@@ -19,20 +19,15 @@
 #import "GGT_MineSplitViewController.h"
 #import "GGT_OrderCourseViewController.h"
 #import "BaseNavigationController.h"
-//检查设备
-#import "GGT_CheckDevicePopViewController.h"
+
 #import "GGT_PopAlertView.h"
-// 测试拓课
-#import "TKEduClassRoom.h"
-#import "TKMacro.h"
-#import "TKUtil.h"
 
 #import "HF_UpdateModel.h"
 #import "GGT_UnitBookListHeaderModel.h"
 #import "GGT_GradingAlertVC.h"
 #import "GGT_ExperienceUserOrderCourseVC.h"
 
-@interface HF_HomeViewController () <UIPopoverPresentationControllerDelegate, TKEduRoomDelegate>
+@interface HF_HomeViewController () <UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) HF_HomeLeftView *homeLeftView;
 @property (nonatomic, strong) HF_FindMoreHomeViewController *findMoreHomeVC;
 @property (nonatomic, strong) BaseNavigationController *findMoreHomeNav;
@@ -207,77 +202,11 @@
                 }
             }
                 break;
-            case 103:
-            {
-                
-                GGT_CheckDevicePopViewController *vc = [GGT_CheckDevicePopViewController new];
-                BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
-                
-                nav.modalPresentationStyle = UIModalPresentationFormSheet;
-                nav.popoverPresentationController.delegate = self;
-                //    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-                
-                // 修改弹出视图的size 在控制器内部修改更好
-                //    vc.preferredContentSize = CGSizeMake(100, 100);
-                [self presentViewController:nav animated:YES completion:nil];
-                
-                
-            }
-                break;
-            case 104:
-            {
-                //#warning 自测直播教室使用，用完之后注释
-                //                HF_ClassRoomModel *tkModel = [[HF_ClassRoomModel alloc] init];
-                //                tkModel.serial = @"1782752406";
-                //                tkModel.host = @"global.talk-cloud.net";
-                //                tkModel.port = @"80";
-                //                tkModel.nickname = @"小ipad";
-                //                tkModel.userrole = @"2";
-                //
-                //                [HF_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:tkModel leftRoomBlock:^{
-                //
-                //                }];
-                //                return;
-                
-                
-                @weakify(self);
-                [GGT_PopAlertView viewWithTitle:xc_servicePhoneNum message:xc_serviceTime bottomButtonTitle:xc_humanCheckTitle bgImg:@"rengongzaixianzhichi_background" type:XCPopTypeHumanService cancleBlock:^{
-                    //                    @strongify(self);
-                    NSLog(@"---点的是叉号---%@", self);
-                } enterBlock:^{
-                    @strongify(self);
-                    NSLog(@"---点按钮---%@", self);
-                    [self getHumanCheckClassroomInfo];
-                }];
-                
-            }
-                break;
                 
             default:
                 break;
         }
     };
-}
-
-// 获取人工检测设备房间的信息
-- (void)getHumanCheckClassroomInfo
-{
-    [[BaseService share] sendGetRequestWithPath:URL_GetOnlineInfns token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
-        
-        // 进入教室
-        if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
-            HF_ClassRoomModel *model = [HF_ClassRoomModel yy_modelWithDictionary:responseObject[@"data"]];
-            if (![model.nickname isKindOfClass:[NSString class]] || model.nickname.length == 0) {
-                model.nickname = @"Student";
-            }
-            
-            [HF_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:model leftRoomBlock:^{
-                
-            }];
-        }
-    } failure:^(NSError *error) {
-        
-    }];
 }
 
 
@@ -441,23 +370,6 @@
         }
     }];
 }
-
-#pragma mark - UIPopoverPresentationControllerDelegate
-//默认返回的是覆盖整个屏幕，需设置成UIModalPresentationNone。
-//- (UIModalPresentationStyle)adaptivePresentationStyleForPresentationController:(UIPresentationController *)controller {
-//    return UIModalPresentationNone;
-//}
-
-
-////点击蒙版是否消失，默认为yes；
-//-(BOOL)popoverPresentationControllerShouldDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
-//    return NO;
-//}
-//
-////弹框消失时调用的方法
-//-(void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
-//    NSLog(@"弹框已经消失");
-//}
 
 
 #pragma mark 计算缓存大小

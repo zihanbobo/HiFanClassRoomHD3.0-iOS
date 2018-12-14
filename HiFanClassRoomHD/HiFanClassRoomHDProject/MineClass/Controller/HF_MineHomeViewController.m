@@ -12,6 +12,7 @@
 #import "HF_MineClassCountViewController.h"
 #import "HF_MineHomeInfoModel.h"
 #import "HF_CheckDeviceViewController.h"
+#import "HF_TechnicalDebugViewController.h"
 
 @interface HF_MineHomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -144,15 +145,9 @@
             
             
         } else if (indexPath.row == 2){ //设备检测
-            HF_CheckDeviceViewController *vc = [HF_CheckDeviceViewController new];
-            BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
-            
-            nav.modalPresentationStyle = UIModalPresentationFormSheet;
-            nav.popoverPresentationController.delegate = self;
-            [self presentViewController:nav animated:YES completion:nil];
-
+            [self checkDeviceClick];
         } else if (indexPath.row == 3){ //在线技术支持
-            
+            [self technicalDebugClick];
         }
     } else if (self.dataArray.count == 5) {
         if (indexPath.row == 1) {
@@ -161,20 +156,13 @@
         } else if (indexPath.row == 2){ //清除缓存
             
         } else if (indexPath.row == 3){ //设备检测
-            HF_CheckDeviceViewController *vc = [HF_CheckDeviceViewController new];
-            BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
-            
-            nav.modalPresentationStyle = UIModalPresentationFormSheet;
-            nav.popoverPresentationController.delegate = self;
-            [self presentViewController:nav animated:YES completion:nil];
-
+            [self checkDeviceClick];
         } else if (indexPath.row == 4){ //在线技术支持
-            
+            [self technicalDebugClick];
         }
         
     }
 }
-
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
@@ -183,6 +171,29 @@
         return LineH(50);
     }
 }
+
+
+//MARK:设备检测
+-(void)checkDeviceClick {
+    HF_CheckDeviceViewController *vc = [HF_CheckDeviceViewController new];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+    
+    nav.modalPresentationStyle = UIModalPresentationFormSheet;
+    nav.popoverPresentationController.delegate = self;
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+
+//MARK:在线技术支持
+-(void)technicalDebugClick {
+    HF_TechnicalDebugViewController *vc = [HF_TechnicalDebugViewController new];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+    nav.modalPresentationStyle = UIModalPresentationFormSheet;
+    nav.popoverPresentationController.delegate = self;
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+
 
 
 //MARK:UI

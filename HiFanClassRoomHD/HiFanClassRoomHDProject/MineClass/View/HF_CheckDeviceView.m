@@ -12,15 +12,12 @@
 //照相机
 @property (nonatomic, strong) UIImageView *cameraBigImgView;
 @property (nonatomic, strong) UIImageView *camerasmallImgView;
-
 //麦克风
 @property (nonatomic, strong) UIImageView *microphoneBigImgView;
 @property (nonatomic, strong) UIImageView *microphonesmallImgView;
-
 //网络
 @property (nonatomic, strong) UIImageView *wifiBigImgView;
 @property (nonatomic, strong) UIImageView *wifismallImgView;
-
 //正在检测
 @property (nonatomic, strong) UILabel *checkingLabel;
 @end
@@ -37,7 +34,7 @@
 - (void)initView {
     //检测设备
     UILabel *titleLabel = [[UILabel alloc]init];
-    titleLabel.font = Font(20);
+    titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(20)];
     titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
     titleLabel.text = @"检测设备";
     [self addSubview:titleLabel];
@@ -152,8 +149,8 @@
     //正在检测
     self.checkingLabel = [[UILabel alloc]init];
     self.checkingLabel.text = @"正在检测...";
-    self.checkingLabel.font = Font(18);
-    self.checkingLabel.textColor = UICOLOR_FROM_HEX(Color232323);
+    self.checkingLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
+    self.checkingLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineH(18)];
     [self addSubview:self.checkingLabel];
     
     [self.checkingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -166,13 +163,10 @@
     
     //取消
     self.cancleButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.cancleButton setTitle:@"取消" forState:(UIControlStateNormal)];
-    [self.cancleButton setTitleColor:UICOLOR_FROM_HEX(ColorFF6600) forState:(UIControlStateNormal)];
-    self.cancleButton.titleLabel.font = Font(18);
-    self.cancleButton.layer.masksToBounds = YES;
-    self.cancleButton.layer.cornerRadius = LineW(22);
-    self.cancleButton.layer.borderWidth = LineW(1);
-    self.cancleButton.layer.borderColor = UICOLOR_FROM_HEX(ColorFF6600).CGColor;
+    [self.cancleButton setBackgroundImage:UIIMAGE_FROM_NAME(@"空心按钮") forState:UIControlStateNormal];
+    [self.cancleButton setTitle:@"取 消" forState:(UIControlStateNormal)];
+    [self.cancleButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:(UIControlStateNormal)];
+    self.cancleButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineH(18)];
     [self addSubview:self.cancleButton];
     
     
@@ -186,19 +180,17 @@
     
     //去设置
     self.setButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    [self.setButton setBackgroundImage:UIIMAGE_FROM_NAME(@"实心按钮") forState:UIControlStateNormal];
     [self.setButton setTitle:@"去设置" forState:(UIControlStateNormal)];
     [self.setButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:(UIControlStateNormal)];
-    self.setButton.titleLabel.font = Font(18);
-    self.setButton.layer.masksToBounds = YES;
-    self.setButton.layer.cornerRadius = LineW(22);
-    self.setButton.backgroundColor = UICOLOR_FROM_HEX(Color2B8EEF);
+    self.setButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineH(18)];
     [self addSubview:self.setButton];
     self.setButton.hidden = YES;
     
     [self.setButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.mas_bottom).with.offset(-40);
+        make.bottom.equalTo(self.mas_bottom).with.offset(-25);
         make.centerX.equalTo(self.mas_centerX);
-        make.size.mas_equalTo(CGSizeMake(324, 44));
+        make.size.mas_equalTo(CGSizeMake(321, 49));
     }];
     
     
@@ -286,9 +278,9 @@
             if (singleton.cameraStatus == YES && singleton.micStatus == YES && singleton.netStatus == YES) {
                 self.checkingLabel.text = @"所有检测项目完成并通过！";
                 self.cancleButton.hidden = NO;
-                [self.cancleButton setTitle:@"确定" forState:(UIControlStateNormal)];
+                [self.cancleButton setTitle:@"确 定" forState:(UIControlStateNormal)];
+                [self.cancleButton setBackgroundImage:UIIMAGE_FROM_NAME(@"实心按钮") forState:UIControlStateNormal];
                 [self.cancleButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:(UIControlStateNormal)];
-                self.cancleButton.backgroundColor = UICOLOR_FROM_HEX(ColorFF6600);
                 self.setButton.hidden = YES;
                 return ;
             }
@@ -317,9 +309,10 @@
             for (int i=0; i<alertArr.count; i++) {
                 UILabel *alertLabel = [[UILabel alloc]init];
                 alertLabel.text = alertArr[i];
-                alertLabel.font = Font(18);
                 alertLabel.textAlignment = NSTextAlignmentCenter;
-                alertLabel.textColor = UICOLOR_FROM_HEX(Color232323);
+                alertLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
+                alertLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineH(18)];
+
                 [self addSubview:alertLabel];
                 
                 CGFloat h;
@@ -342,9 +335,9 @@
             if (singleton.cameraStatus == YES && singleton.micStatus == YES && singleton.netStatus == NO) {
                 self.cancleButton.hidden = NO;
                 self.checkingLabel.hidden = YES;
-                [self.cancleButton setTitle:@"确定" forState:(UIControlStateNormal)];
+                [self.cancleButton setBackgroundImage:UIIMAGE_FROM_NAME(@"实心按钮") forState:UIControlStateNormal];
+                [self.cancleButton setTitle:@"确 定" forState:(UIControlStateNormal)];
                 [self.cancleButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:(UIControlStateNormal)];
-                self.cancleButton.backgroundColor = UICOLOR_FROM_HEX(ColorFF6600);
                 self.setButton.hidden = YES;
                 
             } else {

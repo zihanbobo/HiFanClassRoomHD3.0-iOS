@@ -10,7 +10,6 @@
 #import "HF_CheckDeviceView.h"
 
 @interface HF_CheckDeviceViewController ()
-@property (nonatomic, strong) UIButton *xc_rightItem;
 @property (nonatomic, strong) HF_CheckDeviceView *checkDeviceView;
 @end
 
@@ -41,10 +40,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    
     [self initView];
-    
 }
 
 - (void)initView {
@@ -53,13 +49,17 @@
     self.checkDeviceView = [[HF_CheckDeviceView alloc]init];
     [self.view addSubview:self.checkDeviceView];
 
-    @weakify(self);
     [self.checkDeviceView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
     }];
     
+    @weakify(self);
+    [[self.checkDeviceView.closeButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(id x) {
+         @strongify(self);
+         [self dismissViewControllerAnimated:YES completion:nil];
+     }];
     
-
     [[self.checkDeviceView.cancleButton rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
          @strongify(self);
@@ -70,7 +70,6 @@
     [[self.checkDeviceView.setButton rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
          [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
-         
      }];
     
 }

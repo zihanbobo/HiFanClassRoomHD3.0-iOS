@@ -31,8 +31,6 @@
     [super viewDidLoad];
 
     [self initUI];
-
-
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.headerAdArray = [NSMutableArray array];
