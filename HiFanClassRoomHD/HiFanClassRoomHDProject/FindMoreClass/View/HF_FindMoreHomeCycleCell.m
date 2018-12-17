@@ -38,7 +38,9 @@
     [[headerView.rightButton rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
          @strongify(self);
-         NSLog(@"发现");
+         if (self.favoriteBtnBlock) {
+             self.favoriteBtnBlock();
+         }
      }];
     
     self.adScroll = [[AdCycleScrollView alloc] init];
@@ -47,6 +49,10 @@
     self.adScroll.pageControlAliment = AdCycleScrollViewPageControlAlimentCenter;
     [self addSubview:self.adScroll];
 
+}
+
+- (void)drawRect:(CGRect)rect {
+    [self.adScroll xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(10)];
 }
 
 

@@ -63,7 +63,7 @@
     self.classInfoLabel = [[UILabel alloc]init];
     self.classInfoLabel.font = Font(12);
 //    self.classInfoLabel.text = @"初试字母 快速入门";
-    self.classInfoLabel.textColor = UICOLOR_FROM_HEX(Color000000);
+    self.classInfoLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
     [self.contentView addSubview:self.classInfoLabel];
     
     

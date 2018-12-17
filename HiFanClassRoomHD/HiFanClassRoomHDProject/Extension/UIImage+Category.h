@@ -22,5 +22,6 @@
 + (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size;
 
 + (UIImage *)xc_getLaunchImage;
-
+//高斯模糊
++(UIImage *)boxblurImage:(UIImage *)image withBlurNumber:(CGFloat)blur;
 @end

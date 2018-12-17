@@ -34,9 +34,9 @@
 -(void)initUI {
     //课程名称
     UILabel *classNameLabel = [[UILabel alloc]init];
-    classNameLabel.font = Font(26);
     classNameLabel.text = @"hi翻放映厅";
-    classNameLabel.textColor = UICOLOR_FROM_HEX(Color000000);
+    classNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(26)];
+    classNameLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
     [self.contentView addSubview:classNameLabel];
     
     
@@ -44,6 +44,20 @@
         make.top.equalTo(self.contentView.mas_top).offset(25);
         make.left.equalTo(self.contentView.mas_left).offset(17);
         make.height.mas_equalTo(26);
+    }];
+    
+    //课程描述
+    UILabel *classinfoLabel = [[UILabel alloc]init];
+    classinfoLabel.font = Font(12);
+    classinfoLabel.text = @"外教精讲 带你玩转英语";
+    classinfoLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
+    [self.contentView addSubview:classinfoLabel];
+    
+    
+    [classinfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(classNameLabel.mas_bottom);
+        make.left.equalTo(classNameLabel.mas_right).offset(10);
+        make.height.mas_equalTo(12);
     }];
     
     

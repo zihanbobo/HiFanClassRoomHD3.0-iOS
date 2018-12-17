@@ -15,7 +15,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import <WebKit/WebKit.h>
-
+#import <Accelerate/Accelerate.h> //高斯模糊
 
 
 #import <ReactiveCocoa/ReactiveCocoa.h>
@@ -54,7 +54,7 @@
 #import "UITableView+XCPlaceholderView.h"
 #import "XCLogManager.h"
 #import "UIImage+Category.h"
-
+#import "HF_RefreshHeader.h"
 
 
 // 模型

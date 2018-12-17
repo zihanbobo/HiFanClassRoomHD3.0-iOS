@@ -11,6 +11,8 @@
 
 @interface BaseViewController : UIViewController
 @property (nonatomic, strong) HF_LoadingView *loadingView;
+@property (nonatomic, strong) NSMutableArray *refreshImages;
+@property (nonatomic, strong) NSMutableArray *pullingImages;
 
 //左侧返回按钮
 - (void)setLeftBackButton;
@@ -20,6 +22,9 @@
 
 //导航左侧,图片带文字
 - (void)setLeftItem:(NSString *)imageName title:(NSString *)title;
+
+//导航右侧,图片带文字
+- (void)setRightItem:(NSString *)imageName title:(NSString *)title;
 
 //导航右侧文字
 - (void)setRightBarButtonItemTitle:(NSString *)title;

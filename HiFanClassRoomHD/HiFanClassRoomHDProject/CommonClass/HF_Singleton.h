@@ -12,6 +12,8 @@
 @interface HF_Singleton : NSObject
 
 + (HF_Singleton *)sharedSingleton;
+//是否显示我的界面
+@property (nonatomic,assign) BOOL isShowMineView;
 
 //网络状态
 @property (nonatomic) BOOL netStatus;

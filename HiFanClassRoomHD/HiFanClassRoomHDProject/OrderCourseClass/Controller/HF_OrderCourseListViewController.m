@@ -22,74 +22,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = UICOLOR_FROM_HEX(0xf2f2f2);
-    //导航栏设置
-    [self setNavationStyle];
+ 
+    [self setLeftItem:@"箭头" title:@"Stage2 已完成3节/共15节"];
+    [self setRightItem:@"帮助" title:@"取消课程规则"];
+    
     //日期选择视图
     [self setDateTimeSelectView];
     //约课说明
     [self setExplainView];
-    
-    
-    
 }
-#pragma mark --- 导航栏设置
-- (void)setNavationStyle{
-    self.navigationController.navigationBar.barTintColor = UICOLOR_FROM_HEX(0xf2f2f2);
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    //分割线
-    UIView *lineView = [UIView new];
-    lineView.backgroundColor = UICOLOR_FROM_HEX(0xEAEFF3);
-    [self.view addSubview:lineView];
-    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(LineW(890));
-        make.height.mas_equalTo(1);
-        make.top.equalTo(self.view.mas_top).offset(0);
-        make.centerX.equalTo(self.view.mas_centerX);
-    }];
-    //左侧按钮
-    UIButton *leftBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftBtn addTarget:self action:@selector(goToBack) forControlEvents:UIControlEventTouchUpInside];
-    leftBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    NSString *leftBtnTitle = @"Stage2 已完成3节/共15节";
-    UIImage *leftBtnImage = [[UIImage imageNamed:@"箭头"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [leftBtn setTitle:leftBtnTitle forState:UIControlStateNormal];
-    [leftBtn setTitleColor:UICOLOR_FROM_HEX_ALPHA(0x000000, 70) forState:UIControlStateNormal];
-    leftBtn.titleLabel.font = Font(20);
-    [leftBtn setImage:leftBtnImage forState:UIControlStateNormal];
-    leftBtn.frame = CGRectMake(0, 0, 280, 20);
-    leftBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 30, 0, 0);
-    leftBtn.imageEdgeInsets = UIEdgeInsetsMake(1, 0, 1, 0);
-    UIBarButtonItem *left = [[UIBarButtonItem alloc] initWithCustomView:leftBtn];
-    self.navigationItem.leftBarButtonItem = left;
-    
-    //右侧按钮
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightBtn addTarget:self action:@selector(helpBtn) forControlEvents:UIControlEventTouchUpInside];
-    rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentCenter;
-    NSString *title = @"取消课程规则";
-    UIImage *image = [[UIImage imageNamed:@"帮助"] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [rightBtn setTitle:title forState:UIControlStateNormal];
-    [rightBtn setTitleColor:UICOLOR_FROM_HEX_ALPHA(0x000000, 40) forState:UIControlStateNormal];
-    [rightBtn setImage:image forState:UIControlStateNormal];
-    rightBtn.titleLabel.font = Font(16);
-    rightBtn.frame = CGRectMake(0, 0, 120, 22);
-//    CGSize titleSize = [title sizeWithFont:[UIFont systemFontOfSize:10.f]];
-//    CGSize imageSize = image.size;
-    rightBtn.titleEdgeInsets = UIEdgeInsetsMake(2, 5, 2, 0);
-    rightBtn.imageEdgeInsets = UIEdgeInsetsMake(2.5,0,2.5,0);
-    UIBarButtonItem *right = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-    self.navigationItem.rightBarButtonItem = right;
-    
-    
-}
-- (void)goToBack {
+
+- (void)leftAction {
     [self.navigationController popViewControllerAnimated:YES];
 }
-- (void)helpBtn {
+
+- (void)rightAction {
     NSLog(@"弹出规则说明");
 }
+
 #pragma mark --  日期时间选择视图
 - (void)setDateTimeSelectView {
     HF_OrderDateListView *dateListView = [HF_OrderDateListView new];

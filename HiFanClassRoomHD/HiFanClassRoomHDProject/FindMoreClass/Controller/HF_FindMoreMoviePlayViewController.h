@@ -7,7 +7,8 @@
 //
 
 #import "BaseViewController.h"
+#import "HF_FindMoreInstructionalTypeListModel.h"
 
 @interface HF_FindMoreMoviePlayViewController : BaseViewController
-
+@property (nonatomic,strong) HF_FindMoreInstructionalTypeListModel *model;
 @end

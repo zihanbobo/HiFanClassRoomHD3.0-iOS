@@ -13,15 +13,13 @@
 #import "BaseScrollHeaderCell.h"
 #import "HF_FindMoreAdvertModel.h"
 #import "HF_FindMoreInstructionalTypeListModel.h"
-
+#import "HF_FindMoreFavoriteViewController.h"
+#import "HF_FindMoreInstructionalListViewController.h"
 
 @interface HF_FindMoreHomeViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView; //tableView
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *headerAdArray;
-
-
-
 @end
 
 @implementation HF_FindMoreHomeViewController
@@ -78,8 +76,7 @@
 }
 
 
-
-
+//MARK:UITableView 代理
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
 }
@@ -107,17 +104,15 @@
     
     cell.selectedBlock = ^(NSInteger index) {
         NSLog(@"点击的是 %ld 个",(long)index);
-        HF_FindMoreMoviePlayViewController *vc = [[HF_FindMoreMoviePlayViewController alloc] init];
+        HF_FindMoreInstructionalTypeListModel *model = [self.dataArray safe_objectAtIndex:index];
+        HF_FindMoreInstructionalListViewController *vc = [[HF_FindMoreInstructionalListViewController alloc] init];
+        vc.model = model;
         [self.navigationController pushViewController:vc animated:YES];
     };
     
     return cell;
-    
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
- 
-}
 
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -134,6 +129,11 @@
     headerView.adScroll.imagesUrlArray = picArray;
     [headerView.adScroll refreshPageControlStyle];
     
+    headerView.favoriteBtnBlock = ^{
+        NSLog(@"我喜欢的");
+        HF_FindMoreFavoriteViewController *vc = [[HF_FindMoreFavoriteViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    };
     
     return headerView;
 }
@@ -144,20 +144,18 @@
 }
 
 
-//MARK:UI
+//MARK:UI加载
 - (void)initUI {
     self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view.mas_top).offset(0);
+        make.top.equalTo(self.view.mas_top).offset(20);
         make.bottom.equalTo(self.view.mas_bottom).offset(-0);
     }];
-    
-  
 }
 
-
+//MARK:懒加载
 -(UITableView *)tableView {
     if (!_tableView) {
         self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];

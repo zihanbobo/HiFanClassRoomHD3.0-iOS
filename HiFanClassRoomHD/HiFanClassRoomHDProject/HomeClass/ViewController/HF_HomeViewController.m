@@ -50,7 +50,7 @@
 @property (nonatomic, strong) UIView *blackBgView;
 @property (nonatomic, strong) UIVisualEffectView *blackBgViewEffe; //定义毛玻璃
 @property (nonatomic, strong) UIButton *hiddenBlackBgViewBtn;
-
+@property (nonatomic, strong) HF_Singleton *sin;
 @end
 
 @implementation HF_HomeViewController
@@ -63,9 +63,10 @@
     [self setUpNewController];
 
     self.selectedMineVc = NO;
-    
-    HF_Singleton *sin = [HF_Singleton sharedSingleton];
-    if (sin.isShowVersionUpdateAlert == YES) {
+    self.sin = [HF_Singleton sharedSingleton];
+    self.sin.isShowMineView = NO;
+
+    if (self.sin.isShowVersionUpdateAlert == YES) {
         [self updateNewVersion];
     }
     [self judgeStudentLevel];
@@ -136,17 +137,17 @@
         switch (button.tag) {
             case 99:
                 {
-                    static dispatch_once_t onceToken;
-                    dispatch_once(&onceToken, ^{
+                    
+                    if (self.sin.isShowMineView == NO) { //保证每次只加载一次
+                        self.sin.isShowMineView = YES;
                         [self.blackBgView addSubview:self.blackBgViewEffe];
                         [self.blackBgView addSubview:self.hiddenBlackBgViewBtn];
-                        [self.view.window addSubview:self.blackBgView];
-                        [self.view.window addSubview:self.mineMenuNav.view];
-                    });
+                        [self.view.superview addSubview:self.blackBgView];
+                        [self.view.superview addSubview:self.mineMenuNav.view];
+                    }
 
                     if (self.selectedMineVc == NO) {
                         [UIView animateWithDuration:0.3f animations:^{
-                            
                             self.blackBgView.hidden = NO;
                             self.homeLeftView.sanjiaoImgView.hidden = NO;
                             self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, LineW(360), LineH(768));
