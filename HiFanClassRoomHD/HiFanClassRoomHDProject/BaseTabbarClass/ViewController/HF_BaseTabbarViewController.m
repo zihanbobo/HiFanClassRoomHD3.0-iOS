@@ -1,20 +1,22 @@
 //
-//  HF_HomeViewController.m
+//  HF_BaseTabbarViewController.m
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2018/11/28.
 //  Copyright © 2018 XieHenry. All rights reserved.
 //
 
-#import "HF_HomeViewController.h"
-#import "HF_HomeLeftView.h"
+#import "HF_BaseTabbarViewController.h"
+#import "HF_BaseTabbarLeftView.h"
+#import "HF_HomeViewController.h"              //首页
 #import "HF_FindMoreHomeViewController.h"      //发现
-#import "HF_MyScheduleHomeViewController.h"   //课表
+#import "HF_MyScheduleHomeViewController.h"    //课程
+#import "HF_ServiceHomeViewController.h"       //服务
+#import "HF_MineHomeViewController.h"          //我的
+
+
+
 #import "HF_OrderCourseHomeViewController.h"   //约课
-#import "HF_MineHomeViewController.h"
-
-
-
 #import "GGT_ScheduleViewController.h"
 #import "GGT_MineSplitViewController.h"
 #import "GGT_OrderCourseViewController.h"
@@ -27,13 +29,20 @@
 #import "GGT_GradingAlertVC.h"
 #import "GGT_ExperienceUserOrderCourseVC.h"
 
-@interface HF_HomeViewController () <UIPopoverPresentationControllerDelegate>
-@property (nonatomic, strong) HF_HomeLeftView *homeLeftView;
+@interface HF_BaseTabbarViewController () <UIPopoverPresentationControllerDelegate>
+@property (nonatomic, strong) HF_BaseTabbarLeftView *homeLeftView;
+//首页
+@property (nonatomic, strong) HF_HomeViewController *homeVc;
+@property (nonatomic, strong) BaseNavigationController *homeNav;
+//发现
 @property (nonatomic, strong) HF_FindMoreHomeViewController *findMoreHomeVC;
 @property (nonatomic, strong) BaseNavigationController *findMoreHomeNav;
-
+//课程
 @property (nonatomic, strong) HF_MyScheduleHomeViewController *courseTableHomeVc;
 @property (nonatomic, strong) BaseNavigationController *courseTableHomeNav;
+//服务
+@property (nonatomic, strong) HF_ServiceHomeViewController *serviceHomeVc;
+@property (nonatomic, strong) BaseNavigationController *serviceHomeNav;
 
 @property (nonatomic, strong) HF_OrderCourseHomeViewController *orderCourseHomeVc;
 @property (nonatomic, strong) BaseNavigationController *orderCourseHomeNav;
@@ -43,7 +52,7 @@
 @property (nonatomic, strong) UIViewController *currentVC;
 
 
-//显示所有等级的Vc
+//我的
 @property (nonatomic, strong) HF_MineHomeViewController *mineMenuVC;
 @property (nonatomic, strong) BaseNavigationController *mineMenuNav;
 @property (nonatomic, getter=isSelectedMineVc) BOOL selectedMineVc;
@@ -53,7 +62,7 @@
 @property (nonatomic, strong) HF_Singleton *sin;
 @end
 
-@implementation HF_HomeViewController
+@implementation HF_BaseTabbarViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -76,6 +85,12 @@
 
 
 - (void)setUpNewController {
+    //首页
+    self.homeVc = [[HF_HomeViewController alloc] init];
+    self.homeNav = [[BaseNavigationController alloc] initWithRootViewController:self.homeVc];
+    [self.homeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+    [self addChildViewController:self.homeNav];
+    
     //发现
     self.findMoreHomeVC = [[HF_FindMoreHomeViewController alloc] init];
     self.findMoreHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.findMoreHomeVC];
@@ -87,10 +102,16 @@
     self.courseTableHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.courseTableHomeVc];
     [self.courseTableHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
 
+    //服务
+        self.serviceHomeVc = [[HF_ServiceHomeViewController alloc] init];
+        self.serviceHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.serviceHomeVc];
+        [self.serviceHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+    
+    
     //约课
-    self.orderCourseHomeVc = [[HF_OrderCourseHomeViewController alloc] init];
-    self.orderCourseHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.orderCourseHomeVc];
-    [self.orderCourseHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+//    self.orderCourseHomeVc = [[HF_OrderCourseHomeViewController alloc] init];
+//    self.orderCourseHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.orderCourseHomeVc];
+//    [self.orderCourseHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
 
     //体验课
 //    self.xc_experienceVC = [[GGT_ExperienceUserOrderCourseVC alloc] init];
@@ -98,8 +119,8 @@
 //    [self.xc_experienceNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
     
     //  默认,第一个视图(你会发现,全程就这一个用了addSubview)
-    [self.view addSubview:self.findMoreHomeNav.view];
-    self.currentVC = self.findMoreHomeNav;
+    [self.view addSubview:self.homeNav.view];
+    self.currentVC = self.homeNav;
 }
 
 //  切换各个标签内容
@@ -128,15 +149,15 @@
 
 - (void)initView {
     @weakify(self);
-    self.homeLeftView = [[HF_HomeLeftView alloc]init];
-    self.homeLeftView = [[HF_HomeLeftView alloc]initWithFrame:CGRectMake(0, 0, home_left_width, SCREEN_HEIGHT())];
+    self.homeLeftView = [[HF_BaseTabbarLeftView alloc]init];
+    self.homeLeftView = [[HF_BaseTabbarLeftView alloc]initWithFrame:CGRectMake(0, 0, home_left_width, SCREEN_HEIGHT())];
     [self.view addSubview:self.homeLeftView];
     
     self.homeLeftView.buttonClickBlock = ^(UIButton *button) {
         @strongify(self);
         switch (button.tag) {
             case 99:
-                {
+                { //我的
                     
                     if (self.sin.isShowMineView == NO) { //保证每次只加载一次
                         self.sin.isShowMineView = YES;
@@ -164,46 +185,54 @@
                 }
                 break;
             case 100:
-            {
+            {  //首页
                 
                 [self closeMineMenu];
                 
                 //点击处于当前页面的按钮,直接跳出
+                if (self.currentVC == self.homeNav) {
+                    return;
+                } else {
+                    [self replaceController:self.currentVC newController:self.homeNav];
+                }
+            }
+                break;
+            case 101:
+            { //发现
+//                [self switchViewController];
+                [self closeMineMenu];
+                
                 if (self.currentVC == self.findMoreHomeNav) {
                     return;
                 } else {
                     [self replaceController:self.currentVC newController:self.findMoreHomeNav];
                 }
+                
             }
                 break;
-            case 101:
-            {
-//                [self switchViewController];
+            case 102:
+            { //课程
                 [self closeMineMenu];
 
-                
                 
                 if (self.currentVC == self.courseTableHomeNav) {
                     return;
                 } else {
                     [self replaceController:self.currentVC newController:self.courseTableHomeNav];
                 }
-                
             }
                 break;
-            case 102:
-            {
+            case 103:
+            { //服务
                 [self closeMineMenu];
-
                 
-                if (self.currentVC == self.orderCourseHomeNav) {
+                if (self.currentVC == self.serviceHomeNav) {
                     return;
                 } else {
-                    [self replaceController:self.currentVC newController:self.orderCourseHomeNav];
+                    [self replaceController:self.currentVC newController:self.serviceHomeNav];
                 }
             }
                 break;
-                
             default:
                 break;
         }
@@ -213,7 +242,6 @@
 
 
 - (void)updateNewVersion {
-    
     // 版本号
     NSString *version = [APP_VERSION() stringByReplacingOccurrencesOfString:@"." withString:@""];
     
@@ -422,7 +450,7 @@
         self.mineMenuNav = [[BaseNavigationController alloc] initWithRootViewController:self.mineMenuVC];
         self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, 0, LineH(768));
         self.mineMenuNav.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-        __weak HF_HomeViewController *weakSelf  = self;
+        __weak HF_BaseTabbarViewController *weakSelf  = self;
         self.mineMenuVC.hiddenBlock = ^{
             [UIView animateWithDuration:0.3f animations:^{
                 weakSelf.blackBgView.hidden = YES;

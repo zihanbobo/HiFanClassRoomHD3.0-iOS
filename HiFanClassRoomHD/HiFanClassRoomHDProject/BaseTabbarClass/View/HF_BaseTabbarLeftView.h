@@ -1,5 +1,5 @@
 //
-//  HF_HomeLeftView.h
+//  HF_BaseTabbarLeftView.h
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2018/11/28.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^XCButtonClickBlock)(UIButton *button);
-@interface HF_HomeLeftView : UIView
+@interface HF_BaseTabbarLeftView : UIView
 @property (nonatomic, copy) XCButtonClickBlock buttonClickBlock;
 @property (nonatomic, strong) UIImageView *sanjiaoImgView;
 

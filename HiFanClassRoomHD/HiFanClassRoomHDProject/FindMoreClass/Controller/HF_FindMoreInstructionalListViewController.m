@@ -35,7 +35,7 @@
     MJRefreshGifHeader *header = [HF_RefreshHeader headerWithRefreshingBlock:^{
         self.dataArray = [NSMutableArray array];
         [self getLoadData];
-    }]; 
+    }];
     
     [header setImages:self.refreshImages duration:1 forState:MJRefreshStateRefreshing];
 //    [header setImages:self.pullingImages duration:1 forState:MJRefreshStateIdle];

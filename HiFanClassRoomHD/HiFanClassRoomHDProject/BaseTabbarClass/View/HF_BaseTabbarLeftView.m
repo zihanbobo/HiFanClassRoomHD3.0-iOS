@@ -1,21 +1,21 @@
 //
-//  HF_HomeLeftView.m
+//  HF_BaseTabbarLeftView.m
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2018/11/28.
 //  Copyright © 2018 XieHenry. All rights reserved.
 //
 
-#import "HF_HomeLeftView.h"
+#import "HF_BaseTabbarLeftView.h"
 
-@interface HF_HomeLeftView()
+@interface HF_BaseTabbarLeftView()
 //课表和我的view
 @property (nonatomic,strong) UIView *optionsView;
 @property (nonatomic,strong) UIButton *peopleIconButton;
 @end
 
 
-@implementation HF_HomeLeftView
+@implementation HF_BaseTabbarLeftView
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
@@ -61,39 +61,56 @@
     }];
     self.sanjiaoImgView.hidden = YES;
     
+    
     self.optionsView = [[UIView alloc]init];
     [self addSubview:self.optionsView];
-    
     [self.optionsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self);
         make.top.equalTo(self.peopleIconButton.mas_bottom).with.offset(40);
-        make.height.mas_offset(399); //133*3
+        make.height.mas_offset(532); //133*4
     }];
     
+    //MARK:首页
+    UIButton *homeButton = [self buildButtonTitle:@"首页" setImage:@"shouye_tabbar"];
+    homeButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
+    homeButton.backgroundColor = UICOLOR_FROM_HEX_ALPHA(ColorFFFFFF, 20);
+    homeButton.titleLabel.font = Font(14);
+    homeButton.tag = 100;
+    homeButton.selected = YES;
+    [homeButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self initButton:homeButton];
+    [self.optionsView addSubview:homeButton];
     
-    //MARK:发现按钮
-    UIButton *findMoreButton = [self buildButtonTitle:@"发现" setImage:@"faxian_tabbar"];
-    findMoreButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
-    findMoreButton.backgroundColor = UICOLOR_FROM_HEX_ALPHA(ColorFFFFFF, 20);
-    findMoreButton.titleLabel.font = Font(14);
-    findMoreButton.tag = 100;
-    findMoreButton.selected = YES;
-    [findMoreButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self initButton:findMoreButton];
-    [self.optionsView addSubview:findMoreButton];
-    
-    [findMoreButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [homeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.optionsView.mas_centerX);
         make.top.equalTo(self.optionsView.mas_top).with.offset(0);
         make.size.mas_equalTo(CGSizeMake(100, 133));
     }];
     
     
-    //MARK:课表按钮
-    UIButton *courseButton = [self buildButtonTitle:@"课表" setImage:@"kebiao_tabbar"];
+    
+    //MARK:发现按钮
+    UIButton *findMoreButton = [self buildButtonTitle:@"发现" setImage:@"faxian_tabbar"];
+    findMoreButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
+    findMoreButton.titleLabel.font = Font(14);
+    findMoreButton.tag = 101;
+    findMoreButton.selected = NO;
+    [findMoreButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self initButton:findMoreButton];
+    [self.optionsView addSubview:findMoreButton];
+    
+    [findMoreButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.optionsView.mas_centerX);
+        make.top.equalTo(homeButton.mas_bottom).with.offset(0);
+        make.size.mas_equalTo(CGSizeMake(100, 133));
+    }];
+    
+    
+    //MARK:课程按钮
+    UIButton *courseButton = [self buildButtonTitle:@"课程" setImage:@"kebiao_tabbar"];
     courseButton.titleLabel.font = Font(14);
     courseButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
-    courseButton.tag = 101;
+    courseButton.tag = 102;
     courseButton.selected = NO;
     [courseButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self initButton:courseButton];
@@ -106,17 +123,17 @@
     }];
     
     
-    //MARK:约课按钮
-    UIButton *bookClassButton = [self buildButtonTitle:@"约课" setImage:@"yueke_tabbar"];
-    bookClassButton.titleLabel.font = Font(14);
-    bookClassButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
-    bookClassButton.tag = 102;
-    bookClassButton.selected = NO;
-    [bookClassButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self initButton:bookClassButton];
-    [self.optionsView addSubview:bookClassButton];
+    //MARK:服务按钮
+    UIButton *fuwuButton = [self buildButtonTitle:@"服务" setImage:@"xiaolian_tabbar"];
+    fuwuButton.titleLabel.font = Font(14);
+    fuwuButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
+    fuwuButton.tag = 103;
+    fuwuButton.selected = NO;
+    [fuwuButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self initButton:fuwuButton];
+    [self.optionsView addSubview:fuwuButton];
     
-    [bookClassButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [fuwuButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.optionsView.mas_centerX);
         make.bottom.equalTo(self.optionsView.mas_bottom).with.offset(-0);
         make.size.mas_equalTo(CGSizeMake(100, 133));
@@ -146,7 +163,7 @@
     
     button.selected = YES;
     
-    if (button.tag == 100 || button.tag == 101 || button.tag == 102) {
+    if (button.tag == 100 || button.tag == 101 || button.tag == 102 || button.tag == 103) {
         button.backgroundColor = UICOLOR_FROM_HEX_ALPHA(ColorFFFFFF, 20);
     }
     

@@ -8,7 +8,7 @@
 
 #import "HF_RegisterViewController.h"
 #import "HF_RegisterView.h"
-#import "HF_HomeViewController.h"
+#import "HF_BaseTabbarViewController.h"
 
 @interface HF_RegisterViewController ()
 
@@ -109,7 +109,7 @@
     [UserDefaults() synchronize];
     HF_Singleton *sin = [HF_Singleton sharedSingleton];
     sin.isShowVersionUpdateAlert = YES;
-    HF_HomeViewController *homeVc = [[HF_HomeViewController alloc]init];
+    HF_BaseTabbarViewController *homeVc = [[HF_BaseTabbarViewController alloc]init];
     [self.navigationController pushViewController:homeVc animated:YES];
 }
 

@@ -14,6 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        self.backgroundColor = UICOLOR_FROM_HEX(0xF0F7FD);
         [self setUpLoginView];
     }
     return self;

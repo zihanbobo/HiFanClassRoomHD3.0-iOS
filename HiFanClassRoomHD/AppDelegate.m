@@ -12,7 +12,7 @@
 #import "HF_LoginViewController.h"
 #import "BaseNavigationController.h"
 #import <AVFoundation/AVFoundation.h>
-#import "HF_HomeViewController.h"
+#import "HF_BaseTabbarViewController.h"
 #import <UMSocialCore/UMSocialCore.h>
 #import "HF_LaunchViewController.h"
 #import "UMMobClick/MobClick.h"
@@ -160,7 +160,7 @@ static BOOL isProduction = false;
     
     self.window.backgroundColor = [UIColor whiteColor];
     HF_LoginViewController *loginVc = [[HF_LoginViewController alloc]init];
-    HF_HomeViewController *homeVc = [[HF_HomeViewController alloc]init];
+    HF_BaseTabbarViewController *homeVc = [[HF_BaseTabbarViewController alloc]init];
     
     //对usertoken赋值,如果为空，就跳转到登录页
     if (IsStrEmpty([UserDefaults() objectForKey:K_userToken])) {

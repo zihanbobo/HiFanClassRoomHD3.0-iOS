@@ -10,7 +10,7 @@
 #import "HF_ForgotPasswordViewController.h"
 #import "HF_RegisterViewController.h"
 #import "HF_LoginView.h"
-#import "HF_HomeViewController.h"
+#import "HF_BaseTabbarViewController.h"
 #import "JPUSHService.h"
 
 
@@ -41,7 +41,6 @@
     [super viewDidLoad];
     self.isPwdTextEntry = YES;
     self.loginView = [[HF_LoginView alloc]init];
-    self.loginView.backgroundColor = [UIColor whiteColor];
     self.view = self.loginView;
     self.loginView.phoneAccountField.delegate = self;
     self.loginView.passwordField.delegate = self;
@@ -153,7 +152,7 @@
     [UserDefaults() synchronize];
     HF_Singleton *sin = [HF_Singleton sharedSingleton];
     sin.isShowVersionUpdateAlert = YES;
-    HF_HomeViewController *homeVc = [[HF_HomeViewController alloc]init];
+    HF_BaseTabbarViewController *homeVc = [[HF_BaseTabbarViewController alloc]init];
     [self.navigationController pushViewController:homeVc animated:YES];
 }
 
