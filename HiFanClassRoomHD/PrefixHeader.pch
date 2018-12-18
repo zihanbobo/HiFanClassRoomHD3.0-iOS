@@ -38,7 +38,6 @@
 #import "XCNormalHeader.h"
 #import "XCNormalFooter.h"
 #import "OYCountDownManager.h"
-#import "BaseScrollHeaderViewController.h"
 #import "HF_PlaceHolderView.h"
 #import "BaseScrollHeaderView.h"
 

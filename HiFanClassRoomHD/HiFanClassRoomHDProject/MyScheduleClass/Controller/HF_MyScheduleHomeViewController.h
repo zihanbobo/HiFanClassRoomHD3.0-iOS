@@ -8,6 +8,6 @@
 
 #import "BaseViewController.h"
 
-@interface HF_MyScheduleHomeViewController : BaseScrollHeaderViewController
+@interface HF_MyScheduleHomeViewController : BaseViewController
 
 @end

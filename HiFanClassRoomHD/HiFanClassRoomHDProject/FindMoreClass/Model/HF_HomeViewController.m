@@ -16,7 +16,6 @@
 #import "HF_FindMoreHomeCycleCell.h"
 #import "HF_FindMoreHomeContentCell.h"
 #import "HF_FindMoreMoviePlayViewController.h"
-#import "BaseScrollHeaderCell.h"
 #import "HF_FindMoreAdvertModel.h"
 #import "HF_FindMoreInstructionalTypeListModel.h"
 #import "HF_FindMoreFavoriteViewController.h"

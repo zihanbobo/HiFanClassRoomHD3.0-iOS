@@ -30,7 +30,6 @@
 		5B13B8F721AE6C9C00CB0A7F /* HF_BaseTabbarLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13B8F621AE6C9C00CB0A7F /* HF_BaseTabbarLeftView.m */; };
 		5B13B8FA21AE6CD300CB0A7F /* HF_BaseTabbarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B13B8F921AE6CD300CB0A7F /* HF_BaseTabbarViewController.m */; };
 		5B19424521C0F6BA00FD56CF /* HF_MineHomeInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19424421C0F6BA00FD56CF /* HF_MineHomeInfoModel.m */; };
-		5B19424821C1102700FD56CF /* BaseScrollHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19424721C1102700FD56CF /* BaseScrollHeaderCell.m */; };
 		5B19424B21C122EA00FD56CF /* HF_MineClassCountHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19424A21C122EA00FD56CF /* HF_MineClassCountHeaderModel.m */; };
 		5B19424E21C1254600FD56CF /* HF_MineClassCountListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B19424D21C1254600FD56CF /* HF_MineClassCountListModel.m */; };
 		5B1E61DF1F46CC5F00342CC5 /* HF_LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B1E61DE1F46CC5F00342CC5 /* HF_LoadingView.m */; };
@@ -40,7 +39,6 @@
 		5B34522B202C419300850D30 /* GGT_ApplyClassViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B34522A202C419300850D30 /* GGT_ApplyClassViewController.m */; };
 		5B34522E202C48AE00850D30 /* GGT_ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B34522D202C48AE00850D30 /* GGT_ApplyClassCell.m */; };
 		5B345232202C4A7E00850D30 /* GGT_ApplyClassModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B345231202C4A7E00850D30 /* GGT_ApplyClassModel.m */; };
-		5B3837E621B13A1700339512 /* BaseScrollHeaderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3837E521B13A1700339512 /* BaseScrollHeaderViewController.m */; };
 		5B3E48081FE763FD00D6D6C6 /* GGT_ScheduleFinishedHeaderInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3E48071FE763FD00D6D6C6 /* GGT_ScheduleFinishedHeaderInfoCell.m */; };
 		5B3E480B1FE769AA00D6D6C6 /* GGT_ScheduleFinishedStuEvaluateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3E480A1FE769AA00D6D6C6 /* GGT_ScheduleFinishedStuEvaluateCell.m */; };
 		5B3E480E1FE7963A00D6D6C6 /* GGT_ScheduleFinishedEvaluateHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3E480D1FE7963A00D6D6C6 /* GGT_ScheduleFinishedEvaluateHeaderView.m */; };
@@ -502,8 +500,6 @@
 		5B13B8F921AE6CD300CB0A7F /* HF_BaseTabbarViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_BaseTabbarViewController.m; sourceTree = "<group>"; };
 		5B19424321C0F6BA00FD56CF /* HF_MineHomeInfoModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MineHomeInfoModel.h; sourceTree = "<group>"; };
 		5B19424421C0F6BA00FD56CF /* HF_MineHomeInfoModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MineHomeInfoModel.m; sourceTree = "<group>"; };
-		5B19424621C1102700FD56CF /* BaseScrollHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseScrollHeaderCell.h; sourceTree = "<group>"; };
-		5B19424721C1102700FD56CF /* BaseScrollHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseScrollHeaderCell.m; sourceTree = "<group>"; };
 		5B19424921C122EA00FD56CF /* HF_MineClassCountHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MineClassCountHeaderModel.h; sourceTree = "<group>"; };
 		5B19424A21C122EA00FD56CF /* HF_MineClassCountHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MineClassCountHeaderModel.m; sourceTree = "<group>"; };
 		5B19424C21C1254600FD56CF /* HF_MineClassCountListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MineClassCountListModel.h; sourceTree = "<group>"; };
@@ -522,8 +518,6 @@
 		5B34522D202C48AE00850D30 /* GGT_ApplyClassCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_ApplyClassCell.m; sourceTree = "<group>"; };
 		5B345230202C4A7E00850D30 /* GGT_ApplyClassModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ApplyClassModel.h; sourceTree = "<group>"; };
 		5B345231202C4A7E00850D30 /* GGT_ApplyClassModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_ApplyClassModel.m; sourceTree = "<group>"; };
-		5B3837E421B13A1700339512 /* BaseScrollHeaderViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseScrollHeaderViewController.h; sourceTree = "<group>"; };
-		5B3837E521B13A1700339512 /* BaseScrollHeaderViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseScrollHeaderViewController.m; sourceTree = "<group>"; };
 		5B3E48061FE763FD00D6D6C6 /* GGT_ScheduleFinishedHeaderInfoCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ScheduleFinishedHeaderInfoCell.h; sourceTree = "<group>"; };
 		5B3E48071FE763FD00D6D6C6 /* GGT_ScheduleFinishedHeaderInfoCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_ScheduleFinishedHeaderInfoCell.m; sourceTree = "<group>"; };
 		5B3E48091FE769AA00D6D6C6 /* GGT_ScheduleFinishedStuEvaluateCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ScheduleFinishedStuEvaluateCell.h; sourceTree = "<group>"; };
@@ -2957,10 +2951,6 @@
 				D6E0A5231EC2D9AE006A003D /* BaseNavigationController.m */,
 				5B86F7E6215CFDAE0086E678 /* BaseTableViewCell.h */,
 				5B86F7E7215CFDAE0086E678 /* BaseTableViewCell.m */,
-				5B3837E421B13A1700339512 /* BaseScrollHeaderViewController.h */,
-				5B3837E521B13A1700339512 /* BaseScrollHeaderViewController.m */,
-				5B19424621C1102700FD56CF /* BaseScrollHeaderCell.h */,
-				5B19424721C1102700FD56CF /* BaseScrollHeaderCell.m */,
 				5B5E6F1F21C2488A0067881A /* BaseScrollHeaderView.h */,
 				5B5E6F2021C2488A0067881A /* BaseScrollHeaderView.m */,
 			);
@@ -3539,7 +3529,6 @@
 				5BE2EDC0216B37DC00845E70 /* TKRCGlobalConfig.m in Sources */,
 				5BE2EE07216B37DC00845E70 /* RoomController.m in Sources */,
 				5B31CF6921C3535300C97181 /* HF_TechnicalDebugViewController.m in Sources */,
-				5B3837E621B13A1700339512 /* BaseScrollHeaderViewController.m in Sources */,
 				D6D7CBED1F2199C80087DDA0 /* HF_LaunchViewController.m in Sources */,
 				5BE2EE0C216B37DC00845E70 /* TKUtil.mm in Sources */,
 				5B19424E21C1254600FD56CF /* HF_MineClassCountListModel.m in Sources */,
@@ -3556,7 +3545,6 @@
 				D6E0A5591EC2D9CD006A003D /* UIAlertController+Color.m in Sources */,
 				5BE2EDCC216B37DC00845E70 /* TKEmotionGridView.m in Sources */,
 				5BAF22FD21C7CEB800AB1929 /* HF_HomeHeaderView.m in Sources */,
-				5B19424821C1102700FD56CF /* BaseScrollHeaderCell.m in Sources */,
 				D67ACCC61EE173E00027031C /* HF_ResultModel.m in Sources */,
 				D6BF1ABF1FD102A90032C20C /* GGT_QuestionBottomView.m in Sources */,
 				5BE2EDB8216B37DC00845E70 /* BITFeedbackListViewCell.m in Sources */,

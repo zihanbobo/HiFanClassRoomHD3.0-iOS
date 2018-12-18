@@ -6,7 +6,7 @@
 //  Copyright © 2018 Chn. All rights reserved.
 //
 
-#import "BaseScrollHeaderViewController.h"
+#import "BaseViewController.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
