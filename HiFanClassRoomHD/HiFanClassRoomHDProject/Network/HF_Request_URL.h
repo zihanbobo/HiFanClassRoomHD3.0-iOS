@@ -23,6 +23,14 @@ static NSString * const BASE_REQUEST_URL = @"http://testapi.hi-fan.cn"; //2.0
 static NSString * const URL_Login = @"/api/APP/Login";
 
 
+/*首页*/
+//轮播课程列表
+static NSString * const URL_GetLessonList = @"/api/Resources/GetLessonList";
+
+
+
+
+
 /*发现*/
 //获取广告位轮播图列表
 static NSString * const URL_GetAdvertPositionList = @"api/Resources/GetAdvertPositionList";

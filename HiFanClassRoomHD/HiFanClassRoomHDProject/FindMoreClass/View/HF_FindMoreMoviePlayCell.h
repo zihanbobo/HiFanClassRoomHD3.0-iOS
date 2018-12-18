@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HF_FindMoreInstructionalListModel.h"
 
 @interface HF_FindMoreMoviePlayCell : UICollectionViewCell
-
+@property (nonatomic,strong) HF_FindMoreInstructionalListModel *cellModel;
 @end

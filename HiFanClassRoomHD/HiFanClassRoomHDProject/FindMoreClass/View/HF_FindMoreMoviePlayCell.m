@@ -28,16 +28,16 @@
 }
 
 - (void)initView {
-    self.contentView.backgroundColor = UICOLOR_FROM_HEX(ColorF2F2F2);
+    self.contentView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     
     //教材 封面
     self.bookImgView = [[UIImageView alloc]init];
-    self.bookImgView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    self.bookImgView.image = UIIMAGE_FROM_NAME(@"默认");
     self.bookImgView.userInteractionEnabled = YES;
     [self.contentView addSubview:self.bookImgView];
     
     [self.bookImgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top).offset(18);
+        make.top.equalTo(self.contentView.mas_top).offset(0);
         make.left.right.equalTo(self.contentView);
         make.size.mas_equalTo(CGSizeMake(230, 180));
     }];
@@ -46,17 +46,31 @@
     //课程名称
     self.classNameLabel = [[UILabel alloc]init];
     self.classNameLabel.font = Font(16);
-    self.classNameLabel.text = @"Alphabet JKL";
+//    self.classNameLabel.text = @"Alphabet JKL";
     self.classNameLabel.textColor = UICOLOR_FROM_HEX(Color000000);
     [self.contentView addSubview:self.classNameLabel];
     
     
     [self.classNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.bookImgView.mas_bottom).with.offset(17);
+        make.top.equalTo(self.bookImgView.mas_bottom).offset(17);
         make.left.equalTo(self.bookImgView.mas_left);
         make.height.mas_equalTo(16);
     }];
+}
 
+- (void)setCellModel:(HF_FindMoreInstructionalListModel *)cellModel {
+    if (!IsStrEmpty(cellModel.CoverImage)) {
+        [self.bookImgView sd_setImageWithURL:[NSURL URLWithString:cellModel.CoverImage] placeholderImage:UIIMAGE_FROM_NAME(@"默认") completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
+            
+            image = [image imageScaledToSize:CGSizeMake(LineW(230), LineW(180))];
+            self.bookImgView.image = image;
+        }];
+    }
+    
+    
+    if (!IsStrEmpty(cellModel.Title)) {
+        self.classNameLabel.text = cellModel.Title;
+    }
 }
 
 - (void)drawRect:(CGRect)rect {

@@ -32,17 +32,23 @@
     
     [self initUI];
 
-    MJRefreshGifHeader *header = [HF_RefreshHeader headerWithRefreshingBlock:^{
+//    MJRefreshGifHeader *header = [HF_RefreshHeader headerWithRefreshingBlock:^{
+//        self.dataArray = [NSMutableArray array];
+//        [self getLoadData];
+//    }];
+//
+//    [header setImages:self.refreshImages duration:1 forState:MJRefreshStateRefreshing];
+////    [header setImages:self.pullingImages duration:1 forState:MJRefreshStateIdle];
+//    [header setImages:self.refreshImages forState:MJRefreshStatePulling];
+//    header.lastUpdatedTimeLabel.hidden = YES;
+//    header.stateLabel.hidden = YES;
+//    self.collectionView.mj_header = header;
+//    [self.collectionView.mj_header beginRefreshing];
+    
+    self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.dataArray = [NSMutableArray array];
         [self getLoadData];
     }];
-    
-    [header setImages:self.refreshImages duration:1 forState:MJRefreshStateRefreshing];
-//    [header setImages:self.pullingImages duration:1 forState:MJRefreshStateIdle];
-    [header setImages:self.refreshImages forState:MJRefreshStatePulling];
-    header.lastUpdatedTimeLabel.hidden = YES;
-    header.stateLabel.hidden = YES;
-    self.collectionView.mj_header = header;
     [self.collectionView.mj_header beginRefreshing];
 }
 
@@ -127,7 +133,10 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    HF_FindMoreInstructionalListModel *model = [self.dataArray safe_objectAtIndex:indexPath.row];
     HF_FindMoreMoviePlayViewController *vc = [[HF_FindMoreMoviePlayViewController alloc] init];
+    vc.model = model;
+    vc.ResourcesID = self.model.ResourcesID;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HF_HomeHeaderModel.h"
 
-@interface HF_HomeHeaderView : UIView
+typedef void(^GonglueBtnBlock)(void);
+@interface HF_HomeHeaderView : UIView <UICollectionViewDelegate,UICollectionViewDataSource>
+@property (nonatomic, copy) GonglueBtnBlock gonglueBtnBlock;
+@property (nonatomic,strong) UICollectionView *collectionView;
+@property (nonatomic,strong) NSMutableArray *collectionDataArray;
 
 @end

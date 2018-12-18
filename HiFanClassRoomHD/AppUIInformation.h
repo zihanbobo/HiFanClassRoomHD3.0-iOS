@@ -30,9 +30,10 @@ static CGFloat const marginMineRight = 586.0f;
 
 #define ColorFFFFFF 0xFFFFFF  //白色
 #define Color000000 0x000000  //黑色
-#define Color02B6E3 0x02B6E3  //
+#define Color02B6E3 0x02B6E3  //主体颜色
 #define ColorEAEFF3 0xEAEFF3  //分割线颜色（灰）
 #define ColorFB9901 0xFB9901  //待评价颜色
+#define Color67D3CE 0x67D3CE  //等级Ax边框
 
 
 

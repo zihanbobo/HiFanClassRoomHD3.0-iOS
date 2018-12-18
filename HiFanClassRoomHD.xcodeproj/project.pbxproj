@@ -45,6 +45,11 @@
 		5B3E480B1FE769AA00D6D6C6 /* GGT_ScheduleFinishedStuEvaluateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3E480A1FE769AA00D6D6C6 /* GGT_ScheduleFinishedStuEvaluateCell.m */; };
 		5B3E480E1FE7963A00D6D6C6 /* GGT_ScheduleFinishedEvaluateHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3E480D1FE7963A00D6D6C6 /* GGT_ScheduleFinishedEvaluateHeaderView.m */; };
 		5B3E48111FE7BE4300D6D6C6 /* ASStarRatingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B3E48101FE7BE4300D6D6C6 /* ASStarRatingView.m */; };
+		5B4425D921C8A0A30036298C /* HF_HomeContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4425D821C8A0A30036298C /* HF_HomeContentCell.m */; };
+		5B4425DC21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4425DB21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.m */; };
+		5B4425DF21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4425DE21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.m */; };
+		5B4425E221C8D9210036298C /* HF_HomeHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4425E121C8D9210036298C /* HF_HomeHeaderModel.m */; };
+		5B4425E521C90BBB0036298C /* HF_HomeCourseStrategyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4425E421C90BBB0036298C /* HF_HomeCourseStrategyViewController.m */; };
 		5B45AEAE1FCFA12300916B59 /* GGT_UnitBookListHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B45AEAD1FCFA12300916B59 /* GGT_UnitBookListHeaderModel.m */; };
 		5B45AEB11FCFA1FB00916B59 /* GGT_ClassBookDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B45AEB01FCFA1FB00916B59 /* GGT_ClassBookDetailModel.m */; };
 		5B45AEB41FCFB8D600916B59 /* GGT_OrderUnitCourseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B45AEB31FCFB8D600916B59 /* GGT_OrderUnitCourseModel.m */; };
@@ -527,6 +532,16 @@
 		5B3E480D1FE7963A00D6D6C6 /* GGT_ScheduleFinishedEvaluateHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_ScheduleFinishedEvaluateHeaderView.m; sourceTree = "<group>"; };
 		5B3E480F1FE7BE4200D6D6C6 /* ASStarRatingView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ASStarRatingView.h; sourceTree = "<group>"; };
 		5B3E48101FE7BE4300D6D6C6 /* ASStarRatingView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ASStarRatingView.m; sourceTree = "<group>"; };
+		5B4425D721C8A0A30036298C /* HF_HomeContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeContentCell.h; sourceTree = "<group>"; };
+		5B4425D821C8A0A30036298C /* HF_HomeContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeContentCell.m; sourceTree = "<group>"; };
+		5B4425DA21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeUnitCollectionViewCell.h; sourceTree = "<group>"; };
+		5B4425DB21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeUnitCollectionViewCell.m; sourceTree = "<group>"; };
+		5B4425DD21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeHeaderCollectionViewCell.h; sourceTree = "<group>"; };
+		5B4425DE21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeHeaderCollectionViewCell.m; sourceTree = "<group>"; };
+		5B4425E021C8D9210036298C /* HF_HomeHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeHeaderModel.h; sourceTree = "<group>"; };
+		5B4425E121C8D9210036298C /* HF_HomeHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeHeaderModel.m; sourceTree = "<group>"; };
+		5B4425E321C90BBB0036298C /* HF_HomeCourseStrategyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeCourseStrategyViewController.h; sourceTree = "<group>"; };
+		5B4425E421C90BBB0036298C /* HF_HomeCourseStrategyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeCourseStrategyViewController.m; sourceTree = "<group>"; };
 		5B45AEAC1FCFA12300916B59 /* GGT_UnitBookListHeaderModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_UnitBookListHeaderModel.h; sourceTree = "<group>"; };
 		5B45AEAD1FCFA12300916B59 /* GGT_UnitBookListHeaderModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_UnitBookListHeaderModel.m; sourceTree = "<group>"; };
 		5B45AEAF1FCFA1FB00916B59 /* GGT_ClassBookDetailModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ClassBookDetailModel.h; sourceTree = "<group>"; };
@@ -1829,6 +1844,8 @@
 			children = (
 				5BAF22F121C7C68E00AB1929 /* HF_HomeViewController.h */,
 				5BAF22F221C7C68E00AB1929 /* HF_HomeViewController.m */,
+				5B4425E321C90BBB0036298C /* HF_HomeCourseStrategyViewController.h */,
+				5B4425E421C90BBB0036298C /* HF_HomeCourseStrategyViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1836,6 +1853,8 @@
 		5BAF22EF21C7C46A00AB1929 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5B4425E021C8D9210036298C /* HF_HomeHeaderModel.h */,
+				5B4425E121C8D9210036298C /* HF_HomeHeaderModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1845,6 +1864,12 @@
 			children = (
 				5BAF22FB21C7CEB800AB1929 /* HF_HomeHeaderView.h */,
 				5BAF22FC21C7CEB800AB1929 /* HF_HomeHeaderView.m */,
+				5B4425DD21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.h */,
+				5B4425DE21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.m */,
+				5B4425D721C8A0A30036298C /* HF_HomeContentCell.h */,
+				5B4425D821C8A0A30036298C /* HF_HomeContentCell.m */,
+				5B4425DA21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.h */,
+				5B4425DB21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3472,6 +3497,7 @@
 				D66684BD1FCEBE2A008E0B00 /* GGT_ExperienceCourseModel.m in Sources */,
 				5BE2ED94216B37DC00845E70 /* TKEduNetManager.m in Sources */,
 				D6AB90CE1ECEBC22009D8758 /* HF_PlaceHolderView.m in Sources */,
+				5B4425DC21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.m in Sources */,
 				5BE2EDB9216B37DC00845E70 /* BITFeedbackComposeViewController.m in Sources */,
 				D6353E171EE8E250004E1288 /* GGT_PopoverCell.m in Sources */,
 				5B34522B202C419300850D30 /* GGT_ApplyClassViewController.m in Sources */,
@@ -3517,6 +3543,7 @@
 				D6D7CBED1F2199C80087DDA0 /* HF_LaunchViewController.m in Sources */,
 				5BE2EE0C216B37DC00845E70 /* TKUtil.mm in Sources */,
 				5B19424E21C1254600FD56CF /* HF_MineClassCountListModel.m in Sources */,
+				5B4425D921C8A0A30036298C /* HF_HomeContentCell.m in Sources */,
 				D6E0A5791EC2DB15006A003D /* MBProgressHUD+Extension.m in Sources */,
 				5BB6D57D1FEB970C00464F83 /* GGT_ScheduleDetailModel.m in Sources */,
 				5B97CA8B21BE8A8900F80BD4 /* HF_MineClassCountViewController.m in Sources */,
@@ -3546,6 +3573,7 @@
 				5BE2EDC8216B37DC00845E70 /* KTEmotionAttachment.m in Sources */,
 				5B0310491FCC228C002FE83E /* GGT_OrderClassHeaderCell.m in Sources */,
 				5B0310481FCC228C002FE83E /* GGT_OrderClassCollectionViewCell.m in Sources */,
+				5B4425E521C90BBB0036298C /* HF_HomeCourseStrategyViewController.m in Sources */,
 				5BE2EDDE216B37DC00845E70 /* TKVideoThreeView.m in Sources */,
 				5BE2ED91216B37DC00845E70 /* TKEduBoardHandle.m in Sources */,
 				5BE2EDC6216B37DC00845E70 /* TKGrowingTextView.m in Sources */,
@@ -3610,6 +3638,7 @@
 				5B345232202C4A7E00850D30 /* GGT_ApplyClassModel.m in Sources */,
 				5B61C96B1FEA6A3C00EA46BD /* GGT_HasEvaluationViewController.m in Sources */,
 				5BD0754E1FE12C58002F0837 /* GGT_ScheduleFinishedViewController.m in Sources */,
+				5B4425E221C8D9210036298C /* HF_HomeHeaderModel.m in Sources */,
 				5B112A9721BF6EA4001D7E3E /* HF_MineClassCountListCell.m in Sources */,
 				5BD6A6BD21BFD93B000D3BD0 /* HF_PracticeViewController.m in Sources */,
 				D6E0A55E1EC2D9CD006A003D /* UIView+Layout.m in Sources */,
@@ -3623,6 +3652,7 @@
 				5BE2EDA6216B37DC00845E70 /* BITHockeyManager.m in Sources */,
 				5BE2EDBF216B37DC00845E70 /* TKProgressHUD.m in Sources */,
 				5BE2EDE3216B37DC00845E70 /* TKVideoFiveView.m in Sources */,
+				5B4425DF21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.m in Sources */,
 				5B112A9421BF699C001D7E3E /* HF_MineClassCountHeaderCell.m in Sources */,
 				5B19424521C0F6BA00FD56CF /* HF_MineHomeInfoModel.m in Sources */,
 				D60FA5191EC987AE00838DE4 /* FLAnimatedImageView+WebCache.m in Sources */,

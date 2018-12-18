@@ -163,11 +163,11 @@
         self.tableView.dataSource = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-        if (@available(iOS 11.0, *)) {
-            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }else {
-            self.automaticallyAdjustsScrollViewInsets = NO;
-        }
+//        if (@available(iOS 11.0, *)) {
+//            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+//        }else {
+//            self.automaticallyAdjustsScrollViewInsets = NO;
+//        }
     }
     return _tableView;
 }

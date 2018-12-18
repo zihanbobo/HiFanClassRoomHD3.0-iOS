@@ -40,6 +40,7 @@
 #import "OYCountDownManager.h"
 #import "BaseScrollHeaderViewController.h"
 #import "HF_PlaceHolderView.h"
+#import "BaseScrollHeaderView.h"
 
 
 #import "UIView+Layout.h"

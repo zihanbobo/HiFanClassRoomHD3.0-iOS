@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseScrollHeaderView.h"
 #import "AdCycleScrollView.h"
 #import "HF_FindMoreAdvertModel.h"
 

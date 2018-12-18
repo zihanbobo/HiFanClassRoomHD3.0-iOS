@@ -8,6 +8,9 @@
 
 #import "HF_HomeViewController.h"
 #import "HF_HomeHeaderView.h"
+#import "HF_HomeContentCell.h"
+#import "HF_HomeHeaderModel.h"
+#import "HF_HomeCourseStrategyViewController.h" //课程攻略
 
 
 #import "HF_FindMoreHomeCycleCell.h"
@@ -23,7 +26,7 @@
 @interface HF_HomeViewController () <UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tableView; //tableView
 @property (nonatomic, strong) NSMutableArray *dataArray;
-@property (nonatomic, strong) NSMutableArray *headerAdArray;
+@property (nonatomic, strong) NSMutableArray *headerArray;
 @end
 
 @implementation HF_HomeViewController
@@ -34,31 +37,33 @@
 }
 
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self initUI];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        self.headerAdArray = [NSMutableArray array];
+        self.headerArray = [NSMutableArray array];
         self.dataArray = [NSMutableArray array];
-        [self getAdvertPositionListData];
+        [self getLessonListData];
     }];
     [self.tableView.mj_header beginRefreshing];
 }
 
-//MARK:广告位轮播图数据请求
--(void)getAdvertPositionListData {
+//MARK:轮播课程列表
+-(void)getLessonListData {
     
-    [[BaseService share] sendGetRequestWithPath:URL_GetAdvertPositionList token:YES viewController:self success:^(id responseObject) {
+    [[BaseService share] sendGetRequestWithPath:URL_GetLessonList token:YES viewController:self success:^(id responseObject) {
         if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
             for (NSDictionary *dic in responseObject[@"data"]) {
-                HF_FindMoreAdvertModel *model = [HF_FindMoreAdvertModel yy_modelWithDictionary:dic];
-                [self.headerAdArray addObject:model];
+                HF_HomeHeaderModel *model = [HF_HomeHeaderModel yy_modelWithDictionary:dic];
+                [self.headerArray addObject:model];
             }
         }
-        [self getInstructionalTypeListData];
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        
         [self.tableView reloadData];
         
     } failure:^(NSError *error) {
@@ -67,23 +72,23 @@
 }
 
 //MARK:获取教学资源类型
--(void)getInstructionalTypeListData {
-    [[BaseService share] sendGetRequestWithPath:URL_GetInstructionalTypeList token:YES viewController:self success:^(id responseObject) {
-        if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
-            for (NSDictionary *dic in responseObject[@"data"]) {
-                HF_FindMoreInstructionalTypeListModel *model = [HF_FindMoreInstructionalTypeListModel yy_modelWithDictionary:dic];
-                [self.dataArray addObject:model];
-            }
-        }
-        [self.tableView.mj_footer endRefreshing];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-        [self.tableView reloadData];
-        
-    } failure:^(NSError *error) {
-        
-    }];
-}
+//-(void)getInstructionalTypeListData {
+//    [[BaseService share] sendGetRequestWithPath:URL_GetInstructionalTypeList token:YES viewController:self success:^(id responseObject) {
+//        if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
+//            for (NSDictionary *dic in responseObject[@"data"]) {
+//                HF_FindMoreInstructionalTypeListModel *model = [HF_FindMoreInstructionalTypeListModel yy_modelWithDictionary:dic];
+//                [self.dataArray addObject:model];
+//            }
+//        }
+//        [self.tableView.mj_footer endRefreshing];
+//        [self.tableView.mj_header endRefreshing];
+//        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+//        [self.tableView reloadData];
+//
+//    } failure:^(NSError *error) {
+//
+//    }];
+//}
 
 
 //MARK:UITableView 代理
@@ -98,27 +103,18 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return LineH(309);
+    return LineH(382);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellID = @"HF_FindMoreHomeContentCell";
-    HF_FindMoreHomeContentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    static NSString *cellID = @"HF_HomeContentCell";
+    HF_HomeContentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [[HF_FindMoreHomeContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell = [[HF_HomeContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    cell.collectionArray = [NSMutableArray array];
-    cell.collectionArray = self.dataArray;
-    
-    cell.selectedBlock = ^(NSInteger index) {
-        NSLog(@"点击的是 %ld 个",(long)index);
-        HF_FindMoreInstructionalTypeListModel *model = [self.dataArray safe_objectAtIndex:index];
-        HF_FindMoreInstructionalListViewController *vc = [[HF_FindMoreInstructionalListViewController alloc] init];
-        vc.model = model;
-        [self.navigationController pushViewController:vc animated:YES];
-    };
+//    cell.collectionArray = [NSMutableArray array];
+//    cell.collectionArray = self.dataArray;
     
     return cell;
 }
@@ -127,9 +123,16 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     HF_HomeHeaderView *headerView = [[HF_HomeHeaderView alloc] init];
-//    headerView.frame = CGRectMake(0, 0, home_right_width, LineH(340));
+    headerView.frame = CGRectMake(0, 0, home_right_width, LineH(340));
     headerView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    headerView.collectionDataArray = [NSMutableArray array];
+    headerView.collectionDataArray = self.headerArray;
     
+    //MARK:课程攻略
+    headerView.gonglueBtnBlock = ^{
+        HF_HomeCourseStrategyViewController *vc = [[HF_HomeCourseStrategyViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    };
     return headerView;
 }
 
@@ -158,6 +161,7 @@
         self.tableView.dataSource = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+        self.tableView.showsVerticalScrollIndicator = NO;
         if (@available(iOS 11.0, *)) {
             self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
         }else {
