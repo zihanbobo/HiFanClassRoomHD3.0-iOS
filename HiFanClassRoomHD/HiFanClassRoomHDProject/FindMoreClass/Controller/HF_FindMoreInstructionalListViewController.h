@@ -10,6 +10,7 @@
 #import "HF_FindMoreInstructionalTypeListModel.h"
 
 @interface HF_FindMoreInstructionalListViewController : BaseViewController
-@property (nonatomic,strong) HF_FindMoreInstructionalTypeListModel *model;
+@property (nonatomic,strong) HF_FindMoreInstructionalTypeListModel *listModel;
+@property (nonatomic,assign) BOOL isLikeVc;
 
 @end

@@ -10,7 +10,7 @@
 
 @interface HF_FindMoreInstructionlListHeaderView()
 //封面
-@property (nonatomic, strong) UIImageView *bookImgView;
+//@property (nonatomic, strong) UIImageView *bookImgView;
 @end
 
 
@@ -30,7 +30,6 @@
     
     //教材 封面
     self.bookImgView = [[UIImageView alloc]init];
-    self.bookImgView.backgroundColor = UICOLOR_RANDOM_COLOR();
     self.bookImgView.userInteractionEnabled = YES;
     [self.contentView addSubview:self.bookImgView];
     
@@ -40,8 +39,14 @@
         make.right.equalTo(self.contentView.mas_right).offset(-17);
         make.height.mas_equalTo(210);
     }];
-    
 }
+
+- (void)setBookImageViewStr:(NSString *)bookImageViewStr {
+    if (!IsStrEmpty(bookImageViewStr)) {
+        [self.bookImgView sd_setImageWithURL:[NSURL URLWithString:bookImageViewStr] placeholderImage:UIIMAGE_FROM_NAME(@"默认")];
+    }
+}
+
 
 - (void)drawRect:(CGRect)rect {
     [self.bookImgView xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(10)];

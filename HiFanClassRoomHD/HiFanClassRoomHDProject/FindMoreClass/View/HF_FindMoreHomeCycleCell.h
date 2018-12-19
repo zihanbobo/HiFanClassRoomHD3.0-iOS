@@ -11,9 +11,10 @@
 #import "HF_FindMoreAdvertModel.h"
 
 typedef void(^FavoriteBtnBlock)(void);
+typedef void(^AdCycleClickBlock)(NSInteger index);
 @interface HF_FindMoreHomeCycleCell : UIView <AdCycleScrollViewDelegate>
 @property (nonatomic, strong) AdCycleScrollView *adScroll;
 @property (nonatomic, copy) FavoriteBtnBlock favoriteBtnBlock;
-
+@property (nonatomic, copy) AdCycleClickBlock adCycleClickBlock;
 
 @end

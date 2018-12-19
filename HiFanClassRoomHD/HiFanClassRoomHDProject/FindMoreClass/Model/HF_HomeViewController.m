@@ -18,7 +18,6 @@
 #import "HF_FindMoreMoviePlayViewController.h"
 #import "HF_FindMoreAdvertModel.h"
 #import "HF_FindMoreInstructionalTypeListModel.h"
-#import "HF_FindMoreFavoriteViewController.h"
 #import "HF_FindMoreInstructionalListViewController.h"
 
 
