@@ -11,7 +11,7 @@
 #import "HF_HomeContentCell.h"
 #import "HF_HomeHeaderModel.h"
 #import "HF_HomeCourseStrategyViewController.h" //课程攻略
-
+#import "HF_HomeClassDetailViewController.h"    //课程详情
 
 #import "HF_FindMoreHomeCycleCell.h"
 #import "HF_FindMoreHomeContentCell.h"
@@ -22,7 +22,7 @@
 #import "HF_FindMoreInstructionalListViewController.h"
 
 
-@interface HF_HomeViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface HF_HomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView; //tableView
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *headerArray;
@@ -131,6 +131,17 @@
     headerView.gonglueBtnBlock = ^{
         HF_HomeCourseStrategyViewController *vc = [[HF_HomeCourseStrategyViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
+    };
+    
+    //MARK:跳转到  课程详情
+    headerView.classDetailVcBlock = ^{
+        HF_HomeClassDetailViewController *vc = [HF_HomeClassDetailViewController new];
+        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+        nav.modalPresentationStyle = UIModalPresentationFormSheet;
+        nav.popoverPresentationController.delegate = self;
+        [self presentViewController:nav animated:YES completion:nil];
+        
+        
     };
     return headerView;
 }

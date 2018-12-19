@@ -91,6 +91,7 @@
 		5B97CA8B21BE8A8900F80BD4 /* HF_MineClassCountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B97CA8A21BE8A8900F80BD4 /* HF_MineClassCountViewController.m */; };
 		5B9A547D202ADB2300FDEA76 /* GGT_OrderUnitCourseCollFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A547C202ADB2300FDEA76 /* GGT_OrderUnitCourseCollFooter.m */; };
 		5BA59AC221BFC1E1005BCB94 /* HF_MyScheduleHomeFinishedListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA59AC121BFC1E1005BCB94 /* HF_MyScheduleHomeFinishedListModel.m */; };
+		5BA64B4E21C9E362000E90DE /* HF_HomeClassDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA64B4D21C9E362000E90DE /* HF_HomeClassDetailViewController.m */; };
 		5BAE2F5020469BD300375F2B /* HF_ClassRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE2F4F20469BD300375F2B /* HF_ClassRoomManager.m */; };
 		5BAE2F5420469D0800375F2B /* HF_ClassRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE2F5320469D0800375F2B /* HF_ClassRoomModel.m */; };
 		5BAF220A21C769BA00AB1929 /* HF_FindMoreMoviePlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF220921C769BA00AB1929 /* HF_FindMoreMoviePlayView.m */; };
@@ -628,6 +629,8 @@
 		5B9A547C202ADB2300FDEA76 /* GGT_OrderUnitCourseCollFooter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_OrderUnitCourseCollFooter.m; sourceTree = "<group>"; };
 		5BA59AC021BFC1E1005BCB94 /* HF_MyScheduleHomeFinishedListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_MyScheduleHomeFinishedListModel.h; sourceTree = "<group>"; };
 		5BA59AC121BFC1E1005BCB94 /* HF_MyScheduleHomeFinishedListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MyScheduleHomeFinishedListModel.m; sourceTree = "<group>"; };
+		5BA64B4C21C9E362000E90DE /* HF_HomeClassDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeClassDetailViewController.h; sourceTree = "<group>"; };
+		5BA64B4D21C9E362000E90DE /* HF_HomeClassDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeClassDetailViewController.m; sourceTree = "<group>"; };
 		5BAE2F4E20469BD300375F2B /* HF_ClassRoomManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_ClassRoomManager.h; sourceTree = "<group>"; };
 		5BAE2F4F20469BD300375F2B /* HF_ClassRoomManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_ClassRoomManager.m; sourceTree = "<group>"; };
 		5BAE2F5220469D0800375F2B /* HF_ClassRoomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_ClassRoomModel.h; sourceTree = "<group>"; };
@@ -1840,6 +1843,8 @@
 				5BAF22F221C7C68E00AB1929 /* HF_HomeViewController.m */,
 				5B4425E321C90BBB0036298C /* HF_HomeCourseStrategyViewController.h */,
 				5B4425E421C90BBB0036298C /* HF_HomeCourseStrategyViewController.m */,
+				5BA64B4C21C9E362000E90DE /* HF_HomeClassDetailViewController.h */,
+				5BA64B4D21C9E362000E90DE /* HF_HomeClassDetailViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3703,6 +3708,7 @@
 				5B0310351FCC2232002FE83E /* GGT_OrderCourseViewController.m in Sources */,
 				5B3E480E1FE7963A00D6D6C6 /* GGT_ScheduleFinishedEvaluateHeaderView.m in Sources */,
 				5BF912D51ECEC50D009C8186 /* GGT_CheckDeviceView.m in Sources */,
+				5BA64B4E21C9E362000E90DE /* HF_HomeClassDetailViewController.m in Sources */,
 				D63DA9491ED5554400EFA686 /* NSDictionary+Log.m in Sources */,
 				5B61C9651FEA4DB800EA46BD /* GGT_ScheduleStudentModel.m in Sources */,
 				D6E0A58E1EC2DBB3006A003D /* HF_RegisterViewController.m in Sources */,
