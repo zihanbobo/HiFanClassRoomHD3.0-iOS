@@ -75,19 +75,8 @@
     [self initAboutTableView];
     
     
-    
-<<<<<<< HEAD
-    self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.closeButton setImage:UIIMAGE_FROM_NAME(@"close") forState:UIControlStateNormal];
-    [self.view addSubview:self.closeButton];
-    
-    [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.view.mas_right).offset(-10);
-        make.top.equalTo(self.view.mas_top).offset(10);
-        make.size.mas_offset(CGSizeMake(50, 50));
-    }];
-=======
->>>>>>> e817c39055369f3da1eca629f2bfa9612b270b4f
+
+
     
     //关闭按钮
     @weakify(self);
