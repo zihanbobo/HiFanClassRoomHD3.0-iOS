@@ -1344,8 +1344,6 @@
 				5BD637E921B8ED46004051B0 /* HF_MyScheduleHomeUnfishedListViewController.m */,
 				5BD637EB21B8ED54004051B0 /* HF_MyScheduleHomeFishedListViewController.h */,
 				5BD637EC21B8ED54004051B0 /* HF_MyScheduleHomeFishedListViewController.m */,
-				5BD6A6BB21BFD93B000D3BD0 /* HF_PracticeViewController.h */,
-				5BD6A6BC21BFD93B000D3BD0 /* HF_PracticeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1860,6 +1858,8 @@
 				5B4425E421C90BBB0036298C /* HF_HomeCourseStrategyViewController.m */,
 				5BA64B4C21C9E362000E90DE /* HF_HomeClassDetailViewController.h */,
 				5BA64B4D21C9E362000E90DE /* HF_HomeClassDetailViewController.m */,
+				5BD6A6BB21BFD93B000D3BD0 /* HF_PracticeViewController.h */,
+				5BD6A6BC21BFD93B000D3BD0 /* HF_PracticeViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

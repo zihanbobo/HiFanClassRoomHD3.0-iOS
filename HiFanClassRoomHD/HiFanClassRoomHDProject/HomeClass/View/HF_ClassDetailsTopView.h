@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIButton *closeButton;
 //课程图片
 @property(nonatomic, strong) UIImageView *classImageView;
+@property(nonatomic, strong) NSString *imagePath;
 //课程名称
 @property(nonatomic, strong) UILabel *classTitleLabel;
 //课程级别

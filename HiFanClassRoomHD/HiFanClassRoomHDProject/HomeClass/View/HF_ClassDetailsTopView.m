@@ -163,4 +163,8 @@
     
     
 }
+-(void)setImagePath:(NSString *)imagePath
+{
+    [self.classImageView sd_setImageWithURL:[NSURL URLWithString:imagePath]];
+}
 @end
