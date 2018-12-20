@@ -150,9 +150,16 @@
         make.left.equalTo(self.previewButton.mas_right).offset(17);
     }];
     //按钮下划线
-    self.buttonLine = [[UIView alloc] initWithFrame:CGRectMake(self.aboutButton.frame.origin.x, self.aboutButton.frame.origin.y+self.aboutButton.frame.size.height, self.aboutButton.frame.size.width, LineH(3))];
+    CGFloat x = self.aboutButton.frame.origin.x;
+    CGFloat y = self.aboutButton.frame.origin.y + self.aboutButton.frame.size.height;
+    self.buttonLine = [UIView new];
     self.buttonLine.backgroundColor = UICOLOR_FROM_HEX_ALPHA(0x61D1D5, 100);
     [self addSubview:self.buttonLine];
+    [self.buttonLine mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.equalTo(self.aboutButton).offset(0);
+        make.height.mas_equalTo(3);
+        make.top.equalTo(self.aboutButton.mas_bottom).offset(-6);
+    }];
     
     
 }

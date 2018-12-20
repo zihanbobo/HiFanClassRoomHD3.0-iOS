@@ -9,5 +9,5 @@
 #import "BaseViewController.h"
 
 @interface HF_HomeClassDetailViewController : BaseViewController
-
+@property(nonatomic, assign) NSInteger lessonId;
 @end

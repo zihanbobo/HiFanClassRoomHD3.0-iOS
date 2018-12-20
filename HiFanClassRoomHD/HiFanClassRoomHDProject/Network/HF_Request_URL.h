@@ -28,7 +28,8 @@ static NSString * const URL_Login = @"/api/APP/Login";
 static NSString * const URL_GetLessonList = @"/api/Resources/GetLessonList";
 //获取用户喜欢的资源信息
 static NSString * const URL_GetLikeList = @"/api/Resources/GetLikeList";
-
+//课程详情
+static NSString * const URL_GetClassDetail = @"/api/Resources/GetLessonDeatil";
 
 
 

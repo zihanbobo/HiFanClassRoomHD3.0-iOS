@@ -15,6 +15,9 @@
 		35ECCFD021B8F21A00C056B9 /* HF_OrderDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFCF21B8F21A00C056B9 /* HF_OrderDateCell.m */; };
 		35ECCFD321B9119900C056B9 /* HF_OrderTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFD221B9119900C056B9 /* HF_OrderTimeCell.m */; };
 		35ED97E321BF996500A44277 /* HF_LoginView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ED97E221BF996500A44277 /* HF_LoginView.m */; };
+		35F30A2421CB39B700B86DE1 /* HF_AboutCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F30A2321CB39B700B86DE1 /* HF_AboutCell.m */; };
+		35F30A2721CB81C300B86DE1 /* HF_PreviewView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F30A2621CB81C300B86DE1 /* HF_PreviewView.m */; };
+		35F30A2A21CB8B3E00B86DE1 /* HF_PracticeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F30A2921CB8B3E00B86DE1 /* HF_PracticeView.m */; };
 		5B03102F1FCC2232002FE83E /* GGT_LevelMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0310201FCC2230002FE83E /* GGT_LevelMenuViewController.m */; };
 		5B0310311FCC2232002FE83E /* GGT_OrderUnitCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0310291FCC2231002FE83E /* GGT_OrderUnitCourseViewController.m */; };
 		5B0310351FCC2232002FE83E /* GGT_OrderCourseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B03102D1FCC2232002FE83E /* GGT_OrderCourseViewController.m */; };
@@ -469,6 +472,12 @@
 		35ECCFD221B9119900C056B9 /* HF_OrderTimeCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderTimeCell.m; sourceTree = "<group>"; };
 		35ED97E121BF996500A44277 /* HF_LoginView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_LoginView.h; sourceTree = "<group>"; };
 		35ED97E221BF996500A44277 /* HF_LoginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_LoginView.m; sourceTree = "<group>"; };
+		35F30A2221CB39B700B86DE1 /* HF_AboutCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_AboutCell.h; sourceTree = "<group>"; };
+		35F30A2321CB39B700B86DE1 /* HF_AboutCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_AboutCell.m; sourceTree = "<group>"; };
+		35F30A2521CB81C300B86DE1 /* HF_PreviewView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_PreviewView.h; sourceTree = "<group>"; };
+		35F30A2621CB81C300B86DE1 /* HF_PreviewView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_PreviewView.m; sourceTree = "<group>"; };
+		35F30A2821CB8B3E00B86DE1 /* HF_PracticeView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_PracticeView.h; sourceTree = "<group>"; };
+		35F30A2921CB8B3E00B86DE1 /* HF_PracticeView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_PracticeView.m; sourceTree = "<group>"; };
 		46923445B089FD426CFB6FE4 /* Pods-HiFanClassRoomHD.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiFanClassRoomHD.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HiFanClassRoomHD/Pods-HiFanClassRoomHD.debug.xcconfig"; sourceTree = "<group>"; };
 		53C98573D800FBE7948DE50B /* Pods_HiFanClassRoomHD.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HiFanClassRoomHD.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5ABCB9C33E55F0E3F1049015 /* Pods-HiFanClassRoomHD.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HiFanClassRoomHD.release.xcconfig"; path = "Pods/Target Support Files/Pods-HiFanClassRoomHD/Pods-HiFanClassRoomHD.release.xcconfig"; sourceTree = "<group>"; };
@@ -1877,6 +1886,12 @@
 				5B4425DB21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.m */,
 				358790B421CA338200220172 /* HF_ClassDetailsTopView.h */,
 				358790B521CA338200220172 /* HF_ClassDetailsTopView.m */,
+				35F30A2221CB39B700B86DE1 /* HF_AboutCell.h */,
+				35F30A2321CB39B700B86DE1 /* HF_AboutCell.m */,
+				35F30A2521CB81C300B86DE1 /* HF_PreviewView.h */,
+				35F30A2621CB81C300B86DE1 /* HF_PreviewView.m */,
+				35F30A2821CB8B3E00B86DE1 /* HF_PracticeView.h */,
+				35F30A2921CB8B3E00B86DE1 /* HF_PracticeView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3456,6 +3471,7 @@
 				5B13B8FA21AE6CD300CB0A7F /* HF_BaseTabbarViewController.m in Sources */,
 				5BE2EDBA216B37DC00845E70 /* BITHockeyAppClient.m in Sources */,
 				5BE2EE0B216B37DC00845E70 /* TKModelToJson.m in Sources */,
+				35F30A2421CB39B700B86DE1 /* HF_AboutCell.m in Sources */,
 				5BE2EE02216B37DC00845E70 /* TKPickViewTextField.m in Sources */,
 				5BE2ED9C216B37DC00845E70 /* TKAFNetworkReachabilityManager.m in Sources */,
 				5BE2EDDB216B37DC00845E70 /* TKLiveViewChatTableViewCell.m in Sources */,
@@ -3638,6 +3654,7 @@
 				5BE2ED9F216B37DC00845E70 /* BITHockeyBaseViewController.m in Sources */,
 				5BE2EDCF216B37DC00845E70 /* TKEmotionToolbar.m in Sources */,
 				5B345232202C4A7E00850D30 /* GGT_ApplyClassModel.m in Sources */,
+				35F30A2A21CB8B3E00B86DE1 /* HF_PracticeView.m in Sources */,
 				5B61C96B1FEA6A3C00EA46BD /* GGT_HasEvaluationViewController.m in Sources */,
 				5BD0754E1FE12C58002F0837 /* GGT_ScheduleFinishedViewController.m in Sources */,
 				5B4425E221C8D9210036298C /* HF_HomeHeaderModel.m in Sources */,
@@ -3704,6 +3721,7 @@
 				5BE2EDD5216B37DC00845E70 /* UIView+Extension.m in Sources */,
 				D67D55EE1EC58E47009D3CC5 /* GGT_ScheduleViewController.m in Sources */,
 				5BC49D8721B52879009E4972 /* HF_MyScheduleHomeUnFinishedCell.m in Sources */,
+				35F30A2721CB81C300B86DE1 /* HF_PreviewView.m in Sources */,
 				5BE2EDA7216B37DC00845E70 /* BITFeedbackUserDataViewController.m in Sources */,
 				5B9A547D202ADB2300FDEA76 /* GGT_OrderUnitCourseCollFooter.m in Sources */,
 				5BE2EE03216B37DC00845E70 /* TKAreaPickTextField.m in Sources */,
