@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		3512ACAE21B6289A00F08F97 /* HF_OrderCourseListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3512ACAD21B6289A00F08F97 /* HF_OrderCourseListViewController.m */; };
 		3538EF571ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3538EF561ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.m */; };
+		358790B621CA338200220172 /* HF_ClassDetailsTopView.m in Sources */ = {isa = PBXBuildFile; fileRef = 358790B521CA338200220172 /* HF_ClassDetailsTopView.m */; };
 		35ECCFCA21B8D4F100C056B9 /* HF_OrderDateListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFC921B8D4F100C056B9 /* HF_OrderDateListView.m */; };
 		35ECCFCD21B8D5DF00C056B9 /* HF_OrderTimeListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFCC21B8D5DF00C056B9 /* HF_OrderTimeListView.m */; };
 		35ECCFD021B8F21A00C056B9 /* HF_OrderDateCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 35ECCFCF21B8F21A00C056B9 /* HF_OrderDateCell.m */; };
@@ -455,6 +456,8 @@
 		3512ACAD21B6289A00F08F97 /* HF_OrderCourseListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderCourseListViewController.m; sourceTree = "<group>"; };
 		3538EF551ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGT_SelfInfoTableViewCell.h; sourceTree = "<group>"; };
 		3538EF561ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGT_SelfInfoTableViewCell.m; sourceTree = "<group>"; };
+		358790B421CA338200220172 /* HF_ClassDetailsTopView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_ClassDetailsTopView.h; sourceTree = "<group>"; };
+		358790B521CA338200220172 /* HF_ClassDetailsTopView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_ClassDetailsTopView.m; sourceTree = "<group>"; };
 		35ECCFC821B8D4F100C056B9 /* HF_OrderDateListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_OrderDateListView.h; sourceTree = "<group>"; };
 		35ECCFC921B8D4F100C056B9 /* HF_OrderDateListView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_OrderDateListView.m; sourceTree = "<group>"; };
 		35ECCFCB21B8D5DF00C056B9 /* HF_OrderTimeListView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_OrderTimeListView.h; sourceTree = "<group>"; };
@@ -1869,6 +1872,8 @@
 				5B4425D821C8A0A30036298C /* HF_HomeContentCell.m */,
 				5B4425DA21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.h */,
 				5B4425DB21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.m */,
+				358790B421CA338200220172 /* HF_ClassDetailsTopView.h */,
+				358790B521CA338200220172 /* HF_ClassDetailsTopView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3467,6 +3472,7 @@
 				5BE2ED9B216B37DC00845E70 /* TKAFNetworkActivityIndicatorManager.m in Sources */,
 				5B5E6F1E21C245D70067881A /* AdCycleScrollView.m in Sources */,
 				5BA59AC221BFC1E1005BCB94 /* HF_MyScheduleHomeFinishedListModel.m in Sources */,
+				358790B621CA338200220172 /* HF_ClassDetailsTopView.m in Sources */,
 				D6353E141EE8E20A004E1288 /* GGT_PopoverController.m in Sources */,
 				5B1E61DF1F46CC5F00342CC5 /* HF_LoadingView.m in Sources */,
 				D6E0A47F1EC2C200006A003D /* AppDelegate.m in Sources */,
