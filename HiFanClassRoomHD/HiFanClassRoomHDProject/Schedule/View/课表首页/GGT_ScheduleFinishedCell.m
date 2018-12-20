@@ -309,11 +309,11 @@
     //评价状态   IsComment  1 已评价  0 未评价
     switch (model.IsComment) {
         case 0:
-            [self.evaluateStatusButton setTitle:@"待评价" forState:(UIControlStateNormal)];
+            [self.evaluateStatusButton setTitle:@"待评价" forState:UIControlStateNormal];
             [self.evaluateStatusButton setTitleColor:UICOLOR_FROM_HEX(ColorFF6600) forState:UIControlStateNormal];
             break;
         case 1:
-            [self.evaluateStatusButton setTitle:@"已评价" forState:(UIControlStateNormal)];
+            [self.evaluateStatusButton setTitle:@"已评价" forState:UIControlStateNormal];
             [self.evaluateStatusButton setTitleColor:UICOLOR_FROM_HEX(Color4A4A4A) forState:UIControlStateNormal];
             break;
         default:

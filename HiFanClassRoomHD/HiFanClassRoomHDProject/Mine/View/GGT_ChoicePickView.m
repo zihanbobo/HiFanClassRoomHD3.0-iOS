@@ -76,11 +76,11 @@
 }
 
 - (void)setButton:(NSInteger )buttonTag {
-    UIButton *finishButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    UIButton *finishButton = [UIButton buttonWithType:UIButtonTypeCustom];
     finishButton.frame =CGRectMake(marginMineRight-LineW(100), 0, LineW(100), LineH(30));
-    [finishButton setTitle:@"完成" forState:(UIControlStateNormal)];
+    [finishButton setTitle:@"完成" forState:UIControlStateNormal];
     finishButton.titleLabel.font = Font(20);
-    [finishButton setTitleColor:UICOLOR_FROM_HEX(Color777777) forState:(UIControlStateNormal)];
+    [finishButton setTitleColor:UICOLOR_FROM_HEX(Color777777) forState:UIControlStateNormal];
     [finishButton addTarget:self action:@selector(finishButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     finishButton.tag = buttonTag;
     [self addSubview:finishButton];

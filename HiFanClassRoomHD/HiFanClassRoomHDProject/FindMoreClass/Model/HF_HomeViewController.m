@@ -44,6 +44,7 @@
         self.headerArray = [NSMutableArray array];
         self.dataArray = [NSMutableArray array];
         [self getLessonListData];
+        [self getUnitListData];
     }];
     [self.tableView.mj_header beginRefreshing];
 }
@@ -69,9 +70,9 @@
     }];
 }
 
-//MARK:获取教学资源类型
-//-(void)getInstructionalTypeListData {
-//    [[BaseService share] sendGetRequestWithPath:URL_GetInstructionalTypeList token:YES viewController:self success:^(id responseObject) {
+//MARK:获取Unit列表
+-(void)getUnitListData {
+    [[BaseService share] sendGetRequestWithPath:URL_GetUnitInfoList token:YES viewController:self success:^(id responseObject) {
 //        if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
 //            for (NSDictionary *dic in responseObject[@"data"]) {
 //                HF_FindMoreInstructionalTypeListModel *model = [HF_FindMoreInstructionalTypeListModel yy_modelWithDictionary:dic];
@@ -82,11 +83,11 @@
 //        [self.tableView.mj_header endRefreshing];
 //        [self.tableView.mj_footer endRefreshingWithNoMoreData];
 //        [self.tableView reloadData];
-//
-//    } failure:^(NSError *error) {
-//
-//    }];
-//}
+
+    } failure:^(NSError *error) {
+
+    }];
+}
 
 
 //MARK:UITableView 代理
@@ -101,7 +102,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return LineH(382);
+    return LineH(296);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -147,7 +148,7 @@
 
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return LineH(340); //106+234
+    return LineH(345); //106+239
 }
 
 

@@ -31,7 +31,7 @@
     }];
     
     
-    self.backButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    self.backButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self addSubview:self.backButton];
 
     [self.backButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -173,14 +173,12 @@
         make.height.mas_offset(LineH(25));
     }];
 
-    
-    
-    
+
 
     //注册
-    self.registerButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.registerButton setTitle:@"注 册" forState:(UIControlStateNormal)];
-    [self.registerButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:(UIControlStateNormal)];
+    self.registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.registerButton setTitle:@"注 册" forState:UIControlStateNormal];
+    [self.registerButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
     self.registerButton.backgroundColor = UICOLOR_FROM_HEX(Color2B8EEF);
     self.registerButton.titleLabel.font = Font(18);
     self.registerButton.layer.masksToBounds = YES;

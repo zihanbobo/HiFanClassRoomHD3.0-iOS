@@ -65,9 +65,9 @@
     
     
     //取消课程
-    self.cancleClassButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.cancleClassButton setTitle:@"取消课程" forState:(UIControlStateNormal)];
-    [self.cancleClassButton setTitleColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 40) forState:(UIControlStateNormal)];
+    self.cancleClassButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.cancleClassButton setTitle:@"取消课程" forState:UIControlStateNormal];
+    [self.cancleClassButton setTitleColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 40) forState:UIControlStateNormal];
     self.cancleClassButton.titleLabel.font = Font(14);
     [self.bigContentView addSubview:self.cancleClassButton];
     
@@ -122,9 +122,9 @@
     //课前预习
     self.classBeforeButton = [UIButton new];
     self.classBeforeButton.titleLabel.font = Font(16);
-    [self.classBeforeButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:(UIControlStateNormal)];
+    [self.classBeforeButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
     [self.classBeforeButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
-    [self.classBeforeButton setTitle:@"课前预习" forState:(UIControlStateNormal)];
+    [self.classBeforeButton setTitle:@"课前预习" forState:UIControlStateNormal];
     [self.bigContentView addSubview:self.classBeforeButton];
     
     
@@ -138,9 +138,9 @@
     //进入教室
     self.classEnterButton = [UIButton new];
     self.classEnterButton.titleLabel.font = Font(16);
-    [self.classEnterButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:(UIControlStateNormal)];
+    [self.classEnterButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
     [self.classEnterButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterClassBtn") forState:UIControlStateNormal];
-    [self.classEnterButton setTitle:@"进入教室" forState:(UIControlStateNormal)];
+    [self.classEnterButton setTitle:@"进入教室" forState:UIControlStateNormal];
     [self.bigContentView addSubview:self.classEnterButton];
     
     

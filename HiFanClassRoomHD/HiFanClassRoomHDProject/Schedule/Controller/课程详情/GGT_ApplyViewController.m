@@ -209,7 +209,7 @@
         [xc_button setTitle:@"确定" forState:UIControlStateNormal];
         [xc_button setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
         [xc_button xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:18];
-        [xc_button setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonY") forState:(UIControlStateNormal)];
+        [xc_button setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonY") forState:UIControlStateNormal];
         xc_button;
     });
     [sureButton addTarget:self action:@selector(sureButton) forControlEvents:(UIControlEventTouchUpInside)];

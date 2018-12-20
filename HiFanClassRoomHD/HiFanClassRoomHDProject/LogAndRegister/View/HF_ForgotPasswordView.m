@@ -151,9 +151,9 @@
     
 
     //获取验证码
-    self.getCodeButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.getCodeButton setTitle:@"获取验证码" forState:(UIControlStateNormal)];
-    [self.getCodeButton setTitleColor:UICOLOR_FROM_HEX(Color2B8EEF) forState:(UIControlStateNormal)];
+    self.getCodeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.getCodeButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+    [self.getCodeButton setTitleColor:UICOLOR_FROM_HEX(Color2B8EEF) forState:UIControlStateNormal];
     self.getCodeButton.titleLabel.font = Font(14);
     [self.verificationCodeView addSubview:self.getCodeButton];
     
@@ -232,9 +232,9 @@
     
     
     
-    self.confirmButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.confirmButton setTitle:@"确 认" forState:(UIControlStateNormal)];
-    [self.confirmButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:(UIControlStateNormal)];
+    self.confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.confirmButton setTitle:@"确 认" forState:UIControlStateNormal];
+    [self.confirmButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
     self.confirmButton.backgroundColor = UICOLOR_FROM_HEX(Color2B8EEF);
     self.confirmButton.titleLabel.font = Font(18);
     self.confirmButton.layer.masksToBounds = YES;

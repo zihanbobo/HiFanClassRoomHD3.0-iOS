@@ -311,6 +311,8 @@
 		5BE2EE0B216B37DC00845E70 /* TKModelToJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2ED88216B37DC00845E70 /* TKModelToJson.m */; };
 		5BE2EE0C216B37DC00845E70 /* TKUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2ED8B216B37DC00845E70 /* TKUtil.mm */; };
 		5BE2EE0D216B382F00845E70 /* TKRoomSDK.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 5BE2ED78216B37DC00845E70 /* TKRoomSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5BE75D2121CB96C8002210EC /* HF_HomeUnitChooseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE75D2021CB96C8002210EC /* HF_HomeUnitChooseView.m */; };
+		5BE75D2421CBA936002210EC /* HF_HomeUnitChooseCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE75D2321CBA936002210EC /* HF_HomeUnitChooseCell.m */; };
 		5BE8F9811ED6A4B300958AED /* AddressList.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5BE8F9801ED6A4B300958AED /* AddressList.txt */; };
 		5BF3A6A21EEAC3B100491CC2 /* shebeijianche_0.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF3A6791EEAC3B100491CC2 /* shebeijianche_0.png */; };
 		5BF3A6A31EEAC3B100491CC2 /* shebeijianche_1.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BF3A67A1EEAC3B100491CC2 /* shebeijianche_1.png */; };
@@ -1045,6 +1047,10 @@
 		5BE2ED8A216B37DC00845E70 /* TKMP3ToPCM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKMP3ToPCM.h; sourceTree = "<group>"; };
 		5BE2ED8B216B37DC00845E70 /* TKUtil.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TKUtil.mm; sourceTree = "<group>"; };
 		5BE2ED8C216B37DC00845E70 /* TKModelToJson.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TKModelToJson.h; sourceTree = "<group>"; };
+		5BE75D1F21CB96C8002210EC /* HF_HomeUnitChooseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeUnitChooseView.h; sourceTree = "<group>"; };
+		5BE75D2021CB96C8002210EC /* HF_HomeUnitChooseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeUnitChooseView.m; sourceTree = "<group>"; };
+		5BE75D2221CBA936002210EC /* HF_HomeUnitChooseCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeUnitChooseCell.h; sourceTree = "<group>"; };
+		5BE75D2321CBA936002210EC /* HF_HomeUnitChooseCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeUnitChooseCell.m; sourceTree = "<group>"; };
 		5BE8F9801ED6A4B300958AED /* AddressList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = AddressList.txt; sourceTree = "<group>"; };
 		5BF3A6791EEAC3B100491CC2 /* shebeijianche_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shebeijianche_0.png; sourceTree = "<group>"; };
 		5BF3A67A1EEAC3B100491CC2 /* shebeijianche_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shebeijianche_1.png; sourceTree = "<group>"; };
@@ -1870,6 +1876,10 @@
 				5B4425DE21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.m */,
 				5B4425D721C8A0A30036298C /* HF_HomeContentCell.h */,
 				5B4425D821C8A0A30036298C /* HF_HomeContentCell.m */,
+				5BE75D1F21CB96C8002210EC /* HF_HomeUnitChooseView.h */,
+				5BE75D2021CB96C8002210EC /* HF_HomeUnitChooseView.m */,
+				5BE75D2221CBA936002210EC /* HF_HomeUnitChooseCell.h */,
+				5BE75D2321CBA936002210EC /* HF_HomeUnitChooseCell.m */,
 				5B4425DA21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.h */,
 				5B4425DB21C8BE1F0036298C /* HF_HomeUnitCollectionViewCell.m */,
 			);
@@ -3413,6 +3423,7 @@
 				"${BUILT_PRODUCTS_DIR}/Masonry/Masonry.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveCocoa/ReactiveCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/WMPlayer/WMPlayer.framework",
 				"${BUILT_PRODUCTS_DIR}/YYModel/YYModel.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -3425,6 +3436,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Masonry.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WMPlayer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/YYModel.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3683,6 +3695,7 @@
 				5B97CA8821BE875500F80BD4 /* HF_MineHomeFooterView.m in Sources */,
 				3538EF571ED2B6AD00078971 /* GGT_SelfInfoTableViewCell.m in Sources */,
 				5BD3D8301FCE828700C9B92B /* GGT_UnitBookListModel.m in Sources */,
+				5BE75D2121CB96C8002210EC /* HF_HomeUnitChooseView.m in Sources */,
 				5BB09A901FCD5A2D0071B8DE /* GGT_OrderUnitCourseDateView.m in Sources */,
 				D6E0A47C1EC2C200006A003D /* main.m in Sources */,
 				5BE2EDF7216B37DC00845E70 /* TKButton.m in Sources */,
@@ -3721,6 +3734,7 @@
 				5BE2EDC4216B37DC00845E70 /* TKChatView.m in Sources */,
 				5BE2ED98216B37DC00845E70 /* TKAFSecurityPolicy.m in Sources */,
 				5BE2EDEE216B37DC00845E70 /* TKDocumentListView.m in Sources */,
+				5BE75D2421CBA936002210EC /* HF_HomeUnitChooseCell.m in Sources */,
 				5BE2EDA1216B37DC00845E70 /* BITHockeyBaseManager.m in Sources */,
 				D6E0A5411EC2D9C1006A003D /* PlaceholderTextView.m in Sources */,
 				5B743D271EC5A435004E744A /* GGT_MineLeftViewController.m in Sources */,

@@ -46,6 +46,8 @@ PODS:
     - UMengUShare/Core
   - UMengUShare/Social/ReducedWeChat (6.4.8.2):
     - UMengUShare/Core
+  - WMPlayer (5.0.0):
+    - Masonry
   - YYModel (1.0.4)
 
 DEPENDENCIES:
@@ -63,10 +65,11 @@ DEPENDENCIES:
   - UMengUShare/Social/QQ
   - UMengUShare/Social/ReducedSina
   - UMengUShare/Social/ReducedWeChat
+  - WMPlayer
   - YYModel
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AFNetworking
     - Bugly
     - FLAnimatedImage
@@ -80,6 +83,7 @@ SPEC REPOS:
     - SDWebImage
     - UMengAnalytics-NO-IDFA
     - UMengUShare
+    - WMPlayer
     - YYModel
 
 SPEC CHECKSUMS:
@@ -96,8 +100,9 @@ SPEC CHECKSUMS:
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
   UMengAnalytics-NO-IDFA: 16666e32edce5be44ae5b14aaaa7f3582e09d6ab
   UMengUShare: 370d180101e13ee0227ae657ab119ba97243d2b3
+  WMPlayer: a914f80ed5dca7cd9e3a94ec07a2b02eec8c15c0
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 08112b9149a4be81fa6f064e030c53ebc5db7933
+PODFILE CHECKSUM: a3c2bde53cff9782fb6d3d2218811522f5714332
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

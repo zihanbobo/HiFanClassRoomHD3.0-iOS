@@ -114,7 +114,7 @@
     
     [self addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.headerView.mas_bottom).offset(50);
+        make.top.equalTo(self.headerView.mas_bottom).offset(40);
         make.left.equalTo(self.mas_left).offset(0);
         make.right.equalTo(self.mas_right).offset(-0);
         make.bottom.equalTo(self.mas_bottom).offset(-0);
@@ -130,8 +130,8 @@
         self.headerView = [[BaseScrollHeaderView alloc] init];
         self.headerView.navBigLabel.text = @"Good Afternoon";
         self.headerView.titleLabel.text = @"下午好";
-        [self.headerView.rightButton setTitle:@"课程攻略" forState:(UIControlStateNormal)];
-        [self.headerView.rightButton setImage:UIIMAGE_FROM_NAME(@"攻略1") forState:(UIControlStateNormal)];
+        [self.headerView.rightButton setTitle:@"课程攻略" forState:UIControlStateNormal];
+        [self.headerView.rightButton setImage:UIIMAGE_FROM_NAME(@"攻略1") forState:UIControlStateNormal];
     }
     return _headerView;
 }

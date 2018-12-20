@@ -15,7 +15,6 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self initUI];
-
     }
     return self;
 }
@@ -24,8 +23,8 @@
     BaseScrollHeaderView *headerView = [[BaseScrollHeaderView alloc] init];
     headerView.navBigLabel.text = @"Find More";
     headerView.titleLabel.text = @"发现";
-    [headerView.rightButton setTitle:@"我喜欢的" forState:(UIControlStateNormal)];
-    [headerView.rightButton setImage:UIIMAGE_FROM_NAME(@"爱心") forState:(UIControlStateNormal)];
+    [headerView.rightButton setTitle:@"我喜欢的" forState:UIControlStateNormal];
+    [headerView.rightButton setImage:UIIMAGE_FROM_NAME(@"爱心") forState:UIControlStateNormal];
     [self addSubview:headerView];
     [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).with.offset(0);
@@ -61,7 +60,6 @@
     if (self.adCycleClickBlock) {
         self.adCycleClickBlock(selectedIndex);
     }
-    NSLog(@"%ld",selectedIndex);
 }
 
 @end

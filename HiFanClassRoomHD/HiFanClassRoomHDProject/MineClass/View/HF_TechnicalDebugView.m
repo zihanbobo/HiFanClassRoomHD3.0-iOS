@@ -47,7 +47,7 @@
     
     
     self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.closeButton setImage:UIIMAGE_FROM_NAME(@"close") forState:(UIControlStateNormal)];
+    [self.closeButton setImage:UIIMAGE_FROM_NAME(@"close") forState:UIControlStateNormal];
     [self addSubview:self.closeButton];
     
     [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -72,10 +72,10 @@
     
     
     //去设置
-    self.enterClassButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    self.enterClassButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.enterClassButton setBackgroundImage:UIIMAGE_FROM_NAME(@"实心按钮") forState:UIControlStateNormal];
-    [self.enterClassButton setTitle:@"在线技术支持" forState:(UIControlStateNormal)];
-    [self.enterClassButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:(UIControlStateNormal)];
+    [self.enterClassButton setTitle:@"在线技术支持" forState:UIControlStateNormal];
+    [self.enterClassButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
     self.enterClassButton.titleLabel.font = Font(18);
     [self addSubview:self.enterClassButton];
     

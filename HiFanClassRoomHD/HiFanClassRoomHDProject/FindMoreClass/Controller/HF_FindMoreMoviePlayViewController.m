@@ -39,23 +39,65 @@
     [self getLoadData];
 }
 
--(void)getLoadData {
-    NSString *urlStr = [NSString stringWithFormat:@"%@?resourcesID=%ld",URL_GetInstructionalInfoList,(long)self.ResourcesID];
-    [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
-        if ([responseObject[@"data"][@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"][@"data"] count] >0) {
-            for (NSDictionary *dic in responseObject[@"data"][@"data"]) {
-                HF_FindMoreInstructionalListModel *model = [HF_FindMoreInstructionalListModel yy_modelWithDictionary:dic];
-                [self.dataArray addObject:model];
-            }
-        }
+-(void)navButtonClick : (UIButton *)button {
+
+    if (button.tag == 10) { //分享
         
+    } else if (button.tag == 20){ //喜欢
+        
+        NSString *urlStr = [NSString stringWithFormat:@"%@/%ld",URL_UpdataLike,(long)self.ResourcesID];
+        [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
+           
+        } failure:^(NSError *error) {
+            
+        }];
+    }
+
+}
+
+
+-(void)getLoadData {
+    NSString *urlStr;
+    if (self.isLikeVc == YES) {  //我喜欢的
+        urlStr = URL_GetLikeList;
+    } else {                     //其他
+        urlStr = [NSString stringWithFormat:@"%@?resourcesID=%ld",URL_GetInstructionalInfoList,(long)self.ResourcesID];
+    }
+    
+    [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
+        
+        if (self.isLikeVc == YES) {  //我喜欢的
+            if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    HF_FindMoreInstructionalListModel *model = [HF_FindMoreInstructionalListModel yy_modelWithDictionary:dic];
+                    [self.dataArray addObject:model];
+                }
+            }
+            
+            [self.collectionView.mj_footer endRefreshing];
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+            [self.collectionView reloadData];
+        } else {                     //其他
+            if ([responseObject[@"data"][@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"][@"data"] count] >0) {
+                for (NSDictionary *dic in responseObject[@"data"][@"data"]) {
+                    HF_FindMoreInstructionalListModel *model = [HF_FindMoreInstructionalListModel yy_modelWithDictionary:dic];
+                    [self.dataArray addObject:model];
+                }
+            }
+            
+            [self.collectionView.mj_footer endRefreshing];
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+            [self.collectionView reloadData];
+        }
+
+        
+    } failure:^(NSError *error) {
         [self.collectionView.mj_footer endRefreshing];
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshingWithNoMoreData];
         [self.collectionView reloadData];
-        
-    } failure:^(NSError *error) {
-        
     }];
 }
 
@@ -110,8 +152,10 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-
-    
+    HF_FindMoreInstructionalListModel *model = [self.dataArray safe_objectAtIndex:indexPath.row];
+    self.title = model.Title;
+    self.ResourcesID = model.RecordID;
+    self.headerView.playerUrlStr = model.RelationUrl;
 }
 
 
@@ -123,6 +167,7 @@
     fixedSpaceBarButtonItem.width = 20;
     self.navigationItem.rightBarButtonItems = @[self.shareBtn,fixedSpaceBarButtonItem,self.likeBtn];
     
+    self.headerView.playerUrlStr = self.playerUrlStr;
     [self.view addSubview:self.headerView];
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view.mas_top).offset(0);
@@ -165,33 +210,37 @@
 }
 
 //喜欢
--(UIBarButtonItem *)likeBtn{
+-(UIBarButtonItem *)likeBtn {
     if (!_likeBtn) {
         UIButton *btn  = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:UIIMAGE_FROM_NAME(@"灰爱心") forState:UIControlStateNormal];
-        [btn setTitle:@"喜欢" forState:(UIControlStateNormal)];
+        [btn setTitle:@"喜欢" forState:UIControlStateNormal];
         btn.frame = CGRectMake(0, 0, LineW(60), LineH(16));
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.titleLabel.font = Font(16);
         btn.imageEdgeInsets = UIEdgeInsetsMake(0, -LineW(3), 0, 0);
         btn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -LineW(3));
+        [btn addTarget:self action:@selector(navButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         [btn sizeToFit];
+        btn.tag = 20;
         self.likeBtn =  [[UIBarButtonItem alloc] initWithCustomView:btn];
     }
     return _likeBtn;
 }
 
 //分享
--(UIBarButtonItem *)shareBtn{
+-(UIBarButtonItem *)shareBtn {
     if (!_shareBtn) {
         UIButton *btn  = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:UIIMAGE_FROM_NAME(@"灰分享") forState:UIControlStateNormal];
-        [btn setTitle:@"分享" forState:(UIControlStateNormal)];
+        [btn setTitle:@"分享" forState:UIControlStateNormal];
         btn.frame = CGRectMake(0, 0, LineW(60), LineH(16));
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.titleLabel.font = Font(16);
         btn.imageEdgeInsets = UIEdgeInsetsMake(0, -LineW(3), 0, 0);
         btn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -LineW(3));
+        [btn addTarget:self action:@selector(navButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
+        btn.tag = 10;
         [btn sizeToFit];
         self.shareBtn =  [[UIBarButtonItem alloc] initWithCustomView:btn];
     }

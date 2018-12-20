@@ -53,21 +53,41 @@
     
     [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
         
-        if ([responseObject[@"data"][@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"][@"data"] count] >0) {
-            
-            self.headerimageString = responseObject[@"data"][@"AdvertImage"];
-            for (NSDictionary *dic in responseObject[@"data"][@"data"]) {
-                HF_FindMoreInstructionalListModel *model = [HF_FindMoreInstructionalListModel yy_modelWithDictionary:dic];
-                [self.dataArray addObject:model];
+        
+        if (self.isLikeVc == YES) {  //我喜欢的
+            if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
+                
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    HF_FindMoreInstructionalListModel *model = [HF_FindMoreInstructionalListModel yy_modelWithDictionary:dic];
+                    [self.dataArray addObject:model];
+                }
+                
+                self.headerView.hidden = NO;
+                self.placeHolderView.hidden = YES;
+                [self.collectionView.mj_footer endRefreshing];
+                [self.collectionView.mj_header endRefreshing];
+                [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+                [self.collectionView reloadData];
             }
-            
-            self.headerView.hidden = NO;
-            self.placeHolderView.hidden = YES;
-            [self.collectionView.mj_footer endRefreshing];
-            [self.collectionView.mj_header endRefreshing];
-            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
-            [self.collectionView reloadData];
+        } else {                     //其他
+            if ([responseObject[@"data"][@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"][@"data"] count] >0) {
+                
+                self.headerimageString = responseObject[@"data"][@"AdvertImage"];
+                for (NSDictionary *dic in responseObject[@"data"][@"data"]) {
+                    HF_FindMoreInstructionalListModel *model = [HF_FindMoreInstructionalListModel yy_modelWithDictionary:dic];
+                    [self.dataArray addObject:model];
+                }
+                
+                self.headerView.hidden = NO;
+                self.placeHolderView.hidden = YES;
+                [self.collectionView.mj_footer endRefreshing];
+                [self.collectionView.mj_header endRefreshing];
+                [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+                [self.collectionView reloadData];
+            }
         }
+    
+       
         
     } failure:^(NSError *error) {
         //msg=暂无数据, result=0
@@ -124,7 +144,13 @@
     HF_FindMoreInstructionalListModel *model = [self.dataArray safe_objectAtIndex:indexPath.row];
     HF_FindMoreMoviePlayViewController *vc = [[HF_FindMoreMoviePlayViewController alloc] init];
     vc.model = model;
-    vc.ResourcesID = self.listModel.ResourcesID;
+    if (self.isLikeVc == YES) {
+        vc.isLikeVc = YES;
+    } else {
+        vc.ResourcesID = self.listModel.ResourcesID;
+        vc.isLikeVc = NO;
+    }
+    vc.playerUrlStr = model.RelationUrl;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
