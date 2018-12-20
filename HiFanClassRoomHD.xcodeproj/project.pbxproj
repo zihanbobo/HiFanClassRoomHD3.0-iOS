@@ -93,10 +93,11 @@
 		5B9A547D202ADB2300FDEA76 /* GGT_OrderUnitCourseCollFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A547C202ADB2300FDEA76 /* GGT_OrderUnitCourseCollFooter.m */; };
 		5BA59AC221BFC1E1005BCB94 /* HF_MyScheduleHomeFinishedListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA59AC121BFC1E1005BCB94 /* HF_MyScheduleHomeFinishedListModel.m */; };
 		5BA64B4E21C9E362000E90DE /* HF_HomeClassDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA64B4D21C9E362000E90DE /* HF_HomeClassDetailViewController.m */; };
+		5BA64B5121CA30D8000E90DE /* HF_FindMoreAdvertPositionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BA64B5021CA30D8000E90DE /* HF_FindMoreAdvertPositionViewController.m */; };
+		5BA64B5321CA612B000E90DE /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BA64B5221CA612B000E90DE /* AVFoundation.framework */; };
 		5BAE2F5020469BD300375F2B /* HF_ClassRoomManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE2F4F20469BD300375F2B /* HF_ClassRoomManager.m */; };
 		5BAE2F5420469D0800375F2B /* HF_ClassRoomModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAE2F5320469D0800375F2B /* HF_ClassRoomModel.m */; };
 		5BAF220A21C769BA00AB1929 /* HF_FindMoreMoviePlayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF220921C769BA00AB1929 /* HF_FindMoreMoviePlayView.m */; };
-		5BAF220D21C770EA00AB1929 /* HF_FindMoreFavoriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF220C21C770EA00AB1929 /* HF_FindMoreFavoriteViewController.m */; };
 		5BAF220F21C780F300AB1929 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5BAF220E21C780F200AB1929 /* Accelerate.framework */; };
 		5BAF221221C7881700AB1929 /* HF_FindMoreInstructionalListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF221121C7881700AB1929 /* HF_FindMoreInstructionalListViewController.m */; };
 		5BAF221521C78E4F00AB1929 /* HF_FindMoreInstructionlListHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF221421C78E4F00AB1929 /* HF_FindMoreInstructionlListHeaderView.m */; };
@@ -634,14 +635,15 @@
 		5BA59AC121BFC1E1005BCB94 /* HF_MyScheduleHomeFinishedListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_MyScheduleHomeFinishedListModel.m; sourceTree = "<group>"; };
 		5BA64B4C21C9E362000E90DE /* HF_HomeClassDetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeClassDetailViewController.h; sourceTree = "<group>"; };
 		5BA64B4D21C9E362000E90DE /* HF_HomeClassDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeClassDetailViewController.m; sourceTree = "<group>"; };
+		5BA64B4F21CA30D8000E90DE /* HF_FindMoreAdvertPositionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_FindMoreAdvertPositionViewController.h; sourceTree = "<group>"; };
+		5BA64B5021CA30D8000E90DE /* HF_FindMoreAdvertPositionViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_FindMoreAdvertPositionViewController.m; sourceTree = "<group>"; };
+		5BA64B5221CA612B000E90DE /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		5BAE2F4E20469BD300375F2B /* HF_ClassRoomManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_ClassRoomManager.h; sourceTree = "<group>"; };
 		5BAE2F4F20469BD300375F2B /* HF_ClassRoomManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_ClassRoomManager.m; sourceTree = "<group>"; };
 		5BAE2F5220469D0800375F2B /* HF_ClassRoomModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_ClassRoomModel.h; sourceTree = "<group>"; };
 		5BAE2F5320469D0800375F2B /* HF_ClassRoomModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_ClassRoomModel.m; sourceTree = "<group>"; };
 		5BAF220821C769BA00AB1929 /* HF_FindMoreMoviePlayView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_FindMoreMoviePlayView.h; sourceTree = "<group>"; };
 		5BAF220921C769BA00AB1929 /* HF_FindMoreMoviePlayView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_FindMoreMoviePlayView.m; sourceTree = "<group>"; };
-		5BAF220B21C770EA00AB1929 /* HF_FindMoreFavoriteViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_FindMoreFavoriteViewController.h; sourceTree = "<group>"; };
-		5BAF220C21C770EA00AB1929 /* HF_FindMoreFavoriteViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_FindMoreFavoriteViewController.m; sourceTree = "<group>"; };
 		5BAF220E21C780F200AB1929 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		5BAF221021C7881700AB1929 /* HF_FindMoreInstructionalListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_FindMoreInstructionalListViewController.h; sourceTree = "<group>"; };
 		5BAF221121C7881700AB1929 /* HF_FindMoreInstructionalListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_FindMoreInstructionalListViewController.m; sourceTree = "<group>"; };
@@ -1229,6 +1231,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BA64B5321CA612B000E90DE /* AVFoundation.framework in Frameworks */,
 				5BAF220F21C780F300AB1929 /* Accelerate.framework in Frameworks */,
 				5B8B08F2217F18ED005F1620 /* libicucore.tbd in Frameworks */,
 				D68775641F0A085F008687C2 /* libc++.tbd in Frameworks */,
@@ -1307,8 +1310,8 @@
 				5BAF221121C7881700AB1929 /* HF_FindMoreInstructionalListViewController.m */,
 				5BD637E221B8CBDC004051B0 /* HF_FindMoreMoviePlayViewController.h */,
 				5BD637E321B8CBDC004051B0 /* HF_FindMoreMoviePlayViewController.m */,
-				5BAF220B21C770EA00AB1929 /* HF_FindMoreFavoriteViewController.h */,
-				5BAF220C21C770EA00AB1929 /* HF_FindMoreFavoriteViewController.m */,
+				5BA64B4F21CA30D8000E90DE /* HF_FindMoreAdvertPositionViewController.h */,
+				5BA64B5021CA30D8000E90DE /* HF_FindMoreAdvertPositionViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -2614,6 +2617,7 @@
 		B619F8A3CA6A6460D6966153 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5BA64B5221CA612B000E90DE /* AVFoundation.framework */,
 				5BAF220E21C780F200AB1929 /* Accelerate.framework */,
 				5B8DFCA11F905664000C0223 /* TuoKeSDK */,
 				D68775651F0A086A008687C2 /* libicucore.tbd */,
@@ -3504,7 +3508,6 @@
 				5B34522B202C419300850D30 /* GGT_ApplyClassViewController.m in Sources */,
 				D6E0A55D1EC2D9CD006A003D /* UIImage+Category.m in Sources */,
 				5BD637E421B8CBDC004051B0 /* HF_FindMoreMoviePlayViewController.m in Sources */,
-				5BAF220D21C770EA00AB1929 /* HF_FindMoreFavoriteViewController.m in Sources */,
 				5BAE2F5020469BD300375F2B /* HF_ClassRoomManager.m in Sources */,
 				D6D643B01FCC13F400561035 /* GGT_OrderCourseCollectionViewCell.m in Sources */,
 				5BE2EDC3216B37DC00845E70 /* NSString+sizeHeight.m in Sources */,
@@ -3696,6 +3699,7 @@
 				5BCBFD0A21AFE21F00E4EF11 /* HF_OrderCourseHomeView.m in Sources */,
 				5BE2EDFB216B37DC00845E70 /* TKDrogView.m in Sources */,
 				5BE2EDBB216B37DC00845E70 /* BITStoreButton.m in Sources */,
+				5BA64B5121CA30D8000E90DE /* HF_FindMoreAdvertPositionViewController.m in Sources */,
 				5BC9F3881FF37A5800CA2A34 /* GGT_OrderUnitCourseInfoCell.m in Sources */,
 				5BE2EDD5216B37DC00845E70 /* UIView+Extension.m in Sources */,
 				D67D55EE1EC58E47009D3CC5 /* GGT_ScheduleViewController.m in Sources */,

@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface HF_FindMoreInstructionlListHeaderView : UICollectionViewCell
+@property (nonatomic,copy) NSString *bookImageViewStr;
+@property (nonatomic, strong) UIImageView *bookImgView;
 
 @end

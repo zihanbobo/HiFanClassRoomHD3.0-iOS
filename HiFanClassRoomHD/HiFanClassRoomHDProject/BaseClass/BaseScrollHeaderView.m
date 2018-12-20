@@ -63,7 +63,7 @@
     
     //MARK:导航按钮 106-16-17 = 73
     self.rightButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    self.rightButton.frame = CGRectMake(0, 0, LineW(100), LineH(16));
+    self.rightButton.frame = CGRectMake(0, 0, LineW(110), LineH(40));
     [self.rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.rightButton.titleLabel.font = Font(16);
     self.rightButton.imageEdgeInsets = UIEdgeInsetsMake(0, -LineW(3), 0, 0);
@@ -71,9 +71,9 @@
     [self.navView addSubview:self.rightButton];
     
     [self.rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.navView.mas_top).offset(73);
+        make.top.equalTo(self.navView.mas_top).offset(63);
         make.right.equalTo(self.navView.mas_right).with.offset(-17);
-        make.height.mas_equalTo(16);
+        make.height.mas_equalTo(40);
     }];
     
     

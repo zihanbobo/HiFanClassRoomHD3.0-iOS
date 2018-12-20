@@ -42,8 +42,8 @@
 -(void)getLoadData {
     NSString *urlStr = [NSString stringWithFormat:@"%@?resourcesID=%ld",URL_GetInstructionalInfoList,(long)self.ResourcesID];
     [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
-        if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
-            for (NSDictionary *dic in responseObject[@"data"]) {
+        if ([responseObject[@"data"][@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"][@"data"] count] >0) {
+            for (NSDictionary *dic in responseObject[@"data"][@"data"]) {
                 HF_FindMoreInstructionalListModel *model = [HF_FindMoreInstructionalListModel yy_modelWithDictionary:dic];
                 [self.dataArray addObject:model];
             }
@@ -157,7 +157,7 @@
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         self.collectionView.delegate = self;
-        self.collectionView.dataSource =self;
+        self.collectionView.dataSource = self;
         self.collectionView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
         self.collectionView.showsHorizontalScrollIndicator = NO;
     }

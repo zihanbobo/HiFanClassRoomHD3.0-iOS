@@ -16,6 +16,9 @@
 @interface HF_FindMoreInstructionalListViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) HF_PlaceHolderView *placeHolderView;
+@property (nonatomic, strong) HF_FindMoreInstructionlListHeaderView *headerView;
+@property (nonatomic, copy) NSString *headerimageString;
 @end
 
 @implementation HF_FindMoreInstructionalListViewController
@@ -28,22 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setLeftItem:@"箭头"];
-    self.title = self.model.Title;
-    
     [self initUI];
-
-//    MJRefreshGifHeader *header = [HF_RefreshHeader headerWithRefreshingBlock:^{
-//        self.dataArray = [NSMutableArray array];
-//        [self getLoadData];
-//    }];
-//
-//    [header setImages:self.refreshImages duration:1 forState:MJRefreshStateRefreshing];
-////    [header setImages:self.pullingImages duration:1 forState:MJRefreshStateIdle];
-//    [header setImages:self.refreshImages forState:MJRefreshStatePulling];
-//    header.lastUpdatedTimeLabel.hidden = YES;
-//    header.stateLabel.hidden = YES;
-//    self.collectionView.mj_header = header;
-//    [self.collectionView.mj_header beginRefreshing];
+    
     
     self.collectionView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.dataArray = [NSMutableArray array];
@@ -54,31 +43,55 @@
 
 
 -(void)getLoadData {
-    NSString *urlStr = [NSString stringWithFormat:@"%@?resourcesID=%ld",URL_GetInstructionalInfoList,(long)self.model.ResourcesID];
+    NSString *urlStr;
+    if (self.isLikeVc == YES) {  //我喜欢的
+        urlStr = URL_GetLikeList;
+    } else {                     //其他
+        urlStr = [NSString stringWithFormat:@"%@?resourcesID=%ld",URL_GetInstructionalInfoList,(long)self.listModel.ResourcesID];
+    }
+    
+    
     [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
-        if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
-            for (NSDictionary *dic in responseObject[@"data"]) {
+        
+        if ([responseObject[@"data"][@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"][@"data"] count] >0) {
+            
+            self.headerimageString = responseObject[@"data"][@"AdvertImage"];
+            for (NSDictionary *dic in responseObject[@"data"][@"data"]) {
                 HF_FindMoreInstructionalListModel *model = [HF_FindMoreInstructionalListModel yy_modelWithDictionary:dic];
                 [self.dataArray addObject:model];
             }
+            
+            self.headerView.hidden = NO;
+            self.placeHolderView.hidden = YES;
+            [self.collectionView.mj_footer endRefreshing];
+            [self.collectionView.mj_header endRefreshing];
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+            [self.collectionView reloadData];
         }
         
+    } failure:^(NSError *error) {
+        //msg=暂无数据, result=0
+        if ([[error.userInfo objectForKey:@"result"] integerValue] == 0) {
+            [self.collectionView.mj_footer endRefreshing];
+            [self.collectionView.mj_header endRefreshing];
+            self.headerView.hidden = NO;
+            self.placeHolderView.hidden = YES;
+            [self.collectionView.mj_footer endRefreshingWithNoMoreData];
+            [self.collectionView reloadData];
+            return ;
+        }
+        HF_ResultModel *model = [HF_ResultModel yy_modelWithDictionary:error.userInfo];
+        self.placeHolderView.xc_model = model;
+        self.placeHolderView.hidden = NO;
+        self.headerView.hidden = YES;
         [self.collectionView.mj_footer endRefreshing];
         [self.collectionView.mj_header endRefreshing];
         [self.collectionView.mj_footer endRefreshingWithNoMoreData];
         [self.collectionView reloadData];
-        
-    } failure:^(NSError *error) {
-        
     }];
 }
 
 //MARK:UICollectionView代理
-//返回分区个数
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-
 //返回每个分区的item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return self.dataArray.count;
@@ -92,6 +105,32 @@
     cell.model = model;
     
     return cell;
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    self.headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HF_FindMoreInstructionlListHeaderView" forIndexPath:indexPath];
+    
+    if (self.isLikeVc == YES) {
+        self.headerView.bookImgView.image = UIIMAGE_FROM_NAME(@"我喜欢的背景");
+    } else {
+        self.headerView.bookImageViewStr = self.headerimageString;
+    }
+    
+    return self.headerView;
+}
+
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    HF_FindMoreInstructionalListModel *model = [self.dataArray safe_objectAtIndex:indexPath.row];
+    HF_FindMoreMoviePlayViewController *vc = [[HF_FindMoreMoviePlayViewController alloc] init];
+    vc.model = model;
+    vc.ResourcesID = self.listModel.ResourcesID;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+//返回分区个数
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
 }
 
 
@@ -120,29 +159,18 @@
 
 //设置header的宽高
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section {
-    
     return CGSizeMake(home_right_width,LineH(265));
 }
 
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    HF_FindMoreInstructionlListHeaderView *header = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HF_FindMoreInstructionlListHeaderView" forIndexPath:indexPath];
-    
-    
-    return header;
-}
-
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    HF_FindMoreInstructionalListModel *model = [self.dataArray safe_objectAtIndex:indexPath.row];
-    HF_FindMoreMoviePlayViewController *vc = [[HF_FindMoreMoviePlayViewController alloc] init];
-    vc.model = model;
-    vc.ResourcesID = self.model.ResourcesID;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 //MARK:UI加载
 -(void)initUI {
+    // 注册头视图
+    [self.collectionView registerClass:[HF_FindMoreInstructionlListHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HF_FindMoreInstructionlListHeaderView"];
+    //注册cell
+    [self.collectionView registerClass:[HF_FindMoreInstructionlListCell class] forCellWithReuseIdentifier:@"HF_FindMoreInstructionlListCell"];
     [self.view addSubview:self.collectionView];
+    
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(0);
         make.right.equalTo(self.view.mas_right).offset(-0);
@@ -150,10 +178,9 @@
         make.bottom.equalTo(self.view.mas_bottom).offset(-0);
     }];
     
-    // 注册头视图
-    [self.collectionView registerClass:[HF_FindMoreInstructionlListHeaderView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"HF_FindMoreInstructionlListHeaderView"];
-    //注册cell
-    [self.collectionView registerClass:[HF_FindMoreInstructionlListCell class] forCellWithReuseIdentifier:@"HF_FindMoreInstructionlListCell"];
+    
+    [self.collectionView addSubview:self.placeHolderView];
+    self.placeHolderView.hidden = YES;
 }
 
 //MARK:懒加载
@@ -171,6 +198,13 @@
     return _collectionView;
 }
 
+-(HF_PlaceHolderView *)placeHolderView {
+    if (!_placeHolderView) {
+        self.placeHolderView = [[HF_PlaceHolderView alloc] initWithFrame:CGRectZero withImgYHeight:LineY(120)];
+        self.placeHolderView.frame = CGRectMake(0, 0, home_right_width, SCREEN_HEIGHT());
+    }
+    return _placeHolderView;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

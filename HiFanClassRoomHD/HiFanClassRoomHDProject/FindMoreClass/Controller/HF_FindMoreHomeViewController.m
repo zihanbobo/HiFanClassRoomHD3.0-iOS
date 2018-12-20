@@ -12,10 +12,10 @@
 #import "HF_FindMoreMoviePlayViewController.h"
 #import "HF_FindMoreAdvertModel.h"
 #import "HF_FindMoreInstructionalTypeListModel.h"
-#import "HF_FindMoreFavoriteViewController.h"
 #import "HF_FindMoreInstructionalListViewController.h"
+#import "HF_FindMoreAdvertPositionViewController.h"
 
-@interface HF_FindMoreHomeViewController () <UITableViewDelegate,UITableViewDataSource>
+@interface HF_FindMoreHomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView; //tableView
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *headerAdArray;
@@ -23,6 +23,10 @@
 
 @implementation HF_FindMoreHomeViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,6 +37,7 @@
         self.headerAdArray = [NSMutableArray array];
         self.dataArray = [NSMutableArray array];
         [self getAdvertPositionListData];
+        [self getInstructionalTypeListData];
     }];
     [self.tableView.mj_header beginRefreshing];
 }
@@ -47,11 +52,14 @@
                 [self.headerAdArray addObject:model];
             }
         }
-        [self getInstructionalTypeListData];
+//        [self getInstructionalTypeListData];
         [self.tableView reloadData];
         
     } failure:^(NSError *error) {
-        
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        [self.tableView reloadData];
     }];
 }
 
@@ -70,7 +78,10 @@
         [self.tableView reloadData];
 
     } failure:^(NSError *error) {
-        
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        [self.tableView reloadData];
     }];
 }
 
@@ -102,10 +113,11 @@
     cell.collectionArray = self.dataArray;
     
     cell.selectedBlock = ^(NSInteger index) {
-        NSLog(@"点击的是 %ld 个",(long)index);
         HF_FindMoreInstructionalTypeListModel *model = [self.dataArray safe_objectAtIndex:index];
         HF_FindMoreInstructionalListViewController *vc = [[HF_FindMoreInstructionalListViewController alloc] init];
-        vc.model = model;
+        vc.listModel = model;
+        vc.isLikeVc = NO;
+        vc.navigationItem.title = model.Title;
         [self.navigationController pushViewController:vc animated:YES];
     };
     
@@ -128,10 +140,23 @@
     headerView.adScroll.imagesUrlArray = picArray;
     [headerView.adScroll refreshPageControlStyle];
     
+    //MARK:我喜欢的
     headerView.favoriteBtnBlock = ^{
-        NSLog(@"我喜欢的");
-        HF_FindMoreFavoriteViewController *vc = [[HF_FindMoreFavoriteViewController alloc] init];
+        HF_FindMoreInstructionalListViewController *vc = [[HF_FindMoreInstructionalListViewController alloc] init];
+        vc.isLikeVc = YES;
+        vc.navigationItem.title = @"我喜欢的";
         [self.navigationController pushViewController:vc animated:YES];
+    };
+    
+    //MARK:点击轮播图
+    headerView.adCycleClickBlock = ^(NSInteger index) {
+        HF_FindMoreAdvertModel *model = [self.headerAdArray safe_objectAtIndex:index];
+        HF_FindMoreAdvertPositionViewController *vc = [HF_FindMoreAdvertPositionViewController new];
+        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+        nav.modalPresentationStyle = UIModalPresentationFormSheet;
+        nav.popoverPresentationController.delegate = self;
+        vc.cellModel = model;
+        [self presentViewController:nav animated:YES completion:nil];
     };
     
     return headerView;

@@ -58,6 +58,9 @@
 
 #pragma mark - 轮播图点击事件
 - (void)cycleScrollView:(AdCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)selectedIndex{
+    if (self.adCycleClickBlock) {
+        self.adCycleClickBlock(selectedIndex);
+    }
     NSLog(@"%ld",selectedIndex);
 }
 
