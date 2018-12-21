@@ -86,9 +86,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"%ld",(long)indexPath.row);
     if (self.classDetailVcBlock) {
-        self.classDetailVcBlock();
+        self.classDetailVcBlock(indexPath.row);
     }
-
 }
 
 //MARK:UI加载

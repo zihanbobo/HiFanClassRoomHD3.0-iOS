@@ -219,7 +219,6 @@
 		5BE2EDA6216B37DC00845E70 /* BITHockeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2EC84216B37DC00845E70 /* BITHockeyManager.m */; };
 		5BE2EDA7216B37DC00845E70 /* BITFeedbackUserDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2EC88216B37DC00845E70 /* BITFeedbackUserDataViewController.m */; };
 		5BE2EDA8216B37DC00845E70 /* BITUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2EC89216B37DC00845E70 /* BITUpdateManager.m */; };
-		5BE2EDAA216B37DC00845E70 /* HockeySDK.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 5BE2EC8D216B37DC00845E70 /* HockeySDK.xcconfig */; };
 		5BE2EDAB216B37DC00845E70 /* BITAppVersionMetaInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2EC8E216B37DC00845E70 /* BITAppVersionMetaInfo.m */; };
 		5BE2EDAC216B37DC00845E70 /* BITStoreUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2EC8F216B37DC00845E70 /* BITStoreUpdateManager.m */; };
 		5BE2EDAD216B37DC00845E70 /* BITFeedbackActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BE2EC91216B37DC00845E70 /* BITFeedbackActivity.m */; };
@@ -3368,7 +3367,6 @@
 				5BAF22D421C7B3A400AB1929 /* shuaxin_40.png in Resources */,
 				5BAF22DE21C7B3A400AB1929 /* shuaxin_48.png in Resources */,
 				5BAF22BB21C7B3A400AB1929 /* shuaxin_5.png in Resources */,
-				5BE2EDAA216B37DC00845E70 /* HockeySDK.xcconfig in Resources */,
 				5BF3A6AA1EEAC3B100491CC2 /* shebeijianche_16.png in Resources */,
 				5BAF22CD21C7B3A400AB1929 /* shuaxin_25.png in Resources */,
 				5BAF22CE21C7B3A400AB1929 /* shuaxin_24.png in Resources */,

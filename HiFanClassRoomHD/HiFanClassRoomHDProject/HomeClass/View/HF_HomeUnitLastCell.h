@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HF_HomeUnitLastCell : UICollectionViewCell
+@interface HF_HomeUnitLastCell : UIView
 
 @end
 

@@ -106,8 +106,8 @@
         }
         
     
-        HF_HomeUnitCellModel *model = [[HF_HomeUnitCellModel alloc] init];
-        [self.dataArray addObject:model];
+//        HF_HomeUnitCellModel *model = [[HF_HomeUnitCellModel alloc] init];
+//        [self.dataArray addObject:model];
         
 
         [self.tableView.mj_footer endRefreshing];
@@ -164,6 +164,15 @@
         [self getUnitCellListData:unitId];
     };
  
+    cell.selectedBlock = ^(NSInteger index) {
+        HF_HomeUnitCellModel *model = [self.dataArray safe_objectAtIndex:index];
+        HF_HomeClassDetailViewController *vc = [HF_HomeClassDetailViewController new];
+        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+        nav.modalPresentationStyle = UIModalPresentationFormSheet;
+        nav.popoverPresentationController.delegate = self;
+        vc.lessonId = model.ChapterID;
+        [self presentViewController:nav animated:YES completion:nil];
+    };
     
     return cell;
 }
@@ -184,11 +193,13 @@
     };
 
     //MARK:跳转到  课程详情
-    headerView.classDetailVcBlock = ^{
+    headerView.classDetailVcBlock = ^(NSInteger index) {
+        HF_HomeHeaderModel *model = [self.headerArray safe_objectAtIndex:index];
         HF_HomeClassDetailViewController *vc = [HF_HomeClassDetailViewController new];
         BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
         nav.modalPresentationStyle = UIModalPresentationFormSheet;
         nav.popoverPresentationController.delegate = self;
+        vc.lessonId = model.RecordID;
         [self presentViewController:nav animated:YES completion:nil];
     };
     return headerView;

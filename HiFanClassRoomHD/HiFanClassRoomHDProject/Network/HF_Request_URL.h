@@ -35,10 +35,10 @@ static NSString * const URL_GetUnitInfoList = @"/api/Resources/GetUnitInfoList";
 //根据Unit编号获取对应的教材信息
 static NSString * const URL_GetChapterList = @"/api/Resources/GetChapterList";
 
-
-
 //课程详情
-static NSString * const URL_GetClassDetail = @"/api/Resources/GetLessonDeatil";
+static NSString * const URL_GetChapterInfo = @"/api/Resources/GetChapterInfo";
+////课程详情
+//static NSString * const URL_GetClassDetail = @"/api/Resources/GetLessonDeatil";
 
 
 

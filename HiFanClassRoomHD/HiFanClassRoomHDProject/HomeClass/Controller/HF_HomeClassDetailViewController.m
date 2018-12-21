@@ -47,9 +47,8 @@
     
 }
 
--(void)getLodadata
-{
-    NSString *url = [NSString stringWithFormat:@"%@?lessonId=%d",URL_GetClassDetail,3287];
+-(void)getLodadata {
+    NSString *url = [NSString stringWithFormat:@"%@?chapterId=%ld",URL_GetChapterInfo,(long)self.lessonId];
     [[BaseService share] sendGetRequestWithPath:url token:YES viewController:self success:^(id responseObject) {
         if([responseObject[@"result"] integerValue] == 1){
             self.data = responseObject[@"data"];

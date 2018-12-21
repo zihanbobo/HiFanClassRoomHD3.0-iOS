@@ -21,7 +21,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.contentView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+        self.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
         [self initUI];
     }
     return self;
@@ -32,13 +32,13 @@
     self.firstView.iconImgView.image = UIIMAGE_FROM_NAME(@"书法");
     self.firstView.titleLabel.text = @"课堂讲义下载";
     self.firstView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-    [self.contentView addSubview:self.firstView];
+    [self addSubview:self.firstView];
     
     
     [self.firstView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top).offset(0);
-        make.left.equalTo(self.contentView.mas_left).offset(0);
-        make.right.equalTo(self.contentView.mas_right).offset(-0);
+        make.top.equalTo(self.mas_top).offset(0);
+        make.left.equalTo(self.mas_left).offset(0);
+        make.right.equalTo(self.mas_right).offset(-0);
         make.height.mas_equalTo(103);
     }];
     
@@ -47,23 +47,17 @@
     self.secondView.iconImgView.image = UIIMAGE_FROM_NAME(@"练习册");
     self.secondView.titleLabel.text = @"练习册下载";
     self.secondView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-    [self.contentView addSubview:self.secondView];
+    [self addSubview:self.secondView];
     
     
     [self.secondView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-3);
-        make.left.equalTo(self.contentView.mas_left).offset(0);
-        make.right.equalTo(self.contentView.mas_right).offset(-0);
+        make.bottom.equalTo(self.mas_bottom).offset(-3);
+        make.left.equalTo(self.mas_left).offset(0);
+        make.right.equalTo(self.mas_right).offset(-0);
         make.height.mas_equalTo(103);
     }];
 }
 
-- (void)drawRect:(CGRect)rect {
-//    [self.firstView addBorderForViewWithBorderWidth:0.01 BorderColor:UICOLOR_FROM_HEX(ColorFFFFFF) CornerRadius:7];
-//    [self.firstView addShadowForViewWithShadowOffset:CGSizeMake(0, 0) ShadowOpacity:1 ShadowRadius:7 ShadowColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 12)];
-//    [self.secondView addBorderForViewWithBorderWidth:0.01 BorderColor:UICOLOR_FROM_HEX(ColorFFFFFF) CornerRadius:7];
-//    [self.secondView addShadowForViewWithShadowOffset:CGSizeMake(0, 0) ShadowOpacity:1 ShadowRadius:7 ShadowColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 12)];
-}
 
 @end
 

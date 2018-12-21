@@ -67,6 +67,29 @@
     }];
     
     
+    HF_HomeUnitLastCell *lastView = [[HF_HomeUnitLastCell alloc] init];
+    [self.contentView addSubview:lastView];
+    
+    [lastView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.chooseUnitView.mas_bottom).offset(10);
+        make.right.equalTo(self.contentView.mas_right).offset(-17);
+        make.size.mas_equalTo(CGSizeMake(186, 223));
+    }];
+    
+    
+    UIView *view1 = [[UIView alloc] init];
+    view1.backgroundColor = UICOLOR_RANDOM_COLOR();
+    [self.contentView addSubview:view1];
+    
+    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.chooseUnitView.mas_bottom).offset(10);
+        make.left.equalTo(self.contentView.mas_left).offset(0);
+        make.right.equalTo(lastView.mas_left).offset(-17);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
+    }];
+    
+    
+    
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
@@ -89,7 +112,6 @@
 
     //注册cell
     [self.collectionView registerClass:[HF_HomeUnitCollectionViewCell class] forCellWithReuseIdentifier:@"HF_HomeUnitCollectionViewCell"];
-    [self.collectionView registerClass:[HF_HomeUnitLastCell class] forCellWithReuseIdentifier:@"HF_HomeUnitLastCell"];
 }
 
 
@@ -106,13 +128,6 @@
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == self.dataArray.count-1) {
-        static NSString *identify = @"HF_HomeUnitLastCell";
-        HF_HomeUnitLastCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-
-        
-        return cell;
-    } else {
         static NSString *identify = @"HF_HomeUnitCollectionViewCell";
         HF_HomeUnitCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
         
@@ -120,18 +135,13 @@
         cell.cellModel = model;
         
         return cell;
-    }
-    return nil;
+
 }
 
 
 //设置每个 UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == self.dataArray.count-1) {
-        return CGSizeMake(LineW(186),LineH(243));
-    } else {
-        return CGSizeMake(LineW(159),LineH(243));
-    }
+    return CGSizeMake(LineW(159),LineH(243));
 }
 
 
@@ -155,8 +165,9 @@
 
 //选中
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%ld",(long)indexPath.row);
-    
+    if (self.selectedBlock) {
+        self.selectedBlock(indexPath.row);
+    }
 
 }
 
