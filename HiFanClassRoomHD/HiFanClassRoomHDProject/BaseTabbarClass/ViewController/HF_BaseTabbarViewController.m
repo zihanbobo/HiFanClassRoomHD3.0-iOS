@@ -487,7 +487,7 @@
 
 -(UIButton *)hiddenBlackBgViewBtn {
     if (!_hiddenBlackBgViewBtn) {
-        self.hiddenBlackBgViewBtn = [UIButton buttonWithType:(UIButtonTypeCustom)];
+        self.hiddenBlackBgViewBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [self.hiddenBlackBgViewBtn addTarget:self action:@selector(closeMineMenu) forControlEvents:(UIControlEventTouchUpInside)];
         self.hiddenBlackBgViewBtn.frame = CGRectMake(home_left_width, 0, home_right_width, LineH(768));
     }

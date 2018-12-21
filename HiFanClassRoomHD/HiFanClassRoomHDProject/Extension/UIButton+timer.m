@@ -25,8 +25,8 @@
                 ;
                 self.userInteractionEnabled = YES;
                 //设置界面的按钮显示 根据自己需求设置;
-                [self setTitle:@"获取验证码" forState:(UIControlStateNormal)];
-                [self setTitleColor:UICOLOR_FROM_HEX(Color2B8EEF) forState:(UIControlStateNormal)];
+                [self setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [self setTitleColor:UICOLOR_FROM_HEX(Color2B8EEF) forState:UIControlStateNormal];
                 self.titleLabel.font = Font(14);
             });
         }else{
@@ -35,7 +35,7 @@
                 //设置按钮显示;
                 self.userInteractionEnabled = NO;
                 [self setTitle:strTime forState:UIControlStateNormal];
-                [self setTitleColor:UICOLOR_FROM_HEX(0xD2D2D2) forState:(UIControlStateNormal)];
+                [self setTitleColor:UICOLOR_FROM_HEX(0xD2D2D2) forState:UIControlStateNormal];
                 self.titleLabel.font = Font(14);
                 
             });

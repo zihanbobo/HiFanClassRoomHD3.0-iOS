@@ -62,7 +62,7 @@
     
     
     //MARK:导航按钮 106-16-17 = 73
-    self.rightButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.rightButton.frame = CGRectMake(0, 0, LineW(110), LineH(40));
     [self.rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     self.rightButton.titleLabel.font = Font(16);

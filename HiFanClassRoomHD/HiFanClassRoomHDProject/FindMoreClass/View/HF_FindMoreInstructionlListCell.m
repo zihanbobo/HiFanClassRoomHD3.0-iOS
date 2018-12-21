@@ -70,8 +70,6 @@
 }
 
 
-
-
 - (void)drawRect:(CGRect)rect {
     [self.bookImgView xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(10)];
 }

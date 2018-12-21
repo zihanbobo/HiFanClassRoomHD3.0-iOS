@@ -111,13 +111,13 @@ static const CGFloat sChatTitleViewClosedWidth = 100;
             [tButton addTarget:self action:@selector(chatTitleEmojiButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
             tButton.backgroundColor = [UIColor clearColor];
             
-//            [tButton setImage:LOADIMAGE(@"TKEmoji/icon_Emoji_normal") forState:(UIControlStateNormal)];
+//            [tButton setImage:LOADIMAGE(@"TKEmoji/icon_Emoji_normal") forState:UIControlStateNormal];
 //
 //            [tButton setImage:LOADIMAGE(@"TKEmoji/icon_Emoji_disabled") forState:(UIControlStateDisabled)];
 //            [tButton setImage:LOADIMAGE(@"TKEmoji/icon_Emoji_hover") forState:(UIControlStateFocused)];
 //            [tButton setImage:LOADIMAGE(@"TKEmoji/icon_Emoji_pressed") forState:(UIControlStateSelected)];
             [tButton setImage:LOADIMAGE(@"TKEmoji/icon_Emoji_normal") forState:(UIControlStateSelected)];
-            [tButton setImage:LOADIMAGE(@"TKEmoji/icon_keyboard_normal") forState:(UIControlStateNormal)];
+            [tButton setImage:LOADIMAGE(@"TKEmoji/icon_keyboard_normal") forState:UIControlStateNormal];
             tButton.contentMode = UIViewContentModeCenter;
             
             tButton.selected = YES;

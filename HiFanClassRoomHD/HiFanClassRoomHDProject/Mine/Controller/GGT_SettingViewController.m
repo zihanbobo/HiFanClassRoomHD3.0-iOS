@@ -55,10 +55,10 @@
     
     
     
-    self.logOutButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
+    self.logOutButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.logOutButton.frame = CGRectMake((marginMineRight-LineW(324))/2, _tableView.y+_tableView.height+LineY(40), LineW(324), LineH(44));
-    [self.logOutButton setTitle:@"退出登录" forState:(UIControlStateNormal)];
-    [self.logOutButton setTitleColor:UICOLOR_FROM_HEX(ColorFF6600) forState:(UIControlStateNormal)];
+    [self.logOutButton setTitle:@"退出登录" forState:UIControlStateNormal];
+    [self.logOutButton setTitleColor:UICOLOR_FROM_HEX(ColorFF6600) forState:UIControlStateNormal];
     self.logOutButton.titleLabel.font = Font(18);
     self.logOutButton.layer.masksToBounds = YES;
     self.logOutButton.layer.cornerRadius = LineH(22);

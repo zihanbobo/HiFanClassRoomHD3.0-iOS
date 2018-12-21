@@ -11,8 +11,11 @@
 @interface HF_FindMoreInstructionalListModel : NSObject
 @property (nonatomic, assign) NSInteger BillType;
 @property (nonatomic, copy) NSString *CoverImage;
+@property (nonatomic, assign) NSInteger RecordID;
 @property (nonatomic, copy) NSString *RelationUrl;
 @property (nonatomic, copy) NSString *Title;
+@property (nonatomic, assign) NSInteger ResourcesInfoID;  //我喜欢的
+
 
 //BillType = 2;
 //CoverImage = "http://gogotalk.oss-cn-beijing.aliyuncs.com/PictureBook/750930fc-4ce7-49cb-bd9f-a6de85617ce1.png?Expires=4669165074&amp;OSSAccessKeyId=LTAIKtWnie86aI6T&amp;Signature=fZKyLvixZCVeyCPKQ6MIvqfbSpA%3D";

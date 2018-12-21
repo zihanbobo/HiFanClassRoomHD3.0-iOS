@@ -173,9 +173,9 @@
 
     /*
     //忘记密码
-    self.forgotPasswordButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.forgotPasswordButton setTitle:@"忘记密码" forState:(UIControlStateNormal)];
-    [self.forgotPasswordButton setTitleColor:UICOLOR_FROM_HEX(0x696969) forState:(UIControlStateNormal)];
+    self.forgotPasswordButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.forgotPasswordButton setTitle:@"忘记密码" forState:UIControlStateNormal];
+    [self.forgotPasswordButton setTitleColor:UICOLOR_FROM_HEX(0x696969) forState:UIControlStateNormal];
     self.forgotPasswordButton.titleLabel.font = Font(12);
     [self addSubview:self.forgotPasswordButton];
     
@@ -188,9 +188,9 @@
     */
     
     //登录
-    self.loginButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.loginButton setTitle:@"登 录" forState:(UIControlStateNormal)];
-    [self.loginButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:(UIControlStateNormal)];
+    self.loginButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.loginButton setTitle:@"登 录" forState:UIControlStateNormal];
+    [self.loginButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
     self.loginButton.backgroundColor = UICOLOR_FROM_HEX(ColorFF6600);
     self.loginButton.titleLabel.font = Font(18);
     self.loginButton.layer.masksToBounds = YES;
@@ -227,9 +227,9 @@
     
     /*
     //注册
-    self.registerButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.registerButton setTitle:@"注 册" forState:(UIControlStateNormal)];
-    [self.registerButton setTitleColor:UICOLOR_FROM_HEX(Color2B8EEF) forState:(UIControlStateNormal)];
+    self.registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.registerButton setTitle:@"注 册" forState:UIControlStateNormal];
+    [self.registerButton setTitleColor:UICOLOR_FROM_HEX(Color2B8EEF) forState:UIControlStateNormal];
     self.registerButton.layer.borderWidth = LineW(1);
     self.registerButton.layer.borderColor = UICOLOR_FROM_HEX(0xB80011).CGColor;
     self.registerButton.titleLabel.font = Font(18);

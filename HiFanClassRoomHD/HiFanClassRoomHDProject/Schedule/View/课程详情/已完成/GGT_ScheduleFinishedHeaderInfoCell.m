@@ -330,11 +330,11 @@
     
     //IsComment  1 已评价  0：待评价
     if (model.IsComment == 0) {
-        [self.xc_evaluateStatusButton setTitleColor:UICOLOR_FROM_HEX(ColorFF6600) forState:(UIControlStateNormal)];
-        [self.xc_evaluateStatusButton setTitle:@"待评价" forState:(UIControlStateNormal)];
+        [self.xc_evaluateStatusButton setTitleColor:UICOLOR_FROM_HEX(ColorFF6600) forState:UIControlStateNormal];
+        [self.xc_evaluateStatusButton setTitle:@"待评价" forState:UIControlStateNormal];
     } else {
-        [self.xc_evaluateStatusButton setTitleColor:UICOLOR_FROM_HEX(Color4A4A4A) forState:(UIControlStateNormal)];
-        [self.xc_evaluateStatusButton setTitle:@"已评价" forState:(UIControlStateNormal)];
+        [self.xc_evaluateStatusButton setTitleColor:UICOLOR_FROM_HEX(Color4A4A4A) forState:UIControlStateNormal];
+        [self.xc_evaluateStatusButton setTitle:@"已评价" forState:UIControlStateNormal];
     }
 }
 

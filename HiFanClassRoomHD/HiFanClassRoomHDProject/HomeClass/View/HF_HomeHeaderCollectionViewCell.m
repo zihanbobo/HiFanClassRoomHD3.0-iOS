@@ -145,9 +145,9 @@
     
     //课前预习
     self.classBeforeButton = [UIButton new];
-    [self.classBeforeButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:(UIControlStateNormal)];
+    [self.classBeforeButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
     [self.classBeforeButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
-    [self.classBeforeButton setTitle:@"课前预习" forState:(UIControlStateNormal)];
+    [self.classBeforeButton setTitle:@"课前预习" forState:UIControlStateNormal];
     self.classBeforeButton.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(16)];
     [self.bigContentView addSubview:self.classBeforeButton];
     
@@ -162,9 +162,9 @@
     //课后复习
     self.classAfterButton = [UIButton new];
     self.classAfterButton.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(16)];
-    [self.classAfterButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:(UIControlStateNormal)];
+    [self.classAfterButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
     [self.classAfterButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
-    [self.classAfterButton setTitle:@"课后复习" forState:(UIControlStateNormal)];
+    [self.classAfterButton setTitle:@"课后复习" forState:UIControlStateNormal];
     [self.bigContentView addSubview:self.classAfterButton];
     
     

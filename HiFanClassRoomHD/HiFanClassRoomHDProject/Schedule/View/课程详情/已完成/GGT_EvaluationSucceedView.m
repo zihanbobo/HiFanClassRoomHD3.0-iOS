@@ -30,7 +30,7 @@
     self.closeButton = ({
         UIButton *xc_button = [UIButton new];
         xc_button.frame = CGRectMake(0, 0, LineW(20), LineH(20));
-        [xc_button setBackgroundImage:UIIMAGE_FROM_NAME(@"close") forState:(UIControlStateNormal)];
+        [xc_button setBackgroundImage:UIIMAGE_FROM_NAME(@"close") forState:UIControlStateNormal];
         xc_button;
     });
     [self addSubview:self.closeButton];

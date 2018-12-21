@@ -253,8 +253,8 @@
             self.classEnterButton.hidden = NO;
             
             //邀请好友
-//            [self.yaoqingButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonY") forState:(UIControlStateNormal)];
-//            [self.yaoqingButton setTitle:@"邀请好友" forState:(UIControlStateNormal)];
+//            [self.yaoqingButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonY") forState:UIControlStateNormal];
+//            [self.yaoqingButton setTitle:@"邀请好友" forState:UIControlStateNormal];
 //            [self.yaoqingButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
   
             
@@ -286,8 +286,8 @@
 //             self.enterAlertLabel.text = [NSString stringWithFormat:@"已申请%@的课程，还差%ld人即可开班",model.StartTimePad,(long)model.ResidueNum];
             
             //邀请好友
-//            [self.yaoqingButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonY") forState:(UIControlStateNormal)];
-//            [self.yaoqingButton setTitle:@"邀请好友" forState:(UIControlStateNormal)];
+//            [self.yaoqingButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonY") forState:UIControlStateNormal];
+//            [self.yaoqingButton setTitle:@"邀请好友" forState:UIControlStateNormal];
 //            [self.yaoqingButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
 //
 //            [self.yaoqingButton mas_remakeConstraints:^(MASConstraintMaker *make) {

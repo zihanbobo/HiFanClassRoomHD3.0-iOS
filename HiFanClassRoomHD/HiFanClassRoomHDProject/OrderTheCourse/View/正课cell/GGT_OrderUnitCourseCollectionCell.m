@@ -83,7 +83,7 @@
     
     
     self.joinButton.enabled = YES;
-    [self.joinButton setBackgroundImage:nil forState:(UIControlStateNormal)];
+    [self.joinButton setBackgroundImage:nil forState:UIControlStateNormal];
     
     
     //ShowStatus 显示状态: 0=申请开班,1=加入班级,2=已满班
@@ -94,16 +94,16 @@
 
                 case 0:
                     //可加入
-                    [self.joinButton setBackgroundImage:UIIMAGE_FROM_NAME(@"practiceBtn_copy") forState:(UIControlStateNormal)];
-                    [self.joinButton setTitle:@"申请开班" forState:(UIControlStateNormal)];
+                    [self.joinButton setBackgroundImage:UIIMAGE_FROM_NAME(@"practiceBtn_copy") forState:UIControlStateNormal];
+                    [self.joinButton setTitle:@"申请开班" forState:UIControlStateNormal];
                     [self.joinButton setTitleColor:UICOLOR_FROM_HEX(ColorFF6600) forState:UIControlStateNormal];
                     self.surplusHowMuchLabel.text = [NSString stringWithFormat:@"还差%ld人开班",(long)OrderUnitCourseModel.ResidueNum];
 
                     break;
                 case 1:
                     //不可加入
-                    [self.joinButton setBackgroundImage:UIIMAGE_FROM_NAME(@"anniu_line") forState:(UIControlStateNormal)];
-                    [self.joinButton setTitle:@"申请开班" forState:(UIControlStateNormal)];
+                    [self.joinButton setBackgroundImage:UIIMAGE_FROM_NAME(@"anniu_line") forState:UIControlStateNormal];
+                    [self.joinButton setTitle:@"申请开班" forState:UIControlStateNormal];
                     [self.joinButton setTitleColor:UICOLOR_FROM_HEX(ColorE8E8E8) forState:UIControlStateNormal];
                     self.joinButton.enabled = NO;
                     self.surplusHowMuchLabel.text = [NSString stringWithFormat:@"还差%ld人开班",(long)OrderUnitCourseModel.ResidueNum];
@@ -118,16 +118,16 @@
 
                 case 0:
                     //可加入
-                    [self.joinButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonY") forState:(UIControlStateNormal)];
-                    [self.joinButton setTitle:@"加入班级" forState:(UIControlStateNormal)];
+                    [self.joinButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonY") forState:UIControlStateNormal];
+                    [self.joinButton setTitle:@"加入班级" forState:UIControlStateNormal];
                     [self.joinButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
                     self.surplusHowMuchLabel.text = [NSString stringWithFormat:@"剩余席位 %ld",(long)OrderUnitCourseModel.ResidueNum];
 
                     break;
                 case 1:
                     //不可加入
-                    [self.joinButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonN") forState:(UIControlStateNormal)];
-                    [self.joinButton setTitle:@"加入班级" forState:(UIControlStateNormal)];
+                    [self.joinButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonN") forState:UIControlStateNormal];
+                    [self.joinButton setTitle:@"加入班级" forState:UIControlStateNormal];
                     [self.joinButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
                     self.joinButton.enabled = NO;
                     self.surplusHowMuchLabel.text = [NSString stringWithFormat:@"剩余席位 %ld",(long)OrderUnitCourseModel.ResidueNum];
@@ -139,8 +139,8 @@
             break;
         case 2: //已满班
             self.surplusHowMuchLabel.text = [NSString stringWithFormat:@"剩余席位 %ld",(long)OrderUnitCourseModel.ResidueNum];
-            [self.joinButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonN") forState:(UIControlStateNormal)];
-            [self.joinButton setTitle:@"已满班" forState:(UIControlStateNormal)];
+            [self.joinButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterButtonN") forState:UIControlStateNormal];
+            [self.joinButton setTitle:@"已满班" forState:UIControlStateNormal];
             [self.joinButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
             self.joinButton.enabled = NO;
 

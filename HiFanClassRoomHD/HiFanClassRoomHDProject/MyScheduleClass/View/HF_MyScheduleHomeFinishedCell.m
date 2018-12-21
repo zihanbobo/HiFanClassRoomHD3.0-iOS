@@ -68,9 +68,9 @@
     
     
     //待评价
-    self.pingjiaButton = [UIButton buttonWithType:(UIButtonTypeCustom)];
-    [self.pingjiaButton setTitle:@"待评价" forState:(UIControlStateNormal)];
-    [self.pingjiaButton setTitleColor:UICOLOR_FROM_HEX(ColorFB9901) forState:(UIControlStateNormal)];
+    self.pingjiaButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.pingjiaButton setTitle:@"待评价" forState:UIControlStateNormal];
+    [self.pingjiaButton setTitleColor:UICOLOR_FROM_HEX(ColorFB9901) forState:UIControlStateNormal];
     self.pingjiaButton.titleLabel.font = Font(14);
     self.pingjiaButton.tag = 10;
     [self.bigContentView addSubview:self.pingjiaButton];
@@ -164,9 +164,9 @@
     //课前预习
     self.classBeforeButton = [UIButton new];
     self.classBeforeButton.titleLabel.font = Font(16);
-    [self.classBeforeButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:(UIControlStateNormal)];
+    [self.classBeforeButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
     [self.classBeforeButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
-    [self.classBeforeButton setTitle:@"课前预习" forState:(UIControlStateNormal)];
+    [self.classBeforeButton setTitle:@"课前预习" forState:UIControlStateNormal];
     self.classBeforeButton.tag = 11;
     [self.bigContentView addSubview:self.classBeforeButton];
     
@@ -190,9 +190,9 @@
     //课后复习
     self.classAfterButton = [UIButton new];
     self.classAfterButton.titleLabel.font = Font(16);
-    [self.classAfterButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:(UIControlStateNormal)];
+    [self.classAfterButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
     [self.classAfterButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
-    [self.classAfterButton setTitle:@"课后复习" forState:(UIControlStateNormal)];
+    [self.classAfterButton setTitle:@"课后复习" forState:UIControlStateNormal];
     self.classAfterButton.tag = 12;
     [self.bigContentView addSubview:self.classAfterButton];
     

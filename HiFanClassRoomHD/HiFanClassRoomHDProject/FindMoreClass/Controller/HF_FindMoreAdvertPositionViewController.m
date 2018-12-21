@@ -69,7 +69,7 @@
     
     
     self.closeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.closeButton setImage:UIIMAGE_FROM_NAME(@"close") forState:(UIControlStateNormal)];
+    [self.closeButton setImage:UIIMAGE_FROM_NAME(@"close") forState:UIControlStateNormal];
     [self.view addSubview:self.closeButton];
     
     [self.closeButton mas_makeConstraints:^(MASConstraintMaker *make) {
