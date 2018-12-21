@@ -32,6 +32,11 @@ static NSString * const URL_GetLikeList = @"/api/Resources/GetLikeList";
 static NSString * const URL_UpdataLike = @"/api/Resources/updataLike";
 //根据Level获取对应的unit信息
 static NSString * const URL_GetUnitInfoList = @"/api/Resources/GetUnitInfoList";
+//根据Unit编号获取对应的教材信息
+static NSString * const URL_GetChapterList = @"/api/Resources/GetChapterList";
+
+
+
 //课程详情
 static NSString * const URL_GetClassDetail = @"/api/Resources/GetLessonDeatil";
 

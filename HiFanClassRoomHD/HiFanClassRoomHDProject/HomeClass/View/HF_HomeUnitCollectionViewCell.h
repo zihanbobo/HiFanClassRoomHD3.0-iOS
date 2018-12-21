@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HF_HomeUnitCellModel.h"
 
 @interface HF_HomeUnitCollectionViewCell : UICollectionViewCell
+@property (nonatomic,strong) HF_HomeUnitCellModel *cellModel;
 
 @end

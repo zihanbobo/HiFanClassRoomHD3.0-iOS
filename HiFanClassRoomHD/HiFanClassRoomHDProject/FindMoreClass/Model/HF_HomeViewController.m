@@ -12,19 +12,16 @@
 #import "HF_HomeHeaderModel.h"
 #import "HF_HomeCourseStrategyViewController.h" //课程攻略
 #import "HF_HomeClassDetailViewController.h"    //课程详情
-
-#import "HF_FindMoreHomeCycleCell.h"
-#import "HF_FindMoreHomeContentCell.h"
-#import "HF_FindMoreMoviePlayViewController.h"
-#import "HF_FindMoreAdvertModel.h"
-#import "HF_FindMoreInstructionalTypeListModel.h"
-#import "HF_FindMoreInstructionalListViewController.h"
-
+#import "HF_HomeGetUnitInfoListModel.h"
+#import "HF_HomeUnitCellModel.h"
 
 @interface HF_HomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView; //tableView
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *headerArray;
+@property (nonatomic, strong) NSMutableArray *unitArray;
+@property (nonatomic, strong) HF_HomeHeaderView *headerView;
+
 @end
 
 @implementation HF_HomeViewController
@@ -41,8 +38,6 @@
     [self initUI];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        self.headerArray = [NSMutableArray array];
-        self.dataArray = [NSMutableArray array];
         [self getLessonListData];
         [self getUnitListData];
     }];
@@ -51,7 +46,8 @@
 
 //MARK:轮播课程列表
 -(void)getLessonListData {
-    
+    self.headerArray = [NSMutableArray array];
+
     [[BaseService share] sendGetRequestWithPath:URL_GetLessonList token:YES viewController:self success:^(id responseObject) {
         if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
             for (NSDictionary *dic in responseObject[@"data"]) {
@@ -59,9 +55,9 @@
                 [self.headerArray addObject:model];
             }
         }
-        [self.tableView.mj_footer endRefreshing];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+
+//        self.headerView.collectionDataArray = [NSMutableArray array];
+//        self.headerView.collectionDataArray = self.headerArray;
         
         [self.tableView reloadData];
         
@@ -72,20 +68,58 @@
 
 //MARK:获取Unit列表
 -(void)getUnitListData {
+    self.unitArray = [NSMutableArray array];
+
     [[BaseService share] sendGetRequestWithPath:URL_GetUnitInfoList token:YES viewController:self success:^(id responseObject) {
-//        if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
-//            for (NSDictionary *dic in responseObject[@"data"]) {
-//                HF_FindMoreInstructionalTypeListModel *model = [HF_FindMoreInstructionalTypeListModel yy_modelWithDictionary:dic];
-//                [self.dataArray addObject:model];
-//            }
-//        }
-//        [self.tableView.mj_footer endRefreshing];
-//        [self.tableView.mj_header endRefreshing];
-//        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-//        [self.tableView reloadData];
+        if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
+            for (NSDictionary *dic in responseObject[@"data"]) {
+                HF_HomeGetUnitInfoListModel *model = [HF_HomeGetUnitInfoListModel yy_modelWithDictionary:dic];
+                [self.unitArray addObject:model];
+            }
+        }
+        
+        for (NSInteger i=0; i<self.unitArray.count; i++) {
+            if (i == 0) {
+                HF_HomeGetUnitInfoListModel *model = [self.unitArray safe_objectAtIndex:0];
+                [self getUnitCellListData:model.UnitID];
+            }
+            
+        }
+        [self.tableView reloadData];
 
     } failure:^(NSError *error) {
 
+    }];
+}
+
+
+-(void)getUnitCellListData:(NSInteger)unitId {
+    self.dataArray = [NSMutableArray array];
+
+    NSString *urlStr = [NSString stringWithFormat:@"%@?unitId=%ld",URL_GetChapterList,(long)unitId];
+    [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
+        if ([responseObject[@"data"][@"chapterData"] isKindOfClass:[NSArray class]] && [responseObject[@"data"][@"chapterData"] count] >0) {
+            for (NSDictionary *dic in responseObject[@"data"][@"chapterData"]) {
+                HF_HomeUnitCellModel *model = [HF_HomeUnitCellModel yy_modelWithDictionary:dic];
+                [self.dataArray addObject:model];
+            }
+        }
+        
+    
+        HF_HomeUnitCellModel *model = [[HF_HomeUnitCellModel alloc] init];
+        [self.dataArray addObject:model];
+        
+
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        [self.tableView reloadData];
+        
+    } failure:^(NSError *error) {
+        [self.tableView.mj_footer endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+        [self.tableView.mj_footer endRefreshingWithNoMoreData];
+        [self.tableView reloadData];
     }];
 }
 
@@ -102,7 +136,8 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return LineH(296);
+//    return (self.dataArray.count/4) * LineH(223);
+    return SCREEN_HEIGHT() - LineH(345);
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -110,10 +145,25 @@
     HF_HomeContentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
         cell = [[HF_HomeContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = UICOLOR_RANDOM_COLOR();
     }
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//    cell.collectionArray = [NSMutableArray array];
-//    cell.collectionArray = self.dataArray;
+    
+
+    cell.collectionArray = [NSMutableArray array];
+    cell.collectionUnitArray = [NSMutableArray array];
+
+    cell.collectionArray = self.dataArray;
+    cell.collectionUnitArray = self.unitArray;
+    
+    HF_HomeGetUnitInfoListModel *model = [self.unitArray safe_objectAtIndex:indexPath.row];
+    @weakify(self);
+    cell.getUnitIdBlock = ^(NSInteger unitId) {
+        @strongify(self);
+        NSLog(@"%ld",(long)unitId);
+        [self getUnitCellListData:unitId];
+    };
+ 
     
     return cell;
 }
@@ -122,17 +172,17 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     HF_HomeHeaderView *headerView = [[HF_HomeHeaderView alloc] init];
-    headerView.frame = CGRectMake(0, 0, home_right_width, LineH(340));
+    headerView.frame = CGRectMake(0, 0, home_right_width, LineH(345));
     headerView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     headerView.collectionDataArray = [NSMutableArray array];
     headerView.collectionDataArray = self.headerArray;
-    
+
     //MARK:课程攻略
     headerView.gonglueBtnBlock = ^{
         HF_HomeCourseStrategyViewController *vc = [[HF_HomeCourseStrategyViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     };
-    
+
     //MARK:跳转到  课程详情
     headerView.classDetailVcBlock = ^{
         HF_HomeClassDetailViewController *vc = [HF_HomeClassDetailViewController new];
@@ -140,8 +190,6 @@
         nav.modalPresentationStyle = UIModalPresentationFormSheet;
         nav.popoverPresentationController.delegate = self;
         [self presentViewController:nav animated:YES completion:nil];
-        
-        
     };
     return headerView;
 }
@@ -154,7 +202,32 @@
 
 //MARK:UI加载
 - (void)initUI {
-    self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+//    self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+//    self.headerView = [[HF_HomeHeaderView alloc] init];
+//    self.headerView.frame = CGRectMake(0, 0, home_right_width, LineH(345));
+//    self.headerView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+//
+//
+//    //MARK:课程攻略
+//    @weakify(self);
+//    self.headerView.gonglueBtnBlock = ^{
+//        @strongify(self);
+//        HF_HomeCourseStrategyViewController *vc = [[HF_HomeCourseStrategyViewController alloc] init];
+//        [self.navigationController pushViewController:vc animated:YES];
+//    };
+//
+//    //MARK:跳转到  课程详情
+//    self.headerView.classDetailVcBlock = ^{
+//        @strongify(self);
+//        HF_HomeClassDetailViewController *vc = [HF_HomeClassDetailViewController new];
+//        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+//        nav.modalPresentationStyle = UIModalPresentationFormSheet;
+//        nav.popoverPresentationController.delegate = self;
+//        [self presentViewController:nav animated:YES completion:nil];
+//    };
+//
+//
+//    self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);

@@ -56,6 +56,9 @@
 		5B45AEB11FCFA1FB00916B59 /* GGT_ClassBookDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B45AEB01FCFA1FB00916B59 /* GGT_ClassBookDetailModel.m */; };
 		5B45AEB41FCFB8D600916B59 /* GGT_OrderUnitCourseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B45AEB31FCFB8D600916B59 /* GGT_OrderUnitCourseModel.m */; };
 		5B45AEB71FCFB9C400916B59 /* GGT_StudentIconModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B45AEB61FCFB9C400916B59 /* GGT_StudentIconModel.m */; };
+		5B485E2A21CCAAA10071AC27 /* HF_HomeGetUnitInfoListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B485E2921CCAAA10071AC27 /* HF_HomeGetUnitInfoListModel.m */; };
+		5B485E2D21CCC7D90071AC27 /* HF_HomeUnitCellModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B485E2C21CCC7D90071AC27 /* HF_HomeUnitCellModel.m */; };
+		5B485E3021CCE4390071AC27 /* HF_HomeUnitLastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B485E2F21CCE4390071AC27 /* HF_HomeUnitLastCell.m */; };
 		5B4A5EA520246E7300FD76DB /* GGT_ApplyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A5EA420246E7300FD76DB /* GGT_ApplyViewController.m */; };
 		5B4A5EA820246E9E00FD76DB /* GGT_ApplySucceedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B4A5EA720246E9E00FD76DB /* GGT_ApplySucceedViewController.m */; };
 		5B54A2C921B7B9A500DF9F91 /* HF_MyScheduleHomeFinishedCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B54A2C821B7B9A500DF9F91 /* HF_MyScheduleHomeFinishedCell.m */; };
@@ -560,6 +563,12 @@
 		5B45AEB31FCFB8D600916B59 /* GGT_OrderUnitCourseModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_OrderUnitCourseModel.m; sourceTree = "<group>"; };
 		5B45AEB51FCFB9C400916B59 /* GGT_StudentIconModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_StudentIconModel.h; sourceTree = "<group>"; };
 		5B45AEB61FCFB9C400916B59 /* GGT_StudentIconModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_StudentIconModel.m; sourceTree = "<group>"; };
+		5B485E2821CCAAA10071AC27 /* HF_HomeGetUnitInfoListModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeGetUnitInfoListModel.h; sourceTree = "<group>"; };
+		5B485E2921CCAAA10071AC27 /* HF_HomeGetUnitInfoListModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeGetUnitInfoListModel.m; sourceTree = "<group>"; };
+		5B485E2B21CCC7D90071AC27 /* HF_HomeUnitCellModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeUnitCellModel.h; sourceTree = "<group>"; };
+		5B485E2C21CCC7D90071AC27 /* HF_HomeUnitCellModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeUnitCellModel.m; sourceTree = "<group>"; };
+		5B485E2E21CCE4390071AC27 /* HF_HomeUnitLastCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeUnitLastCell.h; sourceTree = "<group>"; };
+		5B485E2F21CCE4390071AC27 /* HF_HomeUnitLastCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeUnitLastCell.m; sourceTree = "<group>"; };
 		5B4A5EA320246E7300FD76DB /* GGT_ApplyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ApplyViewController.h; sourceTree = "<group>"; };
 		5B4A5EA420246E7300FD76DB /* GGT_ApplyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_ApplyViewController.m; sourceTree = "<group>"; };
 		5B4A5EA620246E9E00FD76DB /* GGT_ApplySucceedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_ApplySucceedViewController.h; sourceTree = "<group>"; };
@@ -1875,6 +1884,10 @@
 			children = (
 				5B4425E021C8D9210036298C /* HF_HomeHeaderModel.h */,
 				5B4425E121C8D9210036298C /* HF_HomeHeaderModel.m */,
+				5B485E2821CCAAA10071AC27 /* HF_HomeGetUnitInfoListModel.h */,
+				5B485E2921CCAAA10071AC27 /* HF_HomeGetUnitInfoListModel.m */,
+				5B485E2B21CCC7D90071AC27 /* HF_HomeUnitCellModel.h */,
+				5B485E2C21CCC7D90071AC27 /* HF_HomeUnitCellModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1888,6 +1901,8 @@
 				5B4425DE21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.m */,
 				5B4425D721C8A0A30036298C /* HF_HomeContentCell.h */,
 				5B4425D821C8A0A30036298C /* HF_HomeContentCell.m */,
+				5B485E2E21CCE4390071AC27 /* HF_HomeUnitLastCell.h */,
+				5B485E2F21CCE4390071AC27 /* HF_HomeUnitLastCell.m */,
 				5BE75D1F21CB96C8002210EC /* HF_HomeUnitChooseView.h */,
 				5BE75D2021CB96C8002210EC /* HF_HomeUnitChooseView.m */,
 				5BE75D2221CBA936002210EC /* HF_HomeUnitChooseCell.h */,
@@ -3498,6 +3513,7 @@
 				5BE2EDAB216B37DC00845E70 /* BITAppVersionMetaInfo.m in Sources */,
 				5B3E48081FE763FD00D6D6C6 /* GGT_ScheduleFinishedHeaderInfoCell.m in Sources */,
 				5BE2EDFC216B37DC00845E70 /* TKVideoFunctionView.m in Sources */,
+				5B485E2A21CCAAA10071AC27 /* HF_HomeGetUnitInfoListModel.m in Sources */,
 				5BE2EDFE216B37DC00845E70 /* TKClassTimeView.m in Sources */,
 				5BE2EDA3216B37DC00845E70 /* BITUpdateViewController.m in Sources */,
 				5B715D4B1FE3746E00F08577 /* GGT_ScheduleStudentIconView.m in Sources */,
@@ -3549,6 +3565,7 @@
 				5BD0754B1FE12C33002F0837 /* GGT_ScheduleUnFinishedViewController.m in Sources */,
 				5BE2EDD0216B37DC00845E70 /* TKEmotionTextView.m in Sources */,
 				5BE2EDC5216B37DC00845E70 /* TKChatMessageModel.m in Sources */,
+				5B485E2D21CCC7D90071AC27 /* HF_HomeUnitCellModel.m in Sources */,
 				5B20DD361F6B766A0058AEA9 /* HF_UpdateModel.m in Sources */,
 				5BE2ED92216B37DC00845E70 /* TKEduSessionHandle.m in Sources */,
 				5BE2EDCE216B37DC00845E70 /* TKEmotionView.m in Sources */,
@@ -3637,6 +3654,7 @@
 				5B45AEB71FCFB9C400916B59 /* GGT_StudentIconModel.m in Sources */,
 				5BE2EDE4216B37DC00845E70 /* TKVideoSevenView.m in Sources */,
 				5BE2EDB6216B37DC00845E70 /* BITKeychainUtils.m in Sources */,
+				5B485E3021CCE4390071AC27 /* HF_HomeUnitLastCell.m in Sources */,
 				5BE2EDE2216B37DC00845E70 /* TKVideoTwoLinesView.m in Sources */,
 				5BBA56DD1ED829E20085DEEE /* GGT_MineLeftModel.m in Sources */,
 				5B61C9681FEA6A2800EA46BD /* GGT_NoEvaluationViewController.m in Sources */,

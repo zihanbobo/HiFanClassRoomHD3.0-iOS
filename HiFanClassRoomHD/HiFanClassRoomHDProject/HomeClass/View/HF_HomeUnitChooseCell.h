@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HF_HomeGetUnitInfoListModel.h"
 
 @interface HF_HomeUnitChooseCell : UICollectionViewCell
-//背景
-@property (nonatomic, strong) UIButton *selectedButton;
+//文字
+@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) HF_HomeGetUnitInfoListModel *cellModel;
+
+
 @end

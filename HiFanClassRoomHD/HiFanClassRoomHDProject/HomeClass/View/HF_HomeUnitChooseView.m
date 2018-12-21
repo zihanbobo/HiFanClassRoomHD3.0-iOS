@@ -7,10 +7,12 @@
 //
 
 #import "HF_HomeUnitChooseView.h"
+#import "HF_HomeGetUnitInfoListModel.h"
 
 @interface HF_HomeUnitChooseView()
 @property (nonatomic,strong) UIButton *leftButton;
 @property (nonatomic,strong) UIButton *rightButton;
+@property (nonatomic,strong) NSMutableArray *UnitArray;
 @end
 
 
@@ -24,6 +26,15 @@
     }
     return self;
 }
+
+- (void)setCollectionUnitArray:(NSMutableArray *)collectionUnitArray {
+    self.UnitArray = [NSMutableArray array];
+    self.UnitArray = collectionUnitArray;
+    [self.collectionView reloadData];
+    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
+
+}
+
 
 -(void)initUI {
     
@@ -72,7 +83,6 @@
     //注册cell
     [self.collectionView registerClass:[HF_HomeUnitChooseCell class] forCellWithReuseIdentifier:@"HF_HomeUnitChooseCell"];
     
-    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 #pragma mark -- UICollectionView代理
@@ -83,7 +93,7 @@
 
 //返回每个分区的item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 16;
+    return self.UnitArray.count;
 }
 
 
@@ -92,26 +102,24 @@
     static NSString *identify = @"HF_HomeUnitChooseCell";
     HF_HomeUnitChooseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     
-    cell.selectedButton.tag = indexPath.row;
-    [cell.selectedButton addTarget:self action:@selector(btnClick:) forControlEvents:(UIControlEventTouchUpInside)];
+    if (indexPath.row == 0) { //默认选中第一条数据
+        cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xe5ebf0);
+    }
+    
+    HF_HomeGetUnitInfoListModel *model = [self.UnitArray safe_objectAtIndex:indexPath.row];
+    cell.cellModel = model;
+    
     return cell;
-}
-
--(void)btnClick :(UIButton *)button {
-//    NSLog(@"index----%d",button.tag);
 }
 
 //设置每个 UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     return CGSizeMake(LineW(104),LineH(48));
 }
 
 
-
 //定义每个UICollectionView 的间距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
 
@@ -131,23 +139,21 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSIndexPath *path = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
     HF_HomeUnitChooseCell *cell = (HF_HomeUnitChooseCell *)[self.collectionView cellForItemAtIndexPath:path];
-//    cell.selectedButton.backgroundColor = UICOLOR_FROM_HEX(0xe5ebf0);
-    cell.selectedButton.backgroundColor = UICOLOR_RANDOM_COLOR();
-    [cell.selectedButton setTitleColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 70) forState:UIControlStateNormal];
-    
-    NSLog(@"1111----%@",indexPath.description);
+    cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xe5ebf0);
+    cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
+    HF_HomeGetUnitInfoListModel *model = [self.UnitArray safe_objectAtIndex:indexPath.row];
 
+    if (self.selectedUnitIdBlock) {
+        self.selectedUnitIdBlock(model.UnitID);
+    }
 }
 
 //取消选中
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
     NSIndexPath *path = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
     HF_HomeUnitChooseCell *cell = (HF_HomeUnitChooseCell *)[self.collectionView cellForItemAtIndexPath:path];
-    cell.selectedButton.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
-    [cell.selectedButton setTitleColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 40) forState:UIControlStateNormal];
-
-    NSLog(@"2222----%@",indexPath.description);
-
+    cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
+    cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
 }
 
 @end

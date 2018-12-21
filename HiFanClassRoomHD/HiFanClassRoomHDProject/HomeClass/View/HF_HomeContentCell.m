@@ -9,9 +9,12 @@
 #import "HF_HomeContentCell.h"
 #import "HF_HomeUnitCollectionViewCell.h"
 #import "HF_HomeUnitChooseView.h"
+#import "HF_HomeUnitLastCell.h"
 
 @interface HF_HomeContentCell()
+@property (nonatomic,strong) NSMutableArray *UnitArray;
 @property (nonatomic,strong) NSMutableArray *dataArray;
+@property (nonatomic,strong) HF_HomeUnitChooseView *chooseUnitView;
 @end
 
 @implementation HF_HomeContentCell
@@ -31,16 +34,32 @@
     [self.collectionView reloadData];
 }
 
+
+- (void)setCollectionUnitArray:(NSMutableArray *)collectionUnitArray {
+    self.chooseUnitView.collectionUnitArray = [NSMutableArray array];
+    self.chooseUnitView.collectionUnitArray = collectionUnitArray;
+    [self.collectionView reloadData];
+}
+
+
+
 -(void)initUI {
     //选择单元
-    HF_HomeUnitChooseView *chooseUnitView = [[HF_HomeUnitChooseView alloc] init];
-    chooseUnitView.layer.masksToBounds = YES;
-    chooseUnitView.layer.cornerRadius = 24;
-    chooseUnitView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
-    [self.contentView addSubview:chooseUnitView];
-    
-    
-    [chooseUnitView mas_makeConstraints:^(MASConstraintMaker *make) {
+    self.chooseUnitView = [[HF_HomeUnitChooseView alloc] init];
+    self.chooseUnitView.layer.masksToBounds = YES;
+    self.chooseUnitView.layer.cornerRadius = 24;
+    self.chooseUnitView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
+    @weakify(self);
+    self.chooseUnitView.selectedUnitIdBlock = ^(NSInteger unitId) {
+        @strongify(self);
+        if (self.getUnitIdBlock) {
+            self.getUnitIdBlock(unitId);
+        }
+    };
+    [self.contentView addSubview:self.chooseUnitView];
+
+
+    [self.chooseUnitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top).offset(0);
         make.left.equalTo(self.contentView.mas_left).offset(17);
         make.right.equalTo(self.contentView.mas_right).offset(-17);
@@ -49,16 +68,19 @@
     
     
     UICollectionViewFlowLayout *layout = [[UICollectionViewFlowLayout alloc]init];
-    layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.delegate = self;
     self.collectionView.dataSource =self;
     self.collectionView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     self.collectionView.showsHorizontalScrollIndicator = NO;
+    if (@available(iOS 11.0, *)) {
+        self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
+    }
     [self.contentView addSubview:self.collectionView];
 
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(chooseUnitView.mas_bottom).offset(0);
+        make.top.equalTo(self.chooseUnitView.mas_bottom).offset(10);
         make.left.equalTo(self.contentView.mas_left).offset(0);
         make.right.equalTo(self.contentView.mas_right).offset(-0);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
@@ -67,6 +89,7 @@
 
     //注册cell
     [self.collectionView registerClass:[HF_HomeUnitCollectionViewCell class] forCellWithReuseIdentifier:@"HF_HomeUnitCollectionViewCell"];
+    [self.collectionView registerClass:[HF_HomeUnitLastCell class] forCellWithReuseIdentifier:@"HF_HomeUnitLastCell"];
 }
 
 
@@ -78,30 +101,43 @@
 
 //返回每个分区的item个数
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 4;
+    return self.dataArray.count;
 }
 
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    static NSString *identify = @"HF_HomeUnitCollectionViewCell";
-    HF_HomeUnitCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
-    
-    return cell;
+    if (indexPath.row == self.dataArray.count-1) {
+        static NSString *identify = @"HF_HomeUnitLastCell";
+        HF_HomeUnitLastCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
+
+        
+        return cell;
+    } else {
+        static NSString *identify = @"HF_HomeUnitCollectionViewCell";
+        HF_HomeUnitCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
+        
+        HF_HomeUnitCellModel *model = [self.dataArray safe_objectAtIndex:indexPath.row];
+        cell.cellModel = model;
+        
+        return cell;
+    }
+    return nil;
 }
 
 
 //设置每个 UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    return CGSizeMake(LineW(159),LineH(243));
+    if (indexPath.row == self.dataArray.count-1) {
+        return CGSizeMake(LineW(186),LineH(243));
+    } else {
+        return CGSizeMake(LineW(159),LineH(243));
+    }
 }
 
 
 
 //定义每个UICollectionView 的间距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    
     return UIEdgeInsetsMake(0, LineX(17), 0, LineX(17));
 }
 

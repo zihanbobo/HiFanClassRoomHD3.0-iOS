@@ -12,7 +12,10 @@
 
 
 @interface HF_HomeUnitChooseCell()
-
+////文字
+//@property (nonatomic, strong) UILabel *titleLabel;
+//状态
+@property (nonatomic, strong) UIImageView *statusImgView;
 @end
 
 @implementation HF_HomeUnitChooseCell
@@ -21,37 +24,42 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-//        self.contentView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
+        self.contentView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
         [self initView];
     }
     return self;
 }
 
 - (void)initView {
-    self.selectedButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.selectedButton.frame = CGRectMake(0, 0, LineW(104), LineH(48));
-    self.selectedButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineW(18)];
-    [self.selectedButton setTitle:@"Unit 1" forState:UIControlStateNormal];
-    [self.selectedButton setTitleColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 40) forState:UIControlStateNormal];
-//    [self.selectedButton setImage:UIIMAGE_FROM_NAME(@"完成") forState:UIControlStateNormal];
-//    [self initButton:self.selectedButton];
-    [self.contentView addSubview:self.selectedButton];
+    //文字
+    self.titleLabel = [[UILabel alloc] init];
+    self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineW(18)];
+    self.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
+    [self.contentView addSubview:self.titleLabel];
     
-    [self.selectedButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.contentView);
+    [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).offset(17);
         make.top.equalTo(self.contentView.mas_top).offset(0);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
     }];
+    
+    //状态
+    self.statusImgView = [[UIImageView alloc] init];
+    self.statusImgView.image = UIIMAGE_FROM_NAME(@"完成");
+    [self.contentView addSubview:self.statusImgView];
+    
+    [self.statusImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.titleLabel.mas_right).offset(5);
+        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(14, 14));
+    }];
+
 }
 
-//MARK:将按钮设置为图片在上，文字在下
--(void)initButton:(UIButton*)btn {
-    CGFloat imageWidth = btn.imageView.frame.size.width;
-    CGFloat titleWidth = btn.titleLabel.frame.size.width;
-    CGFloat space = 5;
-    [btn setTitleEdgeInsets:UIEdgeInsetsMake(0, -(imageWidth+space*0.5), 0, (imageWidth+space*0.5))];
-    [btn setImageEdgeInsets:UIEdgeInsetsMake(0, (titleWidth + space*0.5), 0, -(titleWidth + space*0.5))];
+
+- (void)setCellModel:(HF_HomeGetUnitInfoListModel *)cellModel {
+    if (!IsStrEmpty(cellModel.UnitName)) {
+        self.titleLabel.text = [NSString stringWithFormat:@"%@",cellModel.UnitName];
+    }
 }
-
-
 @end
