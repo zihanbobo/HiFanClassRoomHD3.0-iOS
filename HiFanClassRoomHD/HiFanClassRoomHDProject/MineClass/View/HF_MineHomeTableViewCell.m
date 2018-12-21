@@ -37,12 +37,12 @@
     }];
     
     
-    UIImageView *enterImgView = [[UIImageView alloc]init];
-    enterImgView.contentMode = UIViewContentModeCenter;
-    enterImgView.image = UIIMAGE_FROM_NAME(@"jinru_wode_liebiao");
-    [self.contentView addSubview:enterImgView];
+    self.enterImgView = [[UIImageView alloc]init];
+    self.enterImgView.contentMode = UIViewContentModeCenter;
+    self.enterImgView.image = UIIMAGE_FROM_NAME(@"jinru_wode_liebiao");
+    [self.contentView addSubview:self.enterImgView];
     
-    [enterImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.enterImgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.contentView.mas_right).with.offset(-17);
         make.centerY.equalTo(self.contentView.mas_centerY);
         make.size.mas_offset(CGSizeMake(7, 12));
@@ -56,7 +56,7 @@
     [self.contentView addSubview:self.rightLabel];
     
     [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(enterImgView.mas_left).offset(-11);
+        make.right.equalTo(self.enterImgView.mas_left).offset(-11);
         make.centerY.equalTo(self.contentView.mas_centerY);
         make.height.mas_offset(16);
     }];

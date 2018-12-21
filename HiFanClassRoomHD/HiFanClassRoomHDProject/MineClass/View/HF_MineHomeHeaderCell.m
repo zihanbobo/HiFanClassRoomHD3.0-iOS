@@ -12,7 +12,9 @@
 @property (nonatomic, strong) UIButton *leftButton;   //返回按钮
 @property (nonatomic, strong) UILabel *nickNameLabel; //英文昵称
 @property (nonatomic, strong) UILabel *ageLabel;      //年龄
+@property (nonatomic, strong) UILabel *levelTitleLabel;  //级别标题
 @property (nonatomic, strong) UILabel *levelLabel;    //级别
+@property (nonatomic, strong) UIImageView *genderImageView;  //性别图标
 @end
 
 @implementation HF_MineHomeHeaderCell
@@ -55,10 +57,17 @@
     
     [self.nickNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(17);
-        make.top.equalTo(self.leftButton.mas_bottom).offset(24);
+        make.top.equalTo(self.leftButton.mas_bottom).offset(0);
         make.height.mas_offset(42);
     }];
-
+    //性别图标
+    self.genderImageView = [UIImageView new];
+    [self.contentView addSubview:self.genderImageView];
+    [self.genderImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(14);
+        make.left.equalTo(self.nickNameLabel.mas_right).offset(6);
+        make.bottom.equalTo(self.nickNameLabel.mas_bottom).offset(-4);
+    }];
      //年龄
     self.ageLabel = [[UILabel alloc]init];
     self.ageLabel.font = Font(18);
@@ -68,24 +77,45 @@
     
     [self.ageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(17);
-        make.top.equalTo(self.nickNameLabel.mas_bottom).offset(9);
+        make.top.equalTo(self.nickNameLabel.mas_bottom).offset(15);
         make.height.mas_offset(18);
     }];
 
 
     //级别
-    self.levelLabel = [[UILabel alloc]init];
-    self.levelLabel.font = Font(18);
-    self.levelLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-//    self.levelLabel.text = @"级别：A1";
-    [self.contentView addSubview:self.levelLabel];
+    self.levelTitleLabel = [[UILabel alloc]init];
+    self.levelTitleLabel.font = Font(18);
+    self.levelTitleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
+    self.levelTitleLabel.text = @"级别：";
+    [self.contentView addSubview:self.levelTitleLabel];
     
-    [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.ageLabel.mas_right).offset(15);
-        make.top.equalTo(self.nickNameLabel.mas_bottom).offset(9);
+    [self.levelTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.ageLabel.mas_left).offset(0);
+        make.top.equalTo(self.ageLabel.mas_bottom).offset(5);
         make.height.mas_offset(18);
     }];
-    
+    UIView *levelView = [UIView new];
+    levelView.backgroundColor = UICOLOR_FROM_HEX_ALPHA(0x67D3CE, 20);
+    levelView.layer.borderColor = UICOLOR_FROM_HEX_ALPHA(0x67D3CE, 100).CGColor;
+    levelView.layer.borderWidth = 1;
+    levelView.layer.masksToBounds = YES;
+    levelView.layer.cornerRadius = 9;
+    [self.contentView addSubview:levelView];
+    [levelView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.levelTitleLabel.mas_right).offset(0);
+        make.centerY.equalTo(self.levelTitleLabel.mas_centerY);
+        make.width.mas_equalTo(35);
+        make.height.mas_equalTo(18);
+    }];
+    self.levelLabel = [UILabel new];
+    self.levelLabel.font = Font(12);
+    self.levelLabel.textColor = UICOLOR_FROM_HEX_ALPHA(0x02B6E3, 100);
+    [self.levelLabel sizeToFit];
+    [levelView addSubview:self.levelLabel];
+    [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(levelView.mas_centerX);
+        make.centerY.equalTo(levelView.mas_centerY);
+    }];
     //分割线
     UIView *lineView = [[UIView alloc]init];
     lineView.backgroundColor = UICOLOR_FROM_HEX(ColorEAEFF3);
@@ -107,7 +137,12 @@
     self.ageLabel.text = [NSString stringWithFormat:@"年龄：%ld岁",cellModel.Age];
     
     if (!IsStrEmpty(cellModel.Name)) {
-        self.levelLabel.text = [NSString stringWithFormat:@"级别：%@",cellModel.Name];
+        self.levelLabel.text = [NSString stringWithFormat:@"%@",@"A9"];
+    }
+    if(cellModel.Gender == 1){
+        [self.genderImageView setImage:[UIImage imageNamed:@"男"]];
+    }else if(cellModel.Gender == 2){
+        [self.genderImageView setImage:[UIImage imageNamed:@"女"]];
     }
 }
 

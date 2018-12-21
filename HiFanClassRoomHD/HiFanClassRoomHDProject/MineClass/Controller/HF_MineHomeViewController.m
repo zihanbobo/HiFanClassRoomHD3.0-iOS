@@ -20,6 +20,7 @@
 @property (nonatomic, strong) UIButton *loginOutButton;
 @property (nonatomic, strong) HF_Singleton *sin;
 @property (nonatomic, strong) HF_MineHomeInfoModel *model;
+@property (nonatomic, strong) UIImageView *QRCodeImageView;
 @end
 
 @implementation HF_MineHomeViewController
@@ -38,9 +39,9 @@
     self.dataArray = [NSMutableArray array];
 
     if (self.sin.isAuditStatus == YES) {
-        self.dataArray = [NSMutableArray arrayWithObjects:@"",@"清除缓存",@"设备检测",@"在线技术支持", nil];
+        self.dataArray = [NSMutableArray arrayWithObjects:@"",@"清除缓存",@"设备检测",@"在线技术支持",@"当前版本", nil];
     } else {
-        self.dataArray = [NSMutableArray arrayWithObjects:@"",@"我的课时",@"清除缓存",@"设备检测",@"在线技术支持", nil];
+        self.dataArray = [NSMutableArray arrayWithObjects:@"",@"我的课时",@"清除缓存",@"设备检测",@"在线技术支持",@"当前版本", nil];
     }
     
     
@@ -131,8 +132,14 @@
                 cell.rightLabel.text = self.sin.cacheSize;
             }
         }
-        
-        
+        //当前版本
+        if(indexPath.row == (self.dataArray.count-1)){
+            cell.enterImgView.hidden = YES;
+            cell.rightLabel.text = @"V3.3.0";
+            [cell.rightLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                make.right.equalTo(cell.contentView.mas_right).offset(-20);
+            }];
+        }
         return cell;
     }
     return nil;
@@ -222,7 +229,13 @@
     }
     return _loginOutButton;
 }
-
+-(UIImageView *)QRCodeImageView {
+    if(!_QRCodeImageView){
+        self.QRCodeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timg"]];
+        
+    }
+    return _QRCodeImageView;
+}
 #pragma mark 退出登录
 - (void)logOutButtonClick {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定退出登录" message:nil preferredStyle:UIAlertControllerStyleAlert];
@@ -262,6 +275,22 @@
         make.right.equalTo(self.view.mas_right).offset(-17);
         make.bottom.equalTo(self.view.mas_bottom).offset(-20);
         make.height.mas_equalTo(50);
+    }];
+    [self.view addSubview:self.QRCodeImageView];
+    [self.QRCodeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.height.mas_equalTo(100);
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-111);
+    }];
+    UILabel *weixin = [UILabel new];
+    weixin.font = Font(12);
+    weixin.text = @"扫码关注微信公众号进行咨询";
+    weixin.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 40);
+    [weixin sizeToFit];
+    [self.view addSubview:weixin];
+    [weixin mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.view.mas_centerX);
+        make.top.equalTo(self.QRCodeImageView.mas_bottom).offset(5);
     }];
 }
 
