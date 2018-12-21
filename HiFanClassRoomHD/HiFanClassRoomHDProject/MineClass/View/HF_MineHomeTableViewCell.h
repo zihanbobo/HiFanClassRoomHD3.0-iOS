@@ -11,4 +11,5 @@
 @interface HF_MineHomeTableViewCell : UITableViewCell
 @property (nonatomic,copy) NSString *leftLabelString;
 @property (nonatomic, strong) UILabel *rightLabel;    //说明
+@property (nonatomic, strong)UIImageView *enterImgView;
 @end
