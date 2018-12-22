@@ -10,12 +10,9 @@
 #import "HF_HomeUnitCellModel.h"
 
 typedef void(^SelectedBlock)(NSInteger index);
-typedef void(^GetUnitIdBlock)(NSInteger unitId);
 @interface HF_HomeContentCell : UITableViewCell <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,copy) SelectedBlock selectedBlock;
 @property (nonatomic,strong) NSMutableArray *collectionArray;
-@property (nonatomic,copy) GetUnitIdBlock getUnitIdBlock;
-
 @end
 

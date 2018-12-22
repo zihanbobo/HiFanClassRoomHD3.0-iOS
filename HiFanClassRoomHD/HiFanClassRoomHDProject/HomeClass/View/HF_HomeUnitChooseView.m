@@ -17,7 +17,6 @@
 
 
 @implementation HF_HomeUnitChooseView
-
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self initUI];
@@ -29,8 +28,8 @@
 - (void)setCollectionUnitArray:(NSMutableArray *)collectionUnitArray {
     self.UnitArray = [NSMutableArray array];
     self.UnitArray = collectionUnitArray;
+    //    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
     [self.collectionView reloadData];
-//    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 
@@ -95,6 +94,11 @@
     [self.collectionView registerClass:[HF_HomeUnitChooseCell class] forCellWithReuseIdentifier:@"HF_HomeUnitChooseCell"];
 }
 
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
+    NSLog(@"1111");
+}
+
+
 #pragma mark -- UICollectionView代理
 //返回分区个数
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
@@ -113,7 +117,9 @@
     HF_HomeUnitChooseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     
     if (indexPath.row == 0) { //默认选中第一条数据
+        [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
         cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xe5ebf0);
+        cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
     }
     
     HF_HomeGetUnitInfoListModel *model = [self.UnitArray safe_objectAtIndex:indexPath.row];
@@ -147,12 +153,11 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSIndexPath *path = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
-    HF_HomeUnitChooseCell *cell = (HF_HomeUnitChooseCell *)[self.collectionView cellForItemAtIndexPath:path];
+    HF_HomeUnitChooseCell *cell = (HF_HomeUnitChooseCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xe5ebf0);
     cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
     HF_HomeGetUnitInfoListModel *model = [self.UnitArray safe_objectAtIndex:indexPath.row];
-
+    
     if (self.selectedUnitIdBlock) {
         self.selectedUnitIdBlock(model.UnitID);
     }
@@ -160,11 +165,10 @@
 
 //取消选中
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    [self.collectionView reloadData];
-    NSIndexPath *path = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
-    HF_HomeUnitChooseCell *cell = (HF_HomeUnitChooseCell *)[self.collectionView cellForItemAtIndexPath:path];
+    HF_HomeUnitChooseCell *cell = (HF_HomeUnitChooseCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
     cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
+    
 }
 
 @end

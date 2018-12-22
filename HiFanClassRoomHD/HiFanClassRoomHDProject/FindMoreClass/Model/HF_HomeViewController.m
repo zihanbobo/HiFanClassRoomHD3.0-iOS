@@ -37,59 +37,87 @@
     [self initUI];
     
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self getLessonListData];
-        [self getUnitListData];
+        [self getLoadData];
     }];
     [self.tableView.mj_header beginRefreshing];
 }
 
-//MARK:轮播课程列表
--(void)getLessonListData {
-    self.headerArray = [NSMutableArray array];
+-(void)getLoadData {
+    //使用场景：当一个界面有多个数据请求，或者一个页面分模块请求，当所有的数据都请求回来之后，在更新UI，可使用此方法
+    //请求1
+    RACSignal *signal1 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        //发送请求
 
-    [[BaseService share] sendGetRequestWithPath:URL_GetLessonList token:YES viewController:self success:^(id responseObject) {
-        if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
-            for (NSDictionary *dic in responseObject[@"data"]) {
-                HF_HomeHeaderModel *model = [HF_HomeHeaderModel yy_modelWithDictionary:dic];
-                [self.headerArray addObject:model];
-            }
-        }
-
-//        self.headerView.collectionDataArray = [NSMutableArray array];
-//        self.headerView.collectionDataArray = self.headerArray;
-        
-        [self.tableView reloadData];
-        
-    } failure:^(NSError *error) {
-        
-    }];
-}
-
-//MARK:获取Unit列表
--(void)getUnitListData {
-    self.unitArray = [NSMutableArray array];
-
-    [[BaseService share] sendGetRequestWithPath:URL_GetUnitInfoList token:YES viewController:self success:^(id responseObject) {
-        if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
-            for (NSDictionary *dic in responseObject[@"data"]) {
-                HF_HomeGetUnitInfoListModel *model = [HF_HomeGetUnitInfoListModel yy_modelWithDictionary:dic];
-                [self.unitArray addObject:model];
-            }
-        }
-        
-        for (NSInteger i=0; i<self.unitArray.count; i++) {
-            if (i == 0) {
-                HF_HomeGetUnitInfoListModel *model = [self.unitArray safe_objectAtIndex:0];
-                [self getUnitCellListData:model.UnitID];
+        [[BaseService share] sendGetRequestWithPath:URL_GetLessonList token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
+            NSMutableArray *array = [NSMutableArray array];
+            if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    HF_HomeHeaderModel *model = [HF_HomeHeaderModel yy_modelWithDictionary:dic];
+                    [array addObject:model];
+                }
             }
             
-        }
-        [self.tableView reloadData];
-
-    } failure:^(NSError *error) {
-
+            [subscriber sendNext:array];
+        } failure:^(NSError *error) {
+            
+        }];
+        
+        return nil;
     }];
+    
+    //请求2
+    RACSignal *signal2 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        //发送请求
+        [[BaseService share] sendGetRequestWithPath:URL_GetUnitInfoList token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
+            NSMutableArray *dataArray = [NSMutableArray array];
+            NSMutableArray *array1 = [NSMutableArray array];
+            NSMutableArray *array2 = [NSMutableArray array];
+
+            if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    HF_HomeGetUnitInfoListModel *model = [HF_HomeGetUnitInfoListModel yy_modelWithDictionary:dic];
+                    [array1 addObject:model];
+                }
+            }
+            
+            for (NSInteger i=0; i<array1.count; i++) {
+                if (i == 0) {
+                    HF_HomeGetUnitInfoListModel *model = [array1 safe_objectAtIndex:0];
+//                    [self getUnitCellListData:model.UnitID];
+                    NSString *unitIdStr = [NSString stringWithFormat:@"%ld",(long)model.UnitID];
+                    [array2 addObject:unitIdStr];
+                }
+            }
+            dataArray = [NSMutableArray arrayWithObjects:array1,array2, nil];
+            [subscriber sendNext:dataArray];
+            
+        } failure:^(NSError *error) {
+            
+        }];
+
+        
+        return nil;
+    }];
+    
+    //数组
+    //当数组中的所有信号都发送了数据，才会执行Selector
+    //方法的参数：必须和数组的信号一一对应
+    //方法的参数：就是每一个信号发送的数据
+    [self rac_liftSelector:@selector(updateUIWithHeaderArray:unitArray:) withSignalsFromArray:@[signal1,signal2]];
 }
+
+-(void)updateUIWithHeaderArray:(NSMutableArray *)headerArray unitArray:(NSMutableArray *)unitArray {
+    //拿到数据，更新UI
+    self.headerArray = [NSMutableArray array];
+    self.unitArray = [NSMutableArray array];
+    
+    self.headerArray = headerArray;
+    self.unitArray = [unitArray safe_objectAtIndex:0];
+    NSInteger unitid = [[[unitArray safe_objectAtIndex:1] safe_objectAtIndex:0] integerValue];
+    [self.tableView reloadData];
+    [self getUnitCellListData:unitid];
+}
+
 
 
 -(void)getUnitCellListData:(NSInteger)unitId {
@@ -104,21 +132,25 @@
             }
         }
         
-    
-//        HF_HomeUnitCellModel *model = [[HF_HomeUnitCellModel alloc] init];
-//        [self.dataArray addObject:model];
         
-
         [self.tableView.mj_footer endRefreshing];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
-        [self.tableView reloadData];
+//        [self.tableView reloadData];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+
         
     } failure:^(NSError *error) {
         [self.tableView.mj_footer endRefreshing];
         [self.tableView.mj_header endRefreshing];
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
-        [self.tableView reloadData];
+//        [self.tableView reloadData];
+        
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+        
     }];
 }
 
@@ -189,6 +221,15 @@
         cell.collectionUnitArray = [NSMutableArray array];
         cell.collectionUnitArray = self.unitArray;
         
+        HF_HomeGetUnitInfoListModel *model = [self.unitArray safe_objectAtIndex:indexPath.row];
+        @weakify(self);
+        cell.selectedUnitIdBlock = ^(NSInteger unitId) {
+            @strongify(self);
+            NSLog(@"%ld",(long)unitId);
+            [self getUnitCellListData:unitId];
+        };
+        
+        
         return cell;
     } else if (indexPath.row == 2) {
         static NSString *cellID = @"HF_HomeContentCell";
@@ -202,13 +243,6 @@
         cell.collectionArray = [NSMutableArray array];
         cell.collectionArray = self.dataArray;
 
-        HF_HomeGetUnitInfoListModel *model = [self.unitArray safe_objectAtIndex:indexPath.row];
-        @weakify(self);
-        cell.getUnitIdBlock = ^(NSInteger unitId) {
-            @strongify(self);
-            NSLog(@"%ld",(long)unitId);
-            [self getUnitCellListData:unitId];
-        };
 
         cell.selectedBlock = ^(NSInteger index) {
             HF_HomeUnitCellModel *model = [self.dataArray safe_objectAtIndex:index];

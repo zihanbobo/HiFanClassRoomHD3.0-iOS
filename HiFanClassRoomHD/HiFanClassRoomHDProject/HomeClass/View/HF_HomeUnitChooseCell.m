@@ -61,7 +61,6 @@
 
 
 - (void)setCellModel:(HF_HomeGetUnitInfoListModel *)cellModel {
-    
     NSString *nameStr = [NSString stringWithFormat:@"%@",cellModel.UnitName];
     if (!IsStrEmpty(nameStr)) {
         self.titleLabel.text = nameStr;
