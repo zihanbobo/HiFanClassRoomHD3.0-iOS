@@ -1,26 +1,24 @@
 //
-//  HF_HomeHeaderView.m
+//  HF_HomeHeaderViewCell.m
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2018/12/17.
 //  Copyright © 2018 Chn. All rights reserved.
 //
 
-#import "HF_HomeHeaderView.h"
+#import "HF_HomeHeaderViewCell.h"
 #import "HF_HomeHeaderCollectionViewCell.h"
 
-
-@interface HF_HomeHeaderView()
+@interface HF_HomeHeaderViewCell() <UICollectionViewDelegate,UICollectionViewDataSource>
+@property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) BaseScrollHeaderView *headerView;
 @property (nonatomic,strong) NSMutableArray *dataArray;
 @end
 
-@implementation HF_HomeHeaderView
-- (instancetype)initWithFrame:(CGRect)frame {
-    self = [super initWithFrame:frame];
-    if (self) {
+@implementation HF_HomeHeaderViewCell
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self initUI];
-        
     }
     return self;
 }
@@ -66,7 +64,6 @@
 
 //定义每个UICollectionView 的间距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    
     return UIEdgeInsetsMake(0, LineX(17), 0, LineX(17));
 }
 
@@ -79,7 +76,7 @@
 
 //定义每个UICollectionView 的横向间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return LineY(17);
+    return LineX(17);
 }
 
 
@@ -113,11 +110,12 @@
     
     [self addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.headerView.mas_bottom).offset(40);
+        make.top.equalTo(self.headerView.mas_bottom).offset(30);
         make.left.equalTo(self.mas_left).offset(0);
         make.right.equalTo(self.mas_right).offset(-0);
-        make.bottom.equalTo(self.mas_bottom).offset(-0);
+        make.bottom.equalTo(self.mas_bottom).offset(-30);
     }];
+    
     //注册cell
     [self.collectionView registerClass:[HF_HomeHeaderCollectionViewCell class] forCellWithReuseIdentifier:@"HF_HomeHeaderCollectionViewCell"];
 }
@@ -144,7 +142,6 @@
         self.collectionView.dataSource =self;
         self.collectionView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
         self.collectionView.showsHorizontalScrollIndicator = NO;
-        
     }
     return _collectionView;
 }

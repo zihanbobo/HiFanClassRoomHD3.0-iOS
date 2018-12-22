@@ -18,45 +18,56 @@
 
 @implementation HF_HomeUnitChooseView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+    if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self initUI];
     }
     return self;
 }
 
+
 - (void)setCollectionUnitArray:(NSMutableArray *)collectionUnitArray {
     self.UnitArray = [NSMutableArray array];
     self.UnitArray = collectionUnitArray;
     [self.collectionView reloadData];
-    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-
+//    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 
 -(void)initUI {
+    UIView *bgView = [[UIView alloc] init];
+    bgView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
+    bgView.layer.masksToBounds = YES;
+    bgView.layer.cornerRadius = 24;
+    [self addSubview:bgView];
     
+    [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.mas_left).offset(17);
+        make.right.equalTo(self.mas_right).offset(-17);
+        make.top.bottom.equalTo(self);
+    }];
+    
+    //左侧按钮
     self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
     [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateSelected];
-    [self addSubview:self.leftButton];
+    [bgView addSubview:self.leftButton];
     
     [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.mas_left).offset(0);
-        make.top.bottom.equalTo(self);
+        make.left.equalTo(bgView.mas_left).offset(0);
+        make.top.bottom.equalTo(bgView);
         make.size.mas_equalTo(CGSizeMake(30, 48));
     }];
     
+    //右侧按钮
     self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角黑") forState:UIControlStateNormal];
     [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角黑") forState:UIControlStateSelected];
-    [self addSubview:self.rightButton];
+    [bgView addSubview:self.rightButton];
     
     [self.rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.mas_right).offset(-0);
-        make.top.bottom.equalTo(self);
+        make.right.equalTo(bgView.mas_right).offset(-0);
+        make.top.bottom.equalTo(bgView);
         make.size.mas_equalTo(CGSizeMake(30, 48));
     }];
     
@@ -70,19 +81,18 @@
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.bounces = NO;
     self.collectionView.pagingEnabled = YES;
-    [self addSubview:self.collectionView];
+    [bgView addSubview:self.collectionView];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).offset(0);
-        make.left.equalTo(self.mas_left).offset(30);
-        make.right.equalTo(self.mas_right).offset(-30);
-        make.bottom.equalTo(self.mas_bottom).offset(-0);
+        make.top.equalTo(bgView.mas_top).offset(0);
+        make.left.equalTo(bgView.mas_left).offset(30);
+        make.right.equalTo(bgView.mas_right).offset(-30);
+        make.bottom.equalTo(bgView.mas_bottom).offset(-0);
     }];
     
     
     //注册cell
     [self.collectionView registerClass:[HF_HomeUnitChooseCell class] forCellWithReuseIdentifier:@"HF_HomeUnitChooseCell"];
-    
 }
 
 #pragma mark -- UICollectionView代理
@@ -150,6 +160,7 @@
 
 //取消选中
 - (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
+    [self.collectionView reloadData];
     NSIndexPath *path = [NSIndexPath indexPathForRow:indexPath.row inSection:0];
     HF_HomeUnitChooseCell *cell = (HF_HomeUnitChooseCell *)[self.collectionView cellForItemAtIndexPath:path];
     cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);

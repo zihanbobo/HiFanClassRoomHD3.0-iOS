@@ -43,6 +43,7 @@
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
     }];
     
+    
     //状态
     self.statusImgView = [[UIImageView alloc] init];
     self.statusImgView.image = UIIMAGE_FROM_NAME(@"完成");
@@ -54,12 +55,16 @@
         make.size.mas_equalTo(CGSizeMake(14, 14));
     }];
 
+    
+    
 }
 
 
 - (void)setCellModel:(HF_HomeGetUnitInfoListModel *)cellModel {
-    if (!IsStrEmpty(cellModel.UnitName)) {
-        self.titleLabel.text = [NSString stringWithFormat:@"%@",cellModel.UnitName];
+    
+    NSString *nameStr = [NSString stringWithFormat:@"%@",cellModel.UnitName];
+    if (!IsStrEmpty(nameStr)) {
+        self.titleLabel.text = nameStr;
     }
 }
 @end

@@ -165,7 +165,7 @@
 		5BAF22EC21C7B3A400AB1929 /* shuaxin_39.png in Resources */ = {isa = PBXBuildFile; fileRef = 5BAF22B721C7B3A400AB1929 /* shuaxin_39.png */; };
 		5BAF22F321C7C68E00AB1929 /* HF_HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF22F221C7C68E00AB1929 /* HF_HomeViewController.m */; };
 		5BAF22FA21C7C70500AB1929 /* HF_ServiceHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF22F921C7C70500AB1929 /* HF_ServiceHomeViewController.m */; };
-		5BAF22FD21C7CEB800AB1929 /* HF_HomeHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF22FC21C7CEB800AB1929 /* HF_HomeHeaderView.m */; };
+		5BAF22FD21C7CEB800AB1929 /* HF_HomeHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BAF22FC21C7CEB800AB1929 /* HF_HomeHeaderViewCell.m */; };
 		5BB09A841FCD00900071B8DE /* GGT_OrderUnitCourseCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB09A831FCD00900071B8DE /* GGT_OrderUnitCourseCollectionCell.m */; };
 		5BB09A901FCD5A2D0071B8DE /* GGT_OrderUnitCourseDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB09A8F1FCD5A2D0071B8DE /* GGT_OrderUnitCourseDateView.m */; };
 		5BB6D5771FEB81E300464F83 /* GGT_EvaluationSucceedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BB6D5761FEB81E300464F83 /* GGT_EvaluationSucceedView.m */; };
@@ -731,8 +731,8 @@
 		5BAF22F221C7C68E00AB1929 /* HF_HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = HF_HomeViewController.m; path = HiFanClassRoomHD/HiFanClassRoomHDProject/FindMoreClass/Model/HF_HomeViewController.m; sourceTree = SOURCE_ROOT; };
 		5BAF22F821C7C70500AB1929 /* HF_ServiceHomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_ServiceHomeViewController.h; sourceTree = "<group>"; };
 		5BAF22F921C7C70500AB1929 /* HF_ServiceHomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_ServiceHomeViewController.m; sourceTree = "<group>"; };
-		5BAF22FB21C7CEB800AB1929 /* HF_HomeHeaderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeHeaderView.h; sourceTree = "<group>"; };
-		5BAF22FC21C7CEB800AB1929 /* HF_HomeHeaderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeHeaderView.m; sourceTree = "<group>"; };
+		5BAF22FB21C7CEB800AB1929 /* HF_HomeHeaderViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeHeaderViewCell.h; sourceTree = "<group>"; };
+		5BAF22FC21C7CEB800AB1929 /* HF_HomeHeaderViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeHeaderViewCell.m; sourceTree = "<group>"; };
 		5BB09A821FCD00900071B8DE /* GGT_OrderUnitCourseCollectionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_OrderUnitCourseCollectionCell.h; sourceTree = "<group>"; };
 		5BB09A831FCD00900071B8DE /* GGT_OrderUnitCourseCollectionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_OrderUnitCourseCollectionCell.m; sourceTree = "<group>"; };
 		5BB09A8E1FCD5A2D0071B8DE /* GGT_OrderUnitCourseDateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_OrderUnitCourseDateView.h; sourceTree = "<group>"; };
@@ -1894,8 +1894,8 @@
 		5BAF22F021C7C46A00AB1929 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5BAF22FB21C7CEB800AB1929 /* HF_HomeHeaderView.h */,
-				5BAF22FC21C7CEB800AB1929 /* HF_HomeHeaderView.m */,
+				5BAF22FB21C7CEB800AB1929 /* HF_HomeHeaderViewCell.h */,
+				5BAF22FC21C7CEB800AB1929 /* HF_HomeHeaderViewCell.m */,
 				5B4425DD21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.h */,
 				5B4425DE21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.m */,
 				5B4425D721C8A0A30036298C /* HF_HomeContentCell.h */,
@@ -3601,7 +3601,7 @@
 				5BD5165A1ECAD32E0015D694 /* GGT_MineClassTableViewCell.m in Sources */,
 				D6E0A5591EC2D9CD006A003D /* UIAlertController+Color.m in Sources */,
 				5BE2EDCC216B37DC00845E70 /* TKEmotionGridView.m in Sources */,
-				5BAF22FD21C7CEB800AB1929 /* HF_HomeHeaderView.m in Sources */,
+				5BAF22FD21C7CEB800AB1929 /* HF_HomeHeaderViewCell.m in Sources */,
 				D67ACCC61EE173E00027031C /* HF_ResultModel.m in Sources */,
 				D6BF1ABF1FD102A90032C20C /* GGT_QuestionBottomView.m in Sources */,
 				5BE2EDB8216B37DC00845E70 /* BITFeedbackListViewCell.m in Sources */,

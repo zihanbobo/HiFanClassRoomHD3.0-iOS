@@ -15,7 +15,6 @@ typedef void(^GetUnitIdBlock)(NSInteger unitId);
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,copy) SelectedBlock selectedBlock;
 @property (nonatomic,strong) NSMutableArray *collectionArray;
-@property (nonatomic,strong) NSMutableArray *collectionUnitArray;
 @property (nonatomic,copy) GetUnitIdBlock getUnitIdBlock;
 
 @end

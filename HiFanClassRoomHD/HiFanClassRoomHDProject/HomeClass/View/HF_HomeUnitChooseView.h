@@ -10,10 +10,8 @@
 #import "HF_HomeUnitChooseCell.h"
 
 typedef void(^SelectedUnitIdBlock)(NSInteger unitId);
-@interface HF_HomeUnitChooseView : UIView <UICollectionViewDelegate,UICollectionViewDataSource>
+@interface HF_HomeUnitChooseView : UITableViewCell <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray *collectionUnitArray;
 @property (nonatomic,copy) SelectedUnitIdBlock selectedUnitIdBlock;
-
-
 @end

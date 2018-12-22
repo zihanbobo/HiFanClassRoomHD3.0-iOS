@@ -7,21 +7,20 @@
 //
 
 #import "HF_HomeViewController.h"
-#import "HF_HomeHeaderView.h"
+#import "HF_HomeHeaderViewCell.h"
 #import "HF_HomeContentCell.h"
 #import "HF_HomeHeaderModel.h"
 #import "HF_HomeCourseStrategyViewController.h" //课程攻略
 #import "HF_HomeClassDetailViewController.h"    //课程详情
 #import "HF_HomeGetUnitInfoListModel.h"
 #import "HF_HomeUnitCellModel.h"
+#import "HF_HomeUnitChooseView.h"
 
 @interface HF_HomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView; //tableView
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *headerArray;
 @property (nonatomic, strong) NSMutableArray *unitArray;
-@property (nonatomic, strong) HF_HomeHeaderView *headerView;
-
 @end
 
 @implementation HF_HomeViewController
@@ -131,114 +130,104 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
+    return 3;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return (self.dataArray.count/4) * LineH(223);
-    return SCREEN_HEIGHT() - LineH(345);
+    if (indexPath.row == 0) {
+        return LineH(346); //106+239
+    } else if (indexPath.row == 1) {
+        return LineH(48);
+    } else if (indexPath.row == 2) {
+        return self.tableView.height - LineH(394);
+    }
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellID = @"HF_HomeContentCell";
-    HF_HomeContentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-    if (!cell) {
-        cell = [[HF_HomeContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.backgroundColor = UICOLOR_RANDOM_COLOR();
+    if (indexPath.row == 0) {
+        static NSString *cellID = @"HF_HomeHeaderViewCell";
+        HF_HomeHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!cell) {
+            cell = [[HF_HomeHeaderViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        cell.collectionDataArray = [NSMutableArray array];
+        cell.collectionDataArray = self.headerArray;
+        
+        //MARK:课程攻略
+        cell.gonglueBtnBlock = ^{
+            HF_HomeCourseStrategyViewController *vc = [[HF_HomeCourseStrategyViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        };
+        
+        //MARK:跳转到  课程详情
+        cell.classDetailVcBlock = ^(NSInteger index) {
+            HF_HomeHeaderModel *model = [self.headerArray safe_objectAtIndex:index];
+            HF_HomeClassDetailViewController *vc = [HF_HomeClassDetailViewController new];
+            BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+            nav.modalPresentationStyle = UIModalPresentationFormSheet;
+            nav.popoverPresentationController.delegate = self;
+            vc.lessonId = model.RecordID;
+            [self presentViewController:nav animated:YES completion:nil];
+        };
+        
+        
+        return cell;
+        
+    } else if (indexPath.row == 1) {
+        static NSString *cellID = @"HF_HomeUnitChooseView";
+        HF_HomeUnitChooseView *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!cell) {
+            cell = [[HF_HomeUnitChooseView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        
+        cell.collectionUnitArray = [NSMutableArray array];
+        cell.collectionUnitArray = self.unitArray;
+        
+        return cell;
+    } else if (indexPath.row == 2) {
+        static NSString *cellID = @"HF_HomeContentCell";
+        HF_HomeContentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!cell) {
+            cell = [[HF_HomeContentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        
+        cell.collectionArray = [NSMutableArray array];
+        cell.collectionArray = self.dataArray;
+
+        HF_HomeGetUnitInfoListModel *model = [self.unitArray safe_objectAtIndex:indexPath.row];
+        @weakify(self);
+        cell.getUnitIdBlock = ^(NSInteger unitId) {
+            @strongify(self);
+            NSLog(@"%ld",(long)unitId);
+            [self getUnitCellListData:unitId];
+        };
+
+        cell.selectedBlock = ^(NSInteger index) {
+            HF_HomeUnitCellModel *model = [self.dataArray safe_objectAtIndex:index];
+            HF_HomeClassDetailViewController *vc = [HF_HomeClassDetailViewController new];
+            BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+            nav.modalPresentationStyle = UIModalPresentationFormSheet;
+            nav.popoverPresentationController.delegate = self;
+            vc.lessonId = model.ChapterID;
+            [self presentViewController:nav animated:YES completion:nil];
+        };
+        return cell;
     }
     
-
-    cell.collectionArray = [NSMutableArray array];
-    cell.collectionUnitArray = [NSMutableArray array];
-
-    cell.collectionArray = self.dataArray;
-    cell.collectionUnitArray = self.unitArray;
-    
-    HF_HomeGetUnitInfoListModel *model = [self.unitArray safe_objectAtIndex:indexPath.row];
-    @weakify(self);
-    cell.getUnitIdBlock = ^(NSInteger unitId) {
-        @strongify(self);
-        NSLog(@"%ld",(long)unitId);
-        [self getUnitCellListData:unitId];
-    };
- 
-    cell.selectedBlock = ^(NSInteger index) {
-        HF_HomeUnitCellModel *model = [self.dataArray safe_objectAtIndex:index];
-        HF_HomeClassDetailViewController *vc = [HF_HomeClassDetailViewController new];
-        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
-        nav.modalPresentationStyle = UIModalPresentationFormSheet;
-        nav.popoverPresentationController.delegate = self;
-        vc.lessonId = model.ChapterID;
-        [self presentViewController:nav animated:YES completion:nil];
-    };
-    
-    return cell;
-}
-
-
-
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    HF_HomeHeaderView *headerView = [[HF_HomeHeaderView alloc] init];
-    headerView.frame = CGRectMake(0, 0, home_right_width, LineH(345));
-    headerView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-    headerView.collectionDataArray = [NSMutableArray array];
-    headerView.collectionDataArray = self.headerArray;
-
-    //MARK:课程攻略
-    headerView.gonglueBtnBlock = ^{
-        HF_HomeCourseStrategyViewController *vc = [[HF_HomeCourseStrategyViewController alloc] init];
-        [self.navigationController pushViewController:vc animated:YES];
-    };
-
-    //MARK:跳转到  课程详情
-    headerView.classDetailVcBlock = ^(NSInteger index) {
-        HF_HomeHeaderModel *model = [self.headerArray safe_objectAtIndex:index];
-        HF_HomeClassDetailViewController *vc = [HF_HomeClassDetailViewController new];
-        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
-        nav.modalPresentationStyle = UIModalPresentationFormSheet;
-        nav.popoverPresentationController.delegate = self;
-        vc.lessonId = model.RecordID;
-        [self presentViewController:nav animated:YES completion:nil];
-    };
-    return headerView;
-}
-
-
--(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return LineH(345); //106+239
+    return nil;
 }
 
 
 //MARK:UI加载
 - (void)initUI {
-//    self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-//    self.headerView = [[HF_HomeHeaderView alloc] init];
-//    self.headerView.frame = CGRectMake(0, 0, home_right_width, LineH(345));
-//    self.headerView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-//
-//
-//    //MARK:课程攻略
-//    @weakify(self);
-//    self.headerView.gonglueBtnBlock = ^{
-//        @strongify(self);
-//        HF_HomeCourseStrategyViewController *vc = [[HF_HomeCourseStrategyViewController alloc] init];
-//        [self.navigationController pushViewController:vc animated:YES];
-//    };
-//
-//    //MARK:跳转到  课程详情
-//    self.headerView.classDetailVcBlock = ^{
-//        @strongify(self);
-//        HF_HomeClassDetailViewController *vc = [HF_HomeClassDetailViewController new];
-//        BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
-//        nav.modalPresentationStyle = UIModalPresentationFormSheet;
-//        nav.popoverPresentationController.delegate = self;
-//        [self presentViewController:nav animated:YES completion:nil];
-//    };
-//
-//
-//    self.tableView.tableHeaderView = self.headerView;
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
@@ -250,17 +239,12 @@
 //MARK:懒加载
 -(UITableView *)tableView {
     if (!_tableView) {
-        self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStyleGrouped)];
+        self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStylePlain)];
         self.tableView.delegate = self;
         self.tableView.dataSource = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
         self.tableView.showsVerticalScrollIndicator = NO;
-        if (@available(iOS 11.0, *)) {
-            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-        }else {
-            self.automaticallyAdjustsScrollViewInsets = NO;
-        }
     }
     return _tableView;
 }

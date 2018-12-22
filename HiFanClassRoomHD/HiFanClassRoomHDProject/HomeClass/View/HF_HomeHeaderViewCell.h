@@ -1,5 +1,5 @@
 //
-//  HF_HomeHeaderView.h
+//  HF_HomeHeaderViewCell.h
 //  HiFanClassRoomHD
 //
 //  Created by XieHenry on 2018/12/17.
@@ -11,11 +11,8 @@
 
 typedef void(^GonglueBtnBlock)(void);
 typedef void(^ClassDetailVcBlock)(NSInteger index);
-@interface HF_HomeHeaderView : UIView <UICollectionViewDelegate,UICollectionViewDataSource>
+@interface HF_HomeHeaderViewCell : UITableViewCell
 @property (nonatomic, copy) GonglueBtnBlock gonglueBtnBlock;
 @property (nonatomic, copy) ClassDetailVcBlock classDetailVcBlock;
-
-@property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray *collectionDataArray;
-
 @end
