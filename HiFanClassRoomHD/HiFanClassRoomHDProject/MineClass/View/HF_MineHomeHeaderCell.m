@@ -35,8 +35,8 @@
     
     [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.contentView.mas_left).offset(0);
-        make.top.equalTo(self.contentView.mas_top).offset(13);
-        make.size.mas_equalTo(CGSizeMake(60, 60));
+        make.top.equalTo(self.contentView.mas_top).offset(0);
+        make.size.mas_equalTo(CGSizeMake(50, 50));
     }];
     
     @weakify(self);
@@ -60,6 +60,7 @@
         make.top.equalTo(self.leftButton.mas_bottom).offset(0);
         make.height.mas_offset(42);
     }];
+    
     //性别图标
     self.genderImageView = [UIImageView new];
     [self.contentView addSubview:self.genderImageView];
@@ -68,6 +69,7 @@
         make.left.equalTo(self.nickNameLabel.mas_right).offset(6);
         make.bottom.equalTo(self.nickNameLabel.mas_bottom).offset(-4);
     }];
+    
      //年龄
     self.ageLabel = [[UILabel alloc]init];
     self.ageLabel.font = Font(18);
@@ -94,28 +96,22 @@
         make.top.equalTo(self.ageLabel.mas_bottom).offset(5);
         make.height.mas_offset(18);
     }];
-    UIView *levelView = [UIView new];
-    levelView.backgroundColor = UICOLOR_FROM_HEX_ALPHA(0x67D3CE, 20);
-    levelView.layer.borderColor = UICOLOR_FROM_HEX_ALPHA(0x67D3CE, 100).CGColor;
-    levelView.layer.borderWidth = 1;
-    levelView.layer.masksToBounds = YES;
-    levelView.layer.cornerRadius = 9;
-    [self.contentView addSubview:levelView];
-    [levelView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.levelTitleLabel.mas_right).offset(0);
-        make.centerY.equalTo(self.levelTitleLabel.mas_centerY);
-        make.width.mas_equalTo(35);
-        make.height.mas_equalTo(18);
-    }];
+    
+    //等级
     self.levelLabel = [UILabel new];
     self.levelLabel.font = Font(12);
-    self.levelLabel.textColor = UICOLOR_FROM_HEX_ALPHA(0x02B6E3, 100);
-    [self.levelLabel sizeToFit];
-    [levelView addSubview:self.levelLabel];
+    self.levelLabel.textColor = UICOLOR_FROM_HEX(Color02B6E3);
+    self.levelLabel.backgroundColor = UICOLOR_FROM_HEX_ALPHA(0x67D3CE, 20);
+    self.levelLabel.textAlignment = NSTextAlignmentCenter;
+    [self addSubview:self.levelLabel];
+    
     [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(levelView.mas_centerX);
-        make.centerY.equalTo(levelView.mas_centerY);
+        make.left.equalTo(self.levelTitleLabel.mas_right).offset(0);
+        make.centerY.equalTo(self.levelTitleLabel.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(35, 18));
     }];
+    
+    
     //分割线
     UIView *lineView = [[UIView alloc]init];
     lineView.backgroundColor = UICOLOR_FROM_HEX(ColorEAEFF3);
@@ -139,11 +135,18 @@
     if (!IsStrEmpty(cellModel.Name)) {
         self.levelLabel.text = [NSString stringWithFormat:@"%@",@"A9"];
     }
+    
     if(cellModel.Gender == 1){
         [self.genderImageView setImage:[UIImage imageNamed:@"男"]];
     }else if(cellModel.Gender == 2){
         [self.genderImageView setImage:[UIImage imageNamed:@"女"]];
     }
+}
+
+
+- (void)drawRect:(CGRect)rect {
+    [self.levelLabel addBorderForViewWithBorderWidth:1 BorderColor:UICOLOR_FROM_HEX(Color67D3CE) CornerRadius:9];
+    [self.levelLabel xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:9];
 }
 
 @end

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^LoginOutButtonBlock)(void);
 @interface HF_MineHomeFooterView : UITableViewCell
-
+@property (nonatomic,copy) LoginOutButtonBlock loginOutButtonBlock;
 @end

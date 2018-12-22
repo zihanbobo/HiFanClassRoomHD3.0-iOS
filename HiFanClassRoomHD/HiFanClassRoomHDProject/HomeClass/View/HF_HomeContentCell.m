@@ -71,22 +71,22 @@
     [self.contentView addSubview:lastView];
     
     [lastView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.chooseUnitView.mas_bottom).offset(10);
+        make.top.equalTo(self.chooseUnitView.mas_bottom).offset(25);
         make.right.equalTo(self.contentView.mas_right).offset(-17);
         make.size.mas_equalTo(CGSizeMake(186, 223));
     }];
     
     
-    UIView *view1 = [[UIView alloc] init];
-    view1.backgroundColor = UICOLOR_RANDOM_COLOR();
-    [self.contentView addSubview:view1];
-    
-    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.chooseUnitView.mas_bottom).offset(10);
-        make.left.equalTo(self.contentView.mas_left).offset(0);
-        make.right.equalTo(lastView.mas_left).offset(-17);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
-    }];
+//    UIView *view1 = [[UIView alloc] init];
+//    view1.backgroundColor = UICOLOR_RANDOM_COLOR();
+//    [self.contentView addSubview:view1];
+//
+//    [view1 mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.chooseUnitView.mas_bottom).offset(10);
+//        make.left.equalTo(self.contentView.mas_left).offset(0);
+//        make.right.equalTo(lastView.mas_left).offset(-17);
+//        make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
+//    }];
     
     
     
@@ -97,15 +97,16 @@
     self.collectionView.dataSource =self;
     self.collectionView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     self.collectionView.showsHorizontalScrollIndicator = NO;
+    self.collectionView.showsVerticalScrollIndicator = NO;
     if (@available(iOS 11.0, *)) {
         self.collectionView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
     }
     [self.contentView addSubview:self.collectionView];
-
+ 
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.chooseUnitView.mas_bottom).offset(10);
+        make.top.equalTo(self.chooseUnitView.mas_bottom).offset(25);
         make.left.equalTo(self.contentView.mas_left).offset(0);
-        make.right.equalTo(self.contentView.mas_right).offset(-0);
+        make.right.equalTo(lastView.mas_left).offset(-8);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
     }];
 
@@ -141,14 +142,14 @@
 
 //设置每个 UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(LineW(159),LineH(243));
+    return CGSizeMake(LineW(159),LineH(223));
 }
 
 
 
 //定义每个UICollectionView 的间距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, LineX(17), 0, LineX(17));
+        return UIEdgeInsetsMake(0, LineX(17), 0, LineX(9));
 }
 
 

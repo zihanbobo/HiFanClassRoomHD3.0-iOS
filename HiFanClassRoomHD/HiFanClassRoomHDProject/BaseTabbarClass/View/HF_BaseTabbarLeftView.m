@@ -12,11 +12,11 @@
 //课表和我的view
 @property (nonatomic,strong) UIView *optionsView;
 @property (nonatomic,strong) UIButton *peopleIconButton;
+@property (nonatomic,strong) UIVisualEffectView *effe;
 @end
 
 
 @implementation HF_BaseTabbarLeftView
-
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
         [self initView];
@@ -49,6 +49,22 @@
         make.size.mas_equalTo(CGSizeMake(60, 60));
     }];
     
+    
+    //等级
+    self.levelLabel = [[UILabel alloc] init];
+    self.levelLabel.textColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+    self.levelLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(12)];
+    self.levelLabel.text = @"A9";
+    self.levelLabel.textAlignment = NSTextAlignmentCenter;
+    self.levelLabel.backgroundColor = [UICOLOR_FROM_HEX(ColorFFFFFF) colorWithAlphaComponent:0.4];
+    [self addSubview:self.levelLabel];
+
+    [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.mas_right).offset(-16);
+        make.bottom.equalTo(self.peopleIconButton.mas_bottom).offset(7);
+        make.size.mas_equalTo(CGSizeMake(30, 16));
+    }];
+    
     //小三角
     self.sanjiaoImgView = [[UIImageView alloc] init];
     self.sanjiaoImgView.image = UIIMAGE_FROM_NAME(@"小三角");
@@ -67,7 +83,7 @@
     [self.optionsView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self);
         make.top.equalTo(self.peopleIconButton.mas_bottom).with.offset(40);
-        make.height.mas_offset(532); //133*4
+        make.height.mas_offset(399); //133*3
     }];
     
     //MARK:首页
@@ -107,20 +123,20 @@
     
     
     //MARK:课程按钮
-    UIButton *courseButton = [self buildButtonTitle:@"课程" setImage:@"kebiao_tabbar"];
-    courseButton.titleLabel.font = Font(14);
-    courseButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
-    courseButton.tag = 102;
-    courseButton.selected = NO;
-    [courseButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
-    [self initButton:courseButton];
-    [self.optionsView addSubview:courseButton];
-    
-    [courseButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.optionsView.mas_centerX);
-        make.top.equalTo(findMoreButton.mas_bottom).with.offset(0);
-        make.size.mas_equalTo(CGSizeMake(100, 133));
-    }];
+//    UIButton *courseButton = [self buildButtonTitle:@"课程" setImage:@"kebiao_tabbar"];
+//    courseButton.titleLabel.font = Font(14);
+//    courseButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
+//    courseButton.tag = 102;
+//    courseButton.selected = NO;
+//    [courseButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+//    [self initButton:courseButton];
+//    [self.optionsView addSubview:courseButton];
+//
+//    [courseButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.equalTo(self.optionsView.mas_centerX);
+//        make.top.equalTo(findMoreButton.mas_bottom).with.offset(0);
+//        make.size.mas_equalTo(CGSizeMake(100, 133));
+//    }];
     
     
     //MARK:服务按钮
@@ -138,7 +154,6 @@
         make.bottom.equalTo(self.optionsView.mas_bottom).with.offset(-0);
         make.size.mas_equalTo(CGSizeMake(100, 133));
     }];
-
 }
 
 
@@ -163,7 +178,7 @@
     
     button.selected = YES;
     
-    if (button.tag == 100 || button.tag == 101 || button.tag == 102 || button.tag == 103) {
+    if (button.tag == 100 || button.tag == 101 || button.tag == 103) {
         button.backgroundColor = UICOLOR_FROM_HEX_ALPHA(ColorFFFFFF, 20);
     }
     
@@ -185,7 +200,10 @@
 
 - (void)drawRect:(CGRect)rect {
     [self.peopleIconButton xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:LineH(30)];
-    [self.peopleIconButton addBorderForViewWithBorderWidth:1.0f BorderColor:UICOLOR_FROM_HEX(ColorFFFFFF) CornerRadius:LineH(30)];
+    [self.peopleIconButton addBorderForViewWithBorderWidth:2.0f BorderColor:UICOLOR_FROM_HEX(ColorFFFFFF) CornerRadius:LineH(30)];
+
+    [self.levelLabel addBorderForViewWithBorderWidth:1 BorderColor:UICOLOR_FROM_HEX(ColorFFFFFF) CornerRadius:8];
+    [self.levelLabel xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:8];
 }
 
 @end

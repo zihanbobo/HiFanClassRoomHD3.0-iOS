@@ -163,12 +163,6 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-  
-    
-}
-
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return LineH(50);
 }
@@ -238,6 +232,7 @@
         self.tableView.dataSource = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+        self.tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;
 }

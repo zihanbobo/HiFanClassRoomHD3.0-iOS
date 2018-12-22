@@ -13,6 +13,7 @@
 #import "HF_MineHomeInfoModel.h"
 #import "HF_CheckDeviceViewController.h"
 #import "HF_TechnicalDebugViewController.h"
+#import "HF_MineHomeFooterView.h"
 
 @interface HF_MineHomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -39,9 +40,9 @@
     self.dataArray = [NSMutableArray array];
 
     if (self.sin.isAuditStatus == YES) {
-        self.dataArray = [NSMutableArray arrayWithObjects:@"",@"清除缓存",@"设备检测",@"在线技术支持",@"当前版本", nil];
+        self.dataArray = [NSMutableArray arrayWithObjects:@"",@"清除缓存",@"设备检测",@"在线技术支持",@"当前版本",@"", nil];
     } else {
-        self.dataArray = [NSMutableArray arrayWithObjects:@"",@"我的课时",@"清除缓存",@"设备检测",@"在线技术支持",@"当前版本", nil];
+        self.dataArray = [NSMutableArray arrayWithObjects:@"",@"我的课时",@"清除缓存",@"设备检测",@"在线技术支持",@"当前版本",@"", nil];
     }
     
     
@@ -102,6 +103,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         
+        //返回，关闭界面
         cell.backBlock = ^{
             if (self.hiddenBlock) {
                 self.hiddenBlock();
@@ -109,6 +111,22 @@
         };
         
         cell.cellModel = self.model;
+        
+        return cell;
+    } else if (indexPath.row == self.dataArray.count -1) {
+        static NSString *cellStr = @"HF_MineHomeFooterView";
+        HF_MineHomeFooterView *cell = [tableView dequeueReusableCellWithIdentifier:cellStr];
+        if (!cell) {
+            cell = [[HF_MineHomeFooterView alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellStr];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        
+        //退出登录
+        @weakify(self);
+        cell.loginOutButtonBlock = ^{
+            @strongify(self);
+            [self logOutButtonClick];
+        };
         
         return cell;
     } else {
@@ -121,25 +139,30 @@
         
         cell.leftLabelString = [self.dataArray safe_objectAtIndex:indexPath.row];
         
-        if (self.dataArray.count == 4) {
+        if (self.dataArray.count == 6) {
             if (indexPath.row == 1) {
                 cell.rightLabel.text = self.sin.cacheSize;
+            } else if(indexPath.row == 5) { //当前版本
+                cell.enterImgView.hidden = YES;
+                cell.rightLabel.text = @"V3.3.0";
+                [cell.rightLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.right.equalTo(cell.contentView.mas_right).offset(-20);
+                }];
             }
-        } else if (self.dataArray.count == 5) {
+        } else if (self.dataArray.count == 7) {
             if (indexPath.row == 1) {
                 cell.rightLabel.text = [NSString stringWithFormat:@"剩余%ld课时",(long)self.model.totalCount];
             } else if (indexPath.row == 2) {
                 cell.rightLabel.text = self.sin.cacheSize;
+            } else if(indexPath.row == 5) { //当前版本
+                cell.enterImgView.hidden = YES;
+                cell.rightLabel.text = @"V3.3.0";
+                [cell.rightLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+                    make.right.equalTo(cell.contentView.mas_right).offset(-20);
+                }];
             }
         }
-        //当前版本
-        if(indexPath.row == (self.dataArray.count-1)){
-            cell.enterImgView.hidden = YES;
-            cell.rightLabel.text = @"V3.3.0";
-            [cell.rightLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-                make.right.equalTo(cell.contentView.mas_right).offset(-20);
-            }];
-        }
+
         return cell;
     }
     return nil;
@@ -147,96 +170,40 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.dataArray.count == 4) {
+    if (self.dataArray.count == 6) {
         if (indexPath.row == 1) { //清除缓存
-            
-            
+
         } else if (indexPath.row == 2){ //设备检测
             [self checkDeviceClick];
         } else if (indexPath.row == 3){ //在线技术支持
             [self technicalDebugClick];
         }
-    } else if (self.dataArray.count == 5) {
+    } else if (self.dataArray.count == 7) {
         if (indexPath.row == 1) {
             HF_MineClassCountViewController *vc = [[HF_MineClassCountViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 2){ //清除缓存
-            
+
         } else if (indexPath.row == 3){ //设备检测
             [self checkDeviceClick];
         } else if (indexPath.row == 4){ //在线技术支持
             [self technicalDebugClick];
         }
-        
     }
 }
 
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        return LineH(190);
+        return LineH(195);
+    } else if(indexPath.row == self.dataArray.count -1) {
+       return self.tableView.height - LineH(195)-(LineH(50)*(self.dataArray.count-2));
     } else {
         return LineH(50);
     }
 }
 
-
-//MARK:设备检测
--(void)checkDeviceClick {
-    HF_CheckDeviceViewController *vc = [HF_CheckDeviceViewController new];
-    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
-    
-    nav.modalPresentationStyle = UIModalPresentationFormSheet;
-    nav.popoverPresentationController.delegate = self;
-    [self presentViewController:nav animated:YES completion:nil];
-}
-
-
-//MARK:在线技术支持
--(void)technicalDebugClick {
-    HF_TechnicalDebugViewController *vc = [HF_TechnicalDebugViewController new];
-    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
-    nav.modalPresentationStyle = UIModalPresentationFormSheet;
-    nav.popoverPresentationController.delegate = self;
-    [self presentViewController:nav animated:YES completion:nil];
-}
-
-
-
-
-//MARK:UI
--(UITableView *)tableView {
-    if (!_tableView) {
-        self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStylePlain)];
-        self.tableView.delegate = self;
-        self.tableView.dataSource = self;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-    }
-    return _tableView;
-}
-
-
--(UIButton *)loginOutButton {
-    if (!_loginOutButton) {
-        self.loginOutButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [self.loginOutButton setTitleColor:UICOLOR_FROM_HEX(0xFB9901) forState:UIControlStateNormal];
-        [self.loginOutButton setTitle:@"退出当前帐号" forState:UIControlStateNormal];
-        [self.loginOutButton addTarget:self action:@selector(logOutButtonClick) forControlEvents:(UIControlEventTouchUpInside)];
-        self.loginOutButton.titleLabel.font = Font(18);
-        self.loginOutButton.layer.masksToBounds = YES;
-        self.loginOutButton.layer.cornerRadius = LineH(25);
-        self.loginOutButton.layer.borderColor = UICOLOR_FROM_HEX(0xFB9901).CGColor;
-        self.loginOutButton.layer.borderWidth = LineW(1);
-    }
-    return _loginOutButton;
-}
--(UIImageView *)QRCodeImageView {
-    if(!_QRCodeImageView){
-        self.QRCodeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timg"]];
-        
-    }
-    return _QRCodeImageView;
-}
-#pragma mark 退出登录
+//MARK:退出登录
 - (void)logOutButtonClick {
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"确定退出登录" message:nil preferredStyle:UIAlertControllerStyleAlert];
     alert.titleColor = UICOLOR_FROM_HEX(0x000000);
@@ -260,37 +227,44 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+//MARK:设备检测
+-(void)checkDeviceClick {
+    HF_CheckDeviceViewController *vc = [HF_CheckDeviceViewController new];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+    
+    nav.modalPresentationStyle = UIModalPresentationFormSheet;
+    nav.popoverPresentationController.delegate = self;
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+
+//MARK:在线技术支持
+-(void)technicalDebugClick {
+    HF_TechnicalDebugViewController *vc = [HF_TechnicalDebugViewController new];
+    BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
+    nav.modalPresentationStyle = UIModalPresentationFormSheet;
+    nav.popoverPresentationController.delegate = self;
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+//MARK:UI
+-(UITableView *)tableView {
+    if (!_tableView) {
+        self.tableView = [[UITableView alloc]initWithFrame:CGRectZero style:(UITableViewStylePlain)];
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.showsVerticalScrollIndicator = NO;
+    }
+    return _tableView;
+}
+
 - (void)initUI {
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view.mas_top).offset(10);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-70);
-    }];
-    
-    
-    [self.view addSubview:self.loginOutButton];
-    [self.loginOutButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view.mas_left).offset(17);
-        make.right.equalTo(self.view.mas_right).offset(-17);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-20);
-        make.height.mas_equalTo(50);
-    }];
-    [self.view addSubview:self.QRCodeImageView];
-    [self.QRCodeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.height.mas_equalTo(100);
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.bottom.equalTo(self.view.mas_bottom).offset(-111);
-    }];
-    UILabel *weixin = [UILabel new];
-    weixin.font = Font(12);
-    weixin.text = @"扫码关注微信公众号进行咨询";
-    weixin.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 40);
-    [weixin sizeToFit];
-    [self.view addSubview:weixin];
-    [weixin mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.view.mas_centerX);
-        make.top.equalTo(self.QRCodeImageView.mas_bottom).offset(5);
+        make.top.equalTo(self.view.mas_top).offset(20);
+        make.bottom.equalTo(self.view.mas_bottom).offset(-0);
     }];
 }
 
@@ -299,7 +273,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 @end

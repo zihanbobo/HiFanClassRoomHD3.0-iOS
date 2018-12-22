@@ -40,8 +40,8 @@
     
     [self.bigContentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.contentView);
-        make.top.equalTo(self.contentView.mas_top).offset(15);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
+        make.top.equalTo(self.contentView.mas_top).offset(0);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
     }];
     
     
