@@ -12,6 +12,7 @@
 
 @interface HF_HomeContentCell()
 @property (nonatomic,strong) NSMutableArray *dataArray;
+@property (nonatomic,strong) HF_HomeUnitLastCell *lastView;
 @end
 
 @implementation HF_HomeContentCell
@@ -31,12 +32,29 @@
     [self.collectionView reloadData];
 }
 
+- (void)setUnitNameString:(NSString *)unitNameString {
+    self.lastView.unitNameString = unitNameString;
+}
+
 
 -(void)initUI {
-    HF_HomeUnitLastCell *lastView = [[HF_HomeUnitLastCell alloc] init];
-    [self.contentView addSubview:lastView];
+    self.lastView = [[HF_HomeUnitLastCell alloc] init];
+    @weakify(self);
+    self.lastView.firstBtnBlock = ^{
+        @strongify(self);
+        if (self.jiangyiDownBlock) {
+            self.jiangyiDownBlock();
+        }
+    };
+    self.lastView.secondBtnBlock = ^{
+        @strongify(self);
+        if (self.lianxiceDownBlock) {
+            self.lianxiceDownBlock();
+        }
+    };
+    [self.contentView addSubview:self.lastView];
     
-    [lastView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.lastView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top).offset(25);
         make.right.equalTo(self.contentView.mas_right).offset(-17);
         make.size.mas_equalTo(CGSizeMake(186, 223));
@@ -57,7 +75,7 @@
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top).offset(25);
         make.left.equalTo(self.contentView.mas_left).offset(0);
-        make.right.equalTo(lastView.mas_left).offset(-8);
+        make.right.equalTo(self.lastView.mas_left).offset(-8);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
     }];
 
@@ -120,7 +138,6 @@
     if (self.selectedBlock) {
         self.selectedBlock(indexPath.row);
     }
-
 }
 
 

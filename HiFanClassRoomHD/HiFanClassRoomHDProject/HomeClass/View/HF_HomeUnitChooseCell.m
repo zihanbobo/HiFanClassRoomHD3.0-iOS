@@ -8,20 +8,13 @@
 
 #import "HF_HomeUnitChooseCell.h"
 
-
-
-
 @interface HF_HomeUnitChooseCell()
-////文字
-//@property (nonatomic, strong) UILabel *titleLabel;
 //状态
 @property (nonatomic, strong) UIImageView *statusImgView;
 @end
 
 @implementation HF_HomeUnitChooseCell
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.contentView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
@@ -54,9 +47,6 @@
         make.centerY.equalTo(self.contentView.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(14, 14));
     }];
-
-    
-    
 }
 
 
@@ -66,4 +56,5 @@
         self.titleLabel.text = nameStr;
     }
 }
+
 @end

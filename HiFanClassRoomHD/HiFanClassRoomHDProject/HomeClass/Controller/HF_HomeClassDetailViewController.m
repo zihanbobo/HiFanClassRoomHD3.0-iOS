@@ -44,7 +44,6 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
 }
 
 -(void)getLodadata {
@@ -139,10 +138,7 @@
         make.height.mas_equalTo(LineH(245));
     }];
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
+
 #pragma mark -- 课前预习View
 - (void)initPreviewView
 {
@@ -230,4 +226,10 @@
     }
     return cell;
 }
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 @end

@@ -11,5 +11,5 @@
 @interface HF_PracticeViewController : BaseViewController
 @property (nonatomic, copy) NSString *webUrl;
 @property (nonatomic, copy) NSString *titleStr;
-@property (nonatomic, copy) NSString *lessonid;
+@property (nonatomic, assign) NSInteger lessonid;
 @end

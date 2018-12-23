@@ -158,6 +158,14 @@
         make.size.mas_equalTo(CGSizeMake(135, 40));
     }];
     
+    @weakify(self);
+    [[self.classBeforeButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(id x) {
+         @strongify(self);
+         if (self.classBeforeBtnBlock) {
+             self.classBeforeBtnBlock();
+         }
+     }];
     
     //课后复习
     self.classAfterButton = [UIButton new];
@@ -174,6 +182,13 @@
         make.size.mas_equalTo(CGSizeMake(135, 42));
     }];
     
+    [[self.classAfterButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(id x) {
+         @strongify(self);
+         if (self.classAfterBtnBlock) {
+             self.classAfterBtnBlock();
+         }
+     }];
 }
 
 

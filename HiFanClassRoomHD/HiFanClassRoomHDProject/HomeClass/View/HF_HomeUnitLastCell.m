@@ -13,6 +13,8 @@
 @interface HF_HomeUnitLastCell()
 @property (nonatomic,strong) HF_HomeUnitLastView *firstView;
 @property (nonatomic,strong) HF_HomeUnitLastView *secondView;
+@property (nonatomic,strong) UIControl *firstControl;
+@property (nonatomic,strong) UIControl *secondControl;
 @end
 
 @implementation HF_HomeUnitLastCell
@@ -27,6 +29,12 @@
     return self;
 }
 
+- (void)setUnitNameString:(NSString *)unitNameString {
+    self.firstView.unitLabel.text = unitNameString;
+    self.secondView.unitLabel.text = unitNameString;
+}
+
+
 -(void)initUI {
     self.firstView = [[HF_HomeUnitLastView alloc] init];
     self.firstView.iconImgView.image = UIIMAGE_FROM_NAME(@"书法");
@@ -34,13 +42,30 @@
     self.firstView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     [self addSubview:self.firstView];
     
-    
     [self.firstView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_top).offset(0);
         make.left.equalTo(self.mas_left).offset(0);
         make.right.equalTo(self.mas_right).offset(-0);
         make.height.mas_equalTo(103);
     }];
+    
+    
+    self.firstControl = [[UIControl alloc] init];
+    [self.firstView addSubview:self.firstControl];
+    
+    [self.firstControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.equalTo(self.firstView);
+    }];
+    
+    @weakify(self);
+    [[self.firstControl rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(id x) {
+         @strongify(self);
+         if (self.firstBtnBlock) {
+             self.firstBtnBlock();
+         }
+     }];
+    
     
     
     self.secondView = [[HF_HomeUnitLastView alloc] init];
@@ -56,17 +81,27 @@
         make.right.equalTo(self.mas_right).offset(-0);
         make.height.mas_equalTo(103);
     }];
+    
+    
+    self.secondControl = [[UIControl alloc] init];
+    [self.secondView addSubview:self.secondControl];
+    
+    [self.secondControl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.bottom.left.right.equalTo(self.secondView);
+    }];
+    
+    [[self.secondControl rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(id x) {
+         @strongify(self);
+         if (self.secondBtnBlock) {
+             self.secondBtnBlock();
+         }
+     }];
 }
-
-
 @end
 
 
 //MARK:UIView
-@interface HF_HomeUnitLastView()
-
-@end
-
 @implementation HF_HomeUnitLastView
 - (instancetype)initWithFrame:(CGRect)frame
 {
@@ -108,7 +143,7 @@
     self.unitLabel = [[UILabel alloc] init];
     self.unitLabel.textColor = UICOLOR_FROM_HEX(0x02B6E3);
     self.unitLabel.font = Font(10);
-    self.unitLabel.text = @"Unit2";
+    //    self.unitLabel.text = @"Unit2";
     self.unitLabel.textAlignment = NSTextAlignmentCenter;
     self.unitLabel.backgroundColor = UICOLOR_FROM_HEX_ALPHA(0x67D3CE, 20);
     [self.bgView addSubview:self.unitLabel];

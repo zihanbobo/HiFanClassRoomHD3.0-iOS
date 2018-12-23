@@ -10,8 +10,15 @@
 #import <AVFoundation/AVFoundation.h>
 #import <WMPlayer/WMPlayer.h>
 
-@interface HF_FindMoreMoviePlayView : UIView
+
+@protocol playerDelegate <NSObject>
+//点击全屏按钮代理方法
+-(void)player:(WMPlayer *)wmplayer clickedFullScreenButton:(UIButton *)fullScreenBtn;
+@end
+
+@interface HF_FindMoreMoviePlayView : UIView <WMPlayerDelegate>
 @property (nonatomic,copy) NSString *playerUrlStr;
 @property (nonatomic, strong) WMPlayer * wmPlayer;
+@property(nonatomic,weak) id <playerDelegate> playerDelegate;
 
 @end

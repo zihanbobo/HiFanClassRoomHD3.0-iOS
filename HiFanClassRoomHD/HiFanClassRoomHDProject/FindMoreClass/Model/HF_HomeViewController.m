@@ -15,12 +15,14 @@
 #import "HF_HomeGetUnitInfoListModel.h"
 #import "HF_HomeUnitCellModel.h"
 #import "HF_HomeUnitChooseView.h"
+#import "HF_PracticeViewController.h"
 
 @interface HF_HomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView; //tableView
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *headerArray;
 @property (nonatomic, strong) NSMutableArray *unitArray;
+@property (nonatomic, copy) NSString *unitString;
 @end
 
 @implementation HF_HomeViewController
@@ -83,9 +85,9 @@
             for (NSInteger i=0; i<array1.count; i++) {
                 if (i == 0) {
                     HF_HomeGetUnitInfoListModel *model = [array1 safe_objectAtIndex:0];
-//                    [self getUnitCellListData:model.UnitID];
                     NSString *unitIdStr = [NSString stringWithFormat:@"%ld",(long)model.UnitID];
                     [array2 addObject:unitIdStr];
+                    self.unitString = model.UnitName;
                 }
             }
             dataArray = [NSMutableArray arrayWithObjects:array1,array2, nil];
@@ -156,27 +158,6 @@
 
 
 //MARK:UITableView 代理
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 0) {
-        return LineH(346); //106+239
-    } else if (indexPath.row == 1) {
-        return LineH(48);
-    } else if (indexPath.row == 2) {
-        return self.tableView.height - LineH(394);
-    }
-    return 0;
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
         static NSString *cellID = @"HF_HomeHeaderViewCell";
@@ -202,10 +183,30 @@
             BaseNavigationController *nav = [[BaseNavigationController alloc] initWithRootViewController:vc];
             nav.modalPresentationStyle = UIModalPresentationFormSheet;
             nav.popoverPresentationController.delegate = self;
-            vc.lessonId = model.RecordID;
+            vc.lessonId = model.ChapterID;
             [self presentViewController:nav animated:YES completion:nil];
         };
         
+        //MARK:课前预习
+        cell.classBeforeBtnBlock1 = ^(NSInteger index){
+            HF_HomeHeaderModel *model = [self.headerArray safe_objectAtIndex:index];
+            HF_PracticeViewController *vc = [[HF_PracticeViewController alloc] init];
+            vc.webUrl = model.BeforeFilePath;
+            vc.titleStr = model.ChapterName;
+            vc.lessonid = model.ChapterID;
+            [self presentViewController:vc animated:YES completion:nil];
+        };
+        
+
+        //MARK:课后复习
+        cell.classAfterBtnBlock1 = ^(NSInteger index){
+            HF_HomeHeaderModel *model = [self.headerArray safe_objectAtIndex:index];
+            HF_PracticeViewController *vc = [[HF_PracticeViewController alloc] init];
+            vc.webUrl = model.BeforeFilePath;
+            vc.titleStr = model.ChapterName;
+            vc.lessonid = model.ChapterID;
+            [self presentViewController:vc animated:YES completion:nil];
+        };
         
         return cell;
         
@@ -221,14 +222,12 @@
         cell.collectionUnitArray = [NSMutableArray array];
         cell.collectionUnitArray = self.unitArray;
         
-        HF_HomeGetUnitInfoListModel *model = [self.unitArray safe_objectAtIndex:indexPath.row];
         @weakify(self);
-        cell.selectedUnitIdBlock = ^(NSInteger unitId) {
-            @strongify(self);
-            NSLog(@"%ld",(long)unitId);
-            [self getUnitCellListData:unitId];
+        //MARK:切换等级数据
+        cell.selectedUnitIdBlock = ^(HF_HomeGetUnitInfoListModel *model) {
+            self.unitString = model.UnitName;
+            [self getUnitCellListData:model.UnitID];
         };
-        
         
         return cell;
     } else if (indexPath.row == 2) {
@@ -242,8 +241,9 @@
         
         cell.collectionArray = [NSMutableArray array];
         cell.collectionArray = self.dataArray;
+        cell.unitNameString = self.unitString;
 
-
+        //MARK:点击章节-进行跳转
         cell.selectedBlock = ^(NSInteger index) {
             HF_HomeUnitCellModel *model = [self.dataArray safe_objectAtIndex:index];
             HF_HomeClassDetailViewController *vc = [HF_HomeClassDetailViewController new];
@@ -253,12 +253,44 @@
             vc.lessonId = model.ChapterID;
             [self presentViewController:nav animated:YES completion:nil];
         };
+        
+        //MARK:课堂讲义下载
+        cell.jiangyiDownBlock = ^{
+            NSLog(@"课堂讲义下载");
+        };
+        
+        //MARK:练习册下载
+        cell.lianxiceDownBlock = ^{
+            NSLog(@"练习册下载");
+        };
+        
+        
         return cell;
     }
     
     return nil;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        return LineH(346); //106+239
+    } else if (indexPath.row == 1) {
+        return LineH(48);
+    } else if (indexPath.row == 2) {
+        return self.tableView.height - LineH(394);
+    }
+    return 0;
+}
 
 //MARK:UI加载
 - (void)initUI {

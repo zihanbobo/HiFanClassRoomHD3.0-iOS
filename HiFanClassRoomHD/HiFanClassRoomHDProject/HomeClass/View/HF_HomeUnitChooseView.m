@@ -28,7 +28,6 @@
 - (void)setCollectionUnitArray:(NSMutableArray *)collectionUnitArray {
     self.UnitArray = [NSMutableArray array];
     self.UnitArray = collectionUnitArray;
-    //    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
     [self.collectionView reloadData];
 }
 
@@ -159,7 +158,7 @@
     HF_HomeGetUnitInfoListModel *model = [self.UnitArray safe_objectAtIndex:indexPath.row];
     
     if (self.selectedUnitIdBlock) {
-        self.selectedUnitIdBlock(model.UnitID);
+        self.selectedUnitIdBlock(model);
     }
 }
 

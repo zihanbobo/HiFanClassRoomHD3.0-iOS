@@ -44,18 +44,29 @@
     
     //MARK:播放视频
     self.wmPlayer = [[WMPlayer alloc] init];
+    self.wmPlayer.frame = CGRectMake(LineX(184), LineY(71), LineW(556), LineH(313));
     self.wmPlayer.backBtnStyle = BackBtnStyleNone;
-//    self.wmPlayer.
-    self.wmPlayer.layer.masksToBounds = YES;
-    self.wmPlayer.layer.cornerRadius = 7;
+//    self.wmPlayer.layer.masksToBounds = YES;
+//    self.wmPlayer.layer.cornerRadius = 7;
+    self.wmPlayer.delegate = self;
     [self addSubview:self.wmPlayer];
+//    [self.superview addSubview:self.wmPlayer];
+
+//    [[UIApplication sharedApplication] keyWindow]
+//    [self.wmPlayer mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.equalTo(self.mas_top).with.offset(71);
+//        make.left.equalTo(self.mas_left).with.offset(184);
+//        make.right.equalTo(self.mas_right).with.offset(-184);
+//        make.bottom.equalTo(self.mas_bottom).with.offset(-71);
+//    }];
     
-    [self.wmPlayer mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).with.offset(71);
-        make.left.equalTo(self.mas_left).with.offset(184);
-        make.right.equalTo(self.mas_right).with.offset(-184);
-        make.bottom.equalTo(self.mas_bottom).with.offset(-71);
-    }];
+}
+
+//点击全屏按钮代理方法
+-(void)wmplayer:(WMPlayer *)wmplayer clickedFullScreenButton:(UIButton *)fullScreenBtn {
+    if (self.playerDelegate && [self.playerDelegate respondsToSelector:@selector(player:clickedFullScreenButton:)]) {
+        [self.playerDelegate player:wmplayer clickedFullScreenButton:fullScreenBtn];
+    }
     
 }
 

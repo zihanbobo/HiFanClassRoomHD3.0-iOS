@@ -9,8 +9,10 @@
 #import "HF_FindMoreMoviePlayViewController.h"
 #import "HF_FindMoreMoviePlayCell.h"
 #import "HF_FindMoreMoviePlayView.h"
+#import "HF_BaseTabbarViewController.h"
+#import "AppDelegate.h"
 
-@interface HF_FindMoreMoviePlayViewController () <UICollectionViewDelegate,UICollectionViewDataSource>
+@interface HF_FindMoreMoviePlayViewController () <UICollectionViewDelegate,UICollectionViewDataSource,playerDelegate>
 @property(nonatomic,strong) UIBarButtonItem *likeBtn;//喜欢
 @property(nonatomic,strong) UIBarButtonItem *shareBtn;//分享
 
@@ -159,6 +161,19 @@
 }
 
 
+-(void)player:(WMPlayer *)wmplayer clickedFullScreenButton:(UIButton *)fullScreenBtn {
+    if (self.headerView.wmPlayer.width == SCREEN_WIDTH()) {
+        self.headerView.wmPlayer.frame = CGRectMake(LineX(184), LineY(71), LineW(556), LineH(313));
+        [self.headerView addSubview:self.headerView.wmPlayer];
+    } else {
+        UIWindow *window = [[UIApplication sharedApplication] keyWindow];
+        HF_BaseTabbarViewController *vc = (HF_BaseTabbarViewController *)window.rootViewController;
+        self.headerView.wmPlayer.frame = CGRectMake(0, 0, SCREEN_WIDTH(), SCREEN_HEIGHT());
+        [vc.view addSubview:self.headerView.wmPlayer];
+    }
+}
+
+
 //MAEK:UI加载
 -(void)initUI {
     self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
@@ -167,20 +182,12 @@
     fixedSpaceBarButtonItem.width = 20;
     self.navigationItem.rightBarButtonItems = @[self.shareBtn,fixedSpaceBarButtonItem,self.likeBtn];
     
-    self.headerView.playerUrlStr = self.playerUrlStr;
     [self.view addSubview:self.headerView];
-    [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view.mas_top).offset(0);
-        make.left.equalTo(self.view.mas_left).offset(0);
-        make.right.equalTo(self.view.mas_right).offset(-0);
-        make.height.mas_equalTo(456);
-    }];
-    
     [self.view addSubview:self.collectionView];
     //注册cell
     [self.collectionView registerClass:[HF_FindMoreMoviePlayCell class] forCellWithReuseIdentifier:@"HF_FindMoreMoviePlayCell"];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.headerView.mas_bottom).offset(25);
+        make.top.equalTo(self.view.mas_bottom).offset(-246);
         make.left.equalTo(self.view.mas_left).offset(0);
         make.right.equalTo(self.view.mas_right).offset(-0);
         make.bottom.equalTo(self.view.mas_bottom).offset(-0);
@@ -192,6 +199,9 @@
 -(HF_FindMoreMoviePlayView *)headerView {
     if (!_headerView) {
         self.headerView = [[HF_FindMoreMoviePlayView alloc] init];
+        self.headerView.frame = CGRectMake(0, 0, home_right_width, LineH(456));
+        self.headerView.playerUrlStr = self.playerUrlStr;
+        self.headerView.playerDelegate = self;
     }
     return _headerView;
 }

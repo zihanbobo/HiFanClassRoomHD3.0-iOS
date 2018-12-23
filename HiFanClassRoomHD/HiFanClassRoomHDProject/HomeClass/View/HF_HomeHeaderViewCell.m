@@ -50,6 +50,18 @@
     HF_HomeHeaderModel *model = [self.dataArray safe_objectAtIndex:indexPath.row];
     cell.cellModel = model;
     
+    cell.classBeforeBtnBlock = ^{
+        if (self.classBeforeBtnBlock1) {
+            self.classBeforeBtnBlock1(indexPath.row);
+        }
+    };
+    
+    cell.classAfterBtnBlock = ^{
+        if (self.classAfterBtnBlock1) {
+            self.classAfterBtnBlock1(indexPath.row);
+        }
+    };
+    
     return cell;
 }
 
@@ -81,7 +93,6 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"%ld",(long)indexPath.row);
     if (self.classDetailVcBlock) {
         self.classDetailVcBlock(indexPath.row);
     }
@@ -139,7 +150,7 @@
         layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
         self.collectionView.delegate = self;
-        self.collectionView.dataSource =self;
+        self.collectionView.dataSource = self;
         self.collectionView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
         self.collectionView.showsHorizontalScrollIndicator = NO;
     }

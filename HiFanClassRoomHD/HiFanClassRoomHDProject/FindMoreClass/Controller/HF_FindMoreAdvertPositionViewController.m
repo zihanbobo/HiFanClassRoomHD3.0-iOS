@@ -37,6 +37,10 @@
     [self.navigationController setNavigationBarHidden:YES animated:YES];
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -85,8 +89,18 @@
          [self dismissViewControllerAnimated:YES completion:nil];
      }];
     
+    //适配宽度
+    WKWebViewConfiguration *wkWebConfig = [[WKWebViewConfiguration alloc] init];
+    WKUserContentController *wkUController = [[WKUserContentController alloc] init];
+    wkWebConfig.userContentController = wkUController;
+    //自适应屏幕的宽度js
+    NSString *jSString = @"var meta = document.createElement('meta'); meta.setAttribute('name', 'viewport'); meta.setAttribute('content', 'width=device-width'); document.getElementsByTagName('head')[0].appendChild(meta);";
+    WKUserScript *wkUserScript = [[WKUserScript alloc] initWithSource:jSString injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
+    //添加js调用
+    [wkUController addUserScript:wkUserScript];
     
-    self.webView = [[WKWebView alloc] init];
+    
+    self.webView = [[WKWebView alloc] initWithFrame:self.view.bounds configuration:wkWebConfig];
     [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.cellModel.AdvertDetailsLink]]];
     self.webView.scrollView.bounces = NO;
     self.webView.UIDelegate = self;
@@ -99,8 +113,6 @@
         make.right.equalTo(self.view.mas_right).with.offset(-0);
         make.bottom.equalTo(self.view.mas_bottom).with.offset(-0);
     }];
-    
-    
 }
 
 - (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {

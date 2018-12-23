@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^FirstBtnBlock)(void);
+typedef void(^SecondBtnBlock)(void);
 @interface HF_HomeUnitLastCell : UIView
-
+@property (nonatomic,copy) NSString *unitNameString;
+@property (nonatomic,copy) FirstBtnBlock firstBtnBlock;
+@property (nonatomic,copy) SecondBtnBlock secondBtnBlock;
 @end
 
 
@@ -18,6 +22,4 @@
 @property (nonatomic,strong) UIImageView *iconImgView;
 @property (nonatomic,strong) UILabel *unitLabel;
 @property (nonatomic,strong) UILabel *titleLabel;
-
-
 @end

@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "HF_HomeUnitChooseCell.h"
 
-typedef void(^SelectedUnitIdBlock)(NSInteger unitId);
+typedef void(^SelectedUnitIdBlock)(HF_HomeGetUnitInfoListModel *model);
 @interface HF_HomeUnitChooseView : UITableViewCell <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) NSMutableArray *collectionUnitArray;
