@@ -26,6 +26,15 @@
 
 
 - (void)setCollectionUnitArray:(NSMutableArray *)collectionUnitArray {
+    if (collectionUnitArray.count > 8) {
+        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
+        [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角黑") forState:UIControlStateNormal];
+    } else {
+        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
+        [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
+    }
+    
+    
     self.UnitArray = [NSMutableArray array];
     self.UnitArray = collectionUnitArray;
     [self.collectionView reloadData];
@@ -48,7 +57,8 @@
     //左侧按钮
     self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
-    [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateSelected];
+    self.leftButton.tag = 10;
+//    [self.leftButton addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     [bgView addSubview:self.leftButton];
     
     [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -60,7 +70,8 @@
     //右侧按钮
     self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角黑") forState:UIControlStateNormal];
-    [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角黑") forState:UIControlStateSelected];
+    self.rightButton.tag = 20;
+//    [self.rightButton addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     [bgView addSubview:self.rightButton];
     
     [self.rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -79,12 +90,14 @@
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.bounces = NO;
     self.collectionView.pagingEnabled = YES;
+    self.collectionView.alwaysBounceVertical = YES;
+    self.collectionView.contentSize = CGSizeMake(self.collectionView.width, 48);
     [bgView addSubview:self.collectionView];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(bgView.mas_top).offset(0);
-        make.left.equalTo(bgView.mas_left).offset(30);
-        make.right.equalTo(bgView.mas_right).offset(-30);
+        make.left.equalTo(self.leftButton.mas_right).offset(0);
+        make.right.equalTo(self.rightButton.mas_left).offset(-0);
         make.bottom.equalTo(bgView.mas_bottom).offset(-0);
     }];
     
@@ -93,9 +106,39 @@
     [self.collectionView registerClass:[HF_HomeUnitChooseCell class] forCellWithReuseIdentifier:@"HF_HomeUnitChooseCell"];
 }
 
-- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView {
-    NSLog(@"1111");
+//-(void)buttonClick:(UIButton *)button {
+//    if (button.tag == 10) {
+//        self.collectionView.contentOffset = CGPointMake(0, 0);
+//    } else if (button.tag == 20) {
+//        self.collectionView.contentOffset = CGPointMake(self.collectionView.width, 0);
+//    }
+//}
+
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+    
+    CGFloat x = scrollView.contentOffset.x; //偏移量
+    CGFloat w = self.collectionView.width; //(17+30)*2 = 94  home_right_width - LineW(94) = 830
+
+    NSLog(@"%f    %f",w,self.collectionView.contentSize.width);
+    
+    if (x == 0 ) {
+        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
+        if (self.collectionView.contentSize.width >= w) {
+            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角黑") forState:UIControlStateNormal];
+        } else {
+            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
+        }
+    } else if (x >= w) {
+        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角黑") forState:UIControlStateNormal];
+        if (self.collectionView.contentSize.width >= w) {
+            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
+        } else {
+            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
+        }
+    }
 }
+
 
 
 #pragma mark -- UICollectionView代理
@@ -115,6 +158,13 @@
     static NSString *identify = @"HF_HomeUnitChooseCell";
     HF_HomeUnitChooseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
     
+    if (indexPath.row == self.UnitArray.count - 1 ) { //分割线
+        cell.rightLineView.hidden = NO;
+    } else {
+        cell.rightLineView.hidden = YES;
+    }
+    
+    
     if (indexPath.row == 0) { //默认选中第一条数据
         [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
         cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xe5ebf0);
@@ -129,7 +179,7 @@
 
 //设置每个 UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(LineW(104),LineH(48));
+    return CGSizeMake(LineW(103),LineH(48));
 }
 
 
@@ -147,7 +197,7 @@
 
 //定义每个UICollectionView 的横向间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return 1;
+    return 0;
 }
 
 

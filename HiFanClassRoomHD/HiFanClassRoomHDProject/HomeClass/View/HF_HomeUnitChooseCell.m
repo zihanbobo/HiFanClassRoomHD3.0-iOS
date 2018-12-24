@@ -24,6 +24,17 @@
 }
 
 - (void)initView {
+    //分割线
+    UIView *lineView = [[UIView alloc] init];
+    lineView.backgroundColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 10);
+    [self.contentView addSubview:lineView];
+    
+    [lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.contentView.mas_left).with.offset(0);
+        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(1, 20));
+    }];
+    
     //文字
     self.titleLabel = [[UILabel alloc] init];
     self.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineW(18)];
@@ -31,7 +42,7 @@
     [self.contentView addSubview:self.titleLabel];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.contentView.mas_left).offset(17);
+        make.left.equalTo(lineView.mas_right).offset(16);
         make.top.equalTo(self.contentView.mas_top).offset(0);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
     }];
@@ -46,6 +57,16 @@
         make.left.equalTo(self.titleLabel.mas_right).offset(5);
         make.centerY.equalTo(self.contentView.mas_centerY);
         make.size.mas_equalTo(CGSizeMake(14, 14));
+    }];
+    
+    self.rightLineView = [[UIView alloc] init];
+    self.rightLineView.backgroundColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 10);
+    self.rightLineView.hidden = YES;
+    [self.contentView addSubview:self.rightLineView];
+    [self.rightLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.equalTo(self.contentView.mas_right).offset(-0);
+        make.centerY.equalTo(self.contentView.mas_centerY);
+        make.size.mas_equalTo(CGSizeMake(1, 20));
     }];
 }
 

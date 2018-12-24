@@ -14,18 +14,22 @@
 @property (nonatomic, assign) NSInteger ChapterID;
 @property (nonatomic, copy) NSString *ChapterImagePath;
 @property (nonatomic, copy) NSString *ChapterName;
-@property (nonatomic, copy) NSString *Host;
 @property (nonatomic, copy) NSString *LessonTime;
 @property (nonatomic, copy) NSString *LevelName;
 @property (nonatomic, copy) NSString *MonthOrWeek;
 @property (nonatomic, copy) NSString *Nickname;
-@property (nonatomic, assign) NSInteger Port;
-@property (nonatomic, assign) NSInteger RecordID;
-@property (nonatomic, assign) NSInteger Serial
-;@property (nonatomic, copy) NSString *Server;
-@property (nonatomic, assign) NSInteger StatusName;
+@property (nonatomic, assign) NSInteger StatusName; //0 是未开始  1 上课中 2 即将开始 3 已结束
 @property (nonatomic, copy) NSString *TimeSpan;
-@property (nonatomic, assign) NSInteger Userrole;
+
+
+@property (nonatomic, strong) NSString *Host;
+@property (nonatomic, strong) NSString *Port;
+@property (nonatomic, strong) NSString *RecordID;
+@property (nonatomic, strong) NSString *Serial;
+@property (nonatomic, strong) NSString *Server;
+@property (nonatomic, strong) NSString *Userrole;
+
+
 
 //AttendLessonID = 4012;
 //BeforeFilePath = "https://file.gogo-talk.com/UploadFiles/Web/courseware/Before/A0/H5A0-U1-L4/index.html";

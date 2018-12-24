@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "HF_HomeHeaderModel.h"
 
-typedef void(^ClassBeforeBtnBlock)(void);
-typedef void(^ClassAfterBtnBlock)(void);
+typedef void(^ClassBeforeBtnBlock)(void); //课前
+typedef void(^CellRightButtonBlock)(UIButton *button);  //课后---进入教室
 @interface HF_HomeHeaderCollectionViewCell : UICollectionViewCell
 @property (nonatomic,strong) HF_HomeHeaderModel *cellModel;
-@property (nonatomic,strong) ClassBeforeBtnBlock classBeforeBtnBlock; //课前
-@property (nonatomic,strong) ClassAfterBtnBlock classAfterBtnBlock;   //课后
-
+@property (nonatomic,strong) ClassBeforeBtnBlock classBeforeBtnBlock;    //课前
+@property (nonatomic,strong) CellRightButtonBlock cellRightButtonBlock;  //课后---进入教室
+//倒计时
+@property (nonatomic, assign) NSInteger countDown;
 @end

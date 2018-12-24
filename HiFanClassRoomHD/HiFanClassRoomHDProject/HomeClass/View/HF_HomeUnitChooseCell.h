@@ -13,6 +13,7 @@
 //文字
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) HF_HomeGetUnitInfoListModel *cellModel;
+@property (nonatomic, strong) UIView *rightLineView;
 
 
 @end

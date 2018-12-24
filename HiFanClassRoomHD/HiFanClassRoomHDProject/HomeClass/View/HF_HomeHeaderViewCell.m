@@ -27,9 +27,16 @@
 - (void)setCollectionDataArray:(NSMutableArray *)collectionDataArray {
     self.dataArray = [NSMutableArray array];
     self.dataArray = collectionDataArray;
-    [self.collectionView reloadData];
+//    [self.collectionView reloadData];
+    [self reloadData];
 }
 
+- (void)reloadData {
+    // 网络加载数据
+    [kCountDownManager reload];
+    // 刷新
+    [self.collectionView reloadData];
+}
 
 #pragma mark -- UICollectionView代理
 //返回分区个数
@@ -50,15 +57,16 @@
     HF_HomeHeaderModel *model = [self.dataArray safe_objectAtIndex:indexPath.row];
     cell.cellModel = model;
     
+    
     cell.classBeforeBtnBlock = ^{
         if (self.classBeforeBtnBlock1) {
             self.classBeforeBtnBlock1(indexPath.row);
         }
     };
     
-    cell.classAfterBtnBlock = ^{
-        if (self.classAfterBtnBlock1) {
-            self.classAfterBtnBlock1(indexPath.row);
+    cell.cellRightButtonBlock = ^(UIButton *button) {
+        if (self.cellRightButtonBlock1) {
+            self.cellRightButtonBlock1(button, indexPath.row);
         }
     };
     
@@ -100,6 +108,9 @@
 
 //MARK:UI加载
 -(void)initUI {
+    // 启动倒计时管理
+    [kCountDownManager start];
+    
     self.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     [self addSubview:self.headerView];
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {

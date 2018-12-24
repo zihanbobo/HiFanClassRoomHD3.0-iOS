@@ -13,6 +13,13 @@
 @property (nonatomic, assign) NSInteger LessonId;
 
 // 直播上课的信息
+//@property (nonatomic, assign) NSInteger port;
+//@property (nonatomic, assign) NSInteger serial;
+//@property (nonatomic, assign) NSInteger server;
+//@property (nonatomic, assign) NSInteger userrole;
+//@property (nonatomic, copy) NSString *nickname;
+//@property (nonatomic, copy) NSString *host;
+
 @property (nonatomic, strong) NSString *host;
 @property (nonatomic, strong) NSString *nickname;
 @property (nonatomic, strong) NSString *port;

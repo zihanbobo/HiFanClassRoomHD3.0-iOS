@@ -198,15 +198,41 @@
         };
         
 
-        //MARK:课后复习
-        cell.classAfterBtnBlock1 = ^(NSInteger index){
+        //MARK:课后复习----进入教室
+        cell.cellRightButtonBlock1 = ^(UIButton *button, NSInteger index) {
             HF_HomeHeaderModel *model = [self.headerArray safe_objectAtIndex:index];
-            HF_PracticeViewController *vc = [[HF_PracticeViewController alloc] init];
-            vc.webUrl = model.BeforeFilePath;
-            vc.titleStr = model.ChapterName;
-            vc.lessonid = model.ChapterID;
-            [self presentViewController:vc animated:YES completion:nil];
+
+            
+            if ([button.titleLabel.text isEqualToString:@"课后复习"]) {
+                HF_PracticeViewController *vc = [[HF_PracticeViewController alloc] init];
+                vc.webUrl = model.BeforeFilePath;
+                vc.titleStr = model.ChapterName;
+                vc.lessonid = model.ChapterID;
+                [self presentViewController:vc animated:YES completion:nil];
+            } else if ([button.titleLabel.text isEqualToString:@"进入教室"]) {
+                //0 是未开始  1 上课中 2 即将开始 3 已结束
+                if (model.StatusName == 0) {
+                    
+                    LOSAlertPRO(@"请在开课前10分钟内进入教室", @"知道了");
+                    
+                } else if (model.StatusName == 1 || model.StatusName == 2) {
+                    
+                    HF_ClassRoomModel *tkModel = [[HF_ClassRoomModel alloc] init];
+                    tkModel.serial = model.Serial;
+                    tkModel.host = model.Host;
+                    tkModel.port = model.Port;
+                    tkModel.nickname = model.Nickname;
+                    tkModel.userrole = model.Userrole;
+                    tkModel.LessonId = model.AttendLessonID;
+                    
+                    [HF_ClassRoomManager tk_enterClassroomWithViewController:self courseModel:tkModel leftRoomBlock:^{
+                        
+                    }];
+                }
+            }
+            
         };
+     
         
         return cell;
         

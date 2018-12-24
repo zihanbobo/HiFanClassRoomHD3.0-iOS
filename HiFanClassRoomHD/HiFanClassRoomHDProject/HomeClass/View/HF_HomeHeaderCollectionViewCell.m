@@ -28,7 +28,7 @@
 /**
  所上课程-课后练习
  */
-@property (nonatomic,strong) UIButton *classAfterButton;
+@property (nonatomic,strong) UIButton *cellRightButton;
 /**
  所上课程-进入教室
  */
@@ -41,6 +41,8 @@
     if (self) {
         self.contentView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
         [self initView];
+        // 监听通知
+        [[NSNotificationCenter defaultCenter] addObserver:self    selector:@selector(countDownNotification) name:kCountDownNotification object:nil];
     }
     return self;
 }
@@ -168,36 +170,27 @@
      }];
     
     //课后复习
-    self.classAfterButton = [UIButton new];
-    self.classAfterButton.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(16)];
-    [self.classAfterButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
-    [self.classAfterButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
-    [self.classAfterButton setTitle:@"课后复习" forState:UIControlStateNormal];
-    [self.bigContentView addSubview:self.classAfterButton];
+    self.cellRightButton = [UIButton new];
+    self.cellRightButton.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(16)];
+    [self.cellRightButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
+    [self.bigContentView addSubview:self.cellRightButton];
     
     
-    [self.classAfterButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.cellRightButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.bigContentView.mas_right).offset(-17);
         make.bottom.equalTo(self.bigContentView.mas_bottom).offset(-17);
-        make.size.mas_equalTo(CGSizeMake(135, 42));
+        make.size.mas_equalTo(CGSizeMake(135, 40));
     }];
     
-    [[self.classAfterButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+    [[self.cellRightButton rac_signalForControlEvents:UIControlEventTouchUpInside]
      subscribeNext:^(id x) {
          @strongify(self);
-         if (self.classAfterBtnBlock) {
-             self.classAfterBtnBlock();
+         if (self.cellRightButtonBlock) {
+             self.cellRightButtonBlock(self.cellRightButton);
          }
      }];
 }
 
-
-- (void)drawRect:(CGRect)rect {
-    [self.bookImgView xc_SetCornerWithSideType:XCSideTypeLeftLine cornerRadius:7];
-    [self.bigContentView addBorderForViewWithBorderWidth:0.01 BorderColor:UICOLOR_FROM_HEX(ColorFFFFFF) CornerRadius:7];
-    [self.bigContentView addShadowForViewWithShadowOffset:CGSizeMake(0, 0) ShadowOpacity:1 ShadowRadius:7 ShadowColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 12)];
-    [self.levelLabel addBorderForViewWithBorderWidth:1 BorderColor:UICOLOR_FROM_HEX(Color67D3CE) CornerRadius:9];
-}
 
 - (void)setCellModel:(HF_HomeHeaderModel *)cellModel {
     if (!IsStrEmpty(cellModel.ChapterImagePath)) {
@@ -221,13 +214,85 @@
         self.levelLabel.text = cellModel.LevelName;
     }
 
-    if (!IsStrEmpty(cellModel.MonthOrWeek)) {
-        self.monthOrWeekLabel.text = cellModel.MonthOrWeek;
-    }
-    
 
     
+     //0 是未开始  1 上课中 2 即将开始 3 已结束
+    switch (cellModel.StatusName) {
+        case 0:
+            [self.cellRightButton setTitle:@"进入教室" forState:(UIControlStateNormal)];
+            [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
+            
+            if (!IsStrEmpty(cellModel.MonthOrWeek)) {
+                self.monthOrWeekLabel.text = cellModel.MonthOrWeek;
+                self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
+            }
+            break;
+        case 1:
+            [self.cellRightButton setTitle:@"进入教室" forState:(UIControlStateNormal)];
+            [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterClassBtn") forState:UIControlStateNormal];
+            if (!IsStrEmpty(cellModel.MonthOrWeek)) {
+                self.monthOrWeekLabel.text = cellModel.MonthOrWeek;
+                self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
+            }
+            
+            break;
+        case 2:
+            [self showTimeLabel:cellModel];
+            [self.cellRightButton setTitle:@"进入教室" forState:(UIControlStateNormal)];
+            [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterClassBtn") forState:UIControlStateNormal];
+
+            
+            break;
+        case 3:
+            [self.cellRightButton setTitle:@"课后复习" forState:(UIControlStateNormal)];
+            [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
+            if (!IsStrEmpty(cellModel.MonthOrWeek)) {
+                self.monthOrWeekLabel.text = cellModel.MonthOrWeek;
+                self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
+            }
+            
+            break;
+        default:
+            break;
+    }
 }
 
+
+#pragma mark - 倒计时通知回调
+- (void)countDownNotification {
+    if (self.countDown == 0) return;
+    NSInteger countDown = self.countDown - kCountDownManager.timeInterval;
+
+    if (countDown <=0 || self.countDown <=0) {
+        self.countDown = 0;
+        self.monthOrWeekLabel.text = @"正在上课";
+        self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX(0xFF8A65);
+        return;
+    } else {
+        // 重新赋值
+        self.monthOrWeekLabel.text = [NSString stringWithFormat:@"即将开课:%02zd:%02zd", (countDown/60)%60, countDown%60];
+        self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX(0xFF8A65);
+    }
+}
+
+//MARK:倒计时
+-(void)showTimeLabel:(HF_HomeHeaderModel *)model {
+    //获取上课时间
+    NSString *LessonTimeStr = model.LessonTime;
+    LessonTimeStr = [LessonTimeStr stringByReplacingOccurrencesOfString:@" " withString:@"T"]; //替换字符
+    
+    //获取时间差
+    HF_Singleton *sin = [HF_Singleton sharedSingleton];
+    NSTimeInterval timeCount = [sin pleaseInsertStarTime:sin.nowDateString andInsertEndTime:LessonTimeStr class:@"HF_HomeHeaderCollectionViewCell"];
+    self.countDown = timeCount;
+}
+
+
+- (void)drawRect:(CGRect)rect {
+    [self.bookImgView xc_SetCornerWithSideType:XCSideTypeLeftLine cornerRadius:7];
+    [self.bigContentView addBorderForViewWithBorderWidth:0.01 BorderColor:UICOLOR_FROM_HEX(ColorFFFFFF) CornerRadius:7];
+    [self.bigContentView addShadowForViewWithShadowOffset:CGSizeMake(0, 0) ShadowOpacity:1 ShadowRadius:7 ShadowColor:UICOLOR_FROM_HEX_ALPHA(Color000000, 12)];
+    [self.levelLabel addBorderForViewWithBorderWidth:1 BorderColor:UICOLOR_FROM_HEX(Color67D3CE) CornerRadius:9];
+}
 
 @end
