@@ -111,7 +111,7 @@
 
 //设置每个 UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    return CGSizeMake(LineW(159),LineH(223));
+    return CGSizeMake(LineW(159),LineH(209));
 }
 
 

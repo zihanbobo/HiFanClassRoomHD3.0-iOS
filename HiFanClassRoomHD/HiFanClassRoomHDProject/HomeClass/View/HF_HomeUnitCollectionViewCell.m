@@ -87,19 +87,6 @@
         make.size.mas_equalTo(CGSizeMake(44, 17));
     }];
     
-    
-    //背景条
-    UIView *bgLineView = [[UIView alloc]init];
-    bgLineView.backgroundColor = UICOLOR_FROM_HEX(0xEAEFF3);
-    bgLineView.layer.masksToBounds = YES;
-    bgLineView.layer.cornerRadius = 2.5;
-    [self.bigContentView addSubview:bgLineView];
-    
-    [bgLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.classNameLabel.mas_bottom).offset(11);
-        make.centerX.equalTo(self.bigContentView.mas_centerX);
-        make.size.mas_equalTo(CGSizeMake(125, 5));
-    }];
 }
 
 - (void)setCellModel:(HF_HomeUnitCellModel *)cellModel {
@@ -133,7 +120,6 @@
         default:
             break;
     }
-    
 }
 
 
