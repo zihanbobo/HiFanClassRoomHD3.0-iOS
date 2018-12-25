@@ -10,16 +10,7 @@
 
 @implementation HF_AboutCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -28,8 +19,7 @@
     }
     return self;
 }
-- (void)initCellUI
-{
+- (void)initCellUI {
     UIView *lineView = [UIView new];
     lineView.backgroundColor = UICOLOR_FROM_HEX(0xEAEFF3);
     [self addSubview:lineView];
@@ -39,6 +29,7 @@
         make.height.mas_equalTo(1);
         make.bottom.equalTo(self.mas_bottom).offset(0);
     }];
+    
     self.titleLabel = [UILabel new];
     self.titleLabel.font = [UIFont fontWithName:@"PingFangHK-Medium" size:LineX(15)];
     self.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 70);
@@ -49,6 +40,7 @@
         make.width.mas_equalTo(150);
         make.height.mas_equalTo(18);
     }];
+    
     self.contentLabel = [UILabel new];
     self.contentLabel.numberOfLines = 0;
     self.contentLabel.font = [UIFont fontWithName:@"PingFangHK-Regular" size:LineX(14)];
@@ -62,12 +54,6 @@
     }];
     
 }
--(void)setTitle:(NSString *)title
-{
-    self.titleLabel.text = title;
-}
--(void)setContent:(NSString *)content
-{
-    self.contentLabel.text = content;
-}
+
+
 @end

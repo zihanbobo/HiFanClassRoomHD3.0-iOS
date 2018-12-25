@@ -32,6 +32,8 @@
         make.right.equalTo(self.mas_right).offset(-17);
         
     }];
+    
+    
     self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"244fa55f9ac2f89d1a07cd357ad9dae6"]];
     [self addSubview:self.imageView];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -39,11 +41,11 @@
         make.top.equalTo(self.descLabel.mas_bottom).offset(27);
         make.centerX.equalTo(self.mas_centerX);
     }];
+    
+    
     self.practiceButton = [UIButton buttonWithType:UIButtonTypeCustom];;
     [self.practiceButton setTitle:@"开始练习" forState:UIControlStateNormal];
     [self.practiceButton setTitleColor:UICOLOR_FROM_HEX(0xffffff) forState:UIControlStateNormal];
-    
-    
     self.practiceButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(14)];
     [self.practiceButton setBackgroundImage:[UIImage imageNamed:@"实心按钮"] forState:UIControlStateNormal];
     [self addSubview:self.practiceButton];
@@ -53,13 +55,23 @@
         make.centerX.equalTo(self.mas_centerX);
         make.bottom.equalTo(self.mas_bottom).offset(-17);
     }];
+    
+    @weakify(self);
+    [[self.practiceButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(id x) {
+         @strongify(self);
+         if (self.classAfterBtnBlock) {
+             self.classAfterBtnBlock();
+         }
+     }];
 }
--(void)setDesc:(NSString *)desc
-{
+
+-(void)setDesc:(NSString *)desc {
     self.descLabel.text = desc;
 }
--(void)setImagePath:(NSString *)imagePath
-{
+
+-(void)setImagePath:(NSString *)imagePath {
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath]];
 }
+
 @end

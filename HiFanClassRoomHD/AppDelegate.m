@@ -16,6 +16,7 @@
 #import <UMSocialCore/UMSocialCore.h>
 #import "HF_LaunchViewController.h"
 #import "UMMobClick/MobClick.h"
+#import "HF_NewFeatherViewController.h"
 
 
 #define kBuglyAppId      @"31581e5dcb"
@@ -161,6 +162,8 @@ static BOOL isProduction = false;
     self.window.backgroundColor = [UIColor whiteColor];
     HF_LoginViewController *loginVc = [[HF_LoginViewController alloc]init];
     HF_BaseTabbarViewController *homeVc = [[HF_BaseTabbarViewController alloc]init];
+    HF_NewFeatherViewController *newVc = [[HF_NewFeatherViewController alloc]init];
+
     
     //对usertoken赋值,如果为空，就跳转到登录页
     if (IsStrEmpty([UserDefaults() objectForKey:K_userToken])) {
@@ -168,19 +171,29 @@ static BOOL isProduction = false;
         [UserDefaults() synchronize];
     }
 
-
-    if ([[UserDefaults() objectForKey:@"login"] isEqualToString:@"yes"]) {
-        self.window.rootViewController = homeVc;
-    } else {
-        
-        /**
-         *  卸载重装后或第一次或重新登录进入应用角标置0
-         */
-        [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
-        [JPUSHService setBadge:0];
-        
-        BaseNavigationController *mainVc = [[BaseNavigationController alloc]initWithRootViewController:loginVc];
-        self.window.rootViewController = mainVc;
+    NSString *currentVersion = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString *key = @"version";
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *lastVersion = [userDefaults objectForKey:key];
+    
+    if ([currentVersion isEqualToString:lastVersion]) {
+        if ([[UserDefaults() objectForKey:@"login"] isEqualToString:@"yes"]) {
+            self.window.rootViewController = homeVc;
+        } else {
+            
+            /**
+             *  卸载重装后或第一次或重新登录进入应用角标置0
+             */
+            [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+            [JPUSHService setBadge:0];
+            
+            BaseNavigationController *mainVc = [[BaseNavigationController alloc]initWithRootViewController:loginVc];
+            self.window.rootViewController = mainVc;
+        }
+    }else{
+        // 卸载重装后或第一次进入应用
+        [userDefaults setObject:currentVersion forKey:key];
+        self.window.rootViewController = newVc;
     }
 }
 

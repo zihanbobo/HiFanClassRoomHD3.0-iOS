@@ -51,19 +51,19 @@
     
     
     //等级
-    self.levelLabel = [[UILabel alloc] init];
-    self.levelLabel.textColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-    self.levelLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(12)];
-    self.levelLabel.text = @"A9";
-    self.levelLabel.textAlignment = NSTextAlignmentCenter;
-    self.levelLabel.backgroundColor = [UICOLOR_FROM_HEX(ColorFFFFFF) colorWithAlphaComponent:0.4];
-    [self addSubview:self.levelLabel];
-
-    [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(self.mas_right).offset(-16);
-        make.bottom.equalTo(self.peopleIconButton.mas_bottom).offset(7);
-        make.size.mas_equalTo(CGSizeMake(30, 16));
-    }];
+//    self.levelLabel = [[UILabel alloc] init];
+//    self.levelLabel.textColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+//    self.levelLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(12)];
+//    self.levelLabel.text = @"A9";
+//    self.levelLabel.textAlignment = NSTextAlignmentCenter;
+//    self.levelLabel.backgroundColor = [UICOLOR_FROM_HEX(ColorFFFFFF) colorWithAlphaComponent:0.4];
+//    [self addSubview:self.levelLabel];
+//
+//    [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.equalTo(self.mas_right).offset(-16);
+//        make.bottom.equalTo(self.peopleIconButton.mas_bottom).offset(7);
+//        make.size.mas_equalTo(CGSizeMake(30, 16));
+//    }];
     
     //小三角
     self.sanjiaoImgView = [[UIImageView alloc] init];

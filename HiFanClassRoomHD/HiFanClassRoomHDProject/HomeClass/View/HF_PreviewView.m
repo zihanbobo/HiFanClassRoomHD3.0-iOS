@@ -32,6 +32,7 @@
         make.right.equalTo(self.mas_right).offset(-17);
         
     }];
+    
     self.imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"97cc961b0a61100f42a02263e84c5268"]];
     [self addSubview:self.imageView];
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -39,11 +40,11 @@
         make.top.equalTo(self.descLabel.mas_bottom).offset(27);
         make.centerX.equalTo(self.mas_centerX);
     }];
+    
+    
     self.previewButton = [UIButton buttonWithType:UIButtonTypeCustom];;
     [self.previewButton setTitle:@"开始预习" forState:UIControlStateNormal];
     [self.previewButton setTitleColor:UICOLOR_FROM_HEX(0xffffff) forState:UIControlStateNormal];
-    
-    
     self.previewButton.titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(14)];
     [self.previewButton setBackgroundImage:[UIImage imageNamed:@"实心按钮"] forState:UIControlStateNormal];
     [self addSubview:self.previewButton];
@@ -53,13 +54,23 @@
         make.centerX.equalTo(self.mas_centerX);
         make.bottom.equalTo(self.mas_bottom).offset(-17);
     }];
+    
+    @weakify(self);
+    [[self.previewButton rac_signalForControlEvents:UIControlEventTouchUpInside]
+     subscribeNext:^(id x) {
+         @strongify(self);
+         if (self.classBeforeBtnBlock) {
+             self.classBeforeBtnBlock();
+         }
+     }];
+    
 }
--(void)setDesc:(NSString *)desc
-{
+
+-(void)setDesc:(NSString *)desc {
     self.descLabel.text = desc;
 }
--(void)setImagePath:(NSString *)imagePath
-{
+
+-(void)setImagePath:(NSString *)imagePath {
     [self.imageView sd_setImageWithURL:[NSURL URLWithString:imagePath]];
 }
 @end

@@ -12,17 +12,24 @@
 #import "HF_HomeHeaderModel.h"
 #import "HF_HomeCourseStrategyViewController.h" //课程攻略
 #import "HF_HomeClassDetailViewController.h"    //课程详情
+#import "HF_HomeUnitJiangyiDownLoadViewController.h" //课堂讲义下载  练习册下载
 #import "HF_HomeGetUnitInfoListModel.h"
 #import "HF_HomeUnitCellModel.h"
 #import "HF_HomeUnitChooseView.h"
 #import "HF_PracticeViewController.h"
+#import <QuickLook/QuickLook.h>
 
-@interface HF_HomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate>
+@interface HF_HomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate,QLPreviewControllerDelegate,QLPreviewControllerDataSource>
 @property (nonatomic, strong) UITableView *tableView; //tableView
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *headerArray;
 @property (nonatomic, strong) NSMutableArray *unitArray;
 @property (nonatomic, copy) NSString *unitString;
+@property (nonatomic, strong) NSDictionary *assistDataDic;
+@property (nonatomic, strong) QLPreviewController *qlPreview;
+@property (nonatomic, strong) NSURL *fileURL;
+@property (nonatomic, copy) NSString *pdfVcTitle;
+
 @end
 
 @implementation HF_HomeViewController
@@ -49,7 +56,6 @@
     //请求1
     RACSignal *signal1 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         //发送请求
-
         [[BaseService share] sendGetRequestWithPath:URL_GetLessonList token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
             NSMutableArray *array = [NSMutableArray array];
             if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
@@ -128,6 +134,7 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@?unitId=%ld",URL_GetChapterList,(long)unitId];
     [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
         if ([responseObject[@"data"][@"chapterData"] isKindOfClass:[NSArray class]] && [responseObject[@"data"][@"chapterData"] count] >0) {
+            self.assistDataDic = responseObject[@"data"][@"assistData"];
             for (NSDictionary *dic in responseObject[@"data"][@"chapterData"]) {
                 HF_HomeUnitCellModel *model = [HF_HomeUnitCellModel yy_modelWithDictionary:dic];
                 [self.dataArray addObject:model];
@@ -282,12 +289,22 @@
         
         //MARK:课堂讲义下载
         cell.jiangyiDownBlock = ^{
-            NSLog(@"课堂讲义下载");
+//            HF_HomeUnitJiangyiDownLoadViewController *vc = [[HF_HomeUnitJiangyiDownLoadViewController alloc] init];
+//            vc.urlStr = self.assistDataDic[@"HandoutUrl"];
+//            vc.title = @"课堂讲义下载";
+//            [self.navigationController pushViewController:vc animated:YES];
+            self.pdfVcTitle = @"课堂讲义下载";
+            [self getDownLoadURL:self.assistDataDic[@"HandoutUrl"]];
         };
         
         //MARK:练习册下载
         cell.lianxiceDownBlock = ^{
-            NSLog(@"练习册下载");
+//            HF_HomeUnitJiangyiDownLoadViewController *vc = [[HF_HomeUnitJiangyiDownLoadViewController alloc] init];
+//            vc.urlStr = self.assistDataDic[@"WorkBook"];
+//            vc.title = @"练习册下载";
+//            [self.navigationController pushViewController:vc animated:YES];
+            self.pdfVcTitle = @"练习册下载";
+            [self getDownLoadURL:self.assistDataDic[@"WorkBook"]];
         };
         
         
@@ -318,6 +335,73 @@
     return 0;
 }
 
+//MARK:加载pdf
+-(void)getDownLoadURL:(NSString *)url {
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
+    NSString *urlStr = url;
+    NSString *fileName = [urlStr lastPathComponent]; //获取文件名称
+    NSURL *URL = [NSURL URLWithString:urlStr];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    //判断是否存在
+    if([self isFileExist:fileName]) {
+        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+        NSURL *url = [documentsDirectoryURL URLByAppendingPathComponent:fileName];
+        self.fileURL = url;
+        [self presentViewController:self.qlPreview animated:YES completion:^{
+            self.qlPreview.title = self.pdfVcTitle;
+        }];
+        
+    }else {
+        [MBProgressHUD showMessage:@"下载中" toView:self.view];
+        NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress *downloadProgress){
+            
+        } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
+            NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
+            NSURL *url = [documentsDirectoryURL URLByAppendingPathComponent:fileName];
+            return url;
+        } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
+            [MBProgressHUD hideHUDForView:self.view];
+            self.fileURL = filePath;
+            [self presentViewController:self.qlPreview animated:YES completion:^{
+                self.qlPreview.title = self.pdfVcTitle;
+            }];
+        }];
+        [downloadTask resume];
+    }
+    
+}
+
+//判断文件是否已经在沙盒中存在
+-(BOOL) isFileExist:(NSString *)fileName {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *path = [paths objectAtIndex:0];
+    NSString *filePath = [path stringByAppendingPathComponent:fileName];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL result = [fileManager fileExistsAtPath:filePath];
+    return result;
+}
+
+
+
+#pragma mark - previewControllerDataSource
+-(NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
+    return 1; //需要显示的文件的个数
+}
+
+-(id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
+    //返回要打开文件的地址，包括网络或者本地的地址
+    return self.fileURL;
+}
+
+#pragma mark - previewControllerDelegate
+-(CGRect)previewController:(QLPreviewController *)controller frameForPreviewItem:(id<QLPreviewItem>)item inSourceView:(UIView *__autoreleasing *)view
+{
+    //提供变焦的开始rect，扩展到全屏
+    return CGRectMake(110, 190, 100, 100);
+}
+
 //MARK:UI加载
 - (void)initUI {
     [self.view addSubview:self.tableView];
@@ -341,6 +425,13 @@
     return _tableView;
 }
 
-
+-(QLPreviewController *)qlPreview {
+    if (!_qlPreview) {
+        self.qlPreview = [[QLPreviewController alloc] init];
+        self.qlPreview.dataSource = self; //需要打开的文件的信息要实现dataSource中的方法
+        self.qlPreview.delegate = self;  //视图显示的控制
+    }
+    return _qlPreview;
+}
 
 @end

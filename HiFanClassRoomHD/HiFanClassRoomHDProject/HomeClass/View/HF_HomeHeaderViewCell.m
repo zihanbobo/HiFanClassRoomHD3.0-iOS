@@ -27,7 +27,6 @@
 - (void)setCollectionDataArray:(NSMutableArray *)collectionDataArray {
     self.dataArray = [NSMutableArray array];
     self.dataArray = collectionDataArray;
-//    [self.collectionView reloadData];
     [self reloadData];
 }
 
@@ -142,18 +141,37 @@
     [self.collectionView registerClass:[HF_HomeHeaderCollectionViewCell class] forCellWithReuseIdentifier:@"HF_HomeHeaderCollectionViewCell"];
 }
 
+//获取时间段
+-(NSString *)getTheTimeBucket {
+    NSDate *currentDate = [NSDate date];
+    if ([currentDate compare:[self getCustomDateWithHour:0]] == NSOrderedDescending && [currentDate compare:[self getCustomDateWithHour:12]] == NSOrderedAscending) {
+        return @"上午好"; //good morning
+    } else if ([currentDate compare:[self getCustomDateWithHour:12]] == NSOrderedDescending && [currentDate compare:[self getCustomDateWithHour:18]] == NSOrderedAscending) {
+        return @"下午好"; //good afternoon
+    } else {
+        return @"晚上好"; //good evening
+    }
+}
+
 
 //MARK:懒加载
 -(BaseScrollHeaderView *)headerView {
     if (!_headerView) {
         self.headerView = [[BaseScrollHeaderView alloc] init];
-        self.headerView.navBigLabel.text = @"Good Afternoon";
-        self.headerView.titleLabel.text = @"下午好";
+        self.headerView.titleLabel.text = [self getTheTimeBucket];
+        if ([[self getTheTimeBucket] isEqualToString:@"上午好"]) {
+            self.headerView.navBigLabel.text = @"Good Morning";
+        } else if ([[self getTheTimeBucket] isEqualToString:@"下午好"]) {
+            self.headerView.navBigLabel.text = @"Good Afternoon";
+        } else if ([[self getTheTimeBucket] isEqualToString:@"晚上好"]) {
+            self.headerView.navBigLabel.text = @"Good Evening";
+        }
         [self.headerView.rightButton setTitle:@"课程攻略" forState:UIControlStateNormal];
         [self.headerView.rightButton setImage:UIIMAGE_FROM_NAME(@"攻略1") forState:UIControlStateNormal];
     }
     return _headerView;
 }
+
 
 -(UICollectionView *)collectionView {
     if (!_collectionView) {
@@ -167,5 +185,24 @@
     }
     return _collectionView;
 }
+
+//将时间点转化成日历形式
+- (NSDate *)getCustomDateWithHour:(NSInteger)hour {
+    //获取当前时间
+    NSDate *destinationDateNow = [NSDate date];
+    NSCalendar *currentCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    NSDateComponents *currentComps = [[NSDateComponents alloc] init];
+    NSInteger unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond;
+    currentComps = [currentCalendar components:unitFlags fromDate:destinationDateNow];
+    //设置当前的时间点
+    NSDateComponents *resultComps = [[NSDateComponents alloc] init];
+    [resultComps setYear:[currentComps year]];
+    [resultComps setMonth:[currentComps month]];
+    [resultComps setDay:[currentComps day]];
+    [resultComps setHour:hour];
+    NSCalendar *resultCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+    return [resultCalendar dateFromComponents:resultComps];
+}
+
 
 @end

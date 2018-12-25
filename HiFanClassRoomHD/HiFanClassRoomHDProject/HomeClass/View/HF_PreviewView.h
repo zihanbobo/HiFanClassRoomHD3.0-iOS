@@ -10,12 +10,16 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+
+typedef void(^ClassBeforeBtnBlock)(void);
 @interface HF_PreviewView : UIView
 @property(nonatomic, strong) UILabel *descLabel;
 @property(nonatomic, strong) NSString *desc;
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) NSString *imagePath;
 @property(nonatomic, strong) UIButton *previewButton;
+@property(nonatomic, copy) ClassBeforeBtnBlock classBeforeBtnBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

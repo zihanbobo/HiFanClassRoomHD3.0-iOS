@@ -10,12 +10,15 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+typedef void(^ClassAfterBtnBlock)(void);
 @interface HF_PracticeView : UIView
 @property(nonatomic, strong) UILabel *descLabel;
 @property(nonatomic, strong) NSString *desc;
 @property(nonatomic, strong) UIImageView *imageView;
 @property(nonatomic, strong) NSString *imagePath;
 @property(nonatomic, strong) UIButton *practiceButton;
+@property(nonatomic, copy) ClassAfterBtnBlock classAfterBtnBlock;
+
 @end
 
 NS_ASSUME_NONNULL_END

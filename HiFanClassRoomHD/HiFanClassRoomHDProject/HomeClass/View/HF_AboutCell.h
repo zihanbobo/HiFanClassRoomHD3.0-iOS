@@ -12,9 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface HF_AboutCell : UITableViewCell
 @property(nonatomic, strong) UILabel *titleLabel;
-@property(nonatomic, strong) NSString *title;
 @property(nonatomic, strong) UILabel *contentLabel;
-@property(nonatomic, strong) NSString *content;
 @end
 
 NS_ASSUME_NONNULL_END

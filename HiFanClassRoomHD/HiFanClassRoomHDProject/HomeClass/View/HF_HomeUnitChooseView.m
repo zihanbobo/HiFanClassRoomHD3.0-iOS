@@ -26,13 +26,13 @@
 
 
 - (void)setCollectionUnitArray:(NSMutableArray *)collectionUnitArray {
-    if (collectionUnitArray.count > 8) {
-        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
-        [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角黑") forState:UIControlStateNormal];
-    } else {
-        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
-        [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
-    }
+//    if (collectionUnitArray.count > 8) {
+//        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
+//        [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角黑") forState:UIControlStateNormal];
+//    } else {
+//        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
+//        [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
+//    }
     
     
     self.UnitArray = [NSMutableArray array];
@@ -54,7 +54,7 @@
         make.top.bottom.equalTo(self);
     }];
     
-    //左侧按钮
+    //左侧按钮----暂时先指示左右滑动。后续实现 按钮操作
     self.leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
     self.leftButton.tag = 10;
@@ -69,7 +69,7 @@
     
     //右侧按钮
     self.rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角黑") forState:UIControlStateNormal];
+    [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
     self.rightButton.tag = 20;
 //    [self.rightButton addTarget:self action:@selector(buttonClick:) forControlEvents:(UIControlEventTouchUpInside)];
     [bgView addSubview:self.rightButton];
@@ -115,29 +115,29 @@
 //}
 
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-    
-    CGFloat x = scrollView.contentOffset.x; //偏移量
-    CGFloat w = self.collectionView.width; //(17+30)*2 = 94  home_right_width - LineW(94) = 830
-
-    NSLog(@"%f    %f",w,self.collectionView.contentSize.width);
-    
-    if (x == 0 ) {
-        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
-        if (self.collectionView.contentSize.width >= w) {
-            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角黑") forState:UIControlStateNormal];
-        } else {
-            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
-        }
-    } else if (x >= w) {
-        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角黑") forState:UIControlStateNormal];
-        if (self.collectionView.contentSize.width >= w) {
-            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
-        } else {
-            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
-        }
-    }
-}
+//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
+//
+//    CGFloat x = scrollView.contentOffset.x; //偏移量
+//    CGFloat w = self.collectionView.width; //(17+30)*2 = 94  home_right_width - LineW(94) = 830
+//
+//    NSLog(@"%f    %f",w,self.collectionView.contentSize.width);
+//
+//    if (x == 0 ) {
+//        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角灰") forState:UIControlStateNormal];
+//        if (self.collectionView.contentSize.width >= w) {
+//            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角黑") forState:UIControlStateNormal];
+//        } else {
+//            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
+//        }
+//    } else if (x >= w) {
+//        [self.leftButton setImage:UIIMAGE_FROM_NAME(@"左三角黑") forState:UIControlStateNormal];
+//        if (self.collectionView.contentSize.width >= w) {
+//            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
+//        } else {
+//            [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
+//        }
+//    }
+//}
 
 
 

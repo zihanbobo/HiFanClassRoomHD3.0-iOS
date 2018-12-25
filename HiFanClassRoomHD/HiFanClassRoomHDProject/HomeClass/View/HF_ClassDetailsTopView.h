@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "HF_HomeClassDetailModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -15,7 +16,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIButton *closeButton;
 //课程图片
 @property(nonatomic, strong) UIImageView *classImageView;
-@property(nonatomic, strong) NSString *imagePath;
 //课程名称
 @property(nonatomic, strong) UILabel *classTitleLabel;
 //课程级别
@@ -28,6 +28,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic, strong) UIButton *practiceButton;
 //按钮下划线
 @property(nonatomic, strong) UIView *buttonLine;
+@property(nonatomic, strong) HF_HomeClassDetailModel *headerModel;
+
+
 @end
 
 NS_ASSUME_NONNULL_END
