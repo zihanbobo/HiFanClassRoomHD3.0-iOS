@@ -9,7 +9,7 @@
 #import "HF_NewFeatherViewController.h"
 #import "HF_LoginViewController.h"
 
-#define NEWVIEWCOUNT 3
+#define NEWVIEWCOUNT 2
 @interface HF_NewFeatherViewController () <UIScrollViewDelegate>
 
 @end
@@ -39,7 +39,7 @@
         imageView.userInteractionEnabled = YES;
         CGFloat x = i*w;
         imageView.frame = CGRectMake(x, 0, w, h);
-        NSString *imageName = [NSString stringWithFormat:@"引导图-%d",i+1];
+        NSString *imageName = [NSString stringWithFormat:@"引导页-%d",i+1];
         imageView.image = [UIImage imageNamed:imageName];
         [scrollView addSubview:imageView];
         if (i == NEWVIEWCOUNT - 1) {

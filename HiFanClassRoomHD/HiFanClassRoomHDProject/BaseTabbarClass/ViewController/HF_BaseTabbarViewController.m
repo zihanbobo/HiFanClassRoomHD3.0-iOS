@@ -78,7 +78,7 @@
     if (self.sin.isShowVersionUpdateAlert == YES) {
         [self updateNewVersion];
     }
-    [self judgeStudentLevel];
+    [self getStudentLevel];
     
     [self getCacheSize];
 }
@@ -254,13 +254,13 @@
             [self popAlertVCWithModel:model];
         } else {
             // 更新接口失败 也要进行定级判断
-            //            [self judgeStudentLevel];
+            //            [self getStudentLevel];
         }
         
     } failure:^(NSError *error) {
         
         // 更新接口失败 也要进行定级判断
-        //        [self judgeStudentLevel];
+        //        [self getStudentLevel];
     }];
 }
 
@@ -277,7 +277,7 @@
         if ([model.FirstButton isKindOfClass:[NSString class]]) {
             firstAction = [UIAlertAction actionWithTitle:model.FirstButton style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                 // 不弹更新窗口 进行定级判断
-                //                [self judgeStudentLevel];
+                //                [self getStudentLevel];
             }];
         }
         
@@ -288,7 +288,7 @@
                     NSString *urlStr = [model.Url stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlStr]];
                     // 不弹更新窗口 谈定级窗口
-                    //                    [self judgeStudentLevel];
+                    //                    [self getStudentLevel];
                 }
                 
                 if ([model.Type isKindOfClass:[NSString class]] && [model.Type isEqualToString:@"1"]) {
@@ -313,7 +313,7 @@
             [self presentViewController:alterC animated:YES completion:nil];
         } else {
             // 不弹更新窗口 谈定级窗口
-            //            [self judgeStudentLevel];
+            //            [self getStudentLevel];
         }
         
     }
@@ -342,8 +342,21 @@
 }
 
 //推荐接口。获取定级用，以前后台给错了接口
-- (void)judgeStudentLevel {
-    // 1：定级    -2：未定级或抛错
+- (void)getStudentLevel {
+//    这是获取学员定级，0：提示我给的消息，1：是已定级（会有个Level级别字段给你）
+    [[BaseService share] sendGetRequestWithPath:URL_GetStudentLevel token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
+        //MARK: 已定级，存储 Level
+        if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]] && [responseObject[@"data"] count] >0) {
+            [UserDefaults() setObject:responseObject[@"data"][@"Level"] forKey:K_Level];
+            [UserDefaults() synchronize];
+        }
+        
+    } failure:^(NSError *error) {
+        //MARK: 未定级，弹窗  引导至 微信或电脑端 顶级
+    }];
+    
+    /*
+    // 1：定级    -2：未定级或抛错  URL_GetStudentLevel
     [[BaseService share] sendGetRequestWithPath:URL_GetRecommendedCourses token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
         
         //        data =     {
@@ -398,6 +411,7 @@
             [self presentViewController:vc animated:YES completion:nil];
         }
     }];
+     */
 }
 
 

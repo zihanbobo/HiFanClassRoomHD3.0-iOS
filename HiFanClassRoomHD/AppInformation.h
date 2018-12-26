@@ -34,6 +34,7 @@
 #define K_BookingId @"BookingId" //教材的信息
 #define K_LevelName @"LevelName" //教材的信息
 #define K_AccountID @"accountID" //用户id
+#define K_Level @"Level" //等级
 
 
 

@@ -98,7 +98,7 @@
     }];
     
     //等级
-    self.levelLabel = [UILabel new];
+    self.levelLabel = [[UILabel alloc] init];
     self.levelLabel.font = Font(12);
     self.levelLabel.textColor = UICOLOR_FROM_HEX(Color02B6E3);
     self.levelLabel.backgroundColor = UICOLOR_FROM_HEX_ALPHA(0x67D3CE, 20);

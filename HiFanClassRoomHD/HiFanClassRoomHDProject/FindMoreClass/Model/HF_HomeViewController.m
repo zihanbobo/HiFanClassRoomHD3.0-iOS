@@ -76,7 +76,8 @@
     //请求2
     RACSignal *signal2 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
         //发送请求
-        [[BaseService share] sendGetRequestWithPath:URL_GetUnitInfoList token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
+        NSString *urlStr = [NSString stringWithFormat:@"%@?level=%@",URL_GetUnitInfoList,[UserDefaults() objectForKey:K_Level]];
+        [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
             NSMutableArray *dataArray = [NSMutableArray array];
             NSMutableArray *array1 = [NSMutableArray array];
             NSMutableArray *array2 = [NSMutableArray array];
@@ -350,7 +351,6 @@
         NSURL *url = [documentsDirectoryURL URLByAppendingPathComponent:fileName];
         self.fileURL = url;
         [self presentViewController:self.qlPreview animated:YES completion:^{
-            self.qlPreview.title = self.pdfVcTitle;
         }];
         
     }else {
@@ -365,7 +365,6 @@
             [MBProgressHUD hideHUDForView:self.view];
             self.fileURL = filePath;
             [self presentViewController:self.qlPreview animated:YES completion:^{
-                self.qlPreview.title = self.pdfVcTitle;
             }];
         }];
         [downloadTask resume];

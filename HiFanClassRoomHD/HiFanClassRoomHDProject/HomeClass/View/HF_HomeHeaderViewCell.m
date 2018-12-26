@@ -8,11 +8,14 @@
 
 #import "HF_HomeHeaderViewCell.h"
 #import "HF_HomeHeaderCollectionViewCell.h"
+#import "HF_HomeHeaderPlaceHolderView.h"
 
 @interface HF_HomeHeaderViewCell() <UICollectionViewDelegate,UICollectionViewDataSource>
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic,strong) BaseScrollHeaderView *headerView;
 @property (nonatomic,strong) NSMutableArray *dataArray;
+@property (nonatomic, strong) HF_HomeHeaderPlaceHolderView *placeHolderView;
+
 @end
 
 @implementation HF_HomeHeaderViewCell
@@ -25,6 +28,12 @@
 
 
 - (void)setCollectionDataArray:(NSMutableArray *)collectionDataArray {
+    if (collectionDataArray.count == 0) {
+        self.placeHolderView.hidden = NO;
+    } else {
+        self.placeHolderView.hidden = YES;
+    }
+    
     self.dataArray = [NSMutableArray array];
     self.dataArray = collectionDataArray;
     [self reloadData];
@@ -75,7 +84,6 @@
 
 //设置每个 UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    
     return CGSizeMake(LineW(480),LineH(159));
 }
 
@@ -131,14 +139,20 @@
     
     [self addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.headerView.mas_bottom).offset(30);
+        make.top.equalTo(self.headerView.mas_bottom).offset(0);
         make.left.equalTo(self.mas_left).offset(0);
         make.right.equalTo(self.mas_right).offset(-0);
-        make.bottom.equalTo(self.mas_bottom).offset(-30);
+        make.bottom.equalTo(self.mas_bottom).offset(-0);
     }];
     
     //注册cell
     [self.collectionView registerClass:[HF_HomeHeaderCollectionViewCell class] forCellWithReuseIdentifier:@"HF_HomeHeaderCollectionViewCell"];
+    
+    self.placeHolderView.hidden = YES;
+    [self.collectionView addSubview:self.placeHolderView];
+    [self.placeHolderView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self.collectionView);
+    }];
 }
 
 //获取时间段
@@ -184,6 +198,13 @@
         self.collectionView.showsHorizontalScrollIndicator = NO;
     }
     return _collectionView;
+}
+
+-(HF_HomeHeaderPlaceHolderView *)placeHolderView {
+    if (!_placeHolderView) {
+        self.placeHolderView = [[HF_HomeHeaderPlaceHolderView alloc] init];
+    }
+    return _placeHolderView;
 }
 
 //将时间点转化成日历形式

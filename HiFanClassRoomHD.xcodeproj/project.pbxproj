@@ -26,6 +26,7 @@
 		5B04FAA11ED52A060038648F /* GGT_SelfInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B04FAA01ED52A060038648F /* GGT_SelfInfoModel.m */; };
 		5B0637BE21D24E4400E908BA /* HF_HomeUnitJiangyiDownLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0637BD21D24E4400E908BA /* HF_HomeUnitJiangyiDownLoadViewController.m */; };
 		5B0637C021D2514D00E908BA /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0637BF21D2514C00E908BA /* QuickLook.framework */; };
+		5B0637C321D3319B00E908BA /* HF_HomeHeaderPlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0637C221D3319B00E908BA /* HF_HomeHeaderPlaceHolderView.m */; };
 		5B0C55172153801000D0E3FC /* NSTimer+BlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C55162153801000D0E3FC /* NSTimer+BlockSupport.m */; };
 		5B112A9421BF699C001D7E3E /* HF_MineClassCountHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B112A9321BF699C001D7E3E /* HF_MineClassCountHeaderCell.m */; };
 		5B112A9721BF6EA4001D7E3E /* HF_MineClassCountListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B112A9621BF6EA4001D7E3E /* HF_MineClassCountListCell.m */; };
@@ -504,6 +505,8 @@
 		5B0637BC21D24E4400E908BA /* HF_HomeUnitJiangyiDownLoadViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeUnitJiangyiDownLoadViewController.h; sourceTree = "<group>"; };
 		5B0637BD21D24E4400E908BA /* HF_HomeUnitJiangyiDownLoadViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeUnitJiangyiDownLoadViewController.m; sourceTree = "<group>"; };
 		5B0637BF21D2514C00E908BA /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
+		5B0637C121D3319B00E908BA /* HF_HomeHeaderPlaceHolderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeHeaderPlaceHolderView.h; sourceTree = "<group>"; };
+		5B0637C221D3319B00E908BA /* HF_HomeHeaderPlaceHolderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeHeaderPlaceHolderView.m; sourceTree = "<group>"; };
 		5B0C5111215356B700D0E3FC /* HiFanClassRoomHD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HiFanClassRoomHD.entitlements; sourceTree = "<group>"; };
 		5B0C55152153800F00D0E3FC /* NSTimer+BlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+BlockSupport.h"; sourceTree = "<group>"; };
 		5B0C55162153801000D0E3FC /* NSTimer+BlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+BlockSupport.m"; sourceTree = "<group>"; };
@@ -1914,6 +1917,8 @@
 				5BAF22FC21C7CEB800AB1929 /* HF_HomeHeaderViewCell.m */,
 				5B4425DD21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.h */,
 				5B4425DE21C8C6950036298C /* HF_HomeHeaderCollectionViewCell.m */,
+				5B0637C121D3319B00E908BA /* HF_HomeHeaderPlaceHolderView.h */,
+				5B0637C221D3319B00E908BA /* HF_HomeHeaderPlaceHolderView.m */,
 				5B4425D721C8A0A30036298C /* HF_HomeContentCell.h */,
 				5B4425D821C8A0A30036298C /* HF_HomeContentCell.m */,
 				5B485E2E21CCE4390071AC27 /* HF_HomeUnitLastCell.h */,
@@ -3615,6 +3620,7 @@
 				5BB6D57D1FEB970C00464F83 /* GGT_ScheduleDetailModel.m in Sources */,
 				5B97CA8B21BE8A8900F80BD4 /* HF_MineClassCountViewController.m in Sources */,
 				5BE2EDCD216B37DC00845E70 /* TKEmotionKeyboard.m in Sources */,
+				5B0637C321D3319B00E908BA /* HF_HomeHeaderPlaceHolderView.m in Sources */,
 				5BE2ED9E216B37DC00845E70 /* BITAttributedLabel.m in Sources */,
 				5BE2ED93216B37DC00845E70 /* TKEduClassRoom.m in Sources */,
 				5BE2EDDA216B37DC00845E70 /* TKWeakDelegate.m in Sources */,

@@ -95,6 +95,7 @@
     self.levelLabel.textColor = UICOLOR_FROM_HEX_ALPHA(0x02B6E3, 100);
 //    self.levelLabel.text = @"A1";
     self.levelLabel.textAlignment = NSTextAlignmentCenter;
+    self.levelLabel.backgroundColor = UICOLOR_FROM_HEX_ALPHA(0x67D3CE, 20);
     [self addSubview:self.levelLabel];
     [self.levelLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(35);
