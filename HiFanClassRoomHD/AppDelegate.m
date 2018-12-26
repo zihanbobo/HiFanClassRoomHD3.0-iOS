@@ -123,6 +123,7 @@ static BOOL isProduction = false;
     
 }
 
+
 - (void)initVideo {
     NSError *setCategoryErr = nil;
     NSError *activationErr  = nil;
@@ -160,9 +161,9 @@ static BOOL isProduction = false;
 - (void)initKeyWindow {
     
     self.window.backgroundColor = [UIColor whiteColor];
-    HF_LoginViewController *loginVc = [[HF_LoginViewController alloc] init];
-    HF_BaseTabbarViewController *homeVc = [[HF_BaseTabbarViewController alloc] init];
-    HF_NewFeatherViewController *newVc = [[HF_NewFeatherViewController alloc] init];
+    HF_LoginViewController *loginVc = [[HF_LoginViewController alloc]init];
+    HF_BaseTabbarViewController *homeVc = [[HF_BaseTabbarViewController alloc]init];
+    HF_NewFeatherViewController *newVc = [[HF_NewFeatherViewController alloc]init];
 
     
     //对usertoken赋值,如果为空，就跳转到登录页

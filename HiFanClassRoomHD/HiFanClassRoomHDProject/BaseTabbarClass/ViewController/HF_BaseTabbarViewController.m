@@ -8,53 +8,33 @@
 
 #import "HF_BaseTabbarViewController.h"
 #import "HF_BaseTabbarLeftView.h"
-#import "HF_HomeViewController.h"              //首页
+#import "HF_HomeViewController.h"              //首页-已定级
+#import "HF_HomeUnGradedViewController.h"      //首页-未定级
 #import "HF_FindMoreHomeViewController.h"      //发现
-#import "HF_MyScheduleHomeViewController.h"    //课程
 #import "HF_ServiceHomeViewController.h"       //服务
 #import "HF_MineHomeViewController.h"          //我的
+#import "HF_UpdateModel.h"                     //更新 Model
 
-
-
-#import "HF_OrderCourseHomeViewController.h"   //约课
-#import "GGT_ScheduleViewController.h"
-#import "GGT_MineSplitViewController.h"
-#import "GGT_OrderCourseViewController.h"
-#import "BaseNavigationController.h"
-
-#import "GGT_PopAlertView.h"
-
-#import "HF_UpdateModel.h"
-#import "GGT_UnitBookListHeaderModel.h"
-#import "GGT_GradingAlertVC.h"
-#import "GGT_ExperienceUserOrderCourseVC.h"
 
 @interface HF_BaseTabbarViewController () <UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) HF_BaseTabbarLeftView *homeLeftView;
-//首页
+//首页-已定级
 @property (nonatomic, strong) HF_HomeViewController *homeVc;
 @property (nonatomic, strong) BaseNavigationController *homeNav;
+//首页-未定级
+@property (nonatomic, strong) HF_HomeUnGradedViewController *homeUnGradedVc;
+@property (nonatomic, strong) BaseNavigationController *homeUnGradedNav;
 //发现
 @property (nonatomic, strong) HF_FindMoreHomeViewController *findMoreHomeVC;
 @property (nonatomic, strong) BaseNavigationController *findMoreHomeNav;
-//课程
-@property (nonatomic, strong) HF_MyScheduleHomeViewController *courseTableHomeVc;
-@property (nonatomic, strong) BaseNavigationController *courseTableHomeNav;
 //服务
 @property (nonatomic, strong) HF_ServiceHomeViewController *serviceHomeVc;
 @property (nonatomic, strong) BaseNavigationController *serviceHomeNav;
-
-@property (nonatomic, strong) HF_OrderCourseHomeViewController *orderCourseHomeVc;
-@property (nonatomic, strong) BaseNavigationController *orderCourseHomeNav;
-
-@property (nonatomic, strong) GGT_ExperienceUserOrderCourseVC *xc_experienceVC;
-@property (nonatomic, strong) BaseNavigationController *xc_experienceNav;
-@property (nonatomic, strong) UIViewController *currentVC;
-
-
 //我的
 @property (nonatomic, strong) HF_MineHomeViewController *mineMenuVC;
 @property (nonatomic, strong) BaseNavigationController *mineMenuNav;
+@property (nonatomic, strong) UIViewController *currentVC;
+
 @property (nonatomic, getter=isSelectedMineVc) BOOL selectedMineVc;
 @property (nonatomic, strong) UIView *blackBgView;
 @property (nonatomic, strong) UIVisualEffectView *blackBgViewEffe; //定义毛玻璃
@@ -70,57 +50,79 @@
     
     [self initView];
     [self setUpNewController];
-
+    
     self.selectedMineVc = NO;
     self.sin = [HF_Singleton sharedSingleton];
     self.sin.isShowMineView = NO;
-
+    
     if (self.sin.isShowVersionUpdateAlert == YES) {
         [self updateNewVersion];
     }
-    [self getStudentLevel];
     
     [self getCacheSize];
 }
 
 
 - (void)setUpNewController {
-    //首页
+    
+    //首页-已定级
     self.homeVc = [[HF_HomeViewController alloc] init];
-    self.homeNav = [[BaseNavigationController alloc] initWithRootViewController:self.homeVc];
-    [self.homeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
-    [self addChildViewController:self.homeNav];
+    self.homeUnGradedVc = [[HF_HomeUnGradedViewController alloc] init];
     
-    //发现
-    self.findMoreHomeVC = [[HF_FindMoreHomeViewController alloc] init];
-    self.findMoreHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.findMoreHomeVC];
-    [self.findMoreHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
-    [self addChildViewController:self.findMoreHomeNav];
     
-    //课表
-    self.courseTableHomeVc = [[HF_MyScheduleHomeViewController alloc] init];
-    self.courseTableHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.courseTableHomeVc];
-    [self.courseTableHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
-
-    //服务
+    //这是获取学员定级，0：提示我给的消息，1：是已定级（会有个Level级别字段给你）
+    [[BaseService share] sendGetRequestWithPath:URL_GetStudentLevel token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
+        //MARK: 已定级，存储 Level
+        if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]] && [responseObject[@"data"] count] >0) {
+            [UserDefaults() setObject:responseObject[@"data"][@"Level"] forKey:K_Level];
+            [UserDefaults() synchronize];
+        }
+        
+        
+        self.homeNav = [[BaseNavigationController alloc] initWithRootViewController:self.homeVc];
+        [self.homeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+        
+        [self addChildViewController:self.homeNav];
+        
+        //发现
+        self.findMoreHomeVC = [[HF_FindMoreHomeViewController alloc] init];
+        self.findMoreHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.findMoreHomeVC];
+        [self.findMoreHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+        
+        //服务
         self.serviceHomeVc = [[HF_ServiceHomeViewController alloc] init];
         self.serviceHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.serviceHomeVc];
         [self.serviceHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+        
+        [self.view addSubview:self.homeNav.view];
+        self.currentVC = self.homeNav;
+        
+        
+    } failure:^(NSError *error) {
+        //MARK: 未定级，弹窗  引导至 微信或电脑端 定级
+        //首页-未定级
+        
+        
+        self.homeUnGradedNav = [[BaseNavigationController alloc] initWithRootViewController:self.homeUnGradedVc];
+        [self.homeUnGradedNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+        
+        [self addChildViewController:self.homeUnGradedNav];
+        
+        //发现
+        self.findMoreHomeVC = [[HF_FindMoreHomeViewController alloc] init];
+        self.findMoreHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.findMoreHomeVC];
+        [self.findMoreHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+        
+        //服务
+        self.serviceHomeVc = [[HF_ServiceHomeViewController alloc] init];
+        self.serviceHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.serviceHomeVc];
+        [self.serviceHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
+        
+        [self.view addSubview:self.homeUnGradedNav.view];
+        self.currentVC = self.homeUnGradedNav;
+        
+    }];
     
-    
-    //约课
-//    self.orderCourseHomeVc = [[HF_OrderCourseHomeViewController alloc] init];
-//    self.orderCourseHomeNav = [[BaseNavigationController alloc] initWithRootViewController:self.orderCourseHomeVc];
-//    [self.orderCourseHomeNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
-
-    //体验课
-//    self.xc_experienceVC = [[GGT_ExperienceUserOrderCourseVC alloc] init];
-//    self.xc_experienceNav = [[BaseNavigationController alloc] initWithRootViewController:self.xc_experienceVC];
-//    [self.xc_experienceNav.view setFrame:CGRectMake(self.homeLeftView.width, 0, SCREEN_WIDTH()-self.homeLeftView.width, SCREEN_HEIGHT())];
-    
-    //  默认,第一个视图(你会发现,全程就这一个用了addSubview)
-    [self.view addSubview:self.homeNav.view];
-    self.currentVC = self.homeNav;
 }
 
 //  切换各个标签内容
@@ -138,10 +140,10 @@
     [self addChildViewController:newController];
     [self transitionFromViewController:oldController toViewController:newController duration:0.3f options:UIViewAnimationOptionTransitionNone animations:nil completion:^(BOOL finished) {
         
-            [newController didMoveToParentViewController:self];
-            [oldController willMoveToParentViewController:nil];
-            [oldController removeFromParentViewController];
-            self.currentVC = newController;
+        [newController didMoveToParentViewController:self];
+        [oldController willMoveToParentViewController:nil];
+        [oldController removeFromParentViewController];
+        self.currentVC = newController;
         
     }];
 }
@@ -157,49 +159,45 @@
         @strongify(self);
         switch (button.tag) {
             case 99:
-                { //我的
-                    
-                    if (self.sin.isShowMineView == NO) { //保证每次只加载一次
-                        self.sin.isShowMineView = YES;
-                        [self.blackBgView addSubview:self.blackBgViewEffe];
-                        [self.blackBgView addSubview:self.hiddenBlackBgViewBtn];
-                        [self.view.superview addSubview:self.blackBgView];
-                        [self.view.superview addSubview:self.mineMenuNav.view];
-                    }
-
-                    if (self.selectedMineVc == NO) {
-                        [UIView animateWithDuration:0.3f animations:^{
-                            self.blackBgView.hidden = NO;
-                            self.homeLeftView.sanjiaoImgView.hidden = NO;
-                            self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, LineW(360), LineH(768));
-                            self.selectedMineVc = YES;
-                        }];
-                    } else {
-                        [UIView animateWithDuration:0.3f animations:^{
-                            self.blackBgView.hidden = YES;
-                            self.homeLeftView.sanjiaoImgView.hidden = YES;
-                            self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
-                            self.selectedMineVc = NO;
-                        }];
-                    }
+            { //我的
+                
+                if (self.sin.isShowMineView == NO) { //保证每次只加载一次
+                    self.sin.isShowMineView = YES;
+                    [self.blackBgView addSubview:self.blackBgViewEffe];
+                    [self.blackBgView addSubview:self.hiddenBlackBgViewBtn];
+                    [self.view.superview addSubview:self.blackBgView];
+                    [self.view.superview addSubview:self.mineMenuNav.view];
                 }
+                
+                if (self.selectedMineVc == NO) {
+                    [UIView animateWithDuration:0.3f animations:^{
+                        self.blackBgView.hidden = NO;
+                        self.homeLeftView.sanjiaoImgView.hidden = NO;
+                        self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0, LineW(360), LineH(768));
+                        self.selectedMineVc = YES;
+                    }];
+                } else {
+                    [UIView animateWithDuration:0.3f animations:^{
+                        self.blackBgView.hidden = YES;
+                        self.homeLeftView.sanjiaoImgView.hidden = YES;
+                        self.mineMenuNav.view.frame = CGRectMake(home_left_width, 0,0, LineH(768));
+                        self.selectedMineVc = NO;
+                    }];
+                }
+            }
                 break;
             case 100:
             {  //首页
                 
                 [self closeMineMenu];
                 
-                //点击处于当前页面的按钮,直接跳出
-                if (self.currentVC == self.homeNav) {
-                    return;
-                } else {
-                    [self replaceController:self.currentVC newController:self.homeNav];
-                }
+                [self getStudentLevel];
+                
             }
                 break;
             case 101:
             { //发现
-//                [self switchViewController];
+                
                 [self closeMineMenu];
                 
                 if (self.currentVC == self.findMoreHomeNav) {
@@ -211,18 +209,6 @@
             }
                 break;
             case 102:
-            { //课程
-                [self closeMineMenu];
-
-                
-                if (self.currentVC == self.courseTableHomeNav) {
-                    return;
-                } else {
-                    [self replaceController:self.currentVC newController:self.courseTableHomeNav];
-                }
-            }
-                break;
-            case 103:
             { //服务
                 [self closeMineMenu];
                 
@@ -321,97 +307,37 @@
 }
 
 
-// 切换正式学员和体验课学员
-- (void)switchViewController {
-    if (self.currentVC == self.courseTableHomeVc || self.currentVC == self.xc_experienceNav) {
+//推荐接口。获取定级用，以前后台给错了接口
+- (void)getStudentLevel {
+    if (self.currentVC == self.homeNav || self.currentVC == self.homeUnGradedNav) {
         return;
     } else {
         
-        // 网络请求 判断是否是体验课学员
-        [[BaseService share] sendGetRequestWithPath:URL_IsOfficial token:YES viewController:self showMBProgress:YES success:^(id responseObject) {
-            
-            // result=1 正式学员
-            [self replaceController:self.currentVC newController:self.courseTableHomeVc];
-        } failure:^(NSError *error) {
-            
-            // result=0 体验课学员
-            [self replaceController:self.currentVC newController:self.xc_experienceNav];
-            
-        }];
+        if (self.homeNav) {
+            [self replaceController:self.currentVC newController:self.homeNav];
+        }
+        
+        if (self.homeUnGradedNav) {
+            [self replaceController:self.currentVC newController:self.homeUnGradedNav];
+        }
+        
+        
+        
+        //    这是获取学员定级，0：提示我给的消息，1：是已定级（会有个Level级别字段给你）
+        //        [[BaseService share] sendGetRequestWithPath:URL_GetStudentLevel token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
+        //            //MARK: 已定级，存储 Level
+        //            if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]] && [responseObject[@"data"] count] >0) {
+        //                [UserDefaults() setObject:responseObject[@"data"][@"Level"] forKey:K_Level];
+        //                [UserDefaults() synchronize];
+        //            }
+        //            [self replaceController:self.currentVC newController:self.homeNav];
+        //
+        //        } failure:^(NSError *error) {
+        //            //MARK: 未定级，弹窗  引导至 微信或电脑端 顶级
+        //
+        //            [self replaceController:self.currentVC newController:self.homeUnGradedNav];
+        //        }];
     }
-}
-
-//推荐接口。获取定级用，以前后台给错了接口
-- (void)getStudentLevel {
-//    这是获取学员定级，0：提示我给的消息，1：是已定级（会有个Level级别字段给你）
-    [[BaseService share] sendGetRequestWithPath:URL_GetStudentLevel token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
-        //MARK: 已定级，存储 Level
-        if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]] && [responseObject[@"data"] count] >0) {
-            [UserDefaults() setObject:responseObject[@"data"][@"Level"] forKey:K_Level];
-            [UserDefaults() synchronize];
-        }
-        
-    } failure:^(NSError *error) {
-        //MARK: 未定级，弹窗  引导至 微信或电脑端 顶级
-    }];
-    
-    /*
-    // 1：定级    -2：未定级或抛错  URL_GetStudentLevel
-    [[BaseService share] sendGetRequestWithPath:URL_GetRecommendedCourses token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
-        
-        //        data =     {
-        //            BdId = 4546;
-        //            BookingId = 160;
-        //            Describe = "to practice speaking using different nouns and verbs, and review the whole unit";
-        //            FilePath = "http://file.gogo-talk.com/UploadFiles/Booking/A1/Lesson1-3.png";
-        //            ImageId = "";
-        //            Level = 1;
-        //            LevelName = A1;
-        //            UnitName = "Unit1_Food Lesson1-3";
-        //        };
-        
-        
-        //        {
-        //            data = "";
-        //            msg = "已定级";
-        //            result = 1;
-        //        }
-        
-        
-        //如果有推荐就直接展示，没推荐，就请求别的接口获取，因为以前的后台给错了。cao
-        if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]] && [responseObject[@"data"] count] >0) {
-            [UserDefaults() setObject:responseObject[@"data"][@"BookingId"] forKey:K_BookingId];
-            [UserDefaults() setObject:responseObject[@"data"][@"LevelName"] forKey:K_LevelName];
-            [UserDefaults() synchronize];
-        } else {
-            [[BaseService share] sendGetRequestWithPath:URL_GetBookList token:YES viewController:self showMBProgress:NO success:^(id responseObject) {
-                
-                if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
-                    
-                    [UserDefaults() setObject:[responseObject[@"data"] safe_objectAtIndex:0][@"BookingId"] forKey:K_BookingId];
-                    [UserDefaults() setObject:[responseObject[@"data"] safe_objectAtIndex:0][@"BookingTitle"] forKey:K_LevelName];
-                    [UserDefaults() synchronize];
-                    
-                }
-                
-            } failure:^(NSError *error) {
-            }];
-            
-        }
-        
-        
-    } failure:^(NSError *error) {
-        
-        //只有等于 -2 才会弹窗
-        NSDictionary *dic = error.userInfo;
-        if ([dic[xc_returnCode] integerValue] ==  -2) {
-            GGT_GradingAlertVC *vc = [GGT_GradingAlertVC new];
-            vc.modalPresentationStyle = UIModalPresentationFormSheet;
-            vc.popoverPresentationController.delegate = self;
-            [self presentViewController:vc animated:YES completion:nil];
-        }
-    }];
-     */
 }
 
 

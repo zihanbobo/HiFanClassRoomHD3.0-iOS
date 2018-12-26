@@ -18,7 +18,7 @@
 
 @interface HF_FindMoreMoviePlayView : UIView <WMPlayerDelegate>
 @property (nonatomic,copy) NSString *playerUrlStr;
-@property (nonatomic, strong) WMPlayer * wmPlayer;
+@property (nonatomic, strong) WMPlayer *wmPlayer;
 @property(nonatomic,weak) id <playerDelegate> playerDelegate;
 
 @end

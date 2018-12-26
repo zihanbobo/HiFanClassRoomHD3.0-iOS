@@ -143,7 +143,7 @@
     UIButton *fuwuButton = [self buildButtonTitle:@"服务" setImage:@"xiaolian_tabbar"];
     fuwuButton.titleLabel.font = Font(14);
     fuwuButton.frame = CGRectMake(0, 0, LineW(100), LineH(133));
-    fuwuButton.tag = 103;
+    fuwuButton.tag = 102;
     fuwuButton.selected = NO;
     [fuwuButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self initButton:fuwuButton];
@@ -178,7 +178,7 @@
     
     button.selected = YES;
     
-    if (button.tag == 100 || button.tag == 101 || button.tag == 103) {
+    if (button.tag == 100 || button.tag == 101 || button.tag == 102) {
         button.backgroundColor = UICOLOR_FROM_HEX_ALPHA(ColorFFFFFF, 20);
     }
     

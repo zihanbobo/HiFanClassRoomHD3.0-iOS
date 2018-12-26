@@ -27,6 +27,11 @@
 		5B0637BE21D24E4400E908BA /* HF_HomeUnitJiangyiDownLoadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0637BD21D24E4400E908BA /* HF_HomeUnitJiangyiDownLoadViewController.m */; };
 		5B0637C021D2514D00E908BA /* QuickLook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0637BF21D2514C00E908BA /* QuickLook.framework */; };
 		5B0637C321D3319B00E908BA /* HF_HomeHeaderPlaceHolderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0637C221D3319B00E908BA /* HF_HomeHeaderPlaceHolderView.m */; };
+		5B0637CB21D370D200E908BA /* HF_HomeUnGradedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0637CA21D370D200E908BA /* HF_HomeUnGradedViewController.m */; };
+		5B0637CE21D3767000E908BA /* BaseScrollViewHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0637CD21D3767000E908BA /* BaseScrollViewHeaderCell.m */; };
+		5B0637D121D376F800E908BA /* HF_HomeUnGradedContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0637D021D376F800E908BA /* HF_HomeUnGradedContentCell.m */; };
+		5B0637D421D3778E00E908BA /* HF_HomeUnGradedHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0637D321D3778E00E908BA /* HF_HomeUnGradedHeaderCell.m */; };
+		5B0637D721D3876400E908BA /* iPad开屏.mpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5B0637D621D3876400E908BA /* iPad开屏.mpeg */; };
 		5B0C55172153801000D0E3FC /* NSTimer+BlockSupport.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B0C55162153801000D0E3FC /* NSTimer+BlockSupport.m */; };
 		5B112A9421BF699C001D7E3E /* HF_MineClassCountHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B112A9321BF699C001D7E3E /* HF_MineClassCountHeaderCell.m */; };
 		5B112A9721BF6EA4001D7E3E /* HF_MineClassCountListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B112A9621BF6EA4001D7E3E /* HF_MineClassCountListCell.m */; };
@@ -507,6 +512,15 @@
 		5B0637BF21D2514C00E908BA /* QuickLook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuickLook.framework; path = System/Library/Frameworks/QuickLook.framework; sourceTree = SDKROOT; };
 		5B0637C121D3319B00E908BA /* HF_HomeHeaderPlaceHolderView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeHeaderPlaceHolderView.h; sourceTree = "<group>"; };
 		5B0637C221D3319B00E908BA /* HF_HomeHeaderPlaceHolderView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeHeaderPlaceHolderView.m; sourceTree = "<group>"; };
+		5B0637C921D370D200E908BA /* HF_HomeUnGradedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeUnGradedViewController.h; sourceTree = "<group>"; };
+		5B0637CA21D370D200E908BA /* HF_HomeUnGradedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeUnGradedViewController.m; sourceTree = "<group>"; };
+		5B0637CC21D3767000E908BA /* BaseScrollViewHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseScrollViewHeaderCell.h; sourceTree = "<group>"; };
+		5B0637CD21D3767000E908BA /* BaseScrollViewHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BaseScrollViewHeaderCell.m; sourceTree = "<group>"; };
+		5B0637CF21D376F800E908BA /* HF_HomeUnGradedContentCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeUnGradedContentCell.h; sourceTree = "<group>"; };
+		5B0637D021D376F800E908BA /* HF_HomeUnGradedContentCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeUnGradedContentCell.m; sourceTree = "<group>"; };
+		5B0637D221D3778E00E908BA /* HF_HomeUnGradedHeaderCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_HomeUnGradedHeaderCell.h; sourceTree = "<group>"; };
+		5B0637D321D3778E00E908BA /* HF_HomeUnGradedHeaderCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_HomeUnGradedHeaderCell.m; sourceTree = "<group>"; };
+		5B0637D621D3876400E908BA /* iPad开屏.mpeg */ = {isa = PBXFileReference; lastKnownFileType = video.mpeg; path = "iPad开屏.mpeg"; sourceTree = "<group>"; };
 		5B0C5111215356B700D0E3FC /* HiFanClassRoomHD.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HiFanClassRoomHD.entitlements; sourceTree = "<group>"; };
 		5B0C55152153800F00D0E3FC /* NSTimer+BlockSupport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+BlockSupport.h"; sourceTree = "<group>"; };
 		5B0C55162153801000D0E3FC /* NSTimer+BlockSupport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+BlockSupport.m"; sourceTree = "<group>"; };
@@ -1329,6 +1343,61 @@
 			path = "正课cell";
 			sourceTree = "<group>";
 		};
+		5B0637C421D3707C00E908BA /* 未定级 */ = {
+			isa = PBXGroup;
+			children = (
+				5B0637C521D3707C00E908BA /* Controller */,
+				5B0637C621D3707C00E908BA /* Model */,
+				5B0637C721D3707C00E908BA /* View */,
+			);
+			path = "未定级";
+			sourceTree = "<group>";
+		};
+		5B0637C521D3707C00E908BA /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5B0637C921D370D200E908BA /* HF_HomeUnGradedViewController.h */,
+				5B0637CA21D370D200E908BA /* HF_HomeUnGradedViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		5B0637C621D3707C00E908BA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5B0637C721D3707C00E908BA /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5B0637D221D3778E00E908BA /* HF_HomeUnGradedHeaderCell.h */,
+				5B0637D321D3778E00E908BA /* HF_HomeUnGradedHeaderCell.m */,
+				5B0637CF21D376F800E908BA /* HF_HomeUnGradedContentCell.h */,
+				5B0637D021D376F800E908BA /* HF_HomeUnGradedContentCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5B0637C821D3708400E908BA /* 已定级 */ = {
+			isa = PBXGroup;
+			children = (
+				5BAF22EE21C7C46A00AB1929 /* Controller */,
+				5BAF22EF21C7C46A00AB1929 /* Model */,
+				5BAF22F021C7C46A00AB1929 /* View */,
+			);
+			path = "已定级";
+			sourceTree = "<group>";
+		};
+		5B0637D521D3876400E908BA /* 启动页视频 */ = {
+			isa = PBXGroup;
+			children = (
+				5B0637D621D3876400E908BA /* iPad开屏.mpeg */,
+			);
+			path = "启动页视频";
+			sourceTree = "<group>";
+		};
 		5B13B8E021AE6C3300CB0A7F /* FindMoreClass */ = {
 			isa = PBXGroup;
 			children = (
@@ -1871,9 +1940,8 @@
 		5BAF22ED21C7C46A00AB1929 /* HomeClass */ = {
 			isa = PBXGroup;
 			children = (
-				5BAF22EE21C7C46A00AB1929 /* Controller */,
-				5BAF22EF21C7C46A00AB1929 /* Model */,
-				5BAF22F021C7C46A00AB1929 /* View */,
+				5B0637C821D3708400E908BA /* 已定级 */,
+				5B0637C421D3707C00E908BA /* 未定级 */,
 			);
 			path = HomeClass;
 			sourceTree = "<group>";
@@ -2957,6 +3025,7 @@
 		D6E0A47A1EC2C200006A003D /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5B0637D521D3876400E908BA /* 启动页视频 */,
 				5BAF228221C7B3A400AB1929 /* 刷新动画 */,
 				5BF3A6781EEAC3B100491CC2 /* 设备检测 */,
 				D6E0A4861EC2C200006A003D /* Assets.xcassets */,
@@ -3028,6 +3097,8 @@
 				5B86F7E7215CFDAE0086E678 /* BaseTableViewCell.m */,
 				5B5E6F1F21C2488A0067881A /* BaseScrollHeaderView.h */,
 				5B5E6F2021C2488A0067881A /* BaseScrollHeaderView.m */,
+				5B0637CC21D3767000E908BA /* BaseScrollViewHeaderCell.h */,
+				5B0637CD21D3767000E908BA /* BaseScrollViewHeaderCell.m */,
 			);
 			path = BaseClass;
 			sourceTree = "<group>";
@@ -3347,6 +3418,7 @@
 				5BAF22D621C7B3A400AB1929 /* shuaxin_45.png in Resources */,
 				5BAF22C621C7B3A400AB1929 /* shuaxin_32.png in Resources */,
 				5BAF22B821C7B3A400AB1929 /* shuaxin_34.png in Resources */,
+				5B0637D721D3876400E908BA /* iPad开屏.mpeg in Resources */,
 				5BE2ED95216B37DC00845E70 /* HockeySDKResources.bundle in Resources */,
 				5BF3A6B71EEAC3B100491CC2 /* shebeijianche_28.png in Resources */,
 				5BF3A6BC1EEAC3B100491CC2 /* shebeijianche_32.png in Resources */,
@@ -3514,11 +3586,13 @@
 				5B31CF6C21C3537100C97181 /* HF_TechnicalDebugView.m in Sources */,
 				5BE2EDCB216B37DC00845E70 /* TKEmotionListView.m in Sources */,
 				5B86F7E8215CFDAE0086E678 /* BaseTableViewCell.m in Sources */,
+				5B0637D121D376F800E908BA /* HF_HomeUnGradedContentCell.m in Sources */,
 				5BE2EDA4216B37DC00845E70 /* BITHockeyHelper.m in Sources */,
 				5BE2EDFF216B37DC00845E70 /* UIImagePickerController+TKLandScapeImagePicker.m in Sources */,
 				5BE2EE05216B37DC00845E70 /* TKEduRoomProperty.m in Sources */,
 				5B13B8FA21AE6CD300CB0A7F /* HF_BaseTabbarViewController.m in Sources */,
 				5BE2EDBA216B37DC00845E70 /* BITHockeyAppClient.m in Sources */,
+				5B0637CB21D370D200E908BA /* HF_HomeUnGradedViewController.m in Sources */,
 				5BE2EE0B216B37DC00845E70 /* TKModelToJson.m in Sources */,
 				35F30A2421CB39B700B86DE1 /* HF_AboutCell.m in Sources */,
 				5BE2EE02216B37DC00845E70 /* TKPickViewTextField.m in Sources */,
@@ -3526,6 +3600,7 @@
 				5BE2EDDB216B37DC00845E70 /* TKLiveViewChatTableViewCell.m in Sources */,
 				5BE2EDFD216B37DC00845E70 /* TKBackGroundView.m in Sources */,
 				5B54A2D521B7F97700DF9F91 /* HF_FindMoreHomeCollectionViewCell.m in Sources */,
+				5B0637CE21D3767000E908BA /* BaseScrollViewHeaderCell.m in Sources */,
 				5BE2EDE7216B37DC00845E70 /* TKVideoThreeLinesView.m in Sources */,
 				5B5E8E4C1FE93AAF0010CFC3 /* GGT_PracticeViewController.m in Sources */,
 				5BE2EDD6216B37DC00845E70 /* TKTeacherMessageTableViewCell.m in Sources */,
@@ -3702,6 +3777,7 @@
 				5BE2EDF3216B37DC00845E70 /* TKAudioHelper.m in Sources */,
 				5BAF221821C78E6B00AB1929 /* HF_FindMoreInstructionlListCell.m in Sources */,
 				5B54A2D221B7C16100DF9F91 /* HF_FindMoreHomeContentCell.m in Sources */,
+				5B0637D421D3778E00E908BA /* HF_HomeUnGradedHeaderCell.m in Sources */,
 				D6E0A55F1EC2D9CD006A003D /* UIView+XCCornerRadius.m in Sources */,
 				5BE2EDF5216B37DC00845E70 /* TKBaseMediaView.m in Sources */,
 				5BE2ED8F216B37DC00845E70 /* TKVideoBoardHandle.m in Sources */,
