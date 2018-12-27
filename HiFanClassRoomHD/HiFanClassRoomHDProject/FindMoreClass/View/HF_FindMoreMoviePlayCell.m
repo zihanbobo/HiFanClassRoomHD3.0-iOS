@@ -32,7 +32,7 @@
     
     //教材 封面
     self.bookImgView = [[UIImageView alloc]init];
-    self.bookImgView.image = UIIMAGE_FROM_NAME(@"默认");
+    self.bookImgView.image = UIIMAGE_FROM_NAME(@"缺省图211-165");
     self.bookImgView.userInteractionEnabled = YES;
     [self.contentView addSubview:self.bookImgView];
     
@@ -60,11 +60,7 @@
 
 - (void)setCellModel:(HF_FindMoreInstructionalListModel *)cellModel {
     if (!IsStrEmpty(cellModel.CoverImage)) {
-        [self.bookImgView sd_setImageWithURL:[NSURL URLWithString:cellModel.CoverImage] placeholderImage:UIIMAGE_FROM_NAME(@"默认") completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            
-            image = [image imageScaledToSize:CGSizeMake(LineW(230), LineW(180))];
-            self.bookImgView.image = image;
-        }];
+        [self.bookImgView sd_setImageWithURL:[NSURL URLWithString:cellModel.CoverImage] placeholderImage:UIIMAGE_FROM_NAME(@"缺省图211-165")];
     }
     
     

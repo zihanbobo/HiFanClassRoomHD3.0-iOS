@@ -43,7 +43,7 @@
 
 - (void)setBookImageViewStr:(NSString *)bookImageViewStr {
     if (!IsStrEmpty(bookImageViewStr)) {
-        [self.bookImgView sd_setImageWithURL:[NSURL URLWithString:bookImageViewStr] placeholderImage:UIIMAGE_FROM_NAME(@"默认")];
+        [self.bookImgView sd_setImageWithURL:[NSURL URLWithString:bookImageViewStr] placeholderImage:UIIMAGE_FROM_NAME(@"缺省图890-210")];
     }
 }
 

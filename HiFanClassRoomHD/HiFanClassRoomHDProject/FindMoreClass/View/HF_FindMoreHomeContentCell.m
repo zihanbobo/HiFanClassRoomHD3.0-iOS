@@ -33,30 +33,28 @@
 
 -(void)initUI {
     //课程名称
-    UILabel *classNameLabel = [[UILabel alloc]init];
-    classNameLabel.text = @"hi翻放映厅";
-    classNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(26)];
-    classNameLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
-    [self.contentView addSubview:classNameLabel];
+    self.sectionNameLabel = [[UILabel alloc]init];
+    self.sectionNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(26)];
+    self.sectionNameLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
+    [self.contentView addSubview:self.sectionNameLabel];
     
     
-    [classNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.sectionNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top).offset(25);
         make.left.equalTo(self.contentView.mas_left).offset(17);
         make.height.mas_equalTo(26);
     }];
     
-    //课程描述
-    UILabel *classinfoLabel = [[UILabel alloc]init];
-    classinfoLabel.font = Font(12);
-    classinfoLabel.text = @"外教精讲 带你玩转英语";
-    classinfoLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-    [self.contentView addSubview:classinfoLabel];
+    //课程描述 
+    self.sectionInfoLabel = [[UILabel alloc]init];
+    self.sectionInfoLabel.font = Font(12);
+    self.sectionInfoLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
+    [self.contentView addSubview:self.sectionInfoLabel];
     
     
-    [classinfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(classNameLabel.mas_bottom);
-        make.left.equalTo(classNameLabel.mas_right).offset(10);
+    [self.sectionInfoLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.sectionNameLabel.mas_bottom);
+        make.left.equalTo(self.sectionNameLabel.mas_right).offset(10);
         make.height.mas_equalTo(12);
     }];
     
@@ -72,7 +70,7 @@
     [self.contentView addSubview:self.collectionView];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(classNameLabel.mas_bottom).offset(0);
+        make.top.equalTo(self.sectionInfoLabel.mas_bottom).offset(0);
         make.left.equalTo(self.contentView.mas_left).offset(0);
         make.right.equalTo(self.contentView.mas_right).offset(-0);
         make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
@@ -137,7 +135,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     if (self.selectedBlock) {
-        self.selectedBlock(indexPath.row);
+        self.selectedBlock(self.section, indexPath.row);
     }
 }
 

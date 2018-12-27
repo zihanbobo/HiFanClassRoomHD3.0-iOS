@@ -14,7 +14,6 @@
 @end
 
 @implementation HF_FindMoreMoviePlayView
-
 - (id)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if(self){
@@ -22,7 +21,6 @@
     }
     return self;
 }
-
 
 -(void)initUI {
     [self addSubview:self.bgimgView];
@@ -46,20 +44,8 @@
     self.wmPlayer = [[WMPlayer alloc] init];
     self.wmPlayer.frame = CGRectMake(LineX(184), LineY(71), LineW(556), LineH(313));
     self.wmPlayer.backBtnStyle = BackBtnStyleNone;
-//    self.wmPlayer.layer.masksToBounds = YES;
-//    self.wmPlayer.layer.cornerRadius = 7;
     self.wmPlayer.delegate = self;
     [self addSubview:self.wmPlayer];
-//    [self.superview addSubview:self.wmPlayer];
-
-//    [[UIApplication sharedApplication] keyWindow]
-//    [self.wmPlayer mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.equalTo(self.mas_top).with.offset(71);
-//        make.left.equalTo(self.mas_left).with.offset(184);
-//        make.right.equalTo(self.mas_right).with.offset(-184);
-//        make.bottom.equalTo(self.mas_bottom).with.offset(-71);
-//    }];
-    
 }
 
 //点击全屏按钮代理方法
@@ -96,4 +82,5 @@
     }
     return _lineView;
 }
+
 @end

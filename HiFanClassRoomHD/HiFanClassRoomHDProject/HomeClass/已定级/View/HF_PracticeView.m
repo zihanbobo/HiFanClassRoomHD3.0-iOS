@@ -10,16 +10,15 @@
 
 @implementation HF_PracticeView
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initPracticeView];
     }
     return self;
 }
-- (void)initPracticeView
-{
+
+- (void)initPracticeView {
     self.descLabel = [UILabel new];
     self.descLabel.font = [UIFont fontWithName:@"PingFangHK-Regular" size:LineX(14)];
     self.descLabel.textColor = UICOLOR_FROM_HEX_ALPHA(0x000000, 70);

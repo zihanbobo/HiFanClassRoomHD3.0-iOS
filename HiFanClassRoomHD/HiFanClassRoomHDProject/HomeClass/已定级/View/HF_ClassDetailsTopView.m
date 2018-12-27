@@ -67,7 +67,7 @@
     
     //课程图片
     self.classImageView = [[UIImageView alloc] init];
-    self.classImageView.image = UIIMAGE_FROM_NAME(@"默认");
+    self.classImageView.image = UIIMAGE_FROM_NAME(@"缺省图165-165");
     self.classImageView.layer.masksToBounds = YES;
     self.classImageView.layer.cornerRadius = 7;
     [self addSubview:self.classImageView];
@@ -165,7 +165,7 @@
 
 -(void)setHeaderModel:(HF_HomeClassDetailModel *)headerModel {
     if (!IsStrEmpty(headerModel.ChapterImagePath)) {
-        [self.classImageView sd_setImageWithURL:[NSURL URLWithString:headerModel.ChapterImagePath] placeholderImage:UIIMAGE_FROM_NAME(@"默认")];
+        [self.classImageView sd_setImageWithURL:[NSURL URLWithString:headerModel.ChapterImagePath] placeholderImage:UIIMAGE_FROM_NAME(@"缺省图165-165")];
     }
     
     if (!IsStrEmpty(headerModel.ChapterName)) {

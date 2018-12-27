@@ -19,8 +19,7 @@
 
 @implementation HF_FindMoreHomeCollectionViewCell
 
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         self.contentView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
@@ -33,7 +32,7 @@
     
     //教材 封面
     self.bookImgView = [[UIImageView alloc]init];
-    self.bookImgView.image = UIIMAGE_FROM_NAME(@"默认");
+    self.bookImgView.image = UIIMAGE_FROM_NAME(@"缺省图211-165");
     self.bookImgView.userInteractionEnabled = YES;
     [self.contentView addSubview:self.bookImgView];
     
@@ -80,11 +79,7 @@
 
 - (void)setModel:(HF_FindMoreInstructionalTypeListModel *)model {
     if (!IsStrEmpty(model.CoverImage)) {
-        [self.bookImgView sd_setImageWithURL:[NSURL URLWithString:model.CoverImage] placeholderImage:UIIMAGE_FROM_NAME(@"默认") completed:^(UIImage * _Nullable image, NSError * _Nullable error, SDImageCacheType cacheType, NSURL * _Nullable imageURL) {
-            
-            image = [image imageScaledToSize:CGSizeMake(LineW(230), LineW(180))];
-            self.bookImgView.image = image;
-        }];
+        [self.bookImgView sd_setImageWithURL:[NSURL URLWithString:model.CoverImage] placeholderImage:UIIMAGE_FROM_NAME(@"缺省图211-165")];
     }
   
     

@@ -208,7 +208,6 @@
     cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xe5ebf0);
     cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
     HF_HomeGetUnitInfoListModel *model = [self.UnitArray safe_objectAtIndex:indexPath.row];
-    NSLog(@"选中");
 
     if (self.selectedUnitIdBlock) {
         self.selectedUnitIdBlock(model);
@@ -220,7 +219,6 @@
     HF_HomeUnitChooseCell *cell = (HF_HomeUnitChooseCell *)[collectionView cellForItemAtIndexPath:indexPath];
     cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
     cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-    NSLog(@"取消选中");
 }
 
 @end

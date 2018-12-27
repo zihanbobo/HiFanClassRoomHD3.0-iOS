@@ -36,71 +36,103 @@
     self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.headerAdArray = [NSMutableArray array];
         self.dataArray = [NSMutableArray array];
-        [self getAdvertPositionListData];
         [self getInstructionalTypeListData];
     }];
     [self.tableView.mj_header beginRefreshing];
 }
 
-//MARK:广告位轮播图数据请求
--(void)getAdvertPositionListData {
-
+//MARK:获取教学资源类型
+-(void)getInstructionalTypeListData {
+    //使用场景：当一个界面有多个数据请求，或者一个页面分模块请求，当所有的数据都请求回来之后，在更新UI，可使用此方法
+    //请求1
+    
+    RACSignal *signal0 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
     [[BaseService share] sendGetRequestWithPath:URL_GetAdvertPositionList token:YES viewController:self success:^(id responseObject) {
+        NSMutableArray *array = [NSMutableArray array];
         if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
             for (NSDictionary *dic in responseObject[@"data"]) {
                 HF_FindMoreAdvertModel *model = [HF_FindMoreAdvertModel yy_modelWithDictionary:dic];
-                [self.headerAdArray addObject:model];
+                [array addObject:model];
             }
         }
-//        [self getInstructionalTypeListData];
-        [self.tableView reloadData];
-        
+        [subscriber sendNext:array];
+
     } failure:^(NSError *error) {
-        [self.tableView.mj_footer endRefreshing];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-        [self.tableView reloadData];
+        NSMutableArray *array = [NSMutableArray array];
+        [subscriber sendNext:array];
     }];
+        
+        return nil;
+    }];
+    
+    
+    RACSignal *signal1 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        NSString *urlStr = [NSString stringWithFormat:@"%@?type=1",URL_GetInstructionalTypeList];
+        [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
+            NSMutableArray *array = [NSMutableArray array];
+            if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    HF_FindMoreInstructionalTypeListModel *model = [HF_FindMoreInstructionalTypeListModel yy_modelWithDictionary:dic];
+                    [array addObject:model];
+                }
+            }
+            
+            [subscriber sendNext:array];
+            
+        } failure:^(NSError *error) {
+            NSMutableArray *array = [NSMutableArray array];
+            [subscriber sendNext:array];
+        }];
+        
+        
+        return nil;
+    }];
+    
+    //请求2
+    RACSignal *signal2 = [RACSignal createSignal:^RACDisposable * _Nullable(id<RACSubscriber>  _Nonnull subscriber) {
+        //发送请求
+        NSString *urlStr = [NSString stringWithFormat:@"%@?type=2",URL_GetInstructionalTypeList];
+        [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
+            NSMutableArray *array = [NSMutableArray array];
+            if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
+                for (NSDictionary *dic in responseObject[@"data"]) {
+                    HF_FindMoreInstructionalTypeListModel *model = [HF_FindMoreInstructionalTypeListModel yy_modelWithDictionary:dic];
+                    [array addObject:model];
+                }
+            }
+            
+            [subscriber sendNext:array];
+            
+        } failure:^(NSError *error) {
+            NSMutableArray *array = [NSMutableArray array];
+            [subscriber sendNext:array];
+        }];
+        
+        return nil;
+    }];
+    
+    //数组
+    //当数组中的所有信号都发送了数据，才会执行Selector
+    //方法的参数：必须和数组的信号一一对应
+    //方法的参数：就是每一个信号发送的数据
+    [self rac_liftSelector:@selector(updateUIWithHeaderArray:SectionOneArray:SectionTwoArray:) withSignalsFromArray:@[signal0,signal1,signal2]];
 }
 
-//MARK:获取教学资源类型
--(void)getInstructionalTypeListData {
-    [[BaseService share] sendGetRequestWithPath:URL_GetInstructionalTypeList token:YES viewController:self success:^(id responseObject) {
-        if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
-            for (NSDictionary *dic in responseObject[@"data"]) {
-                HF_FindMoreInstructionalTypeListModel *model = [HF_FindMoreInstructionalTypeListModel yy_modelWithDictionary:dic];
-                [self.dataArray addObject:model];
-            }
-        }
-        [self.tableView.mj_footer endRefreshing];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-        [self.tableView reloadData];
-
-    } failure:^(NSError *error) {
-        [self.tableView.mj_footer endRefreshing];
-        [self.tableView.mj_header endRefreshing];
-        [self.tableView.mj_footer endRefreshingWithNoMoreData];
-        [self.tableView reloadData];
-    }];
+-(void)updateUIWithHeaderArray:(NSMutableArray *)headerArray  SectionOneArray:(NSMutableArray *)sectionOneArray SectionTwoArray:(NSMutableArray *)sectionTwoArray {
+    self.dataArray = [NSMutableArray array];
+    self.headerAdArray = [NSMutableArray array];
+    
+    self.headerAdArray = headerArray;
+    self.dataArray = [NSMutableArray arrayWithObjects:sectionOneArray,sectionTwoArray, nil];
+    
+    [self.tableView.mj_footer endRefreshing];
+    [self.tableView.mj_header endRefreshing];
+    [self.tableView.mj_footer endRefreshingWithNoMoreData];
+    [self.tableView reloadData];
 }
 
 
 //MARK:UITableView 代理
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 1;
-}
-
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 1;
-}
-
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return LineH(309);
-}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"HF_FindMoreHomeContentCell";
     HF_FindMoreHomeContentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -110,10 +142,19 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     cell.collectionArray = [NSMutableArray array];
-    cell.collectionArray = self.dataArray;
+    cell.collectionArray = [self.dataArray safe_objectAtIndex:indexPath.row];
+    cell.section = indexPath.row;
     
-    cell.selectedBlock = ^(NSInteger index) {
-        HF_FindMoreInstructionalTypeListModel *model = [self.dataArray safe_objectAtIndex:index];
+    if (indexPath.row == 0) {
+        cell.sectionNameLabel.text = @"hi翻放映厅";
+        cell.sectionInfoLabel.text = @"外教精讲 带你玩转英语";
+    } else {
+        cell.sectionNameLabel.text = @"综合拓展课";
+        cell.sectionInfoLabel.text = @"外教精讲 带你玩转英语";
+    }
+    
+    cell.selectedBlock = ^(NSInteger section, NSInteger indexRow) {
+        HF_FindMoreInstructionalTypeListModel *model = [[self.dataArray safe_objectAtIndex:section] safe_objectAtIndex:indexRow];
         HF_FindMoreInstructionalListViewController *vc = [[HF_FindMoreInstructionalListViewController alloc] init];
         vc.listModel = model;
         vc.isLikeVc = NO;
@@ -162,6 +203,19 @@
     return headerView;
 }
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.dataArray.count;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return LineH(309);
+}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return LineH(391);
@@ -187,11 +241,6 @@
         self.tableView.dataSource = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-//        if (@available(iOS 11.0, *)) {
-//            self.tableView.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;
-//        }else {
-//            self.automaticallyAdjustsScrollViewInsets = NO;
-//        }
     }
     return _tableView;
 }

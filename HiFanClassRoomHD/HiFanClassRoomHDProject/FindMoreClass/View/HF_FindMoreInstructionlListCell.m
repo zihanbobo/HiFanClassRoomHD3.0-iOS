@@ -60,7 +60,7 @@
 
 -(void)setModel:(HF_FindMoreInstructionalListModel *)model {
     if (!IsStrEmpty(model.CoverImage)) {
-        [self.bookImgView sd_setImageWithURL:[NSURL URLWithString:model.CoverImage] placeholderImage:UIIMAGE_FROM_NAME(@"默认")];
+        [self.bookImgView sd_setImageWithURL:[NSURL URLWithString:model.CoverImage] placeholderImage:UIIMAGE_FROM_NAME(@"缺省图211-165")];
     }
     
     if (!IsStrEmpty(model.Title)) {
