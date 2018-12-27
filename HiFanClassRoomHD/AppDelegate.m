@@ -14,7 +14,6 @@
 #import <AVFoundation/AVFoundation.h>
 #import "HF_BaseTabbarViewController.h"
 #import <UMSocialCore/UMSocialCore.h>
-#import "HF_LaunchViewController.h"
 #import "UMMobClick/MobClick.h"
 #import "HF_NewFeatherViewController.h"
 #import "HF_LaunchMovieViewController.h"
@@ -37,93 +36,42 @@ static BOOL isProduction = false;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-    [self xc_configKeyWindow];
-    
-//    [self xc_changeKeyWindowWithOptions:launchOptions];
-//
-//    [Bugly startWithAppId:kBuglyAppId];
-
-    return YES;
-}
-
-- (void)xc_configKeyWindow {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-//    HF_LaunchViewController *vc = [HF_LaunchViewController new];
     HF_LaunchMovieViewController *vc = [HF_LaunchMovieViewController new];
+    HF_Singleton *single = [HF_Singleton sharedSingleton];
+    single.base_url = BASE_REQUEST_URL;
     
+    @weakify(self);
+    vc.finishedBlock = ^{
+        @strongify(self);
+        [self initKeyWindow];
+        
+        [self initIQKeyboardManager];
+        
+        //友盟统计
+        [self initUMConfig];
+        
+        //友盟分享
+        //    [self initUmSocialCore];
+        
+        //极光推送
+        [self initJpush:launchOptions];
+        
+        [self initVideo];
+        
+        //对照相机和麦克风进行授权
+        [self initCameraAndMic];
+        
+        [Bugly startWithAppId:kBuglyAppId];
+    };
     
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
-}
+    
 
-// 获取BaseURL
-- (void)xc_changeKeyWindowWithOptions:(NSDictionary *)launchOptions {
-    
-    HF_Singleton *single = [HF_Singleton sharedSingleton];
-    single.base_url = BASE_REQUEST_URL;
-    single.isAuditStatus = NO;
-    
-    NSString *url = [NSString stringWithFormat:@"%@?Version=v%@", URL_GetUrl, APP_VERSION()];
-    [[BaseService share] sendGetRequestWithPath:url token:NO viewController:nil showMBProgress:NO success:^(id responseObject) {
-        
-        // 逻辑后台处理
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            single.base_url = responseObject[@"data"];
-            //如果地址一样则为正式地址，为非审核状态，为NO。否则为测试地址，为YES
-            if ([single.base_url isEqualToString:BASE_REQUEST_URL]) {
-                
-                single.isAuditStatus = NO;
-                
-                //用户未登录，需要设置为NO
-                if (![[UserDefaults() objectForKey:@"login"] isEqualToString:@"yes"]) {
-                    single.isShowVersionUpdateAlert = NO;
-                } else {
-                    single.isShowVersionUpdateAlert = YES;
-                }
- 
-            } else {
-                
-                single.isAuditStatus = YES;
-            }
-            
-            [self configWithOptions:launchOptions];
 
-        });
-        
-    } failure:^(NSError *error) {
-        
-        single.base_url = BASE_REQUEST_URL;
-        
-        // 暂时开启测试地址
-//        NSString *url = [NSString stringWithFormat:@"%@:9332", BASE_REQUEST_URL];
-//        single.base_url = url;
-        single.isAuditStatus = NO;
-
-        [self configWithOptions:launchOptions];
-    }];
-}
-
-- (void)configWithOptions:(NSDictionary *)launchOptions {
-    [self initKeyWindow];
-    
-    [self initIQKeyboardManager];
-    
-    //友盟统计
-    [self initUMConfig];
-    
-    //友盟分享
-//    [self initUmSocialCore];
-    
-    //极光推送
-    [self initJpush:launchOptions];
-    
-    [self initVideo];
-    
-    //对照相机和麦克风进行授权
-    [self initCameraAndMic];
-    
+    return YES;
 }
 
 
@@ -168,7 +116,6 @@ static BOOL isProduction = false;
     HF_BaseTabbarViewController *homeVc = [[HF_BaseTabbarViewController alloc]init];
     HF_NewFeatherViewController *newVc = [[HF_NewFeatherViewController alloc]init];
 
-    
     //对usertoken赋值,如果为空，就跳转到登录页
     if (IsStrEmpty([UserDefaults() objectForKey:K_userToken])) {
         [UserDefaults() setObject:@"no" forKey:@"login"];

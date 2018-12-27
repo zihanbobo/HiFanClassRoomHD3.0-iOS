@@ -97,6 +97,7 @@
 		5B743D271EC5A435004E744A /* GGT_MineLeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B743D261EC5A435004E744A /* GGT_MineLeftViewController.m */; };
 		5B7DA7A221D4AF74004626D1 /* HF_LaunchMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B7DA7A121D4AF74004626D1 /* HF_LaunchMovieViewController.m */; };
 		5B7DA7A621D4BC35004626D1 /* iPad启动视频.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5B7DA7A521D4BC35004626D1 /* iPad启动视频.mp4 */; };
+		5B7DA7AA21D4C3AA004626D1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B7DA7A921D4C3AA004626D1 /* LaunchScreen.storyboard */; };
 		5B8337D11ED3DFEB005EE004 /* GGT_ChoicePickView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B8337D01ED3DFEB005EE004 /* GGT_ChoicePickView.m */; };
 		5B86F7E8215CFDAE0086E678 /* BaseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5B86F7E7215CFDAE0086E678 /* BaseTableViewCell.m */; };
 		5B8B08F2217F18ED005F1620 /* libicucore.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D68775651F0A086A008687C2 /* libicucore.tbd */; };
@@ -408,7 +409,6 @@
 		D6D643AD1FCC13AE00561035 /* GGT_ExperienceUserOrderCourseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D643AA1FCC13AE00561035 /* GGT_ExperienceUserOrderCourseVC.m */; };
 		D6D643B01FCC13F400561035 /* GGT_OrderCourseCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D643AF1FCC13F400561035 /* GGT_OrderCourseCollectionViewCell.m */; };
 		D6D643B31FCC1CF600561035 /* GGT_OrderCourseTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D643B21FCC1CF600561035 /* GGT_OrderCourseTableViewCell.m */; };
-		D6D7CBED1F2199C80087DDA0 /* HF_LaunchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6D7CBEC1F2199C80087DDA0 /* HF_LaunchViewController.m */; };
 		D6E0A47C1EC2C200006A003D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A47B1EC2C200006A003D /* main.m */; };
 		D6E0A47F1EC2C200006A003D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A47E1EC2C200006A003D /* AppDelegate.m */; };
 		D6E0A4871EC2C200006A003D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D6E0A4861EC2C200006A003D /* Assets.xcassets */; };
@@ -435,7 +435,6 @@
 		D6E0A58C1EC2DBB3006A003D /* HF_LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A57F1EC2DBB3006A003D /* HF_LoginViewController.m */; };
 		D6E0A58E1EC2DBB3006A003D /* HF_RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A5831EC2DBB3006A003D /* HF_RegisterViewController.m */; };
 		D6E0A58F1EC2DBB3006A003D /* HF_ForgotPasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A5861EC2DBB3006A003D /* HF_ForgotPasswordView.m */; };
-		D6E0A5901EC2DBB3006A003D /* HF_LoginView.m.old in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A5881EC2DBB3006A003D /* HF_LoginView.m.old */; };
 		D6E0A5911EC2DBB3006A003D /* HF_RegisterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A58A1EC2DBB3006A003D /* HF_RegisterView.m */; };
 		D6E0A59D1EC2FAC6006A003D /* BaseService.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E0A59B1EC2FAC6006A003D /* BaseService.m */; };
 		D6E868F91F0B6F2900B48A5E /* XCLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D6E868F81F0B6F2900B48A5E /* XCLogManager.m */; };
@@ -654,6 +653,7 @@
 		5B7DA7A021D4AF74004626D1 /* HF_LaunchMovieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_LaunchMovieViewController.h; sourceTree = "<group>"; };
 		5B7DA7A121D4AF74004626D1 /* HF_LaunchMovieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_LaunchMovieViewController.m; sourceTree = "<group>"; };
 		5B7DA7A521D4BC35004626D1 /* iPad启动视频.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "iPad启动视频.mp4"; sourceTree = "<group>"; };
+		5B7DA7A921D4C3AA004626D1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B8337CF1ED3DFEB005EE004 /* GGT_ChoicePickView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGT_ChoicePickView.h; sourceTree = "<group>"; };
 		5B8337D01ED3DFEB005EE004 /* GGT_ChoicePickView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGT_ChoicePickView.m; sourceTree = "<group>"; };
 		5B86F7E6215CFDAE0086E678 /* BaseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BaseTableViewCell.h; sourceTree = "<group>"; };
@@ -1214,8 +1214,6 @@
 		D6D643AF1FCC13F400561035 /* GGT_OrderCourseCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_OrderCourseCollectionViewCell.m; sourceTree = "<group>"; };
 		D6D643B11FCC1CF600561035 /* GGT_OrderCourseTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GGT_OrderCourseTableViewCell.h; sourceTree = "<group>"; };
 		D6D643B21FCC1CF600561035 /* GGT_OrderCourseTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GGT_OrderCourseTableViewCell.m; sourceTree = "<group>"; };
-		D6D7CBEB1F2199C80087DDA0 /* HF_LaunchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_LaunchViewController.h; sourceTree = "<group>"; };
-		D6D7CBEC1F2199C80087DDA0 /* HF_LaunchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_LaunchViewController.m; sourceTree = "<group>"; };
 		D6E0A4771EC2C200006A003D /* HiFanClassRoomHD.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HiFanClassRoomHD.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6E0A47B1EC2C200006A003D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D6E0A47D1EC2C200006A003D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -1272,8 +1270,6 @@
 		D6E0A5831EC2DBB3006A003D /* HF_RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_RegisterViewController.m; sourceTree = "<group>"; };
 		D6E0A5851EC2DBB3006A003D /* HF_ForgotPasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_ForgotPasswordView.h; sourceTree = "<group>"; };
 		D6E0A5861EC2DBB3006A003D /* HF_ForgotPasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_ForgotPasswordView.m; sourceTree = "<group>"; };
-		D6E0A5871EC2DBB3006A003D /* HF_LoginView.h.old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HF_LoginView.h.old; sourceTree = "<group>"; };
-		D6E0A5881EC2DBB3006A003D /* HF_LoginView.m.old */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HF_LoginView.m.old; sourceTree = "<group>"; };
 		D6E0A5891EC2DBB3006A003D /* HF_RegisterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HF_RegisterView.h; sourceTree = "<group>"; };
 		D6E0A58A1EC2DBB3006A003D /* HF_RegisterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HF_RegisterView.m; sourceTree = "<group>"; };
 		D6E0A59A1EC2FAC6006A003D /* BaseService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseService.h; sourceTree = "<group>"; };
@@ -2989,15 +2985,6 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		D6D7CBEA1F2199C80087DDA0 /* LanchVC */ = {
-			isa = PBXGroup;
-			children = (
-				D6D7CBEB1F2199C80087DDA0 /* HF_LaunchViewController.h */,
-				D6D7CBEC1F2199C80087DDA0 /* HF_LaunchViewController.m */,
-			);
-			path = LanchVC;
-			sourceTree = "<group>";
-		};
 		D6E0A46E1EC2C200006A003D = {
 			isa = PBXGroup;
 			children = (
@@ -3087,7 +3074,6 @@
 				D6E0A51B1EC2CFD8006A003D /* Extension */,
 				D6E0A51C1EC2CFD8006A003D /* FeatureClass */,
 				D6E0A57A1EC2DBB3006A003D /* LogAndRegister */,
-				D6D7CBEA1F2199C80087DDA0 /* LanchVC */,
 			);
 			path = HiFanClassRoomHDProject;
 			sourceTree = "<group>";
@@ -3208,6 +3194,7 @@
 				5BE76A1F21D22CE600AFE951 /* HF_NewFeatherViewController.m */,
 				5B7DA7A021D4AF74004626D1 /* HF_LaunchMovieViewController.h */,
 				5B7DA7A121D4AF74004626D1 /* HF_LaunchMovieViewController.m */,
+				5B7DA7A921D4C3AA004626D1 /* LaunchScreen.storyboard */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3219,8 +3206,6 @@
 				D6E0A5861EC2DBB3006A003D /* HF_ForgotPasswordView.m */,
 				35ED97E121BF996500A44277 /* HF_LoginView.h */,
 				35ED97E221BF996500A44277 /* HF_LoginView.m */,
-				D6E0A5871EC2DBB3006A003D /* HF_LoginView.h.old */,
-				D6E0A5881EC2DBB3006A003D /* HF_LoginView.m.old */,
 				D6E0A5891EC2DBB3006A003D /* HF_RegisterView.h */,
 				D6E0A58A1EC2DBB3006A003D /* HF_RegisterView.m */,
 			);
@@ -3475,6 +3460,7 @@
 				5BF3A6AA1EEAC3B100491CC2 /* shebeijianche_16.png in Resources */,
 				5BAF22CD21C7B3A400AB1929 /* shuaxin_25.png in Resources */,
 				5BAF22CE21C7B3A400AB1929 /* shuaxin_24.png in Resources */,
+				5B7DA7AA21D4C3AA004626D1 /* LaunchScreen.storyboard in Resources */,
 				5BF3A6BE1EEAC3B100491CC2 /* shebeijianche_34.png in Resources */,
 				5BAF22C821C7B3A400AB1929 /* shuaxin_27.png in Resources */,
 				5BAF22D121C7B3A400AB1929 /* shuaxin_0.png in Resources */,
@@ -3649,7 +3635,6 @@
 				5B8337D11ED3DFEB005EE004 /* GGT_ChoicePickView.m in Sources */,
 				D63DA94A1ED5554400EFA686 /* NSString+unicode.m in Sources */,
 				5BE2EDE5216B37DC00845E70 /* TKVideoSecondView.m in Sources */,
-				D6E0A5901EC2DBB3006A003D /* HF_LoginView.m.old in Sources */,
 				35ECCFCD21B8D5DF00C056B9 /* HF_OrderTimeListView.m in Sources */,
 				D66684BD1FCEBE2A008E0B00 /* GGT_ExperienceCourseModel.m in Sources */,
 				5BE2ED94216B37DC00845E70 /* TKEduNetManager.m in Sources */,
@@ -3697,7 +3682,6 @@
 				5BE2EDC0216B37DC00845E70 /* TKRCGlobalConfig.m in Sources */,
 				5BE2EE07216B37DC00845E70 /* RoomController.m in Sources */,
 				5B31CF6921C3535300C97181 /* HF_TechnicalDebugViewController.m in Sources */,
-				D6D7CBED1F2199C80087DDA0 /* HF_LaunchViewController.m in Sources */,
 				5BE2EE0C216B37DC00845E70 /* TKUtil.mm in Sources */,
 				5B19424E21C1254600FD56CF /* HF_MineClassCountListModel.m in Sources */,
 				5B4425D921C8A0A30036298C /* HF_HomeContentCell.m in Sources */,
@@ -4088,7 +4072,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
@@ -4140,7 +4123,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = NO;
 				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;

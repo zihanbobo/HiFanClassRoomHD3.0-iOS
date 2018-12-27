@@ -137,6 +137,7 @@
     
     if (!IsArrEmpty(self.unitArray)) {
         [self.sectionArray addObject:self.unitArray];
+        self.dataArray = [NSMutableArray array];
         [self.sectionArray addObject:self.dataArray];
     }
     

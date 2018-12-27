@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 
+typedef void(^FinishedBlock)(void);
 @interface HF_LaunchMovieViewController : BaseViewController
-
+@property (nonatomic,copy) FinishedBlock finishedBlock;
 @end
