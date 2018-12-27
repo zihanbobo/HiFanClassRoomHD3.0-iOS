@@ -40,7 +40,7 @@
     
     
     [self.sectionNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.contentView.mas_top).offset(25);
+        make.top.equalTo(self.contentView.mas_top).offset(20);
         make.left.equalTo(self.contentView.mas_left).offset(17);
         make.height.mas_equalTo(26);
     }];
@@ -79,6 +79,19 @@
     
     //注册cell
     [self.collectionView registerClass:[HF_FindMoreHomeCollectionViewCell class] forCellWithReuseIdentifier:@"HF_FindMoreHomeCollectionViewCell"];
+    
+    //MARK:导航分割线
+    self.lineView = [[UIView alloc] init];
+    self.lineView.backgroundColor = UICOLOR_FROM_HEX(0xEAEFF3);
+    [self addSubview:self.lineView];
+    
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.equalTo(self.mas_bottom).offset(-0);
+        make.left.equalTo(self.mas_left).with.offset(17);
+        make.right.equalTo(self.mas_right).with.offset(-0);
+        make.height.mas_equalTo(1);
+    }];
+    
 }
 
 

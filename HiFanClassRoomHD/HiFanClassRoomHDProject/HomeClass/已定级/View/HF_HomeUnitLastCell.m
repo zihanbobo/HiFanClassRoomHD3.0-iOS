@@ -38,7 +38,7 @@
 -(void)initUI {
     self.firstView = [[HF_HomeUnitLastView alloc] init];
     self.firstView.iconImgView.image = UIIMAGE_FROM_NAME(@"书法");
-    self.firstView.titleLabel.text = @"课堂讲义下载";
+    self.firstView.titleLabel.text = @"课堂讲义";
     self.firstView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     [self addSubview:self.firstView];
     
@@ -46,7 +46,7 @@
         make.top.equalTo(self.mas_top).offset(0);
         make.left.equalTo(self.mas_left).offset(0);
         make.right.equalTo(self.mas_right).offset(-0);
-        make.height.mas_equalTo(103);
+        make.height.mas_equalTo(96);
     }];
     
     
@@ -68,35 +68,35 @@
     
     
     
-    self.secondView = [[HF_HomeUnitLastView alloc] init];
-    self.secondView.iconImgView.image = UIIMAGE_FROM_NAME(@"练习册");
-    self.secondView.titleLabel.text = @"练习册下载";
-    self.secondView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-    [self addSubview:self.secondView];
-    
-    
-    [self.secondView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.mas_bottom).offset(-3);
-        make.left.equalTo(self.mas_left).offset(0);
-        make.right.equalTo(self.mas_right).offset(-0);
-        make.height.mas_equalTo(103);
-    }];
-    
-    
-    self.secondControl = [[UIControl alloc] init];
-    [self.secondView addSubview:self.secondControl];
-    
-    [self.secondControl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.bottom.left.right.equalTo(self.secondView);
-    }];
-    
-    [[self.secondControl rac_signalForControlEvents:UIControlEventTouchUpInside]
-     subscribeNext:^(id x) {
-         @strongify(self);
-         if (self.secondBtnBlock) {
-             self.secondBtnBlock();
-         }
-     }];
+//    self.secondView = [[HF_HomeUnitLastView alloc] init];
+//    self.secondView.iconImgView.image = UIIMAGE_FROM_NAME(@"练习册");
+//    self.secondView.titleLabel.text = @"练习册下载";
+//    self.secondView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+//    [self addSubview:self.secondView];
+//
+//
+//    [self.secondView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.bottom.equalTo(self.mas_bottom).offset(-3);
+//        make.left.equalTo(self.mas_left).offset(0);
+//        make.right.equalTo(self.mas_right).offset(-0);
+//        make.height.mas_equalTo(96);
+//    }];
+//
+//
+//    self.secondControl = [[UIControl alloc] init];
+//    [self.secondView addSubview:self.secondControl];
+//
+//    [self.secondControl mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.bottom.left.right.equalTo(self.secondView);
+//    }];
+//
+//    [[self.secondControl rac_signalForControlEvents:UIControlEventTouchUpInside]
+//     subscribeNext:^(id x) {
+//         @strongify(self);
+//         if (self.secondBtnBlock) {
+//             self.secondBtnBlock();
+//         }
+//     }];
 }
 @end
 

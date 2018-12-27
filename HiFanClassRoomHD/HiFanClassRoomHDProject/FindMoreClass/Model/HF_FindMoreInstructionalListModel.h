@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSString *RelationUrl;
 @property (nonatomic, copy) NSString *Title;
 @property (nonatomic, assign) NSInteger ResourcesInfoID;  //我喜欢的
+@property (nonatomic, copy) NSString *ShareUrl;
 
 
 //BillType = 2;

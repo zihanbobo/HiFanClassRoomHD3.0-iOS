@@ -58,7 +58,7 @@
         make.bottom.equalTo(self.loginOutButton.mas_top).offset(-25);
     }];
     
-    UIImageView *QRCodeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"timg"]];
+    UIImageView *QRCodeImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"微信二维码"]];
     [self.contentView addSubview:QRCodeImageView];
     [QRCodeImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.contentView.mas_centerX);

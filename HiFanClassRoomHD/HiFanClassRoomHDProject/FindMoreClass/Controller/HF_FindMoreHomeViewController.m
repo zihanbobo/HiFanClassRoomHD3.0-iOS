@@ -153,6 +153,14 @@
         cell.sectionInfoLabel.text = @"外教精讲 带你玩转英语";
     }
     
+    
+    if (indexPath.row == self.dataArray.count-1) {
+        cell.lineView.hidden = YES;
+    } else {
+        cell.lineView.hidden = NO;
+    }
+    
+    
     cell.selectedBlock = ^(NSInteger section, NSInteger indexRow) {
         HF_FindMoreInstructionalTypeListModel *model = [[self.dataArray safe_objectAtIndex:section] safe_objectAtIndex:indexRow];
         HF_FindMoreInstructionalListViewController *vc = [[HF_FindMoreInstructionalListViewController alloc] init];
@@ -214,11 +222,11 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return LineH(309);
+    return LineH(311); //20+26+18+180+17+16+5+12+17
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return LineH(391);
+    return LineH(376); //106+40+210+20
 }
 
 
@@ -241,6 +249,7 @@
         self.tableView.dataSource = self;
         self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         self.tableView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
+        self.tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;
 }

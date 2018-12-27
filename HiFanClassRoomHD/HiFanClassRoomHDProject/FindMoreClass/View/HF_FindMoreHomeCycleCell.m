@@ -43,7 +43,7 @@
      }];
     
     self.adScroll = [[AdCycleScrollView alloc] init];
-    self.adScroll.frame = CGRectMake(LineX(17), LineY(177), home_right_width-LineW(34), LineH(210));
+    self.adScroll.frame = CGRectMake(LineX(17), LineY(147), home_right_width-LineW(34), LineH(210));
     self.adScroll.delegate = self;
     self.adScroll.pageControlAliment = AdCycleScrollViewPageControlAlimentCenter;
     [self addSubview:self.adScroll];

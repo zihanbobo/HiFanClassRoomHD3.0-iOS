@@ -11,14 +11,18 @@
 #import "HF_FindMoreMoviePlayView.h"
 #import "HF_BaseTabbarViewController.h"
 #import "AppDelegate.h"
+#import <UMSocialCore/UMSocialCore.h>
+#import "HF_FindMoreShareViewController.h"
 
-@interface HF_FindMoreMoviePlayViewController () <UICollectionViewDelegate,UICollectionViewDataSource,playerDelegate>
+@interface HF_FindMoreMoviePlayViewController () <UICollectionViewDelegate,UICollectionViewDataSource,playerDelegate,UIPopoverPresentationControllerDelegate>
 @property(nonatomic,strong) UIBarButtonItem *likeBtn;//喜欢
 @property(nonatomic,strong) UIBarButtonItem *shareBtn;//分享
 
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic,strong) HF_FindMoreMoviePlayView *headerView;
+@property(nonatomic, strong) UIPopoverPresentationController *popover;
+
 @end
 
 @implementation HF_FindMoreMoviePlayViewController
@@ -44,6 +48,20 @@
 -(void)navButtonClick : (UIButton *)button {
 
     if (button.tag == 10) { //分享
+//        [self.shareBtn setImage:UIIMAGE_FROM_NAME(@"分享选中") forState:UIControlStateNormal];
+
+        HF_FindMoreShareViewController *shareVc = [HF_FindMoreShareViewController new];//初始化内容视图控制器
+        shareVc.preferredContentSize = CGSizeMake(LineW(166), LineH(54));
+        shareVc.modalPresentationStyle = UIModalPresentationPopover;
+        self.popover = shareVc.popoverPresentationController;//初始化一个popover
+        self.popover.delegate = self;
+        //设置popover的来源按钮（以button谁为参照）
+        self.popover.sourceView = (UIButton *)self.shareBtn;
+        //设置弹出视图的位置（以button谁为参照）
+         self.popover.barButtonItem = self.shareBtn;//设置popover的来源按钮
+        self.popover.backgroundColor = [UIColor whiteColor];
+        shareVc.shareUrl = self.shareUrlStr;
+        [self presentViewController:shareVc animated:YES completion:nil];//推出popover
         
     } else if (button.tag == 20){ //喜欢
         

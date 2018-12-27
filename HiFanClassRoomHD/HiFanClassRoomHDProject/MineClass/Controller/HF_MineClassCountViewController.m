@@ -191,7 +191,7 @@
     [self.view addSubview:self.leftButton];
     [self.leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(0);
-        make.top.equalTo(self.view.mas_top).offset(10);
+        make.top.equalTo(self.view.mas_top).offset(20);
         make.size.mas_equalTo(CGSizeMake(50, 50));
     }];
     
@@ -207,7 +207,7 @@
     [self.view addSubview:self.myCountLabel];
     [self.myCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view.mas_left).offset(17);
-        make.top.equalTo(self.view.mas_top).offset(55);
+        make.top.equalTo(self.view.mas_top).offset(75);
         make.height.mas_offset(38);
     }];
     
@@ -215,7 +215,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.equalTo(self.view);
-        make.top.equalTo(self.view.mas_top).offset(113);
+        make.top.equalTo(self.myCountLabel.mas_bottom).offset(10);
         make.bottom.equalTo(self.view.mas_bottom).offset(-0);
     }];
     

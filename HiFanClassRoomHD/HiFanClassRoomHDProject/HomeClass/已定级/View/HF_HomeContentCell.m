@@ -57,7 +57,7 @@
     [self.lastView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top).offset(25);
         make.right.equalTo(self.contentView.mas_right).offset(-17);
-        make.size.mas_equalTo(CGSizeMake(186, 223));
+        make.size.mas_equalTo(CGSizeMake(186, 209));
     }];
     
     

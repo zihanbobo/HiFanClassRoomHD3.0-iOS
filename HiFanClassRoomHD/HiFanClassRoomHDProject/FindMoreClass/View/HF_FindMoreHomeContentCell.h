@@ -19,5 +19,6 @@ typedef void(^SelectedBlock)(NSInteger section, NSInteger indexRow);
 @property (nonatomic,strong) UILabel *sectionInfoLabel;
 
 @property (nonatomic,assign) NSInteger section;
+@property (nonatomic,strong) UIView *lineView;
 
 @end

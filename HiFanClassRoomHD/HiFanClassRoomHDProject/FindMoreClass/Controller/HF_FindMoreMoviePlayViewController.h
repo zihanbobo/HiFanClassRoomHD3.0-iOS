@@ -13,6 +13,7 @@
 @property (nonatomic,strong) HF_FindMoreInstructionalListModel *model;
 @property (nonatomic,assign) NSInteger ResourcesID;
 @property (nonatomic,copy) NSString *playerUrlStr;
+@property (nonatomic,copy) NSString *shareUrlStr;
 @property (nonatomic,assign) BOOL isLikeVc;
 
 @end

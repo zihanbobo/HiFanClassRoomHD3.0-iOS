@@ -9,15 +9,12 @@
 #import "HF_FindMoreInstructionlListHeaderView.h"
 
 @interface HF_FindMoreInstructionlListHeaderView()
-//封面
-//@property (nonatomic, strong) UIImageView *bookImgView;
+
 @end
 
 
 @implementation HF_FindMoreInstructionlListHeaderView
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
+- (instancetype)initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         [self initView];
@@ -30,6 +27,7 @@
     
     //教材 封面
     self.bookImgView = [[UIImageView alloc]init];
+    self.bookImgView.image = UIIMAGE_FROM_NAME(@"缺省图890-210");
     self.bookImgView.userInteractionEnabled = YES;
     [self.contentView addSubview:self.bookImgView];
     

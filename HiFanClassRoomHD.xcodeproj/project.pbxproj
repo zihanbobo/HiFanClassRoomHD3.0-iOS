@@ -196,6 +196,7 @@
 		5BD3D8361FCEAE8200C9B92B /* GGT_GetBookingLevelsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD3D8351FCEAE8200C9B92B /* GGT_GetBookingLevelsModel.m */; };
 		5BD5165A1ECAD32E0015D694 /* GGT_MineClassTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD516591ECAD32E0015D694 /* GGT_MineClassTableViewCell.m */; };
 		5BD5165D1ECAE5EA0015D694 /* GGT_MineLeftTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD5165C1ECAE5EA0015D694 /* GGT_MineLeftTableViewCell.m */; };
+		5BD53D0621D5090600276DE0 /* HF_FindMoreShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD53D0521D5090600276DE0 /* HF_FindMoreShareViewController.m */; };
 		5BD637E421B8CBDC004051B0 /* HF_FindMoreMoviePlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD637E321B8CBDC004051B0 /* HF_FindMoreMoviePlayViewController.m */; };
 		5BD637E721B8D7F2004051B0 /* HF_FindMoreMoviePlayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD637E621B8D7F2004051B0 /* HF_FindMoreMoviePlayCell.m */; };
 		5BD637EA21B8ED46004051B0 /* HF_MyScheduleHomeUnfishedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BD637E921B8ED46004051B0 /* HF_MyScheduleHomeUnfishedListViewController.m */; };
@@ -801,6 +802,8 @@
 		5BD516591ECAD32E0015D694 /* GGT_MineClassTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGT_MineClassTableViewCell.m; sourceTree = "<group>"; };
 		5BD5165B1ECAE5EA0015D694 /* GGT_MineLeftTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GGT_MineLeftTableViewCell.h; sourceTree = "<group>"; };
 		5BD5165C1ECAE5EA0015D694 /* GGT_MineLeftTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GGT_MineLeftTableViewCell.m; sourceTree = "<group>"; };
+		5BD53D0421D5090600276DE0 /* HF_FindMoreShareViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_FindMoreShareViewController.h; sourceTree = "<group>"; };
+		5BD53D0521D5090600276DE0 /* HF_FindMoreShareViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_FindMoreShareViewController.m; sourceTree = "<group>"; };
 		5BD637E221B8CBDC004051B0 /* HF_FindMoreMoviePlayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_FindMoreMoviePlayViewController.h; sourceTree = "<group>"; };
 		5BD637E321B8CBDC004051B0 /* HF_FindMoreMoviePlayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HF_FindMoreMoviePlayViewController.m; sourceTree = "<group>"; };
 		5BD637E521B8D7F2004051B0 /* HF_FindMoreMoviePlayCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HF_FindMoreMoviePlayCell.h; sourceTree = "<group>"; };
@@ -1403,9 +1406,9 @@
 		5B13B8E021AE6C3300CB0A7F /* FindMoreClass */ = {
 			isa = PBXGroup;
 			children = (
+				5B13B8E121AE6C3300CB0A7F /* Controller */,
 				5B4E766C21AEB83700C653E2 /* Model */,
 				5B4E766D21AEB83700C653E2 /* View */,
-				5B13B8E121AE6C3300CB0A7F /* Controller */,
 			);
 			path = FindMoreClass;
 			sourceTree = "<group>";
@@ -1421,6 +1424,8 @@
 				5BD637E321B8CBDC004051B0 /* HF_FindMoreMoviePlayViewController.m */,
 				5BA64B4F21CA30D8000E90DE /* HF_FindMoreAdvertPositionViewController.h */,
 				5BA64B5021CA30D8000E90DE /* HF_FindMoreAdvertPositionViewController.m */,
+				5BD53D0421D5090600276DE0 /* HF_FindMoreShareViewController.h */,
+				5BD53D0521D5090600276DE0 /* HF_FindMoreShareViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3779,6 +3784,7 @@
 				5B743D211EC5A2B7004E744A /* GGT_SelfInfoViewController.m in Sources */,
 				5BE2ED9F216B37DC00845E70 /* BITHockeyBaseViewController.m in Sources */,
 				5BE2EDCF216B37DC00845E70 /* TKEmotionToolbar.m in Sources */,
+				5BD53D0621D5090600276DE0 /* HF_FindMoreShareViewController.m in Sources */,
 				5B345232202C4A7E00850D30 /* GGT_ApplyClassModel.m in Sources */,
 				35F30A2A21CB8B3E00B86DE1 /* HF_PracticeView.m in Sources */,
 				5B61C96B1FEA6A3C00EA46BD /* GGT_HasEvaluationViewController.m in Sources */,

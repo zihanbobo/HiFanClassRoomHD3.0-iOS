@@ -82,7 +82,7 @@
     }];
     
     UIImageView *erweimaImgView = [[UIImageView alloc] init];
-    erweimaImgView.image = UIIMAGE_FROM_NAME(@"timg");
+    erweimaImgView.image = UIIMAGE_FROM_NAME(@"微信二维码");
     [bottomImgView addSubview:erweimaImgView];
     
     [erweimaImgView mas_makeConstraints:^(MASConstraintMaker *make) {

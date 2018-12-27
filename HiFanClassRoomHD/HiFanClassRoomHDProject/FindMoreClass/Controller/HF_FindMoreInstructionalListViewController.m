@@ -146,9 +146,11 @@
     vc.model = model;
     if (self.isLikeVc == YES) {
         vc.isLikeVc = YES;
+        vc.shareUrlStr = model.ShareUrl;
     } else {
         vc.ResourcesID = self.listModel.ResourcesID;
         vc.isLikeVc = NO;
+        vc.shareUrlStr = model.ShareUrl;
     }
     vc.playerUrlStr = model.RelationUrl;
     [self.navigationController pushViewController:vc animated:YES];

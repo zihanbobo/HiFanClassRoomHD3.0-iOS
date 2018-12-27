@@ -88,4 +88,5 @@
         make.height.mas_equalTo(1);
     }];
 }
+
 @end
