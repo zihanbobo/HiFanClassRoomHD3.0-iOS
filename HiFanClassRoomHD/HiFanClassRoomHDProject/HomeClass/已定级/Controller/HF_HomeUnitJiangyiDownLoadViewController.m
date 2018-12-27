@@ -7,11 +7,10 @@
 //
 
 #import "HF_HomeUnitJiangyiDownLoadViewController.h"
-#import <QuickLook/QuickLook.h>
 
-@interface HF_HomeUnitJiangyiDownLoadViewController ()<QLPreviewControllerDelegate,QLPreviewControllerDataSource>
-@property (strong, nonatomic) QLPreviewController *qlPreview;
-@property (copy, nonatomic)NSURL *fileURL;
+@interface HF_HomeUnitJiangyiDownLoadViewController () <WKUIDelegate,WKNavigationDelegate>
+@property (nonatomic, strong) WKWebView *webView;
+
 @end
 
 @implementation HF_HomeUnitJiangyiDownLoadViewController
@@ -26,95 +25,32 @@
     self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     [self setLeftItem:@"箭头"];
     
-    self.qlPreview = [[QLPreviewController alloc] init];
-    self.qlPreview.dataSource = self; //需要打开的文件的信息要实现dataSource中的方法
-    self.qlPreview.delegate = self;  //视图显示的控制
-    [self.view addSubview:self.qlPreview.view];
-//    [self presentViewController:self.qlPreview animated:YES completion:^{
-//        //需要用模态化的方式进行展示
-//    }];
+    self.webView = [[WKWebView alloc] init];
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.urlStr]]];
+    self.webView.scrollView.bounces = NO;
+    self.webView.UIDelegate = self;
+    self.webView.navigationDelegate = self;
+    [self.view addSubview:self.webView];
     
-    [self a];
-}
-
--(void)a {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    NSString *urlStr = self.urlStr;
-    NSString *fileName = [urlStr lastPathComponent]; //获取文件名称
-    NSURL *URL = [NSURL URLWithString:urlStr];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    [self.webView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view.mas_top).with.offset(0);
+        make.left.equalTo(self.view.mas_left).with.offset(0);
+        make.right.equalTo(self.view.mas_right).with.offset(-0);
+        make.bottom.equalTo(self.view.mas_bottom).with.offset(-0);
+    }];
     
-    //判断是否存在
-    if([self isFileExist:fileName]) {
-        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-        NSURL *url = [documentsDirectoryURL URLByAppendingPathComponent:fileName];
-        self.fileURL = url;
-//        [self presentViewController:self.qlPreview animated:YES completion:nil];
-    }else {
-        [MBProgressHUD showMessage:@"下载中" toView:self.view];
-        NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress *downloadProgress){
-            
-        } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-            NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-            NSURL *url = [documentsDirectoryURL URLByAppendingPathComponent:fileName];
-            return url;
-        } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-            [MBProgressHUD hideHUDForView:self.view];
-            self.fileURL = filePath;
-//            [self presentViewController:self.qlPreview animated:YES completion:nil];
-        }];
-        [downloadTask resume];
-    }
-
 }
 
-//判断文件是否已经在沙盒中存在
--(BOOL) isFileExist:(NSString *)fileName {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [paths objectAtIndex:0];
-    NSString *filePath = [path stringByAppendingPathComponent:fileName];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL result = [fileManager fileExistsAtPath:filePath];
-    return result;
+- (void)webView:(WKWebView *)webView didStartProvisionalNavigation:(null_unspecified WKNavigation *)navigation {
+    NSLog(@"开始加载");
+    [MBProgressHUD hideHUDForView:self.view];
+    [MBProgressHUD showLoading:self.view];
 }
 
-
-
-#pragma mark - previewControllerDataSource
--(NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
-    return 1; //需要显示的文件的个数
+- (void)webView:(WKWebView *)webView didFinishNavigation:(null_unspecified WKNavigation *)navigation {
+    NSLog(@"网页导航加载完毕");
+    [MBProgressHUD hideHUDForView:self.view];
 }
-
--(id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
-    //返回要打开文件的地址，包括网络或者本地的地址
-//    NSURL * url = [NSURL URLWithString:self.urlStr];
-//        NSURL * url = [NSURL fileURLWithPath:self.urlStr];
-    return self.fileURL;
-}
-
-#pragma mark - previewControllerDelegate
--(CGRect)previewController:(QLPreviewController *)controller frameForPreviewItem:(id<QLPreviewItem>)item inSourceView:(UIView *__autoreleasing *)view
-{
-    //提供变焦的开始rect，扩展到全屏
-    return CGRectMake(110, 190, 100, 100);
-}
-
-//-(UIImage *)previewController:(QLPreviewController *)controller transitionImageForPreviewItem:(id<QLPreviewItem>)item contentRect:(CGRect *)contentRect
-//{
-//    //返回控制器在出现和消失时显示的图像
-//    return [UIImage imageNamed:@"gerenziliao_morentouxiang.png"];
-//}
-
-//-(void)previewControllerDidDismiss:(QLPreviewController *)controller
-//{
-//    //控制器消失后调用
-//}
-//-(void)previewControllerWillDismiss:(QLPreviewController *)controller
-//{
-//    //控制器在即将消失后调用
-//
-//}
 
 
 - (void)didReceiveMemoryWarning {

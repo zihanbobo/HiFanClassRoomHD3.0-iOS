@@ -57,19 +57,29 @@
     }];
     
     
+    UILabel *phoneLabel = [[UILabel alloc]init];
+    phoneLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
+    phoneLabel.text = @"客服电话：400-6767-671";
+    phoneLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(22)];
+    [self addSubview:phoneLabel];
+    
+    [phoneLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerX.equalTo(self.mas_centerX);
+        make.top.equalTo(lineView.mas_bottom).offset(50);
+        make.height.mas_offset(22);
+    }];
+    
     UILabel *contentLabel = [[UILabel alloc]init];
-    contentLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
-    contentLabel.text = @"客服电话：400-6767-671 \n周一～周日 08:00～22:00";
-    contentLabel.numberOfLines = 0;
-    contentLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(20)];
+    contentLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
+    contentLabel.text = @"周一～周日 08:00～22:00";
+    contentLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(16)];
     [self addSubview:contentLabel];
     
     [contentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(phoneLabel.mas_bottom).offset(15);
         make.centerX.equalTo(self.mas_centerX);
-        make.top.equalTo(lineView.mas_bottom).offset(50);
-        make.height.mas_offset(56);
+        make.height.mas_offset(16);
     }];
-    
     
     //去设置
     self.enterClassButton = [UIButton buttonWithType:UIButtonTypeCustom];

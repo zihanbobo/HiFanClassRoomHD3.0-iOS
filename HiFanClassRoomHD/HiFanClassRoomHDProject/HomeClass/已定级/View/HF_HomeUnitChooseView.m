@@ -34,12 +34,7 @@
 //        [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
 //    }
     
-    NSLog(@"刷新");
-
     self.UnitArray = [NSMutableArray array];
-    collectionUnitArray = [NSMutableArray array];
-
-    
     self.UnitArray = collectionUnitArray;
     [self.collectionView reloadData];
 }
@@ -162,6 +157,9 @@
     static NSString *identify = @"HF_HomeUnitChooseCell";
     HF_HomeUnitChooseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
 
+    cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
+    cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
+    
     
     if (indexPath.row == 0) { //默认选中第一条数据
         [collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
@@ -177,8 +175,6 @@
     } else {
         cell.rightLineView.hidden = YES;
     }
-    
-    NSLog(@"888888   %ld",indexPath.row);
     
     return cell;
 }

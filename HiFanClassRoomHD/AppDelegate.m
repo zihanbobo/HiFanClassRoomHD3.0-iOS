@@ -17,7 +17,7 @@
 #import "HF_LaunchViewController.h"
 #import "UMMobClick/MobClick.h"
 #import "HF_NewFeatherViewController.h"
-
+#import "HF_LaunchMovieViewController.h"
 
 #define kBuglyAppId      @"31581e5dcb"
 
@@ -39,9 +39,9 @@ static BOOL isProduction = false;
 
     [self xc_configKeyWindow];
     
-    [self xc_changeKeyWindowWithOptions:launchOptions];
-    
-    [Bugly startWithAppId:kBuglyAppId];
+//    [self xc_changeKeyWindowWithOptions:launchOptions];
+//
+//    [Bugly startWithAppId:kBuglyAppId];
 
     return YES;
 }
@@ -49,7 +49,10 @@ static BOOL isProduction = false;
 - (void)xc_configKeyWindow {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    HF_LaunchViewController *vc = [HF_LaunchViewController new];
+//    HF_LaunchViewController *vc = [HF_LaunchViewController new];
+    HF_LaunchMovieViewController *vc = [HF_LaunchMovieViewController new];
+    
+    
     self.window.rootViewController = vc;
     [self.window makeKeyAndVisible];
 }

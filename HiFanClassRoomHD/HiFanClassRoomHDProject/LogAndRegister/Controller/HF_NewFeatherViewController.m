@@ -9,7 +9,7 @@
 #import "HF_NewFeatherViewController.h"
 #import "HF_LoginViewController.h"
 
-#define NEWVIEWCOUNT 2
+#define NEWVIEWCOUNT 4
 @interface HF_NewFeatherViewController () <UIScrollViewDelegate>
 
 @end
@@ -18,11 +18,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     [self addScrollView];
-
 }
-
 
 - (void)addScrollView {
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:self.view.bounds];
@@ -39,7 +36,7 @@
         imageView.userInteractionEnabled = YES;
         CGFloat x = i*w;
         imageView.frame = CGRectMake(x, 0, w, h);
-        NSString *imageName = [NSString stringWithFormat:@"引导页-%d",i+1];
+        NSString *imageName = [NSString stringWithFormat:@"欢迎%d",i+1];
         imageView.image = [UIImage imageNamed:imageName];
         [scrollView addSubview:imageView];
         if (i == NEWVIEWCOUNT - 1) {
@@ -50,8 +47,8 @@
             
             [btn mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.centerX.mas_equalTo(imageView.mas_centerX);
-                make.bottom.mas_equalTo(imageView.mas_bottom).with.offset(-LineX(30));
-                make.size.mas_equalTo(CGSizeMake(SCREEN_WIDTH()/2, LineH(60)));
+                make.bottom.mas_equalTo(imageView.mas_bottom).with.offset(-70);
+                make.size.mas_equalTo(CGSizeMake(230, 65));
             }];
             
             [scrollView addSubview:imageView];

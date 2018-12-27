@@ -17,19 +17,15 @@
 #import "HF_HomeUnitCellModel.h"
 #import "HF_HomeUnitChooseView.h"
 #import "HF_PracticeViewController.h"
-#import <QuickLook/QuickLook.h>
 
-@interface HF_HomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate,QLPreviewControllerDelegate,QLPreviewControllerDataSource>
+@interface HF_HomeViewController () <UITableViewDelegate,UITableViewDataSource,UIPopoverPresentationControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView; //tableView
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *headerArray;
 @property (nonatomic, strong) NSMutableArray *unitArray;
+@property (nonatomic, strong) NSMutableArray *sectionArray;
 @property (nonatomic, copy) NSString *unitString;
 @property (nonatomic, strong) NSDictionary *assistDataDic;
-@property (nonatomic, strong) QLPreviewController *qlPreview;
-@property (nonatomic, strong) NSURL *fileURL;
-@property (nonatomic, copy) NSString *pdfVcTitle;
-
 @end
 
 @implementation HF_HomeViewController
@@ -67,7 +63,9 @@
             
             [subscriber sendNext:array];
         } failure:^(NSError *error) {
-            
+            NSMutableArray *array = [NSMutableArray array];
+            [subscriber sendNext:array];
+
         }];
         
         return nil;
@@ -101,7 +99,12 @@
             [subscriber sendNext:dataArray];
             
         } failure:^(NSError *error) {
-            
+            NSMutableArray *dataArray = [NSMutableArray array];
+            NSMutableArray *array1 = [NSMutableArray array];
+            NSMutableArray *array2 = [NSMutableArray array];
+            dataArray = [NSMutableArray arrayWithObjects:array1,array2, nil];
+
+            [subscriber sendNext:dataArray];
         }];
 
         
@@ -116,13 +119,27 @@
 }
 
 -(void)updateUIWithHeaderArray:(NSMutableArray *)headerArray unitArray:(NSMutableArray *)unitArray {
+    self.sectionArray = [NSMutableArray array];
     //拿到数据，更新UI
     self.headerArray = [NSMutableArray array];
     self.unitArray = [NSMutableArray array];
     
+    
     self.headerArray = headerArray;
     self.unitArray = [unitArray safe_objectAtIndex:0];
     NSInteger unitid = [[[unitArray safe_objectAtIndex:1] safe_objectAtIndex:0] integerValue];
+    
+    
+    
+    if (!IsArrEmpty(self.headerArray)) {
+        [self.sectionArray addObject:self.headerArray];
+    }
+    
+    if (!IsArrEmpty(self.unitArray)) {
+        [self.sectionArray addObject:self.unitArray];
+        [self.sectionArray addObject:self.dataArray];
+    }
+    
     [self.tableView reloadData];
     [self getUnitCellListData:unitid];
 }
@@ -148,8 +165,13 @@
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
 //        [self.tableView reloadData];
         
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+        if (self.sectionArray.count == 3) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+        } else {
+             [self.tableView reloadData];
+        }
+       
 
         
     } failure:^(NSError *error) {
@@ -158,8 +180,12 @@
         [self.tableView.mj_footer endRefreshingWithNoMoreData];
 //        [self.tableView reloadData];
         
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
-        [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+        if (self.sectionArray.count == 3) {
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:2 inSection:0];
+            [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObjects:indexPath,nil] withRowAnimation:UITableViewRowAnimationNone];
+        } else {
+            [self.tableView reloadData];
+        }
         
     }];
 }
@@ -253,7 +279,7 @@
         }
         
         
-        cell.collectionUnitArray = [NSMutableArray array];
+//        cell.collectionUnitArray = [NSMutableArray array];
         cell.collectionUnitArray = self.unitArray;
         
         @weakify(self);
@@ -290,22 +316,18 @@
         
         //MARK:课堂讲义下载
         cell.jiangyiDownBlock = ^{
-//            HF_HomeUnitJiangyiDownLoadViewController *vc = [[HF_HomeUnitJiangyiDownLoadViewController alloc] init];
-//            vc.urlStr = self.assistDataDic[@"HandoutUrl"];
-//            vc.title = @"课堂讲义下载";
-//            [self.navigationController pushViewController:vc animated:YES];
-            self.pdfVcTitle = @"课堂讲义下载";
-            [self getDownLoadURL:self.assistDataDic[@"HandoutUrl"]];
+            HF_HomeUnitJiangyiDownLoadViewController *vc = [[HF_HomeUnitJiangyiDownLoadViewController alloc] init];
+            vc.urlStr = self.assistDataDic[@"HandoutUrl"];
+            vc.title = @"课堂讲义下载";
+            [self.navigationController pushViewController:vc animated:YES];
         };
         
         //MARK:练习册下载
         cell.lianxiceDownBlock = ^{
-//            HF_HomeUnitJiangyiDownLoadViewController *vc = [[HF_HomeUnitJiangyiDownLoadViewController alloc] init];
-//            vc.urlStr = self.assistDataDic[@"WorkBook"];
-//            vc.title = @"练习册下载";
-//            [self.navigationController pushViewController:vc animated:YES];
-            self.pdfVcTitle = @"练习册下载";
-            [self getDownLoadURL:self.assistDataDic[@"WorkBook"]];
+            HF_HomeUnitJiangyiDownLoadViewController *vc = [[HF_HomeUnitJiangyiDownLoadViewController alloc] init];
+            vc.urlStr = self.assistDataDic[@"WorkBook"];
+            vc.title = @"练习册下载";
+            [self.navigationController pushViewController:vc animated:YES];
         };
         
         
@@ -321,7 +343,7 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 3;
+    return self.sectionArray.count;
 }
 
 
@@ -334,71 +356,6 @@
         return self.tableView.height - LineH(394);
     }
     return 0;
-}
-
-//MARK:加载pdf
--(void)getDownLoadURL:(NSString *)url {
-    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
-    AFURLSessionManager *manager = [[AFURLSessionManager alloc] initWithSessionConfiguration:configuration];
-    NSString *urlStr = url;
-    NSString *fileName = [urlStr lastPathComponent]; //获取文件名称
-    NSURL *URL = [NSURL URLWithString:urlStr];
-    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
-    
-    //判断是否存在
-    if([self isFileExist:fileName]) {
-        NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-        NSURL *url = [documentsDirectoryURL URLByAppendingPathComponent:fileName];
-        self.fileURL = url;
-        [self presentViewController:self.qlPreview animated:YES completion:^{
-        }];
-        
-    }else {
-        [MBProgressHUD showMessage:@"下载中" toView:self.view];
-        NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress *downloadProgress){
-            
-        } destination:^NSURL *(NSURL *targetPath, NSURLResponse *response) {
-            NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
-            NSURL *url = [documentsDirectoryURL URLByAppendingPathComponent:fileName];
-            return url;
-        } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
-            [MBProgressHUD hideHUDForView:self.view];
-            self.fileURL = filePath;
-            [self presentViewController:self.qlPreview animated:YES completion:^{
-            }];
-        }];
-        [downloadTask resume];
-    }
-    
-}
-
-//判断文件是否已经在沙盒中存在
--(BOOL) isFileExist:(NSString *)fileName {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *path = [paths objectAtIndex:0];
-    NSString *filePath = [path stringByAppendingPathComponent:fileName];
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-    BOOL result = [fileManager fileExistsAtPath:filePath];
-    return result;
-}
-
-
-
-#pragma mark - previewControllerDataSource
--(NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)controller {
-    return 1; //需要显示的文件的个数
-}
-
--(id<QLPreviewItem>)previewController:(QLPreviewController *)controller previewItemAtIndex:(NSInteger)index {
-    //返回要打开文件的地址，包括网络或者本地的地址
-    return self.fileURL;
-}
-
-#pragma mark - previewControllerDelegate
--(CGRect)previewController:(QLPreviewController *)controller frameForPreviewItem:(id<QLPreviewItem>)item inSourceView:(UIView *__autoreleasing *)view
-{
-    //提供变焦的开始rect，扩展到全屏
-    return CGRectMake(110, 190, 100, 100);
 }
 
 //MARK:UI加载
@@ -422,15 +379,6 @@
         self.tableView.showsVerticalScrollIndicator = NO;
     }
     return _tableView;
-}
-
--(QLPreviewController *)qlPreview {
-    if (!_qlPreview) {
-        self.qlPreview = [[QLPreviewController alloc] init];
-        self.qlPreview.dataSource = self; //需要打开的文件的信息要实现dataSource中的方法
-        self.qlPreview.delegate = self;  //视图显示的控制
-    }
-    return _qlPreview;
 }
 
 @end

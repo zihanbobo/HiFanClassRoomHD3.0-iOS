@@ -29,6 +29,10 @@
 - (void)setCollectionDataArray:(NSMutableArray *)collectionDataArray {
     if (collectionDataArray.count == 0) {
         self.placeHolderView.hidden = NO;
+        [self.collectionView addSubview:self.placeHolderView];
+        [self.placeHolderView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.top.bottom.equalTo(self.collectionView);
+        }];
     } else {
         self.placeHolderView.hidden = YES;
     }
@@ -146,12 +150,6 @@
     
     //注册cell
     [self.collectionView registerClass:[HF_HomeHeaderCollectionViewCell class] forCellWithReuseIdentifier:@"HF_HomeHeaderCollectionViewCell"];
-    
-    self.placeHolderView.hidden = YES;
-    [self.collectionView addSubview:self.placeHolderView];
-    [self.placeHolderView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.equalTo(self.collectionView);
-    }];
 }
 
 //获取时间段
@@ -202,6 +200,7 @@
 -(HF_HomeHeaderPlaceHolderView *)placeHolderView {
     if (!_placeHolderView) {
         self.placeHolderView = [[HF_HomeHeaderPlaceHolderView alloc] init];
+        self.placeHolderView.hidden = YES;
     }
     return _placeHolderView;
 }
