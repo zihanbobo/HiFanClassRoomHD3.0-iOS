@@ -72,8 +72,10 @@
     
     //创建网页内容对象
     //title 和 webpageUrl不能为空
-    NSString *desctStr = [NSString stringWithFormat:@"%@ 在GoGoTalk青少外教英语体验课中获得了一份英语水平测评报告！",self.shareUrl];
-    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"GoGoTalk英语水平测评报告" descr:desctStr thumImage:UIIMAGE_FROM_NAME(@"启动图标-分享")];
+//    NSString *desctStr = [NSString stringWithFormat:@"%@ 在GoGoTalk青少外教英语体验课中获得了一份英语水平测评报告！",self.shareUrl];
+//    NSString *desctStr = [NSString stringWithFormat:@"%@ 在GoGoTalk青少外教英语体验课中获得了一份英语水平测评报告！",self.shareUrl];
+
+    UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:@"hi翻外教课堂分享测试" descr:@"hi翻外教课堂分享测试描述" thumImage:UIIMAGE_FROM_NAME(@"分享图标")];
     
     //设置网页地址
     shareObject.webpageUrl = self.shareUrl;

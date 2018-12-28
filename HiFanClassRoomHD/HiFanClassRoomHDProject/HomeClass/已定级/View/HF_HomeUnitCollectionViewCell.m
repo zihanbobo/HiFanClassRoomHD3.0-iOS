@@ -60,8 +60,8 @@
 
     //课程名称
     self.classNameLabel = [[UILabel alloc]init];
-    self.classNameLabel.font = Font(15);
 //        self.classNameLabel.text = @"Lesson2-1";
+    self.classNameLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:15];
     self.classNameLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
     [self.bigContentView addSubview:self.classNameLabel];
 

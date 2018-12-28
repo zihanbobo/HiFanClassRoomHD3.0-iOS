@@ -16,8 +16,8 @@
 @property (nonatomic, copy) NSString *Title;
 
 //Count = 30;
-//CoverImage = "http://gogotalk.oss-cn-beijing.aliyuncs.com/PictureBook/ce5064ca-e8ce-4d8c-83e0-18987b8be753.png?Expires=4668653890&amp;OSSAccessKeyId=LTAIKtWnie86aI6T&amp;Signature=%2BaB3g51dNmwNYpRYURBPOEXu9Mk%3D";
-//ResourcesID = 1;
-//SubTitle = "字母时间副标题";
-//Title = "字母时间";
+//CoverImage = "http://gogotalk.oss-cn-beijing.aliyuncs.com/PictureBook/94984333-aee1-42e2-9a94-26a84b2f5713.png?Expires=4670040257&amp;OSSAccessKeyId=LTAIKtWnie86aI6T&amp;Signature=q%2Fz3bSsl%2BVPYkfmfc1gJjTLiI6M%3D";
+//ResourcesID = 4;
+//SubTitle = "辅修课副标题";
+//Title = "辅修2";
 @end

@@ -53,7 +53,7 @@ static BOOL isProduction = false;
         [self initUMConfig];
         
         //友盟分享
-        //    [self initUmSocialCore];
+            [self initUmSocialCore];
         
         //极光推送
         [self initJpush:launchOptions];

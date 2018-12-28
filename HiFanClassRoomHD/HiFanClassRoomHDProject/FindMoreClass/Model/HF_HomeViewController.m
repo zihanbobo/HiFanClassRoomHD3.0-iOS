@@ -319,7 +319,7 @@
         cell.jiangyiDownBlock = ^{
             HF_HomeUnitJiangyiDownLoadViewController *vc = [[HF_HomeUnitJiangyiDownLoadViewController alloc] init];
             vc.urlStr = self.assistDataDic[@"HandoutUrl"];
-            vc.title = @"课堂讲义下载";
+            vc.title = @"课堂讲义";
             [self.navigationController pushViewController:vc animated:YES];
         };
         
@@ -327,7 +327,7 @@
         cell.lianxiceDownBlock = ^{
             HF_HomeUnitJiangyiDownLoadViewController *vc = [[HF_HomeUnitJiangyiDownLoadViewController alloc] init];
             vc.urlStr = self.assistDataDic[@"WorkBook"];
-            vc.title = @"练习册下载";
+            vc.title = @"练习册";
             [self.navigationController pushViewController:vc animated:YES];
         };
         

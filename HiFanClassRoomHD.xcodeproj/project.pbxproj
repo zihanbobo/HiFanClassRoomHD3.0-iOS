@@ -4110,7 +4110,7 @@
 					"-w",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gogo-talk.hifan.HDT";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gogo-talk.hifan.HD";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -4163,7 +4163,7 @@
 					"-w",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.gogo-talk.hifan.HDT";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.gogo-talk.hifan.HD";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";

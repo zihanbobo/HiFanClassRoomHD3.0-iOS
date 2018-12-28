@@ -132,13 +132,15 @@
     
     self.ageLabel.text = [NSString stringWithFormat:@"年龄：%ld岁",cellModel.Age];
     
-    if (!IsStrEmpty(cellModel.Name)) {
-        self.levelLabel.text = [NSString stringWithFormat:@"%@",@"A9"];
+    
+    NSString *levelStr = [NSString stringWithFormat:@"%ld",(long)cellModel.Level];
+    if (!IsStrEmpty(levelStr)) {
+        self.levelLabel.text = levelStr;
     }
     
     if(cellModel.Gender == 1){
         [self.genderImageView setImage:[UIImage imageNamed:@"男"]];
-    }else if(cellModel.Gender == 2){
+    }else if(cellModel.Gender == 0){
         [self.genderImageView setImage:[UIImage imageNamed:@"女"]];
     }
 }

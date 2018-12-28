@@ -144,7 +144,12 @@
                 cell.rightLabel.text = self.sin.cacheSize;
             } else if(indexPath.row == 5) { //当前版本
                 cell.enterImgView.hidden = YES;
-                cell.rightLabel.text = @"V3.3.0";
+                
+                NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+                // app版本
+                NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+                
+                cell.rightLabel.text = [NSString stringWithFormat:@"V%@",app_Version];
                 [cell.rightLabel mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.right.equalTo(cell.contentView.mas_right).offset(-20);
                 }];
@@ -156,7 +161,11 @@
                 cell.rightLabel.text = self.sin.cacheSize;
             } else if(indexPath.row == 5) { //当前版本
                 cell.enterImgView.hidden = YES;
-                cell.rightLabel.text = @"V3.3.0";
+                NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+                // app版本
+                NSString *app_Version = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+                
+                cell.rightLabel.text = [NSString stringWithFormat:@"V%@",app_Version];
                 [cell.rightLabel mas_updateConstraints:^(MASConstraintMaker *make) {
                     make.right.equalTo(cell.contentView.mas_right).offset(-20);
                 }];

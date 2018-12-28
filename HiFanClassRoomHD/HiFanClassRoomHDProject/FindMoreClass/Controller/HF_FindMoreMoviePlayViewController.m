@@ -15,8 +15,15 @@
 #import "HF_FindMoreShareViewController.h"
 
 @interface HF_FindMoreMoviePlayViewController () <UICollectionViewDelegate,UICollectionViewDataSource,playerDelegate,UIPopoverPresentationControllerDelegate>
-@property(nonatomic,strong) UIBarButtonItem *likeBtn;//喜欢
-@property(nonatomic,strong) UIBarButtonItem *shareBtn;//分享
+//@property(nonatomic,strong) UIBarButtonItem *likeBtn;//喜欢
+//@property(nonatomic,strong) UIBarButtonItem *shareBtn;//分享
+@property(nonatomic,strong) UIView *navView;
+@property(nonatomic,strong) UIButton *likeBtn;//喜欢
+@property(nonatomic,strong) UIButton *shareBtn;//分享
+
+
+
+
 
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
@@ -48,7 +55,7 @@
 -(void)navButtonClick : (UIButton *)button {
 
     if (button.tag == 10) { //分享
-//        [self.shareBtn setImage:UIIMAGE_FROM_NAME(@"分享选中") forState:UIControlStateNormal];
+        [self.shareBtn setImage:UIIMAGE_FROM_NAME(@"分享选中") forState:UIControlStateNormal];
 
         HF_FindMoreShareViewController *shareVc = [HF_FindMoreShareViewController new];//初始化内容视图控制器
         shareVc.preferredContentSize = CGSizeMake(LineW(166), LineH(54));
@@ -56,9 +63,9 @@
         self.popover = shareVc.popoverPresentationController;//初始化一个popover
         self.popover.delegate = self;
         //设置popover的来源按钮（以button谁为参照）
-        self.popover.sourceView = (UIButton *)self.shareBtn;
+        self.popover.sourceView = self.shareBtn;
         //设置弹出视图的位置（以button谁为参照）
-         self.popover.barButtonItem = self.shareBtn;//设置popover的来源按钮
+        self.popover.sourceRect = self.shareBtn.bounds;
         self.popover.backgroundColor = [UIColor whiteColor];
         shareVc.shareUrl = self.shareUrlStr;
         [self presentViewController:shareVc animated:YES completion:nil];//推出popover
@@ -67,9 +74,12 @@
         
         NSString *urlStr = [NSString stringWithFormat:@"%@/%ld",URL_UpdataLike,(long)self.ResourcesID];
         [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
-           
-        } failure:^(NSError *error) {
+            if ([responseObject[@"msg"] isKindOfClass:[NSString class]]) {
+                [MBProgressHUD showMessage:responseObject[@"msg"] toView:self.view];
+            }
             
+        } failure:^(NSError *error) {
+            [MBProgressHUD showMessage:error.userInfo[@"msg"] toView:self.view];
         }];
     }
 
@@ -176,6 +186,7 @@
     self.title = model.Title;
     self.ResourcesID = model.RecordID;
     self.headerView.playerUrlStr = model.RelationUrl;
+    self.shareUrlStr = model.ShareUrl;
 }
 
 
@@ -195,10 +206,11 @@
 //MAEK:UI加载
 -(void)initUI {
     self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
-    
-    UIBarButtonItem *fixedSpaceBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    fixedSpaceBarButtonItem.width = 20;
-    self.navigationItem.rightBarButtonItems = @[self.shareBtn,fixedSpaceBarButtonItem,self.likeBtn];
+ 
+    [self.navView addSubview:self.likeBtn];
+    [self.navView addSubview:self.shareBtn];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.navView];
+
     
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.collectionView];
@@ -237,32 +249,46 @@
     return _collectionView;
 }
 
+-(UIView *)navView {
+    if (!_navView) {
+        self.navView = [[UIView alloc] init];
+        self.navView.frame = CGRectMake(0, 0, LineW(130), LineH(44));
+//        self.navView.backgroundColor = UICOLOR_RANDOM_COLOR();
+    }
+    return _navView;
+}
+
 //喜欢
--(UIBarButtonItem *)likeBtn {
+-(UIButton *)likeBtn {
     if (!_likeBtn) {
         UIButton *btn  = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btn setImage:UIIMAGE_FROM_NAME(@"灰爱心") forState:UIControlStateNormal];
+        if (self.likeNum == 0) {
+            [btn setImage:UIIMAGE_FROM_NAME(@"灰爱心") forState:UIControlStateNormal];
+        } else {
+            [btn setImage:UIIMAGE_FROM_NAME(@"爱心") forState:UIControlStateNormal];
+        }
         [btn setTitle:@"喜欢" forState:UIControlStateNormal];
-        btn.frame = CGRectMake(0, 0, LineW(60), LineH(16));
+        btn.frame = CGRectMake(0, LineY(12), LineW(60), LineH(20));
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.titleLabel.font = Font(16);
         btn.imageEdgeInsets = UIEdgeInsetsMake(0, -LineW(3), 0, 0);
         btn.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 0, -LineW(3));
         [btn addTarget:self action:@selector(navButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         [btn sizeToFit];
+//        btn.backgroundColor = UICOLOR_RANDOM_COLOR();
         btn.tag = 20;
-        self.likeBtn =  [[UIBarButtonItem alloc] initWithCustomView:btn];
+        self.likeBtn =  btn;
     }
     return _likeBtn;
 }
 
 //分享
--(UIBarButtonItem *)shareBtn {
+-(UIButton *)shareBtn {
     if (!_shareBtn) {
         UIButton *btn  = [UIButton buttonWithType:UIButtonTypeCustom];
         [btn setImage:UIIMAGE_FROM_NAME(@"灰分享") forState:UIControlStateNormal];
         [btn setTitle:@"分享" forState:UIControlStateNormal];
-        btn.frame = CGRectMake(0, 0, LineW(60), LineH(16));
+        btn.frame = CGRectMake(LineX(70),LineY(12), LineW(60), LineH(20));
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         btn.titleLabel.font = Font(16);
         btn.imageEdgeInsets = UIEdgeInsetsMake(0, -LineW(3), 0, 0);
@@ -270,10 +296,12 @@
         [btn addTarget:self action:@selector(navButtonClick:) forControlEvents:(UIControlEventTouchUpInside)];
         btn.tag = 10;
         [btn sizeToFit];
-        self.shareBtn =  [[UIBarButtonItem alloc] initWithCustomView:btn];
+//        btn.backgroundColor = UICOLOR_RANDOM_COLOR();
+        self.shareBtn =  btn;
     }
     return _shareBtn;
 }
+
 
 
 - (void)didReceiveMemoryWarning {

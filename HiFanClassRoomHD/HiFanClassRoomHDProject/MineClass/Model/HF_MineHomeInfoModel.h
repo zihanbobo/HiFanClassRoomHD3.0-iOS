@@ -29,6 +29,7 @@
 @property (nonatomic, strong) NSArray *dicList;
 //剩余课程
 @property (nonatomic, assign) NSInteger totalCount;
+@property (nonatomic, assign) NSInteger Level;
 
 /*
  AbsentCount = 0;

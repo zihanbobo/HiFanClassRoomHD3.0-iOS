@@ -15,6 +15,7 @@
 @property (nonatomic,copy) NSString *playerUrlStr;
 @property (nonatomic,copy) NSString *shareUrlStr;
 @property (nonatomic,assign) BOOL isLikeVc;
+@property (nonatomic,assign) NSInteger likeNum;
 
 @end
 
