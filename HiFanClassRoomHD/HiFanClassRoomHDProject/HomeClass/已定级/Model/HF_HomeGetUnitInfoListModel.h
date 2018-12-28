@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+
 @interface HF_HomeGetUnitInfoListModel : NSObject
 @property (nonatomic, copy) NSString *HandoutUrl;
 @property (nonatomic, assign) NSInteger UnitID;

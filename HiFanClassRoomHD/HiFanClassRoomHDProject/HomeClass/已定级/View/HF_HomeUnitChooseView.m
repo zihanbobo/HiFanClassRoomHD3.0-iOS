@@ -34,9 +34,13 @@
 //        [self.rightButton setImage:UIIMAGE_FROM_NAME(@"右三角灰") forState:UIControlStateNormal];
 //    }
     
+
+    
     self.UnitArray = [NSMutableArray array];
     self.UnitArray = collectionUnitArray;
     [self.collectionView reloadData];
+    
+    [self.collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
 }
 
 
@@ -90,7 +94,7 @@
     self.collectionView.bounces = NO;
     self.collectionView.pagingEnabled = YES;
     self.collectionView.alwaysBounceVertical = YES;
-    self.collectionView.contentSize = CGSizeMake(self.collectionView.width, 48);
+//    self.collectionView.contentSize = CGSizeMake(self.collectionView.width, 48);
     [bgView addSubview:self.collectionView];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -157,16 +161,6 @@
     static NSString *identify = @"HF_HomeUnitChooseCell";
     HF_HomeUnitChooseCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identify forIndexPath:indexPath];
 
-    cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
-    cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-    
-    
-    if (indexPath.row == 0) { //默认选中第一条数据
-        [collectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:YES scrollPosition:UICollectionViewScrollPositionNone];
-        cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xe5ebf0);
-        cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
-    }
-    
     HF_HomeGetUnitInfoListModel *model = [self.UnitArray safe_objectAtIndex:indexPath.row];
     cell.cellModel = model;
     
@@ -204,21 +198,11 @@
 
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    HF_HomeUnitChooseCell *cell = (HF_HomeUnitChooseCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xe5ebf0);
-    cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
     HF_HomeGetUnitInfoListModel *model = [self.UnitArray safe_objectAtIndex:indexPath.row];
-
+    
     if (self.selectedUnitIdBlock) {
         self.selectedUnitIdBlock(model);
     }
-}
-
-//取消选中
-- (void)collectionView:(UICollectionView *)collectionView didDeselectItemAtIndexPath:(NSIndexPath *)indexPath {
-    HF_HomeUnitChooseCell *cell = (HF_HomeUnitChooseCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    cell.contentView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
-    cell.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
 }
 
 @end

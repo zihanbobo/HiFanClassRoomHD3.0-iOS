@@ -12,7 +12,7 @@
 @property (nonatomic, assign) NSInteger ChapterID;
 @property (nonatomic, copy) NSString *ChapterImagePath;
 @property (nonatomic, copy) NSString * ChapterName;
-@property (nonatomic, assign) NSInteger ChapterStatus;
+@property (nonatomic, assign) NSInteger ChapterStatus; //ChapterStatus：0=未预约 1=已预约 2=已完成
 
 
 //ChapterID = 236;

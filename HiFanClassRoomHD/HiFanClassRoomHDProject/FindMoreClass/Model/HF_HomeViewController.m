@@ -81,20 +81,19 @@
             NSMutableArray *array2 = [NSMutableArray array];
 
             if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
-                for (NSDictionary *dic in responseObject[@"data"]) {
-                    HF_HomeGetUnitInfoListModel *model = [HF_HomeGetUnitInfoListModel yy_modelWithDictionary:dic];
+                NSArray *dataArray = responseObject[@"data"];
+                [dataArray enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                    HF_HomeGetUnitInfoListModel *model = [HF_HomeGetUnitInfoListModel yy_modelWithDictionary:obj];
+                    if (idx == 0) {
+                        NSString *unitIdStr = [NSString stringWithFormat:@"%ld",(long)model.UnitID];
+                        [array2 addObject:unitIdStr];
+                        self.unitString = model.UnitName;
+                    }
+                    
                     [array1 addObject:model];
-                }
+                }];
             }
-            
-            for (NSInteger i=0; i<array1.count; i++) {
-                if (i == 0) {
-                    HF_HomeGetUnitInfoListModel *model = [array1 safe_objectAtIndex:0];
-                    NSString *unitIdStr = [NSString stringWithFormat:@"%ld",(long)model.UnitID];
-                    [array2 addObject:unitIdStr];
-                    self.unitString = model.UnitName;
-                }
-            }
+
             dataArray = [NSMutableArray arrayWithObjects:array1,array2, nil];
             [subscriber sendNext:dataArray];
             

@@ -80,4 +80,15 @@
     }
 }
 
+
+-(void)setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    if (selected) {
+        self.contentView.backgroundColor = UICOLOR_FROM_HEX(0xe5ebf0);
+        self.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
+    } else {
+        self.contentView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
+        self.titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
+    }
+}
 @end
