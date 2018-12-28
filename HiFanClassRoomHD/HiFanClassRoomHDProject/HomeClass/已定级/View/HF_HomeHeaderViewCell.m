@@ -169,12 +169,27 @@
 -(BaseScrollHeaderView *)headerView {
     if (!_headerView) {
         self.headerView = [[BaseScrollHeaderView alloc] init];
-        self.headerView.titleLabel.text = [self getTheTimeBucket];
+        NSString *studentName = [UserDefaults() objectForKey:K_StudentEnName];
         if ([[self getTheTimeBucket] isEqualToString:@"上午好"]) {
+            if (!IsStrEmpty(studentName)) {
+                self.headerView.titleLabel.text = [NSString stringWithFormat:@"%@，%@",[self getTheTimeBucket],studentName];
+            } else {
+                self.headerView.titleLabel.text = [self getTheTimeBucket];
+            }
             self.headerView.navBigLabel.text = @"Good Morning";
         } else if ([[self getTheTimeBucket] isEqualToString:@"下午好"]) {
+            if (!IsStrEmpty(studentName)) {
+                self.headerView.titleLabel.text = [NSString stringWithFormat:@"%@，%@",[self getTheTimeBucket],studentName];
+            } else {
+                self.headerView.titleLabel.text = [self getTheTimeBucket];
+            }
             self.headerView.navBigLabel.text = @"Good Afternoon";
         } else if ([[self getTheTimeBucket] isEqualToString:@"晚上好"]) {
+            if (!IsStrEmpty(studentName)) {
+                self.headerView.titleLabel.text = [NSString stringWithFormat:@"%@，%@",[self getTheTimeBucket],studentName];
+            } else {
+                self.headerView.titleLabel.text = [self getTheTimeBucket];
+            }
             self.headerView.navBigLabel.text = @"Good Evening";
         }
         [self.headerView.rightButton setTitle:@"课程攻略" forState:UIControlStateNormal];

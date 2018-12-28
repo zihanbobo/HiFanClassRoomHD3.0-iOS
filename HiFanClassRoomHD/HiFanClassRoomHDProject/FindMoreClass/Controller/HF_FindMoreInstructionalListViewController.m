@@ -26,6 +26,8 @@
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    
+    
 }
 
 - (void)viewDidLoad {
@@ -53,12 +55,13 @@
     
     [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
         
-        
         if (self.isLikeVc == YES) {  //我喜欢的
             if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
-                
+                NSLog(@"刷新 喜欢  页面  的数据2");
+
                 for (NSDictionary *dic in responseObject[@"data"]) {
                     HF_FindMoreInstructionalListModel *model = [HF_FindMoreInstructionalListModel yy_modelWithDictionary:dic];
+                    model.IsLike = 1;
                     [self.dataArray addObject:model];
                 }
                 
@@ -146,10 +149,20 @@
     vc.cellModel = model;
     if (self.isLikeVc == YES) {
         vc.isLikeVc = YES;
+        @weakify(self);
+        vc.refreshLikeVc = ^{ //MARK:刷新 喜欢  页面  的数据
+            @strongify(self);
+            NSLog(@"刷新 喜欢  页面  的数据1");
+            [self.dataArray removeAllObjects];
+            self.dataArray = [NSMutableArray array];
+            [self getLoadData];
+        };
+        
     } else {
         vc.isLikeVc = NO;
         vc.shouyeResourcesID = self.shouyeResourcesID;
     }
+    
     [self.navigationController pushViewController:vc animated:YES];
 }
 

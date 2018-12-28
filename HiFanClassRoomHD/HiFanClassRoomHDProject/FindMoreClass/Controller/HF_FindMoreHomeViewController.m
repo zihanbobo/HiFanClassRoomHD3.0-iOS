@@ -235,7 +235,8 @@
     self.view.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     [self.view addSubview:self.tableView];
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.equalTo(self.view);
+        make.left.equalTo(self.view.mas_left).offset(0);
+        make.right.equalTo(self.view.mas_right).offset(-0);
         make.top.equalTo(self.view.mas_top).offset(20);
         make.bottom.equalTo(self.view.mas_bottom).offset(-0);
     }];

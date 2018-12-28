@@ -65,7 +65,6 @@
         } failure:^(NSError *error) {
             NSMutableArray *array = [NSMutableArray array];
             [subscriber sendNext:array];
-
         }];
         
         return nil;

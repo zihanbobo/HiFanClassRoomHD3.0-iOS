@@ -34,7 +34,7 @@
 -(void)initUI {
     //课程名称
     self.sectionNameLabel = [[UILabel alloc]init];
-    self.sectionNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:LineX(26)];
+    self.sectionNameLabel.font = [UIFont fontWithName:@"PingFangSC-Semibold" size:26];
     self.sectionNameLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
     [self.contentView addSubview:self.sectionNameLabel];
     
@@ -64,18 +64,18 @@
     layout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectZero collectionViewLayout:layout];
     self.collectionView.delegate = self;
-    self.collectionView.dataSource =self;
+    self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
     self.collectionView.showsHorizontalScrollIndicator = NO;
     [self.contentView addSubview:self.collectionView];
-    
+
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.sectionInfoLabel.mas_bottom).offset(0);
+        make.top.equalTo(self.sectionNameLabel.mas_bottom).offset(0);
         make.left.equalTo(self.contentView.mas_left).offset(0);
         make.right.equalTo(self.contentView.mas_right).offset(-0);
-        make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-1);
     }];
-    
+
     
     //注册cell
     [self.collectionView registerClass:[HF_FindMoreHomeCollectionViewCell class] forCellWithReuseIdentifier:@"HF_FindMoreHomeCollectionViewCell"];
@@ -83,12 +83,12 @@
     //MARK:导航分割线
     self.lineView = [[UIView alloc] init];
     self.lineView.backgroundColor = UICOLOR_FROM_HEX(0xEAEFF3);
-    [self addSubview:self.lineView];
+    [self.contentView addSubview:self.lineView];
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.equalTo(self.mas_bottom).offset(-0);
-        make.left.equalTo(self.mas_left).with.offset(17);
-        make.right.equalTo(self.mas_right).with.offset(-0);
+        make.bottom.equalTo(self.contentView.mas_bottom).offset(-0);
+        make.left.equalTo(self.contentView.mas_left).offset(17);
+        make.right.equalTo(self.contentView.mas_right).offset(-0);
         make.height.mas_equalTo(1);
     }];
     
@@ -121,28 +121,26 @@
 
 //设置每个 UICollectionView 的大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-
-    return CGSizeMake(LineW(230),LineH(258));
+    return CGSizeMake(LineW(230),LineH(257));
 }
 
 
 
 //定义每个UICollectionView 的间距
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-
-    return UIEdgeInsetsMake(LineY(8.5), LineX(17), LineY(8.5), LineX(17));
+    return UIEdgeInsetsMake(0, LineX(17), 0, LineX(17));
 }
 
 
 //定义每个UICollectionView 的纵向间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
-    return LineY(17);
+    return 0;
 }
 
 
 //定义每个UICollectionView 的横向间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return LineY(17);
+    return LineX(17);
 }
 
 

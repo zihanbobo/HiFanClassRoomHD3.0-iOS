@@ -28,6 +28,7 @@
 
 
 //NSUserDefaults 存储的宏定义
+#define K_StudentEnName @"studentEnName" //避免和拓课的sdk冲突
 #define K_userToken @"userToken"
 #define K_registerID @"K_registerID"
 #define K_password @"GGT_password" //避免和拓课的sdk冲突
@@ -35,6 +36,7 @@
 #define K_LevelName @"LevelName" //教材的信息
 #define K_AccountID @"accountID" //用户id
 #define K_Level @"Level" //等级
+#define K_PeopleIcon @"PeopleIcon" //头像
 
 
 

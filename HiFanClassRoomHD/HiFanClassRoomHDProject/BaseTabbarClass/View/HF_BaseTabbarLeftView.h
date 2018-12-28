@@ -10,6 +10,7 @@
 
 typedef void(^XCButtonClickBlock)(UIButton *button);
 @interface HF_BaseTabbarLeftView : UIView
+@property (nonatomic,strong) UIButton *peopleIconButton;
 @property (nonatomic, copy) XCButtonClickBlock buttonClickBlock;
 @property (nonatomic, strong) UIImageView *sanjiaoImgView;
 @property (nonatomic,strong) UILabel *levelLabel;

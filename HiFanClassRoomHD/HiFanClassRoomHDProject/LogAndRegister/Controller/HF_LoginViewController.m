@@ -136,6 +136,7 @@
 
         [UserDefaults() setObject:responseObject[@"data"][@"userToken"] forKey:K_userToken];
         [UserDefaults() setObject:[NSString stringWithFormat:@"%@",responseObject[@"data"][@"accountID"]] forKey:K_AccountID];
+        [UserDefaults() setObject:[NSString stringWithFormat:@"%@",responseObject[@"data"][@"studentName"]] forKey:K_StudentEnName];
         [UserDefaults() setObject:self.loginView.phoneAccountField.text forKey:@"phoneNumber"];
         [UserDefaults() setObject:self.loginView.passwordField.text forKey:K_password];
         [UserDefaults() synchronize];

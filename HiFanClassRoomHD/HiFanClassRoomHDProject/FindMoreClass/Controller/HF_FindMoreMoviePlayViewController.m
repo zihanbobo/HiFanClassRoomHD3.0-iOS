@@ -75,16 +75,31 @@
         
     } else if (button.tag == 20){ //MARK:喜欢
         
+        
         NSString *urlStr = [NSString stringWithFormat:@"%@/%ld",URL_UpdataLike,(long)self.ResourcesID];
         [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
+            
+            if (self.isLikeVc == YES) {
+                if (self.refreshLikeVc) {
+                    self.refreshLikeVc();
+                }
+            }
+            
             if ([responseObject[@"msg"] isKindOfClass:[NSString class]]) {
+                NSString *msgStr = responseObject[@"msg"];
+                if ([msgStr isEqualToString:@"添加喜欢成功"]) { //喜欢
+                    [self.likeBtn setImage:UIIMAGE_FROM_NAME(@"爱心") forState:UIControlStateNormal];
+                } else {                                      //不喜欢
+                    [self.likeBtn setImage:UIIMAGE_FROM_NAME(@"灰爱心") forState:UIControlStateNormal];
+                }
+                
                 [MBProgressHUD showMessage:responseObject[@"msg"] toView:self.view];
             }
             
             HF_FindMoreInstructionalListModel *model = [self.dataArray safe_objectAtIndex:self.selectedIndex];
             model.IsLike = self.likeNum == 0 ? 1 : 0;
             [self.dataArray replaceObjectAtIndex:self.selectedIndex withObject:model];
-            
+        
             
         } failure:^(NSError *error) {
             [MBProgressHUD showMessage:error.userInfo[@"msg"] toView:self.view];
@@ -107,6 +122,7 @@
             if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
                 for (NSDictionary *dic in responseObject[@"data"]) {
                     HF_FindMoreInstructionalListModel *model = [HF_FindMoreInstructionalListModel yy_modelWithDictionary:dic];
+                    model.IsLike = 1;
                     [self.dataArray addObject:model];
                 }
             }
@@ -184,7 +200,7 @@
 
 //定义每个UICollectionView 的横向间距
 -(CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
-    return LineY(17);
+    return LineX(17);
 }
 
 
@@ -195,6 +211,7 @@
     self.headerView.playerUrlStr = model.RelationUrl;
     self.shareUrlStr = model.ShareUrl;
     self.likeNum = model.IsLike;
+
     
     if (self.likeNum == 0) { //不喜欢
         [self.likeBtn setImage:UIIMAGE_FROM_NAME(@"灰爱心") forState:UIControlStateNormal];

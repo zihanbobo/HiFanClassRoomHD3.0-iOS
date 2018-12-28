@@ -42,7 +42,7 @@
         self.contentView.backgroundColor = UICOLOR_FROM_HEX(ColorFFFFFF);
         [self initView];
         // 监听通知
-        [[NSNotificationCenter defaultCenter] addObserver:self    selector:@selector(countDownNotification) name:kCountDownNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(countDownNotification) name:kCountDownNotification object:nil];
     }
     return self;
 }
@@ -122,7 +122,7 @@
     //上课时间 MonthOrWeek
     self.monthOrWeekLabel = [[UILabel alloc]init];
     self.monthOrWeekLabel.font = Font(14);
-//     self.monthOrWeekLabel.text = @"20:00";
+//     self.monthOrWeekLabel.text = @"10月29日 周三";
     self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
     [self.bigContentView addSubview:self.monthOrWeekLabel];
     
@@ -210,48 +210,40 @@
         self.levelLabel.text = cellModel.LevelName;
     }
 
-
+    if (!IsStrEmpty(cellModel.MonthOrWeek)) {
+        self.monthOrWeekLabel.text = cellModel.MonthOrWeek;
+    }
     
      //0 是未开始  1 上课中 2 即将开始 3 已结束
     switch (cellModel.StatusName) {
         case 0:
+            self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
             [self.cellRightButton setTitle:@"进入教室" forState:(UIControlStateNormal)];
             [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
             [self.cellRightButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
 
-            if (!IsStrEmpty(cellModel.MonthOrWeek)) {
-                self.monthOrWeekLabel.text = cellModel.MonthOrWeek;
-                self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-            }
             break;
         case 1:
+            self.monthOrWeekLabel.text = @"正在上课";
+            self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX(0xFF8A65);
             [self.cellRightButton setTitle:@"进入教室" forState:(UIControlStateNormal)];
             [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterClassBtn") forState:UIControlStateNormal];
             [self.cellRightButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
-
-            if (!IsStrEmpty(cellModel.MonthOrWeek)) {
-                self.monthOrWeekLabel.text = cellModel.MonthOrWeek;
-                self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-            }
             
             break;
         case 2:
+            NSLog(@"111111");
             [self showTimeLabel:cellModel];
             [self.cellRightButton setTitle:@"进入教室" forState:(UIControlStateNormal)];
             [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterClassBtn") forState:UIControlStateNormal];
             [self.cellRightButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
-
             
             break;
         case 3:
+            self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
             [self.cellRightButton setTitle:@"课后练习" forState:(UIControlStateNormal)];
             [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
             [self.cellRightButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
-
-            if (!IsStrEmpty(cellModel.MonthOrWeek)) {
-                self.monthOrWeekLabel.text = cellModel.MonthOrWeek;
-                self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
-            }
             
             break;
         default:
@@ -281,7 +273,7 @@
 -(void)showTimeLabel:(HF_HomeHeaderModel *)model {
     //获取上课时间
     NSString *LessonTimeStr = model.LessonTime;
-    LessonTimeStr = [LessonTimeStr stringByReplacingOccurrencesOfString:@" " withString:@"T"]; //替换字符
+    LessonTimeStr = [LessonTimeStr stringByReplacingOccurrencesOfString:@"T" withString:@" "]; //替换字符
     
     //获取时间差
     HF_Singleton *sin = [HF_Singleton sharedSingleton];
@@ -297,6 +289,11 @@
 
     [self.levelLabel addBorderForViewWithBorderWidth:1 BorderColor:UICOLOR_FROM_HEX(Color67D3CE) CornerRadius:9];
     [self.levelLabel xc_SetCornerWithSideType:XCSideTypeAll cornerRadius:9];
+}
+
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 @end

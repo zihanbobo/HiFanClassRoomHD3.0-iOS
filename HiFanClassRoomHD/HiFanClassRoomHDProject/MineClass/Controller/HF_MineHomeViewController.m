@@ -62,7 +62,10 @@
     NSString *urlStr = [NSString stringWithFormat:@"%@?&Flag=%@",URL_GetLessonStatistics,flag];
     [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
         if ([responseObject[@"data"] isKindOfClass:[NSDictionary class]]) {
+
         self.model = [HF_MineHomeInfoModel yy_modelWithDictionary:responseObject[@"data"]];
+            [UserDefaults() setObject:self.model.HeadImg forKey:K_PeopleIcon];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"showPeopleIconImage" object:self.model.HeadImg];
         }
         [self.tableView reloadData];
         

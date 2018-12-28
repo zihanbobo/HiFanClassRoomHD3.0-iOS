@@ -11,7 +11,6 @@
 @interface HF_BaseTabbarLeftView()
 //课表和我的view
 @property (nonatomic,strong) UIView *optionsView;
-@property (nonatomic,strong) UIButton *peopleIconButton;
 @property (nonatomic,strong) UIVisualEffectView *effe;
 @end
 
@@ -41,6 +40,7 @@
     self.peopleIconButton.tag = 99;
     [self.peopleIconButton setBackgroundImage:UIIMAGE_FROM_NAME(@"缺省头像") forState:(UIControlStateNormal)];
     [self.peopleIconButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self.peopleIconButton sd_setBackgroundImageWithURL:[NSURL URLWithString:[UserDefaults() objectForKey:K_PeopleIcon]] forState:UIControlStateNormal placeholderImage:UIIMAGE_FROM_NAME(@"缺省头像") options:SDWebImageRefreshCached];
     [self addSubview:self.peopleIconButton];
     
     [self.peopleIconButton mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -60,6 +60,10 @@
     }
     
     [self getCacheSize];
+    
+    [[[NSNotificationCenter defaultCenter] rac_addObserverForName:@"showPeopleIconImage" object:nil] subscribeNext:^(NSNotification * _Nullable x) {//MARK: x 是通知对象
+        [self.homeLeftView.peopleIconButton sd_setBackgroundImageWithURL:[NSURL URLWithString:x.object] forState:UIControlStateNormal placeholderImage:UIIMAGE_FROM_NAME(@"缺省头像") options:SDWebImageRefreshCached];
+    }];
 }
 
 

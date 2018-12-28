@@ -54,7 +54,8 @@
     [bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.mas_left).offset(17);
         make.right.equalTo(self.mas_right).offset(-17);
-        make.top.bottom.equalTo(self);
+        make.top.equalTo(self.mas_top).offset(0);
+        make.bottom.equalTo(self.mas_bottom).offset(-0);
     }];
     
     //左侧按钮----暂时先指示左右滑动。后续实现 按钮操作
@@ -92,9 +93,6 @@
     self.collectionView.backgroundColor = UICOLOR_FROM_HEX(0xF4F6F9);
     self.collectionView.showsHorizontalScrollIndicator = NO;
     self.collectionView.bounces = NO;
-    self.collectionView.pagingEnabled = YES;
-    self.collectionView.alwaysBounceVertical = YES;
-//    self.collectionView.contentSize = CGSizeMake(self.collectionView.width, 48);
     [bgView addSubview:self.collectionView];
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {

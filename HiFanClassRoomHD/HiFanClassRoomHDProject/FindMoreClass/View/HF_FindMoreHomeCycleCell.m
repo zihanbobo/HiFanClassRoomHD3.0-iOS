@@ -27,9 +27,9 @@
     [headerView.rightButton setImage:UIIMAGE_FROM_NAME(@"爱心") forState:UIControlStateNormal];
     [self addSubview:headerView];
     [headerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.mas_top).with.offset(0);
-        make.left.equalTo(self.mas_left).with.offset(0);
-        make.right.equalTo(self.mas_right).with.offset(-0);
+        make.top.equalTo(self.mas_top).offset(0);
+        make.left.equalTo(self.mas_left).offset(0);
+        make.right.equalTo(self.mas_right).offset(-0);
         make.height.mas_equalTo(106);
     }];
     
