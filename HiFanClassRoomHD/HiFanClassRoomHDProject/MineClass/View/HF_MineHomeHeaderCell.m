@@ -133,7 +133,7 @@
     self.ageLabel.text = [NSString stringWithFormat:@"年龄：%ld岁",cellModel.Age];
     
     
-    NSString *levelStr = [NSString stringWithFormat:@"%ld",(long)cellModel.Level];
+    NSString *levelStr = [NSString stringWithFormat:@"%@",cellModel.Level];
     if (!IsStrEmpty(levelStr)) {
         self.levelLabel.text = levelStr;
     }

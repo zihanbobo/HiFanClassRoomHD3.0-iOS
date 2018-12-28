@@ -81,7 +81,7 @@
     [self addSubview:self.passwordLine];
     //密码显示状态
     self.showPasswordStatusBtn = [UIButton new];
-    [self.showPasswordStatusBtn setImage:[UIImage imageNamed:@"眼睛"] forState:UIControlStateNormal];
+    [self.showPasswordStatusBtn setImage:[UIImage imageNamed:@"密码不可见"] forState:UIControlStateNormal];
     [self addSubview:self.showPasswordStatusBtn];
     [self.showPasswordStatusBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(LineW(28));
@@ -98,6 +98,7 @@
     [self.loginButton setTitle:@"立即登录" forState:UIControlStateNormal];
     [self.loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.loginButton setBackgroundImage:[UIImage imageNamed:@"LoginButton"] forState:UIControlStateNormal];
+    self.loginButton.titleEdgeInsets = UIEdgeInsetsMake(-7, 0, 0, 0);
     [self addSubview:self.loginButton];
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.equalTo(self.mas_right).offset(-17);
@@ -106,4 +107,5 @@
         make.height.mas_equalTo(80);
     }];
 }
+
 @end

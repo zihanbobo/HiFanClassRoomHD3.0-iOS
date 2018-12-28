@@ -10,12 +10,8 @@
 #import "HF_FindMoreInstructionalListModel.h"
 
 @interface HF_FindMoreMoviePlayViewController : BaseViewController
-@property (nonatomic,strong) HF_FindMoreInstructionalListModel *model;
-@property (nonatomic,assign) NSInteger ResourcesID;
-@property (nonatomic,copy) NSString *playerUrlStr;
-@property (nonatomic,copy) NSString *shareUrlStr;
+@property (nonatomic,strong) HF_FindMoreInstructionalListModel *cellModel;
 @property (nonatomic,assign) BOOL isLikeVc;
-@property (nonatomic,assign) NSInteger likeNum;
-
+@property (nonatomic,assign) NSInteger shouyeResourcesID;
 @end
 

@@ -67,9 +67,16 @@
     //密码明文暗文状态切换
     [[self.loginView.showPasswordStatusBtn rac_signalForControlEvents:UIControlEventTouchUpInside] subscribeNext:^(id x) {
         @strongify(self);
-        
+
         self.loginView.passwordField.secureTextEntry = !self.isPwdTextEntry;
         self.isPwdTextEntry = !self.isPwdTextEntry;
+        
+        if (!self.isPwdTextEntry) {
+            [self.loginView.showPasswordStatusBtn setImage:[UIImage imageNamed:@"密码可见"] forState:UIControlStateNormal];
+        } else {
+            [self.loginView.showPasswordStatusBtn setImage:[UIImage imageNamed:@"密码不可见"] forState:UIControlStateNormal];
+        }
+        
     }];
     
     //注册

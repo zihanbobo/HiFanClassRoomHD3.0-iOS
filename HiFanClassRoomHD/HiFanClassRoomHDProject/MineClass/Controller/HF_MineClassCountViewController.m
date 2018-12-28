@@ -53,13 +53,14 @@
         if ([responseObject[@"data"] isKindOfClass:[NSArray class]] && [responseObject[@"data"] count] >0) {
             NSArray *array = responseObject[@"data"];
             for (NSDictionary *dic in array) {
-                NSString *hourStr = [NSString stringWithFormat:@"%@",dic[@"Hours"]];
+                HF_MineClassCountListModel *model = [HF_MineClassCountListModel yy_modelWithDictionary:dic];
+
+                NSString *hourStr = [NSString stringWithFormat:@"%@",model.Hours];
                 
                 if (![hourStr xc_isContainString:@"-" ] && ![hourStr xc_isContainString:@"+"]) {
-                    hourStr = [NSString stringWithFormat:@"+%@",hourStr];
+                    model.Hours = [NSString stringWithFormat:@"+%@",hourStr];
                 }
                 
-                HF_MineClassCountListModel *model = [HF_MineClassCountListModel yy_modelWithDictionary:dic];
                 [self.detailDataArray addObject:model];
             }
         }

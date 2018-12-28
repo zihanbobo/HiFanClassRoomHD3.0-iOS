@@ -181,7 +181,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.dataArray.count == 6) {
         if (indexPath.row == 1) { //清除缓存
-
+            [self clearCache];
         } else if (indexPath.row == 2){ //设备检测
             [self checkDeviceClick];
         } else if (indexPath.row == 3){ //在线技术支持
@@ -192,7 +192,7 @@
             HF_MineClassCountViewController *vc = [[HF_MineClassCountViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
         } else if (indexPath.row == 2){ //清除缓存
-
+            [self clearCache];
         } else if (indexPath.row == 3){ //设备检测
             [self checkDeviceClick];
         } else if (indexPath.row == 4){ //在线技术支持
@@ -211,6 +211,60 @@
         return LineH(50);
     }
 }
+
+//MARK:清除缓存
+-(void)clearCache {
+    NSString *messageStr = [NSString stringWithFormat:@"当前应用缓存%@，清除减少占用空间，保留提高加载速度",self.sin.cacheSize];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:messageStr preferredStyle:UIAlertControllerStyleAlert];
+    alert.titleColor = UICOLOR_FROM_HEX(0x000000);
+    
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"保留" style:UIAlertActionStyleCancel handler:nil];
+    cancelAction.textColor = UICOLOR_FROM_HEX(Color777777);
+    
+    UIAlertAction *clernAction = [UIAlertAction actionWithTitle:@"清除" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self removeCache];
+    }];
+    clernAction.textColor = UICOLOR_FROM_HEX(Color2B8EEF);
+    
+    [alert addAction:cancelAction];
+    [alert addAction:clernAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
+
+
+- (void)removeCache{
+    //获取路径
+    NSString *cachePath = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory,NSUserDomainMask,YES)firstObject];
+    
+    //返回路径中的文件数组
+    NSArray *files = [[NSFileManager defaultManager] subpathsAtPath:cachePath];
+    
+    //    NSLog(@"文件数：%ld",[files count]);
+    for(NSString *p in files){
+        NSError *error;
+        
+        NSString *path = [cachePath stringByAppendingString:[NSString stringWithFormat:@"/%@",p]];
+        
+        if([[NSFileManager defaultManager]fileExistsAtPath:path]) {
+            BOOL isRemove = [[NSFileManager defaultManager]removeItemAtPath:path error:&error];
+            if(isRemove) {
+                //这里发送一个通知给外界，外界接收通知，可以做一些操作（比如UIAlertViewController）
+                if (self.dataArray.count == 6) {
+                    HF_MineHomeTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:1 inSection:0]];
+                    cell.rightLabel.text = [NSString stringWithFormat:@"0.00M"];
+                } else if (self.dataArray.count == 7) {
+                    HF_MineHomeTableViewCell *cell = [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:2 inSection:0]];
+                    cell.rightLabel.text = [NSString stringWithFormat:@"0.00M"];
+                }
+                self.sin.cacheSize = @"0.00M";
+                
+            } else {
+                //                [MBProgressHUD showMessage:@"清除失败" toView:self.view];
+            }
+        }
+    }
+}
+
 
 //MARK:退出登录
 - (void)logOutButtonClick {

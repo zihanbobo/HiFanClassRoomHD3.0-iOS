@@ -170,10 +170,9 @@
          }
      }];
     
-    //课后复习
+    //课后练习
     self.cellRightButton = [UIButton new];
     self.cellRightButton.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(16)];
-    [self.cellRightButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
     [self.bigContentView addSubview:self.cellRightButton];
     
     
@@ -218,7 +217,8 @@
         case 0:
             [self.cellRightButton setTitle:@"进入教室" forState:(UIControlStateNormal)];
             [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
-            
+            [self.cellRightButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
+
             if (!IsStrEmpty(cellModel.MonthOrWeek)) {
                 self.monthOrWeekLabel.text = cellModel.MonthOrWeek;
                 self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
@@ -227,6 +227,8 @@
         case 1:
             [self.cellRightButton setTitle:@"进入教室" forState:(UIControlStateNormal)];
             [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterClassBtn") forState:UIControlStateNormal];
+            [self.cellRightButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
+
             if (!IsStrEmpty(cellModel.MonthOrWeek)) {
                 self.monthOrWeekLabel.text = cellModel.MonthOrWeek;
                 self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);
@@ -237,12 +239,15 @@
             [self showTimeLabel:cellModel];
             [self.cellRightButton setTitle:@"进入教室" forState:(UIControlStateNormal)];
             [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"enterClassBtn") forState:UIControlStateNormal];
+            [self.cellRightButton setTitleColor:UICOLOR_FROM_HEX(ColorFFFFFF) forState:UIControlStateNormal];
 
             
             break;
         case 3:
-            [self.cellRightButton setTitle:@"课后复习" forState:(UIControlStateNormal)];
+            [self.cellRightButton setTitle:@"课后练习" forState:(UIControlStateNormal)];
             [self.cellRightButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
+            [self.cellRightButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
+
             if (!IsStrEmpty(cellModel.MonthOrWeek)) {
                 self.monthOrWeekLabel.text = cellModel.MonthOrWeek;
                 self.monthOrWeekLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 40);

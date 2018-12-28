@@ -15,21 +15,18 @@
 #import "HF_FindMoreShareViewController.h"
 
 @interface HF_FindMoreMoviePlayViewController () <UICollectionViewDelegate,UICollectionViewDataSource,playerDelegate,UIPopoverPresentationControllerDelegate>
-//@property(nonatomic,strong) UIBarButtonItem *likeBtn;//喜欢
-//@property(nonatomic,strong) UIBarButtonItem *shareBtn;//分享
 @property(nonatomic,strong) UIView *navView;
 @property(nonatomic,strong) UIButton *likeBtn;//喜欢
 @property(nonatomic,strong) UIButton *shareBtn;//分享
-
-
-
-
-
 @property (nonatomic,strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic,strong) HF_FindMoreMoviePlayView *headerView;
 @property(nonatomic, strong) UIPopoverPresentationController *popover;
-
+@property (nonatomic,copy) NSString *shareUrlStr;
+@property (nonatomic,copy) NSString *playerUrlStr;
+@property (nonatomic,assign) NSInteger ResourcesID;
+@property (nonatomic,assign) NSInteger likeNum;
+@property (nonatomic,assign) NSInteger selectedIndex;
 @end
 
 @implementation HF_FindMoreMoviePlayViewController
@@ -45,16 +42,22 @@
     [super viewDidLoad];
 
     [self setLeftItem:@"箭头"];
-    self.navigationItem.title = self.model.Title;
+    self.navigationItem.title = self.cellModel.Title;
+    self.shareUrlStr = self.cellModel.ShareUrl;
+    self.playerUrlStr = self.cellModel.RelationUrl;
+    self.ResourcesID = self.cellModel.RecordID;
+    self.likeNum = self.cellModel.IsLike;
+    
     self.dataArray = [NSMutableArray array];
 
     [self initUI];
     [self getLoadData];
 }
 
+
 -(void)navButtonClick : (UIButton *)button {
 
-    if (button.tag == 10) { //分享
+    if (button.tag == 10) { //MARK:分享
         [self.shareBtn setImage:UIIMAGE_FROM_NAME(@"分享选中") forState:UIControlStateNormal];
 
         HF_FindMoreShareViewController *shareVc = [HF_FindMoreShareViewController new];//初始化内容视图控制器
@@ -70,7 +73,7 @@
         shareVc.shareUrl = self.shareUrlStr;
         [self presentViewController:shareVc animated:YES completion:nil];//推出popover
         
-    } else if (button.tag == 20){ //喜欢
+    } else if (button.tag == 20){ //MARK:喜欢
         
         NSString *urlStr = [NSString stringWithFormat:@"%@/%ld",URL_UpdataLike,(long)self.ResourcesID];
         [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
@@ -78,11 +81,15 @@
                 [MBProgressHUD showMessage:responseObject[@"msg"] toView:self.view];
             }
             
+            HF_FindMoreInstructionalListModel *model = [self.dataArray safe_objectAtIndex:self.selectedIndex];
+            model.IsLike = self.likeNum == 0 ? 1 : 0;
+            [self.dataArray replaceObjectAtIndex:self.selectedIndex withObject:model];
+            
+            
         } failure:^(NSError *error) {
             [MBProgressHUD showMessage:error.userInfo[@"msg"] toView:self.view];
         }];
     }
-
 }
 
 
@@ -91,7 +98,7 @@
     if (self.isLikeVc == YES) {  //我喜欢的
         urlStr = URL_GetLikeList;
     } else {                     //其他
-        urlStr = [NSString stringWithFormat:@"%@?resourcesID=%ld",URL_GetInstructionalInfoList,(long)self.ResourcesID];
+        urlStr = [NSString stringWithFormat:@"%@?resourcesID=%ld",URL_GetInstructionalInfoList,(long)self.shouyeResourcesID];
     }
     
     [[BaseService share] sendGetRequestWithPath:urlStr token:YES viewController:self success:^(id responseObject) {
@@ -187,6 +194,15 @@
     self.ResourcesID = model.RecordID;
     self.headerView.playerUrlStr = model.RelationUrl;
     self.shareUrlStr = model.ShareUrl;
+    self.likeNum = model.IsLike;
+    
+    if (self.likeNum == 0) { //不喜欢
+        [self.likeBtn setImage:UIIMAGE_FROM_NAME(@"灰爱心") forState:UIControlStateNormal];
+    } else {                 //喜欢
+        [self.likeBtn setImage:UIIMAGE_FROM_NAME(@"爱心") forState:UIControlStateNormal];
+    }
+    
+    self.selectedIndex = indexPath.row;
 }
 
 
@@ -211,6 +227,12 @@
     [self.navView addSubview:self.shareBtn];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.navView];
 
+    if (self.likeNum == 0) { //不喜欢
+        [self.likeBtn setImage:UIIMAGE_FROM_NAME(@"灰爱心") forState:UIControlStateNormal];
+    } else {                 //喜欢
+        [self.likeBtn setImage:UIIMAGE_FROM_NAME(@"爱心") forState:UIControlStateNormal];
+    }
+    
     
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.collectionView];
@@ -224,6 +246,11 @@
     }];
 }
 
+//弹框消失时调用的方法
+-(void)popoverPresentationControllerDidDismissPopover:(UIPopoverPresentationController *)popoverPresentationController {
+    //NSLog(@"弹框已经消失");
+    [self.shareBtn setImage:UIIMAGE_FROM_NAME(@"灰分享") forState:UIControlStateNormal];
+}
 
 //MARK:懒加载
 -(HF_FindMoreMoviePlayView *)headerView {
@@ -262,11 +289,7 @@
 -(UIButton *)likeBtn {
     if (!_likeBtn) {
         UIButton *btn  = [UIButton buttonWithType:UIButtonTypeCustom];
-        if (self.likeNum == 0) {
-            [btn setImage:UIIMAGE_FROM_NAME(@"灰爱心") forState:UIControlStateNormal];
-        } else {
-            [btn setImage:UIIMAGE_FROM_NAME(@"爱心") forState:UIControlStateNormal];
-        }
+        [btn setImage:UIIMAGE_FROM_NAME(@"灰爱心") forState:UIControlStateNormal];
         [btn setTitle:@"喜欢" forState:UIControlStateNormal];
         btn.frame = CGRectMake(0, LineY(12), LineW(60), LineH(20));
         [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];

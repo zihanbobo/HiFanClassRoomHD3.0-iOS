@@ -36,7 +36,7 @@
     UILabel *titleLabel = [[UILabel alloc]init];
     titleLabel.font = [UIFont fontWithName:@"PingFangSC-Medium" size:LineX(20)];
     titleLabel.textColor = UICOLOR_FROM_HEX_ALPHA(Color000000, 70);
-    titleLabel.text = @"检测设备";
+    titleLabel.text = @"设备检测";
     [self addSubview:titleLabel];
     
     [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

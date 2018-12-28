@@ -202,7 +202,7 @@
 -(HF_PracticeView *)practiceView {
     if (!_practiceView) {
         self.practiceView = [HF_PracticeView new];
-        self.practiceView.desc = @"【课后复习】可以帮助宝贝对课堂所学知识查漏补缺巩固学习成果。\n配合【课前预习】，可以形成完整学习闭环，有效保障学习效果。";
+        self.practiceView.desc = @"【课后练习】可以帮助宝贝对课堂所学知识查漏补缺巩固学习成果。\n配合【课前预习】，可以形成完整学习闭环，有效保障学习效果。";
         self.practiceView.hidden = YES;
         @weakify(self);
         self.practiceView.classAfterBtnBlock = ^{

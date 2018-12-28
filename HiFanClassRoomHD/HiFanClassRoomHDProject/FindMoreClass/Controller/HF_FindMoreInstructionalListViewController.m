@@ -47,7 +47,7 @@
     if (self.isLikeVc == YES) {  //我喜欢的
         urlStr = URL_GetLikeList;
     } else {                     //其他
-        urlStr = [NSString stringWithFormat:@"%@?resourcesID=%ld",URL_GetInstructionalInfoList,(long)self.listModel.ResourcesID];
+        urlStr = [NSString stringWithFormat:@"%@?resourcesID=%ld",URL_GetInstructionalInfoList,(long)self.shouyeResourcesID];
     }
     
     
@@ -143,18 +143,13 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     HF_FindMoreInstructionalListModel *model = [self.dataArray safe_objectAtIndex:indexPath.row];
     HF_FindMoreMoviePlayViewController *vc = [[HF_FindMoreMoviePlayViewController alloc] init];
-    vc.model = model;
+    vc.cellModel = model;
     if (self.isLikeVc == YES) {
         vc.isLikeVc = YES;
-        vc.shareUrlStr = model.ShareUrl;
-        vc.likeNum = model.IsLike;
     } else {
-        vc.ResourcesID = self.listModel.ResourcesID;
         vc.isLikeVc = NO;
-        vc.shareUrlStr = model.ShareUrl;
-        vc.likeNum = model.IsLike;
+        vc.shouyeResourcesID = self.shouyeResourcesID;
     }
-    vc.playerUrlStr = model.RelationUrl;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

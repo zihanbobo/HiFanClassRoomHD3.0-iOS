@@ -23,7 +23,7 @@
 @property (nonatomic, strong) UILabel *classNameLabel;
 //课前预习
 @property (nonatomic,strong) UIButton *classBeforeButton;
-//课后复习
+//课后练习
 @property (nonatomic,strong) UIButton *classAfterButton;
 @end
 
@@ -187,12 +187,12 @@
      }];
     
     
-    //课后复习
+    //课后练习
     self.classAfterButton = [UIButton new];
     self.classAfterButton.titleLabel.font = Font(16);
     [self.classAfterButton setTitleColor:UICOLOR_FROM_HEX(Color02B6E3) forState:UIControlStateNormal];
     [self.classAfterButton setBackgroundImage:UIIMAGE_FROM_NAME(@"classBeforeBtn") forState:UIControlStateNormal];
-    [self.classAfterButton setTitle:@"课后复习" forState:UIControlStateNormal];
+    [self.classAfterButton setTitle:@"课后练习" forState:UIControlStateNormal];
     self.classAfterButton.tag = 12;
     [self.bigContentView addSubview:self.classAfterButton];
     

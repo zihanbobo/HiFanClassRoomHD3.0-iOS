@@ -164,8 +164,8 @@
     cell.selectedBlock = ^(NSInteger section, NSInteger indexRow) {
         HF_FindMoreInstructionalTypeListModel *model = [[self.dataArray safe_objectAtIndex:section] safe_objectAtIndex:indexRow];
         HF_FindMoreInstructionalListViewController *vc = [[HF_FindMoreInstructionalListViewController alloc] init];
-        vc.listModel = model;
         vc.isLikeVc = NO;
+        vc.shouyeResourcesID = model.ResourcesID;
         vc.navigationItem.title = model.Title;
         [self.navigationController pushViewController:vc animated:YES];
     };

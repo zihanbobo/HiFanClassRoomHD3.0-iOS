@@ -194,7 +194,7 @@
         case 11: //课前预习
             [self classBeforeButtonWithIndex:index];
             break;
-        case 12: //课后复习
+        case 12: //课后练习
             [self classAfterButtonWithIndex:index];
             break;
         default:

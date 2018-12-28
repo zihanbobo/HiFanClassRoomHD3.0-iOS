@@ -36,10 +36,10 @@
     [self.layer insertSublayer:layer atIndex:0];
 
     
-    
     //MARK:头像按钮
     self.peopleIconButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.peopleIconButton.tag = 99;
+    [self.peopleIconButton setBackgroundImage:UIIMAGE_FROM_NAME(@"缺省头像") forState:(UIControlStateNormal)];
     [self.peopleIconButton addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:self.peopleIconButton];
     

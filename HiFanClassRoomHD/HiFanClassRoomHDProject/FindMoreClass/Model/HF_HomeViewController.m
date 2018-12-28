@@ -233,12 +233,12 @@
         };
         
 
-        //MARK:课后复习----进入教室
+        //MARK:课后练习----进入教室
         cell.cellRightButtonBlock1 = ^(UIButton *button, NSInteger index) {
             HF_HomeHeaderModel *model = [self.headerArray safe_objectAtIndex:index];
 
             
-            if ([button.titleLabel.text isEqualToString:@"课后复习"]) {
+            if ([button.titleLabel.text isEqualToString:@"课后练习"]) {
                 HF_PracticeViewController *vc = [[HF_PracticeViewController alloc] init];
                 vc.webUrl = model.BeforeFilePath;
                 vc.titleStr = model.ChapterName;
